@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معنا | Creative3Design — مكتب تصميم داخلي بالقاهرة</title>
+  <meta name="description" content="تواصل مع Creative3Design للحصول على استشارة مجانية في التصميم الداخلي. رقم الهاتف: 00201019053288. نخدمك في القاهرة وجميع أنحاء مصر." />
+  <link rel="canonical" href="https://creative3design.com/contact.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  <style>
+  /* ── Mobile overrides for inline grids ── */
+  @media(max-width:768px){
+    .contact-layout  { grid-template-columns:1fr !important; gap:2rem !important; }
+    .form-row-2col   { grid-template-columns:1fr !important; }
+  }
+  </style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-contact">
+      <a href="tel:00201019053288" class="top-bar-link">00201019053288</a>
+      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">واتساب مباشر</a>
+    </div>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
+</div>
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+      <li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li>
+      <li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+      <li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li>
+      <li><a href="portfolio.html" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li>
+      <li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li>
+      <li><a href="contact.html" class="nav-cta" aria-current="page" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
+    </ul>
+        <div class="nav-page-switcher">
+      <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
+        <option value="">الصفحات ▾</option>
+        <option value="index.html">🏠 الرئيسية</option>
+        <option value="about.html">🏢 عن المكتب</option>
+        <option value="services.html">⚙️ الخدمات</option>
+        <option value="packages.html">📦 الباقات</option>
+        <option value="portfolio.html">🖼️ الأعمال</option>
+        <option value="blog/index.html">📝 المدونة</option>
+        <option value="contact.html">📞 تواصل معنا</option>
+      </select>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+
+<section style="background:linear-gradient(to bottom, rgba(20,18,16,.7), rgba(20,18,16,.95)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80') center/cover; padding:6rem 0 4rem; text-align:center;">
+  <div class="container">
+    <p class="section-tag" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</p>
+    <h1>نحن هنا لخدمتك</h1>
+    <p style="color:var(--text-muted);max-width:500px;margin:1rem auto 0;">استشارة مجانية مع مهندسينا المتخصصين — تواصل الآن</p>
+  </div>
+</section>
+
+<section class="section-padding" style="background:var(--black-charcoal);">
+  <div class="container">
+    <div class="contact-layout" style="display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:start;">
+      <div class="lazy-reveal">
+        <h2 style="margin-bottom:2rem;" data-ar="معلومات التواصل" data-en="Contact Information">معلومات التواصل</h2>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="loc-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <div><strong>الهاتف</strong><a href="tel:00201019053288" style="display:block;color:var(--text-muted);">00201019053288</a></div>
+          </div>
+          <div class="loc-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--gold)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <div><strong data-ar="واتساب" data-en="WhatsApp">واتساب</strong><a href="https://wa.me/201019053288" target="_blank" rel="noopener" style="display:block;color:var(--text-muted);">00201019053288</a></div>
+          </div>
+          <div class="loc-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><strong>الموقع</strong><span style="display:block;color:var(--text-muted);">القاهرة، مصر</span></div>
+          </div>
+          <div class="loc-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div><strong>أوقات العمل</strong><span style="display:block;color:var(--text-muted);">السبت — الخميس: 9 ص — 6 م</span></div>
+          </div>
+        </div>
+        <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold" style="margin-top:2rem;">ابدأ محادثة واتساب</a>
+      </div>
+      <div class="contact-form-wrap lazy-reveal">
+        <h2 style="margin-bottom:1.5rem;">أرسل لنا رسالة</h2>
+        <form action="https://formsubmit.co/info@creative3design.com" method="POST">
+          <input type="hidden" name="_subject" value="رسالة جديدة من موقع Creative3Design">
+          <input type="hidden" name="_next" value="https://creative3design.com/contact.html">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="form-row-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label for="name">الاسم الكامل *</label>
+              <input type="text" id="name" name="name" required placeholder="أحمد محمد" />
+            </div>
+            <div class="form-group">
+              <label for="phone">رقم الهاتف *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="01XXXXXXXXX" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="service">نوع الخدمة المطلوبة</label>
+            <select id="service" name="service">
+              <option value="">اختر الخدمة</option>
+              <option>تصميم داخلي سكني</option>
+              <option>تصميم داخلي تجاري</option>
+              <option>تصميم معماري</option>
+              <option>تشطيب شقق</option>
+              <option>استشارة هندسية</option>
+              <option>جولة VR ثلاثية الأبعاد</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">تفاصيل مشروعك</label>
+            <textarea id="message" name="message" placeholder="اكتب تفاصيل مشروعك هنا (المساحة، الميزانية التقريبية، الموقع...)"></textarea>
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%;justify-content:center;" data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="location-section section-padding" style="background:var(--black);">
+  <div class="container">
+    <div class="location-map lazy-reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.78!2d31.1763!3d30.0626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Egypt!5e0!3m2!1sen!2seg!4v1700000000000" width="100%" height="400" style="border:0;display:block;" allowfullscreen="" loading="lazy" title="Creative3Design على الخريطة"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;">
+      <p data-ar="© 2025 Creative3Design — جميع الحقوق محفوظة" data-en="© 2025 Creative3Design — All Rights Reserved">© 2025 Creative3Design — جميع الحقوق محفوظة</p>
+      <a href="index.html" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    </div>
+  </div>
+</footer>
+
+<div class="float-group">
+  <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="float-btn float-btn-wa" aria-label="واتساب"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a href="tel:00201019053288" class="float-btn float-btn-call" aria-label="اتصال"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script src="js/main.js"></script>
+</body>
+</html>

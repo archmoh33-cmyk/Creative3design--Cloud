@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حاسبة تكلفة التشطيب والتصميم المعماري 2026 | Creative3Design — القاهرة</title>
+  <meta name="description" content="احسب تكلفة تشطيب مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP. حاسبة التصميم الداخلي والتصميم المعماري لجميع أنواع المباني. Creative3Design أفضل مكتب هندسي في مصر." />
+  <meta name="keywords" content="تكلفة تشطيب شقة 2026, حاسبة تشطيب, سعر متر التشطيب مصر 2026, تصميم معماري, رسوم تصميم معماري, تكلفة تصميم داخلي, حاسبة تصميم, باقات تصميم داخلي, أفضل مكتب هندسي في مصر" />
+  <link rel="canonical" href="https://creative3design.com/packages.html" />
+  <meta property="og:title" content="حاسبة تكلفة التشطيب والتصميم | Creative3Design" />
+  <meta property="og:description" content="احسب تكلفة مشروعك فوراً — من الباقة المتوسطة حتى Ultra VIP." />
+  <meta property="og:url" content="https://creative3design.com/packages.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  <style>
+    /* ── CALCULATOR SPECIFIC STYLES ── */
+    .calc-tabs { display:flex; gap:.5rem; justify-content:center; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .calc-tab {
+      padding:.65rem 1.8rem; font-size:.95rem; font-weight:700; font-family:'Cairo',sans-serif;
+      border:2px solid var(--gray-border); color:var(--text-muted);
+      background:transparent; cursor:pointer; transition:all .25s;
+    }
+    .calc-tab.active { border-color:var(--gold); color:#fff; background:var(--gold); }
+
+    .calc-panel { display:none; }
+    .calc-panel.active { display:block; }
+
+    .calc-box {
+      background:var(--black-card); border:1px solid var(--gray-border);
+      padding:2.5rem; max-width:900px; margin:0 auto;
+    }
+
+    /* Project type chips */
+    .proj-types { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .proj-type {
+      padding:.45rem 1.1rem; font-size:.85rem; font-weight:700; font-family:'Cairo',sans-serif;
+      border:1.5px solid var(--gray-border); color:var(--text-muted);
+      background:transparent; cursor:pointer; border-radius:2rem; transition:all .25s;
+      display:flex; align-items:center; gap:.4rem;
+    }
+    .proj-type.active { border-color:var(--gold); color:var(--gold); background:rgba(184,151,106,.1); }
+
+    /* Slider row */
+    .slider-row { margin-bottom:2rem; }
+    .slider-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:.6rem; }
+    .slider-label span { font-size:1rem; font-weight:700; }
+    .slider-value { color:var(--gold); font-size:1.3rem; font-weight:900; font-family:'Cairo',sans-serif; }
+    .range-slider {
+      width:100%; -webkit-appearance:none; appearance:none;
+      height:6px; border-radius:3px;
+      background:linear-gradient(to left, var(--gray-mid) 0%, var(--gray-mid) 100%);
+      outline:none; cursor:pointer;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance:none; appearance:none;
+      width:22px; height:22px; border-radius:50%;
+      background:var(--gold); cursor:pointer;
+      box-shadow:0 2px 8px rgba(184,151,106,.5);
+      transition:transform .2s;
+    }
+    .range-slider::-webkit-slider-thumb:hover { transform:scale(1.2); }
+    .range-slider::-moz-range-thumb {
+      width:22px; height:22px; border-radius:50%;
+      background:var(--gold); cursor:pointer; border:none;
+    }
+    .slider-minmax { display:flex; justify-content:space-between; color:var(--text-muted); font-size:.78rem; margin-top:.4rem; }
+
+    /* Package cards grid */
+    .pkg-cards { display:grid; grid-template-columns:repeat(5,1fr); gap:.8rem; margin-top:2rem; }
+    @media(max-width:1000px){ .pkg-cards { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:640px){ .pkg-cards { grid-template-columns:1fr 1fr; } }
+
+    .pkg-c {
+      border:2px solid var(--gray-border); padding:1.2rem 1rem; text-align:center;
+      position:relative; cursor:pointer; transition:all .25s;
+      background:var(--black-charcoal);
+    }
+    .pkg-c:hover { border-color:var(--gold); transform:translateY(-3px); }
+    .pkg-c.selected { border-color:var(--gold); background:rgba(184,151,106,.08); }
+    .pkg-c.featured-pkg { border-color:var(--gold); background:rgba(184,151,106,.06); }
+    .pkg-badge {
+      position:absolute; top:-.7rem; left:50%; transform:translateX(-50%);
+      background:var(--gold); color:#fff; font-size:.65rem; font-weight:700;
+      padding:.2rem .7rem; white-space:nowrap; border-radius:1rem;
+    }
+    .pkg-icon { font-size:1.5rem; margin-bottom:.5rem; }
+    .pkg-c-name { font-size:.8rem; font-weight:700; color:var(--platinum); margin-bottom:.3rem; }
+    .pkg-c-rate { font-size:1.1rem; font-weight:900; color:var(--gold); font-family:'Cairo',sans-serif; }
+    .pkg-c-unit { font-size:.7rem; color:var(--text-muted); }
+    .pkg-c-total {
+      display:block; font-size:1rem; font-weight:700; color:var(--diamond-white);
+      margin-top:.5rem; padding-top:.5rem;
+      border-top:1px solid var(--gray-border);
+    }
+    .pkg-c-features { margin-top:.6rem; text-align:right; }
+    .pkg-c-features li {
+      font-size:.72rem; color:var(--text-muted); line-height:1.8;
+      list-style:none; padding-right:.2rem;
+    }
+    .pkg-c-features li::before { content:"✓ "; color:var(--gold); }
+
+    /* Result banner */
+    .calc-result {
+      background:linear-gradient(135deg, rgba(184,151,106,.12) 0%, rgba(184,151,106,.04) 100%);
+      border:1.5px solid var(--gold); padding:1.5rem 2rem;
+      margin-top:2rem; display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:1rem;
+    }
+    .result-label { color:var(--text-muted); font-size:.9rem; }
+    .result-range { font-size:1.5rem; font-weight:900; color:var(--gold); font-family:'Cairo',sans-serif; }
+    .result-note { font-size:.75rem; color:var(--text-muted); margin-top:.2rem; }
+
+    /* Design calc type grid */
+    .design-types { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-bottom:2rem; }
+    @media(max-width:700px){ .design-types { grid-template-columns:repeat(2,1fr); } }
+
+    .design-type-btn {
+      border:1.5px solid var(--gray-border); padding:1rem .8rem; text-align:center;
+      cursor:pointer; transition:all .25s; background:transparent;
+    }
+    .design-type-btn:hover, .design-type-btn.active {
+      border-color:var(--gold); background:rgba(184,151,106,.07);
+    }
+    .design-type-btn .dt-icon { font-size:1.6rem; margin-bottom:.4rem; display:block; }
+    .design-type-btn .dt-name { font-size:.82rem; font-weight:700; color:var(--platinum); }
+    .design-type-btn.active .dt-name { color:var(--gold); }
+
+    /* Design result table */
+    .design-result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
+    @media(max-width:640px){ .design-result-grid { grid-template-columns:1fr; } }
+
+    .design-result-card {
+      background:var(--black-charcoal); border:1px solid var(--gray-border);
+      padding:1.2rem; text-align:center;
+    }
+    .design-result-card.highlight { border-color:var(--gold); background:rgba(184,151,106,.06); }
+    .drc-label { font-size:.75rem; color:var(--text-muted); margin-bottom:.4rem; }
+    .drc-value { font-size:1.2rem; font-weight:900; color:var(--gold); font-family:'Cairo',sans-serif; }
+    .drc-sub { font-size:.72rem; color:var(--text-muted); margin-top:.2rem; }
+
+    /* Comparison table */
+    .compare-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+    .compare-table th, .compare-table td {
+      padding:.7rem .9rem; text-align:center; border-bottom:1px solid var(--gray-border);
+      font-size:.82rem;
+    }
+    .compare-table th { background:var(--black-card); font-weight:700; }
+    .compare-table th:first-child, .compare-table td:first-child { text-align:right; font-weight:600; }
+    .compare-table .gold-col { color:var(--gold); }
+    .compare-table tr:hover td { background:rgba(184,151,106,.04); }
+    .check { color:var(--gold); }
+    .cross { color:var(--text-muted); }
+
+    /* ── Mobile overrides ── */
+    @media(max-width:640px){
+      .pkg-cards { grid-template-columns:1fr !important; }
+      #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
+      .arch-result-grid { grid-template-columns:repeat(2,1fr) !important; }
+    }
+    @media(max-width:400px){
+      #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
+      .arch-result-grid { grid-template-columns:1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-contact">
+      <a href="tel:00201019053288" class="top-bar-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        00201019053288
+      </a>
+      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        واتساب مباشر
+      </a>
+    </div>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+      <li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li>
+      <li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+      <li><a href="packages.html" aria-current="page" data-ar="الباقات" data-en="Packages">الباقات</a></li>
+      <li><a href="portfolio.html" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li>
+      <li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li>
+      <li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
+    </ul>
+        <div class="nav-page-switcher">
+      <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
+        <option value="">الصفحات ▾</option>
+        <option value="index.html">🏠 الرئيسية</option>
+        <option value="about.html">🏢 عن المكتب</option>
+        <option value="services.html">⚙️ الخدمات</option>
+        <option value="packages.html">📦 الباقات</option>
+        <option value="portfolio.html">🖼️ الأعمال</option>
+        <option value="blog/index.html">📝 المدونة</option>
+        <option value="contact.html">📞 تواصل معنا</option>
+      </select>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+
+<!-- PAGE HERO -->
+<section style="background:linear-gradient(to bottom,rgba(20,18,16,.65),rgba(20,18,16,.95)),url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&q=80') center/cover;padding:6rem 0 4rem;text-align:center;">
+  <div class="container">
+    <p class="section-tag" data-ar="الباقات والحاسبات التفاعلية" data-en="Packages & Interactive Calculators">الباقات والحاسبات التفاعلية</p>
+    <h1 data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost Now">احسب تكلفة مشروعك الآن</h1>
+    <p style="color:var(--text-muted);max-width:640px;margin:1rem auto 0;">أسعار مايو 2026 — حاسبة التشطيب · حاسبة التصميم الداخلي · حاسبة التصميم المعماري لجميع أنواع المباني</p>
+  </div>
+</section>
+
+<!-- CALCULATOR SECTION -->
+<section class="section-padding" style="background:var(--black-charcoal);" id="calculator">
+  <div class="container">
+
+    <!-- TABS -->
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchCalc('finishing')">
+        🏗️ حاسبة تكلفة التشطيب
+      </button>
+      <button class="calc-tab" onclick="switchCalc('design')">
+        ✏️ حاسبة التصميم الداخلي
+      </button>
+      <button class="calc-tab" onclick="switchCalc('arch')">
+        🏛️ حاسبة التصميم المعماري
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PANEL 1: FINISHING CALCULATOR              -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="calc-panel active" id="panel-finishing">
+      <div class="calc-box">
+        <h3 style="margin-bottom:1.5rem;font-size:1.15rem;" data-ar="اختر نوع المشروع" data-en="Choose Project Type">اختر نوع المشروع</h3>
+        <div class="proj-types">
+          <button class="proj-type active" onclick="selectProjType(this,'apartment')">🏢 شقة سكنية</button>
+          <button class="proj-type" onclick="selectProjType(this,'villa')">🏡 فيلا</button>
+          <button class="proj-type" onclick="selectProjType(this,'office')">🏛️ مكتب</button>
+          <button class="proj-type" onclick="selectProjType(this,'retail')">🛍️ محل تجاري</button>
+          <button class="proj-type" onclick="selectProjType(this,'restaurant')">🍽️ مطعم / كافيه</button>
+        </div>
+        <div class="slider-row">
+          <div class="slider-label"><span>المساحة</span><span class="slider-value"><span id="fin-area-val">150</span> م²</span></div>
+          <input type="range" class="range-slider" id="fin-area" min="40" max="1000" value="150" step="10" oninput="updateFinCalc()">
+          <div class="slider-minmax"><span>40 م²</span><span>1,000 م²</span></div>
+        </div>
+        <h3 style="margin-bottom:1rem;font-size:1rem;" data-ar="اختر باقة التشطيب" data-en="Choose Finishing Package">اختر باقة التشطيب</h3>
+        <div class="pkg-cards" id="fin-pkg-cards">
+          <div class="pkg-c" onclick="selectPkg(this,'standard')" data-pkg="standard">
+            <div class="pkg-icon">🔨</div>
+            <div class="pkg-c-name">ستاندرد</div>
+            <div class="pkg-c-rate" style="font-size:.85rem;">5,500 — 6,500</div>
+            <div class="pkg-c-unit">ج.م / م²</div>
+            <span class="pkg-c-total" id="fin-total-standard">—</span>
+            <ul class="pkg-c-features"><li>سيراميك بورسلان محلي</li><li>جبس مستوى أول</li><li>دهان أكريليك</li><li>أعمال سباكة وكهرباء</li></ul>
+          </div>
+          <div class="pkg-c featured-pkg" onclick="selectPkg(this,'premium')" data-pkg="premium">
+            <div class="pkg-badge">الأكثر طلباً</div>
+            <div class="pkg-icon">⭐</div>
+            <div class="pkg-c-name">بريميم</div>
+            <div class="pkg-c-rate" style="font-size:.85rem;">7,000 — 9,000</div>
+            <div class="pkg-c-unit">ج.م / م²</div>
+            <span class="pkg-c-total" id="fin-total-premium">—</span>
+            <ul class="pkg-c-features"><li>بورسلان مستورد إيطالي</li><li>جبس ديكوري 3D</li><li>إضاءة LED مخفية</li><li>مدير مشروع مخصص</li></ul>
+          </div>
+          <div class="pkg-c" onclick="selectPkg(this,'luxury')" data-pkg="luxury">
+            <div class="pkg-icon">💎</div>
+            <div class="pkg-c-name">لاكشري</div>
+            <div class="pkg-c-rate" style="font-size:.85rem;">9,500 — 12,000</div>
+            <div class="pkg-c-unit">ج.م / م²</div>
+            <span class="pkg-c-total" id="fin-total-luxury">—</span>
+            <ul class="pkg-c-features"><li>رخام طبيعي تركي/إسباني</li><li>أبواب هايت مودرن</li><li>سقف مزدوج + إضاءة</li><li>أنظمة صوت وشاشات</li></ul>
+          </div>
+          <div class="pkg-c" onclick="selectPkg(this,'superlux')" data-pkg="superlux">
+            <div class="pkg-icon">👑</div>
+            <div class="pkg-c-name">سوبر لاكشري</div>
+            <div class="pkg-c-rate" style="font-size:.85rem;">12,500 — 16,000</div>
+            <div class="pkg-c-unit">ج.م / م²</div>
+            <span class="pkg-c-total" id="fin-total-superlux">—</span>
+            <ul class="pkg-c-features"><li>رخام إيطالي كارارا</li><li>أتمتة منزلية كاملة</li><li>خامات أوروبية حصرية</li><li>ضمان 4 سنوات</li></ul>
+          </div>
+          <div class="pkg-c" onclick="selectPkg(this,'ultravip')" data-pkg="ultravip">
+            <div class="pkg-badge" style="background:#333;">Ultra VIP</div>
+            <div class="pkg-icon">🏆</div>
+            <div class="pkg-c-name">Ultra VIP</div>
+            <div class="pkg-c-rate">17,000+</div>
+            <div class="pkg-c-unit">ج.م / م²</div>
+            <span class="pkg-c-total" id="fin-total-ultravip">—</span>
+            <ul class="pkg-c-features"><li>حسب الطلب كلياً</li><li>مواد نادرة</li><li>ضمان 5 سنوات</li></ul>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div>
+            <div class="result-label">التقدير الإجمالي للمشروع</div>
+            <div class="result-range" id="fin-result-range">اختر مساحة وباقة</div>
+            <div class="result-note">* التقديرات بناءً على منتصف النطاق السعري. تختلف حسب المواصفات والخامات النهائية.</div>
+          </div>
+          <a href="https://wa.me/201019053288?text=أريد استفسار عن تكلفة التشطيب" target="_blank" rel="noopener"
+             style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">
+            احجز استشارة مجانية
+          </a>
+        </div>
+      </div>
+
+      <div style="max-width:900px;margin:2.5rem auto 0;">
+        <h3 style="text-align:center;margin-bottom:1.5rem;" data-ar="مقارنة باقات التشطيب — مايو 2026" data-en="Finishing Packages Comparison — May 2026">مقارنة باقات التشطيب — مايو 2026</h3>
+        <div style="overflow-x:auto;">
+          <table class="compare-table">
+            <thead><tr><th>المميزات</th><th>ستاندرد</th><th>بريميم</th><th class="gold-col">لاكشري</th><th>سوبر لاكشري</th><th>Ultra VIP</th></tr></thead>
+            <tbody>
+              <tr><td>سعر المتر (ج.م)</td><td>5,500-6,500</td><td>7,000-9,000</td><td class="gold-col">9,500-12,000</td><td>12,500-16,000</td><td>17,000+</td></tr>
+              <tr><td>رخام / بورسلان مستورد</td><td class="cross">✗</td><td class="check">✓</td><td class="check gold-col">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>جبس ديكوري</td><td class="cross">✗</td><td class="check">✓</td><td class="check gold-col">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>إضاءة مخفية LED</td><td class="cross">✗</td><td class="check">✓</td><td class="check gold-col">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>أبواب هايت مودرن</td><td class="cross">✗</td><td class="cross">✗</td><td class="check gold-col">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>أتمتة منزلية</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>ضمان على التنفيذ</td><td>سنة</td><td>سنتان</td><td class="gold-col">3 سنوات</td><td>4 سنوات</td><td>5 سنوات</td></tr>
+              <tr><td>مدير مشروع مخصص</td><td class="cross">✗</td><td class="check">✓</td><td class="check gold-col">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /panel-finishing -->
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PANEL 2: INTERIOR DESIGN CALCULATOR        -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="calc-panel" id="panel-design">
+      <div class="calc-box">
+        <h3 style="margin-bottom:1.5rem;font-size:1.15rem;" data-ar="نوع المشروع" data-en="Project Type">نوع المشروع</h3>
+        <div class="design-types">
+          <button class="design-type-btn active" onclick="selectDesType(this,'apartment_des')"><span class="dt-icon">🏢</span><span class="dt-name">شقة سكنية</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'villa_des')"><span class="dt-icon">🏡</span><span class="dt-name">فيلا</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'office_des')"><span class="dt-icon">🏛️</span><span class="dt-name">مكتب</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'restaurant_des')"><span class="dt-icon">🍽️</span><span class="dt-name">مطعم / كافيه</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'retail_des')"><span class="dt-icon">🛍️</span><span class="dt-name">محل / معرض</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'hotel_des')"><span class="dt-icon">🏨</span><span class="dt-name">فندق / منتجع</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'gym_des')"><span class="dt-icon">💪</span><span class="dt-name">جيم / سبا</span></button>
+          <button class="design-type-btn" onclick="selectDesType(this,'clinic_des')"><span class="dt-icon">🏥</span><span class="dt-name">عيادة / مركز طبي</span></button>
+        </div>
+        <div class="slider-row">
+          <div class="slider-label"><span>المساحة</span><span class="slider-value"><span id="des-area-val">200</span> م²</span></div>
+          <input type="range" class="range-slider" id="des-area" min="50" max="2000" value="200" step="25" oninput="updateDesCalc()">
+          <div class="slider-minmax"><span>50 م²</span><span>2,000 م²</span></div>
+        </div>
+        <div class="design-result-grid">
+          <div class="design-result-card"><div class="drc-label">باقة أساسية</div><div class="drc-value" id="des-basic">—</div><div class="drc-sub">مخططات 2D فقط</div></div>
+          <div class="design-result-card highlight"><div class="drc-label">باقة شاملة ⭐</div><div class="drc-value" id="des-standard">—</div><div class="drc-sub">2D + 3D + إشراف</div></div>
+          <div class="design-result-card"><div class="drc-label">باقة فاخرة</div><div class="drc-value" id="des-luxury">—</div><div class="drc-sub">تصميم + تنفيذ كامل</div></div>
+        </div>
+        <div class="calc-result" style="margin-top:1.5rem;">
+          <div>
+            <div class="result-label">رسوم التصميم الداخلي للمشروع</div>
+            <div class="result-range" id="des-result-range">اختر نوع المشروع والمساحة</div>
+            <div class="result-note">* تشمل: المخططات + اللوحات التنفيذية + متابعة التنفيذ حسب الباقة.</div>
+          </div>
+          <a href="https://wa.me/201019053288?text=أريد استفسار عن رسوم التصميم الداخلي" target="_blank" rel="noopener"
+             style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">استشارة مجانية</a>
+        </div>
+      </div>
+    </div><!-- /panel-design -->
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PANEL 3: ARCHITECTURAL DESIGN CALCULATOR   -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="calc-panel" id="panel-arch">
+      <div class="calc-box">
+        <h3 style="margin-bottom:.5rem;font-size:1.15rem;" data-ar="نوع المبنى" data-en="Building Type">نوع المبنى</h3>
+        <p style="color:var(--text-muted);font-size:.82rem;margin-bottom:1.5rem;">رسوم التصميم المعماري — أسعار مايو 2026 وفق متوسطات السوق المصري</p>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:2rem;" id="arch-type-grid">
+          <button class="design-type-btn active" onclick="selectArchType(this,'villa_arch')"><span class="dt-icon">🏡</span><span class="dt-name">فيلا سكنية</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'apt_building')"><span class="dt-icon">🏢</span><span class="dt-name">عمارة سكنية</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'commercial_bld')"><span class="dt-icon">🏬</span><span class="dt-name">مبنى تجاري</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'hotel_arch')"><span class="dt-icon">🏨</span><span class="dt-name">فندق / منتجع</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'mall')"><span class="dt-icon">🏪</span><span class="dt-name">مول / كمبوند</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'factory')"><span class="dt-icon">🏭</span><span class="dt-name">مصنع / مستودع</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'admin')"><span class="dt-icon">🏛️</span><span class="dt-name">مبنى إداري</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'school_arch')"><span class="dt-icon">🎓</span><span class="dt-name">مدرسة / جامعة</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'hospital')"><span class="dt-icon">🏥</span><span class="dt-name">مستشفى / طبي</span></button>
+          <button class="design-type-btn" onclick="selectArchType(this,'mixed')"><span class="dt-icon">🌆</span><span class="dt-name">متعدد الاستخدام</span></button>
+        </div>
+        <div class="slider-row">
+          <div class="slider-label"><span>مساحة الدور الواحد</span><span class="slider-value"><span id="arch-area-val">500</span> م²</span></div>
+          <input type="range" class="range-slider" id="arch-area" min="100" max="10000" value="500" step="50" oninput="updateArchCalc()">
+          <div class="slider-minmax"><span>100 م²</span><span>10,000 م²</span></div>
+        </div>
+        <div class="slider-row">
+          <div class="slider-label"><span>عدد الأدوار</span><span class="slider-value"><span id="arch-floors-val">4</span> دور</span></div>
+          <input type="range" class="range-slider" id="arch-floors" min="1" max="20" value="4" step="1" oninput="updateArchCalc()">
+          <div class="slider-minmax"><span>1</span><span>20</span></div>
+        </div>
+        <h3 style="font-size:.95rem;margin-bottom:.8rem;" data-ar="مستوى التصميم" data-en="Design Level">مستوى التصميم</h3>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;" id="arch-level-btns">
+          <button class="proj-type" onclick="selectArchLevel(this,'basic')">📋 أساسي (2D فقط)</button>
+          <button class="proj-type active" onclick="selectArchLevel(this,'standard')">📐 ستاندرد (2D+3D)</button>
+          <button class="proj-type" onclick="selectArchLevel(this,'premium')">✨ بريميم (+إشراف)</button>
+          <button class="proj-type" onclick="selectArchLevel(this,'full')">🏆 شامل كامل</button>
+        </div>
+        <div class="arch-result-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div class="design-result-card"><div class="drc-label">المساحة الإجمالية</div><div class="drc-value" id="arch-total-area">—</div><div class="drc-sub">م² إجمالي</div></div>
+          <div class="design-result-card"><div class="drc-label">رسوم التصميم</div><div class="drc-value" id="arch-design-fee">—</div><div class="drc-sub">ج.م (بدون إشراف)</div></div>
+          <div class="design-result-card"><div class="drc-label">رسوم الإشراف</div><div class="drc-value" id="arch-sup-fee">—</div><div class="drc-sub">ج.م (حسب الباقة)</div></div>
+          <div class="design-result-card highlight"><div class="drc-label">الإجمالي المتوقع</div><div class="drc-value" id="arch-grand-total">—</div><div class="drc-sub">ج.م كامل</div></div>
+        </div>
+        <p style="color:var(--text-muted);font-size:.78rem;text-align:center;margin-bottom:1.5rem;">
+          * الأسعار تشمل: المخططات المعمارية · اللوحات التنفيذية · الموديل ثلاثي الأبعاد · تصاريح البناء (حسب الباقة).<br>
+          الحد الأدنى للرسوم يُطبّق على المشاريع الصغيرة. الأسعار مايو 2026.
+        </p>
+        <div class="calc-result">
+          <div>
+            <div class="result-label">إجمالي رسوم التصميم المعماري</div>
+            <div class="result-range" id="arch-result-summary">اختر نوع المبنى والمساحة</div>
+            <div class="result-note">* تقدير مبدئي — يتحدد العرض النهائي بعد دراسة المشروع.</div>
+          </div>
+          <a href="https://wa.me/201019053288?text=أريد عرض سعر للتصميم المعماري" target="_blank" rel="noopener"
+             style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">طلب عرض سعر</a>
+        </div>
+      </div>
+    </div><!-- /panel-arch -->
+
+  </div><!-- /container -->
+</section>
+
+<!-- CTA SECTION -->
+<section class="consultation-section section-padding" style="background:var(--black);">
+  <div class="container" style="text-align:center;">
+    <div class="section-header" style="margin-bottom:2rem;">
+      <p class="section-tag" data-ar="ابدأ مشروعك اليوم" data-en="Start Your Project Today">ابدأ مشروعك اليوم</p>
+      <h2 data-ar="استشارة مجانية مع أحد مهندسينا" data-en="Free Consultation with One of Our Engineers">استشارة مجانية مع أحد مهندسينا</h2>
+      <p style="color:var(--text-muted);max-width:560px;margin:.8rem auto 0;">أرسل لنا مساحة مشروعك ونوعه وسنرسل إليك عرض سعر تفصيلي خلال 24 ساعة.</p>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/201019053288?text=أريد استشارة مجانية لمشروعي" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;align-items:center;gap:.5rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        تواصل عبر واتساب
+      </a>
+      <a href="contact.html" class="btn-secondary">أرسل استفساراً</a>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="أعلى الصفحة">↑</button>
+
+<!-- WA STICKY -->
+<a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="wa-sticky" aria-label="واتساب">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2rem;border-bottom:1px solid var(--gray-border);margin-bottom:1.5rem;">
+      <div>
+        <a href="index.html" class="nav-logo" style="font-size:1.4rem;"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a>
+        <p style="color:var(--text-muted);font-size:.82rem;max-width:260px;margin-top:.6rem;line-height:1.7;">أفضل مكتب تصميم داخلي وهندسي في مصر. خدمات متكاملة منذ 2015.</p>
+      </div>
+      <div style="display:flex;gap:3rem;flex-wrap:wrap;">
+        <div>
+          <p style="font-weight:700;margin-bottom:.8rem;font-size:.85rem;">الخدمات</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem;">
+            <li><a href="services.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">تصميم داخلي سكني</a></li>
+            <li><a href="services.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">تصميم تجاري</a></li>
+            <li><a href="packages.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">الباقات والأسعار</a></li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:700;margin-bottom:.8rem;font-size:.85rem;">روابط سريعة</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem;">
+            <li><a href="portfolio.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">معرض الأعمال</a></li>
+            <li><a href="blog/index.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">المدونة</a></li>
+            <li><a href="contact.html" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:700;margin-bottom:.8rem;font-size:.85rem;">تواصل معنا</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem;">
+            <li><a href="tel:00201019053288" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">📞 00201019053288</a></li>
+            <li><a href="https://wa.me/201019053288" style="color:var(--text-muted);font-size:.8rem;text-decoration:none;">💬 واتساب مباشر</a></li>
+            <li><span style="color:var(--text-muted);font-size:.8rem;">📍 القاهرة، مصر</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--text-muted);font-size:.78rem;">
+      © 2026 Creative3Design — جميع الحقوق محفوظة |
+      <a href="index.html" style="color:var(--text-muted);text-decoration:none;" data-ar="الرئيسية" data-en="Home">الرئيسية</a> ·
+      <a href="about.html" style="color:var(--text-muted);text-decoration:none;">عن المكتب</a> ·
+      <a href="contact.html" style="color:var(--text-muted);text-decoration:none;">تواصل معنا</a>
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   CALCULATOR JAVASCRIPT — packages.html
+   ═══════════════════════════════════════════ */
+
+function switchCalc(panel) {
+  const map = { finishing: 0, design: 1, arch: 2 };
+  document.querySelectorAll('.calc-panel').forEach((p, i) => { p.classList.toggle('active', i === map[panel]); });
+  document.querySelectorAll('.calc-tab').forEach((t, i) => { t.classList.toggle('active', i === map[panel]); });
+  if (panel === 'finishing') updateFinCalc();
+  if (panel === 'design') updateDesCalc();
+  if (panel === 'arch') updateArchCalc();
+}
+
+const finRates = { standard: 6000, premium: 8000, luxury: 10750, superlux: 14250, ultravip: 17000 };
+let finProjMul = 1.0;
+let finSelPkg  = null;
+const projTypeMul = { apartment: 1.0, villa: 1.15, office: 1.1, retail: 1.05, restaurant: 1.2 };
+
+function selectProjType(btn, type) {
+  document.querySelectorAll('.proj-types .proj-type').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  finProjMul = projTypeMul[type] || 1.0;
+  updateFinCalc();
+}
+
+function selectPkg(card, pkg) {
+  document.querySelectorAll('#fin-pkg-cards .pkg-c').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  finSelPkg = pkg;
+  updateFinCalc();
+}
+
+function fmt(n) { return Math.round(n).toLocaleString('ar-EG'); }
+
+function updateFinCalc() {
+  const area = parseInt(document.getElementById('fin-area').value);
+  document.getElementById('fin-area-val').textContent = area.toLocaleString('ar-EG');
+  const sl = document.getElementById('fin-area');
+  const pct = ((area - 40) / (1000 - 40)) * 100;
+  sl.style.background = 'linear-gradient(to right, var(--gold) ' + pct + '%, var(--gray-mid) ' + pct + '%)';
+  Object.entries(finRates).forEach(([pkg, rate]) => {
+    const el = document.getElementById('fin-total-' + pkg);
+    if (el) el.textContent = fmt(area * rate * finProjMul) + ' ج.م';
+  });
+  if (finSelPkg) {
+    const total = area * finRates[finSelPkg] * finProjMul;
+    document.getElementById('fin-result-range').textContent = fmt(total) + ' — ' + fmt(total * 1.15) + ' ج.م';
+  }
+}
+
+const desTypeData = {
+  apartment_des: { base: 90 }, villa_des: { base: 120 }, office_des: { base: 110 },
+  restaurant_des: { base: 150 }, retail_des: { base: 130 }, hotel_des: { base: 180 },
+  gym_des: { base: 120 }, clinic_des: { base: 140 },
+};
+let desSelType = 'apartment_des';
+
+function selectDesType(btn, type) {
+  document.querySelectorAll('.design-types .design-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  desSelType = type;
+  updateDesCalc();
+}
+
+function updateDesCalc() {
+  const area = parseInt(document.getElementById('des-area').value);
+  document.getElementById('des-area-val').textContent = area.toLocaleString('ar-EG');
+  const sl = document.getElementById('des-area');
+  const pct = ((area - 50) / (2000 - 50)) * 100;
+  sl.style.background = 'linear-gradient(to right, var(--gold) ' + pct + '%, var(--gray-mid) ' + pct + '%)';
+  const base = desTypeData[desSelType].base;
+  const basic    = Math.max(area * base * 0.55, 8000);
+  const standard = Math.max(area * base, 15000);
+  const luxury   = Math.max(area * base * 1.6, 25000);
+  document.getElementById('des-basic').textContent    = fmt(basic) + ' ج.م';
+  document.getElementById('des-standard').textContent = fmt(standard) + ' ج.م';
+  document.getElementById('des-luxury').textContent   = fmt(luxury) + ' ج.م';
+  document.getElementById('des-result-range').textContent = fmt(basic) + ' — ' + fmt(luxury) + ' ج.م';
+}
+
+const archTypeData = {
+  villa_arch:     { ratePerM2: 200, supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
+  apt_building:   { ratePerM2: 160, supPct: 0.20, label: 'عمارة سكنية',         minFee: 15000 },
+  commercial_bld: { ratePerM2: 180, supPct: 0.22, label: 'مبنى تجاري',          minFee: 15000 },
+  hotel_arch:     { ratePerM2: 280, supPct: 0.28, label: 'فندق / منتجع',        minFee: 30000 },
+  mall:           { ratePerM2: 220, supPct: 0.25, label: 'مول / كمبوند',        minFee: 40000 },
+  factory:        { ratePerM2: 120, supPct: 0.18, label: 'مصنع / مستودع',       minFee: 12000 },
+  admin:          { ratePerM2: 190, supPct: 0.22, label: 'مبنى إداري',          minFee: 15000 },
+  school_arch:    { ratePerM2: 160, supPct: 0.20, label: 'مدرسة / جامعة',       minFee: 18000 },
+  hospital:       { ratePerM2: 280, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 35000 },
+  mixed:          { ratePerM2: 210, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 25000 },
+};
+const archLevelMul = { basic: 0.55, standard: 0.85, premium: 1.15, full: 1.50 };
+let archSelType  = 'villa_arch';
+let archSelLevel = 'standard';
+
+function selectArchType(btn, type) {
+  document.querySelectorAll('#arch-type-grid .design-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  archSelType = type;
+  updateArchCalc();
+}
+
+function selectArchLevel(btn, level) {
+  document.querySelectorAll('#arch-level-btns .proj-type').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  archSelLevel = level;
+  updateArchCalc();
+}
+
+function updateArchCalc() {
+  const area   = parseInt(document.getElementById('arch-area').value);
+  const floors = parseInt(document.getElementById('arch-floors').value);
+  document.getElementById('arch-area-val').textContent   = area.toLocaleString('ar-EG');
+  document.getElementById('arch-floors-val').textContent = floors;
+  const slA = document.getElementById('arch-area');
+  slA.style.background = 'linear-gradient(to right, var(--gold) ' + ((area-100)/9900*100) + '%, var(--gray-mid) ' + ((area-100)/9900*100) + '%)';
+  const slF = document.getElementById('arch-floors');
+  slF.style.background = 'linear-gradient(to right, var(--gold) ' + ((floors-1)/19*100) + '%, var(--gray-mid) ' + ((floors-1)/19*100) + '%)';
+  const d = archTypeData[archSelType];
+  const lMul = archLevelMul[archSelLevel];
+  const totalArea = area * floors;
+  let rawDesign = Math.max(d.ratePerM2 * totalArea * lMul, d.minFee);
+  const supFee = (archSelLevel === 'premium' || archSelLevel === 'full') ? rawDesign * d.supPct : 0;
+  const grandTotal = rawDesign + supFee;
+  document.getElementById('arch-total-area').textContent   = fmt(totalArea) + ' م²';
+  document.getElementById('arch-design-fee').textContent   = fmt(rawDesign) + ' ج.م';
+  document.getElementById('arch-sup-fee').textContent      = supFee > 0 ? fmt(supFee) + ' ج.م' : '—';
+  document.getElementById('arch-grand-total').textContent  = fmt(grandTotal) + ' ج.م';
+  document.getElementById('arch-result-summary').textContent = d.label + ' · ' + fmt(grandTotal) + ' ج.م إجمالي';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateFinCalc();
+  updateDesCalc();
+  updateArchCalc();
+  const btt = document.getElementById('backToTop');
+  if (btt) window.addEventListener('scroll', () => { btt.classList.toggle('visible', window.scrollY > 400); });
+});
+</script>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-group">
+  <a href="https://wa.me/201019053288?text=أريد الاستفسار عن مشروعي" target="_blank" rel="noopener"
+     class="float-btn float-btn-wa" aria-label="واتساب مباشر" title="تواصل عبر واتساب">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+    <a href="tel:00201019053288" class="float-btn float-btn-call" aria-label="اتصال"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+</body>
+</html>
