@@ -1,0 +1,789 @@
+/* ================================================================
+   mobile.css — Creative3Design
+   قاعدة ذهبية: الموبايل عمود واحد فقط — لا أعمدة متوازية
+================================================================ */
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE HEADER — شريط ثابت أعلى الهيرو (موبايل فقط)
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* إخفاء top-bar والـ navbar الأصليين على الموبايل */
+  .top-bar  { display: none !important; }
+  .navbar   { display: none !important; }
+
+  /* مساحة علوية للصفحات التي لا تحتوي هيرو */
+  body { padding-top: 56px !important; }
+  /* الهيرو يغطي كامل الشاشة من القمة */
+  .hero { margin-top: -56px !important; }
+
+  /* ── الشريط الثابت أعلى الصفحة ── */
+  .hero-mobile-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 940 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 1rem !important;
+    height: 56px !important;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,8,6,.88) 0%,
+      rgba(10,8,6,.45) 65%,
+      transparent 100%
+    ) !important;
+    pointer-events: auto !important;
+  }
+
+  /* ── زر الهامبرغر — الجهة اليسار ── */
+  .hero-hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 40px !important;
+    height: 38px !important;
+    padding: .45rem !important;
+    background: rgba(255,255,255,.07) !important;
+    border: 1px solid rgba(184,151,106,.35) !important;
+    border-radius: 7px !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    order: 2 !important; /* في RTL: آخر عنصر = يسار */
+  }
+  .hero-hamburger span {
+    display: block !important;
+    width: 18px !important;
+    height: 2px !important;
+    background: #e8e8e8 !important;
+    border-radius: 2px !important;
+    transition: all .3s !important;
+  }
+  .hero-hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(4px,4px) !important;
+    background: #b8976a !important;
+  }
+  .hero-hamburger.open span:nth-child(2) { opacity: 0 !important; }
+  .hero-hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px,-4px) !important;
+    background: #b8976a !important;
+  }
+
+  /* ── شعار المنتصف ── */
+  .hero-mobile-logo {
+    font-family: var(--font-heading, 'Cairo', sans-serif) !important;
+    font-size: .88rem !important;
+    font-weight: 900 !important;
+    color: #f5f5f5 !important;
+    letter-spacing: .03em !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    order: 1 !important;
+  }
+  .hero-mobile-logo span { color: #b8976a !important; }
+
+  /* ── زر اللغة — الجهة اليمين ── */
+  .hero-lang-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 46px !important;
+    height: 36px !important;
+    padding: 0 .6rem !important;
+    border: 1.5px solid rgba(184,151,106,.55) !important;
+    border-radius: 7px !important;
+    background: rgba(184,151,106,.13) !important;
+    color: #b8976a !important;
+    font-size: .82rem !important;
+    font-weight: 800 !important;
+    font-family: var(--font-heading, 'Cairo', sans-serif) !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    order: 0 !important; /* في RTL: أول عنصر = يمين */
+    transition: background .2s !important;
+  }
+  .hero-lang-btn:hover { background: rgba(184,151,106,.25) !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DRAWER — سلايدر جانبي من اليمين (موبايل فقط)
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* إخفاء select القديم على الموبايل */
+  .nav-page-switcher { display: none !important; }
+
+  /* ── الـ Drawer ── */
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 280px !important;
+    max-width: 82vw !important;
+    height: 100dvh !important;
+    background: #161311 !important;
+    border-left: 1px solid rgba(184,151,106,.25) !important;
+    border-bottom: none !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    z-index: 960 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    transform: translateX(110%) !important;
+    transition: transform .38s cubic-bezier(.4,0,.2,1) !important;
+    display: flex !important;
+    visibility: hidden !important;
+    box-shadow: -12px 0 40px rgba(0,0,0,.8) !important;
+    max-height: unset !important;
+  }
+  .nav-links.open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  /* ── رأس الـ Drawer (شعار + زر إغلاق) ── */
+  .drawer-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.2rem !important;
+    border-bottom: 1px solid rgba(184,151,106,.15) !important;
+    flex-shrink: 0 !important;
+    background: rgba(184,151,106,.04) !important;
+  }
+  .drawer-logo {
+    font-family: var(--font-heading) !important;
+    font-size: .95rem !important;
+    font-weight: 900 !important;
+    color: var(--diamond-white) !important;
+    letter-spacing: .04em !important;
+  }
+  .drawer-logo span { color: var(--gold) !important; }
+  .drawer-close {
+    width: 34px !important;
+    height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid rgba(184,151,106,.3) !important;
+    border-radius: 50% !important;
+    color: var(--gold) !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    transition: background .2s !important;
+    background: transparent !important;
+    font-family: sans-serif !important;
+  }
+  .drawer-close:hover { background: rgba(184,151,106,.12) !important; }
+
+  /* ── روابط الصفحات داخل الـ Drawer ── */
+  .nav-links li {
+    width: 100% !important;
+    border-bottom: 1px solid rgba(255,255,255,.05) !important;
+  }
+  .nav-links a {
+    display: flex !important;
+    align-items: center !important;
+    gap: .75rem !important;
+    padding: .95rem 1.3rem !important;
+    font-size: .97rem !important;
+    font-weight: 600 !important;
+    color: var(--platinum) !important;
+    transition: color .2s, background .2s, padding-right .2s !important;
+  }
+  .nav-links a:hover,
+  .nav-links a.active-page {
+    color: var(--gold) !important;
+    background: rgba(184,151,106,.06) !important;
+    padding-right: 1.6rem !important;
+  }
+  .nav-links a::after { display: none !important; }
+  /* أيقونة صغيرة قبل كل رابط */
+  .nav-links a .nav-icon {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+    opacity: .6 !important;
+  }
+  /* رابط تواصل معنا مميّز */
+  .nav-links .nav-cta {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 1rem 1.2rem !important;
+    background: var(--gold) !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+    padding: .8rem 1rem !important;
+    font-size: .9rem !important;
+  }
+  .nav-links .nav-cta:hover {
+    background: var(--gold-light) !important;
+    padding-right: 1rem !important;
+  }
+
+  /* ── ذيل الـ Drawer: زر اللغة + واتساب ── */
+  .drawer-footer {
+    margin-top: auto !important;
+    padding: 1.1rem 1.2rem !important;
+    border-top: 1px solid rgba(184,151,106,.15) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: .7rem !important;
+  }
+  .drawer-lang-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .5rem !important;
+    width: 100% !important;
+    padding: .7rem 1rem !important;
+    border: 1.5px solid rgba(184,151,106,.4) !important;
+    border-radius: 6px !important;
+    color: var(--gold) !important;
+    font-size: .9rem !important;
+    font-weight: 700 !important;
+    font-family: var(--font-heading) !important;
+    background: rgba(184,151,106,.07) !important;
+    cursor: pointer !important;
+    transition: background .2s !important;
+  }
+  .drawer-lang-btn:hover { background: rgba(184,151,106,.14) !important; }
+  .drawer-wa-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .5rem !important;
+    width: 100% !important;
+    padding: .7rem 1rem !important;
+    border-radius: 6px !important;
+    background: #25d366 !important;
+    color: #fff !important;
+    font-size: .88rem !important;
+    font-weight: 700 !important;
+    font-family: var(--font-heading) !important;
+    text-decoration: none !important;
+  }
+
+  /* ── زر الهامبرغر (تحسين) ── */
+  .hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding: .45rem !important;
+    cursor: pointer !important;
+  }
+  .hamburger span {
+    display: block !important;
+    width: 22px !important;
+    height: 2px !important;
+    background: var(--platinum) !important;
+    transition: all .3s !important;
+    border-radius: 2px !important;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px) !important; background: var(--gold) !important; }
+  .hamburger.open span:nth-child(2) { opacity: 0 !important; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px) !important; background: var(--gold) !important; }
+
+  /* ── Overlay ── */
+  .nav-overlay { display: none !important; position: fixed !important; inset: 0 !important; background: rgba(0,0,0,.65) !important; z-index: 955 !important; backdrop-filter: blur(2px) !important; }
+  .nav-overlay.open { display: block !important; }
+}
+
+@media (max-width: 768px) {
+
+  /* ════ إلغاء كل الشبكات المتعددة الأعمدة ════ */
+  .services-grid,
+  .whyus-grid,
+  .process-steps,
+  .blog-grid,
+  .location-grid,
+  .pkg-grid,
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: .7rem !important;
+  }
+
+  /* المشاريع: عمود واحد كامل العرض */
+  .portfolio-grid {
+    grid-template-columns: 1fr !important;
+    gap: .8rem !important;
+  }
+
+  /* ════ ضغط المسافات العامة ════ */
+  .section-padding    { padding: 1.8rem 0 !important; }
+  .section-padding-lg { padding: 2.5rem 0 !important; }
+  .section-header     { margin-bottom: 1rem !important; }
+  .section-desc       { font-size: .83rem !important; }
+  h2 { font-size: clamp(1.2rem, 5vw, 1.65rem) !important; }
+
+  /* ════ 1) من نحن — صورة فوق الكلام ════ */
+  .about-section .about-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .about-section .about-images {
+    display: block !important;
+    order: -1 !important;
+  }
+  .about-section .about-img-main {
+    width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    object-fit: cover !important;
+    border-radius: 4px !important;
+  }
+  .about-section .about-img-small { display: none !important; }
+  .about-section .about-badge     { display: none !important; }
+  .about-content > p   { font-size: .85rem !important; margin-bottom: .8rem !important; }
+  .about-features      { gap: .4rem !important; margin-bottom: .9rem !important; }
+  .about-feature       { font-size: .8rem !important; }
+  .about-btns a        { padding: .6rem 1rem !important; font-size: .82rem !important; }
+
+  /* ════ 2) الخدمات — كارت أفقي مدمج ════ */
+  .service-card {
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    min-height: unset !important;
+    overflow: hidden !important;
+  }
+  .service-card-img-wrap {
+    width: 110px !important;
+    min-width: 110px !important;
+    height: auto !important;
+    min-height: 100px !important;
+    flex-shrink: 0 !important;
+  }
+  .service-card-body    { padding: .7rem .8rem !important; flex: 1 !important; }
+  .service-card-body h3 { font-size: .84rem !important; margin-bottom: .25rem !important; line-height: 1.3 !important; }
+  .service-card-body p  {
+    font-size: .75rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: .4rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .service-link { font-size: .75rem !important; }
+
+  /* ════ 3) المشاريع — صورة كاملة العرض مع overlay ════ */
+  .portfolio-grid .port-item { width: 100% !important; }
+
+  /* ════ 4) اللوجوهات — سلايدر أفقي متحرك ════ */
+  .compounds-section .compounds-grid {
+    display: none !important; /* تُخفى وتُستبدل بالسلايدر عبر JS */
+  }
+  .compounds-marquee-wrap {
+    overflow: hidden !important;
+    position: relative !important;
+    margin: 0 -1.1rem !important;
+  }
+  .compounds-marquee-wrap::before,
+  .compounds-marquee-wrap::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important; bottom: 0 !important;
+    width: 3rem !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+  }
+  .compounds-marquee-wrap::before {
+    right: 0 !important;
+    background: linear-gradient(to left, var(--black-charcoal), transparent) !important;
+  }
+  .compounds-marquee-wrap::after {
+    left: 0 !important;
+    background: linear-gradient(to right, var(--black-charcoal), transparent) !important;
+  }
+  .compounds-marquee-track {
+    display: flex !important;
+    width: max-content !important;
+    animation: compoundsScroll 25s linear infinite !important;
+    gap: .8rem !important;
+    padding: .4rem .8rem !important;
+  }
+  .compounds-marquee-track:hover { animation-play-state: paused !important; }
+  @keyframes compoundsScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .compounds-marquee-track .compound-badge {
+    flex: 0 0 80px !important;
+    width: 80px !important;
+    padding: .6rem .3rem !important;
+  }
+  .compounds-marquee-track .compound-logo-wrap { width: 54px !important; height: 54px !important; }
+  .compounds-marquee-track .compound-name      { font-size: .6rem !important; }
+
+  /* ════ 5) مرجع الأسعار — سكرول أفقي ════ */
+  .price-ref-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: .5rem !important;
+    padding-bottom: .3rem !important;
+  }
+  .price-ref-grid::-webkit-scrollbar { display: none !important; }
+  .price-ref-grid > div {
+    flex: 0 0 72px !important;
+    min-width: 72px !important;
+    text-align: center !important;
+    background: rgba(184,151,106,.08) !important;
+    border: 1px solid rgba(184,151,106,.25) !important;
+    border-radius: 7px !important;
+    padding: .55rem .3rem !important;
+    scroll-snap-align: start !important;
+  }
+  .price-ref-grid > div > div:nth-child(1) { font-size: .62rem !important; margin-bottom: .2rem !important; }
+  .price-ref-grid > div > div:nth-child(2) { font-size: .88rem !important; line-height: 1.2 !important; }
+  .price-ref-grid > div > div:nth-child(3) { font-size: .6rem !important; }
+
+  /* ════ 6) بطاقات الحاسبات — سلايدر أفقي ════ */
+  .pkg-preview-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: .7rem !important;
+    padding-bottom: .4rem !important;
+  }
+  .pkg-preview-grid::-webkit-scrollbar { display: none !important; }
+  .pkg-preview-card {
+    flex: 0 0 78vw !important;
+    min-width: 230px !important;
+    max-width: 280px !important;
+    padding: 1.1rem 1rem !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* ════ 7) كيف نعمل — خطوة أفقية مدمجة ════ */
+  .process-section .section-desc { display: none !important; }
+  .process-step {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: .75rem !important;
+    background: var(--black-card) !important;
+    border: 1px solid var(--gray-border) !important;
+    border-right: 3px solid rgba(184,151,106,.5) !important;
+    padding: .75rem .85rem !important;
+    border-radius: 4px !important;
+  }
+  .step-num {
+    font-size: 1.5rem !important;
+    min-width: 2rem !important;
+    line-height: 1 !important;
+    opacity: .55 !important;
+    flex-shrink: 0 !important;
+  }
+  .step-content h3 { font-size: .83rem !important; margin-bottom: .2rem !important; line-height: 1.3 !important; }
+  .step-content p  {
+    font-size: .74rem !important;
+    line-height: 1.5 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  /* ════ 8) لماذا نحن — بطاقة أفقية ════ */
+  .why-card {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: .85rem !important;
+    padding: .85rem .9rem !important;
+    text-align: right !important;
+  }
+  .why-card svg { width: 28px !important; height: 28px !important; flex-shrink: 0 !important; margin: .1rem 0 0 !important; }
+  .why-card h3  { font-size: .83rem !important; margin-bottom: .2rem !important; }
+  .why-card p   {
+    font-size: .74rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  /* ════ شريط الأرقام — صف واحد ════ */
+  .hero-stats-inner {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0 !important;
+    padding: .4rem 0 !important;
+  }
+  .stat-item {
+    padding: .35rem .2rem !important;
+    text-align: center !important;
+    border-left: 1px solid rgba(255,255,255,.07) !important;
+  }
+  .stat-num  { font-size: .95rem !important; line-height: 1.1 !important; }
+  .stat-plus { font-size: .7rem !important; }
+  .stat-label {
+    font-size: .5rem !important;
+    margin-top: .1rem !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  /* ════ تعديلات عامة ════ */
+  .section-cta   { gap: .6rem !important; }
+  .section-cta a { max-width: 260px !important; font-size: .83rem !important; padding: .65rem 1rem !important; }
+  .ticker-track span { font-size: .75rem !important; padding: 0 1.2rem !important; }
+}
+
+/* ================================================================
+   ALL PAGES — تعديلات كل صفحات الموقع (موبايل فقط)
+================================================================ */
+@media (max-width: 768px) {
+
+  /* ════════════════════════════════════════════════
+     services.html — about-grid بدون about-section
+  ════════════════════════════════════════════════ */
+  .about-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    direction: rtl !important;
+  }
+  /* إلغاء direction:ltr على الـ about-grid المتناوبة */
+  .about-grid[style*="direction:ltr"] {
+    direction: rtl !important;
+  }
+  .about-grid .about-images {
+    order: -1 !important;
+    width: 100% !important;
+  }
+  .about-grid .about-img-main {
+    width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+  }
+  .about-grid .about-img-small { display: none !important; }
+  .about-grid .about-badge     { display: none !important; }
+  .about-grid .about-content   { direction: rtl !important; }
+  .about-grid .about-content h2 { font-size: clamp(1.1rem,5vw,1.5rem) !important; }
+  .about-grid .about-content p  { font-size: .85rem !important; }
+  .about-grid .about-btns {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .5rem !important;
+  }
+  .about-grid .about-btns a {
+    flex: 1 1 140px !important;
+    text-align: center !important;
+    font-size: .82rem !important;
+    padding: .6rem 1rem !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     about.html — team (services-grid with img)
+  ════════════════════════════════════════════════ */
+  .service-card[style*="text-align:center"] {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 1rem !important;
+    align-items: center !important;
+  }
+  .service-card[style*="text-align:center"] img {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto .7rem !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     packages.html — حاسبات الأسعار
+  ════════════════════════════════════════════════ */
+
+  /* بطاقات الباقات — سكرول أفقي */
+  .pkg-cards {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: .6rem !important;
+    padding-bottom: .4rem !important;
+    grid-template-columns: unset !important;
+  }
+  .pkg-cards::-webkit-scrollbar { display: none !important; }
+  .pkg-cards .pkg-c {
+    flex: 0 0 72vw !important;
+    min-width: 220px !important;
+    max-width: 260px !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* أزرار نوع المشروع — تفاف */
+  .proj-types,
+  .design-types {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem !important;
+    justify-content: flex-start !important;
+  }
+  .proj-types button,
+  .design-type-btn {
+    flex: 0 0 calc(50% - .2rem) !important;
+    font-size: .78rem !important;
+    padding: .5rem .4rem !important;
+  }
+  .design-type-btn .dt-icon { font-size: 1.2rem !important; }
+
+  /* شبكة نوع المبنى المعماري (inline grid) */
+  #arch-type-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: .4rem !important;
+  }
+  #arch-level-btns {
+    gap: .4rem !important;
+    flex-wrap: wrap !important;
+  }
+  #arch-level-btns button {
+    flex: 1 1 calc(50% - .2rem) !important;
+    font-size: .78rem !important;
+    text-align: center !important;
+  }
+
+  /* نتائج التصميم — عمود واحد */
+  .design-result-grid {
+    grid-template-columns: 1fr !important;
+    gap: .6rem !important;
+  }
+
+  /* نتائج التصميم المعماري — 2 أعمدة (4 كروت) */
+  .arch-result-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: .6rem !important;
+  }
+  .arch-result-grid .drc-value { font-size: .95rem !important; }
+  .arch-result-grid .drc-label { font-size: .65rem !important; }
+
+  /* سلايدر المساحة */
+  .slider-row { margin-bottom: 1rem !important; }
+  .slider-label { font-size: .82rem !important; }
+
+  /* نتيجة الحساب */
+  .calc-result {
+    flex-direction: column !important;
+    gap: .8rem !important;
+    align-items: stretch !important;
+  }
+  .calc-result a {
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  /* جدول المقارنة — سكرول أفقي */
+  .compare-table { min-width: 560px !important; font-size: .75rem !important; }
+  .compare-table th,
+  .compare-table td { padding: .5rem .55rem !important; }
+
+  /* ════════════════════════════════════════════════
+     contact.html — نموذج التواصل
+  ════════════════════════════════════════════════ */
+  .form-row-2col {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     portfolio.html — أزرار الفلتر
+  ════════════════════════════════════════════════ */
+  .portfolio-filter {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem !important;
+    justify-content: center !important;
+  }
+  .filter-btn {
+    font-size: .8rem !important;
+    padding: .38rem .8rem !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     blog/index.html — شبكة المقالات
+  ════════════════════════════════════════════════ */
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: .8rem !important;
+  }
+  .blog-card-body h3 { font-size: .9rem !important; }
+  .blog-card-body p  { font-size: .8rem !important; }
+
+  /* ════════════════════════════════════════════════
+     blog articles — مقالات ذات صلة
+  ════════════════════════════════════════════════ */
+  .related-articles-grid {
+    grid-template-columns: 1fr !important;
+    gap: .8rem !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     مقالات المدونة — محتوى المقال
+  ════════════════════════════════════════════════ */
+  .blog-article-content { padding: 0 !important; }
+  .blog-article-content h2 { font-size: 1.1rem !important; }
+  .blog-article-content h3 { font-size: 1rem !important; }
+  .blog-article-content p  { font-size: .88rem !important; line-height: 1.7 !important; }
+  .article-hero { min-height: 40vw !important; padding: 4rem 0 2rem !important; }
+
+  /* ════════════════════════════════════════════════
+     Footer — عمود واحد في كل الصفحات
+  ════════════════════════════════════════════════ */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .footer-col { padding: 0 !important; }
+
+  /* ════════════════════════════════════════════════
+     أزرار CTA — تتكيف مع عرض الشاشة
+  ════════════════════════════════════════════════ */
+  .consult-btns {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: .6rem !important;
+  }
+  .consult-btns a {
+    text-align: center !important;
+    font-size: .85rem !important;
+    padding: .75rem 1rem !important;
+  }
+  .btn-gold,
+  .btn-outline-gold {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: .85rem !important;
+    padding: .7rem 1rem !important;
+    margin-bottom: .4rem !important;
+  }
+  .about-btns .btn-gold,
+  .about-btns .btn-outline-gold {
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  /* ════════════════════════════════════════════════
+     Consultation section — ضغط
+  ════════════════════════════════════════════════ */
+  .consultation-inner {
+    padding: 1.5rem 1rem !important;
+    text-align: center !important;
+  }
+  .consultation-inner h2 { font-size: 1.1rem !important; }
+  .consultation-inner p  { font-size: .85rem !important; }
+}
