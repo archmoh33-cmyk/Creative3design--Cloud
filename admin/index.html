@@ -321,6 +321,71 @@ img{max-width:100%;display:block}
 <body>
 
 <!-- ════════════════════════════════════════════════
+     CONFIG ERROR OVERLAY — يظهر إذا كانت الإعدادات خاطئة
+════════════════════════════════════════════════ -->
+<div id="configErrorOverlay" style="
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(10,8,6,.97); align-items:center; justify-content:center;
+  padding:1.5rem; font-family:'Cairo',sans-serif; direction:rtl;
+">
+  <div style="
+    background:#1a1714; border:1px solid rgba(224,82,82,.5);
+    border-radius:14px; max-width:580px; width:100%;
+    padding:2rem; box-shadow:0 8px 40px rgba(0,0,0,.7);
+  ">
+    <div style="font-size:2rem; text-align:center; margin-bottom:.5rem">⚙️</div>
+    <h2 style="color:#e05252; text-align:center; margin-bottom:.5rem; font-size:1.1rem">
+      خطأ في إعداد Supabase
+    </h2>
+    <p style="color:#8a8278; text-align:center; font-size:.85rem; margin-bottom:1.5rem">
+      لوحة التحكم تحتاج رابط Supabase صحيح للعمل
+    </p>
+
+    <div id="configErrorList" style="
+      background:#0e0c0a; border:1px solid rgba(224,82,82,.2);
+      border-radius:8px; padding:1rem 1.2rem; margin-bottom:1.5rem;
+      font-size:.83rem; color:#e8e4dc; line-height:2;
+    "></div>
+
+    <!-- الخطوات الصحيحة -->
+    <div style="
+      background:rgba(184,151,106,.07); border:1px solid rgba(184,151,106,.2);
+      border-radius:8px; padding:1rem 1.2rem; margin-bottom:1.5rem;
+    ">
+      <p style="color:#B8976A; font-weight:700; font-size:.85rem; margin-bottom:.6rem">
+        📍 كيف تجد الرابط الصحيح؟
+      </p>
+      <ol style="color:#8a8278; font-size:.82rem; line-height:2.2; padding-right:1.2rem">
+        <li>اذهب إلى <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
+        <li>اختر مشروعك ثم اضغط <strong style="color:#e8e4dc">Settings ← API</strong></li>
+        <li>انسخ <strong style="color:#B8976A">Project URL</strong> — شكله:
+          <br/><code style="
+            background:#1e1b17; color:#4caf7d; padding:.15rem .5rem;
+            border-radius:4px; font-size:.78rem; display:inline-block; margin-top:.2rem;
+          ">https://XXXXXXXXXXXX.supabase.co</code>
+        </li>
+        <li>انسخ <strong style="color:#B8976A">anon public key</strong> (JWT كامل يبدأ بـ eyJ)</li>
+        <li>الصق القيمتين في <strong style="color:#e8e4dc">js/config.js</strong></li>
+        <li>أعد تحميل هذه الصفحة</li>
+      </ol>
+    </div>
+
+    <div style="display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap">
+      <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="
+        background:#B8976A; color:#fff; padding:.55rem 1.2rem;
+        border-radius:7px; font-size:.85rem; font-weight:700; text-decoration:none;
+      ">فتح Supabase Dashboard ↗</a>
+      <button onclick="location.reload()" style="
+        background:transparent; border:1px solid rgba(255,255,255,.15);
+        color:#8a8278; padding:.55rem 1.2rem; border-radius:7px;
+        font-size:.85rem; font-weight:700; cursor:pointer;
+        font-family:'Cairo',sans-serif;
+      ">إعادة تحميل الصفحة</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
      LOGIN SCREEN
 ════════════════════════════════════════════════ -->
 <div id="loginScreen">
@@ -651,18 +716,32 @@ const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:
    AUTH
 ══════════════════════════════════════════════════ */
 async function initAuth() {
-  if (!window.c3dClient) {
-    showToast('⚠️ Supabase غير مُهيّأ — عبّئ js/config.js أولاً', 'error');
+
+  /* ── فحص أخطاء الإعداد أولاً ── */
+  const errors = window.C3D_CONFIG_ERRORS || [];
+  if (!window.c3dClient || errors.length) {
+    const overlay = document.getElementById('configErrorOverlay');
+    const list    = document.getElementById('configErrorList');
+    if (overlay && list) {
+      list.innerHTML = errors.map(e =>
+        `<div style="margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.05)">${
+          e.replace(/\n/g,'<br/>')
+        }</div>`
+      ).join('') || '<div>⚠️ لم يتم تهيئة Supabase Client — راجع js/config.js</div>';
+      overlay.style.display = 'flex';
+    }
+    // عرض رسالة في صندوق تسجيل الدخول أيضاً
+    showLoginError('⚠️ راجع إعدادات Supabase في js/config.js — انظر التعليمات أعلاه');
     return;
   }
 
-  // Check existing session
+  /* ── التحقق من جلسة موجودة ── */
   const { data: { session } } = await window.c3dClient.auth.getSession();
   if (session) {
     onLogin(session.user);
   }
 
-  // Listen for auth state changes
+  /* ── الاستماع لتغييرات Auth ── */
   window.c3dClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN' && session)  onLogin(session.user);
     if (event === 'SIGNED_OUT') onLogout();
@@ -682,9 +761,22 @@ async function handleLogin() {
   btn.textContent = 'جارٍ الدخول...';
   err.classList.remove('show');
 
-  const { error } = await window.c3dClient.auth.signInWithPassword({ email, password: pass });
+  let result;
+  try {
+    result = await window.c3dClient.auth.signInWithPassword({ email, password: pass });
+  } catch (e) {
+    showLoginError('خطأ في الاتصال بـ Supabase — تحقق من صحة Project URL في js/config.js');
+    btn.disabled = false; btn.textContent = 'دخول'; return;
+  }
+
+  const { error } = result;
   if (error) {
-    showLoginError(error.message === 'Invalid login credentials' ? 'بريد إلكتروني أو كلمة مرور خاطئة' : error.message);
+    const msg =
+      error.message.includes('Invalid login credentials') ? 'بريد إلكتروني أو كلمة مرور خاطئة' :
+      error.message.includes('Failed to fetch')           ? 'تعذّر الاتصال بـ Supabase — تأكد من صحة Project URL' :
+      error.message.includes('NetworkError')              ? 'خطأ في الشبكة — تحقق من الاتصال بالإنترنت' :
+      error.message;
+    showLoginError(msg);
     btn.disabled = false;
     btn.textContent = 'دخول';
   }

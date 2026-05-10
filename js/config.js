@@ -10,8 +10,18 @@ window.C3D_CONFIG = {
      الحصول عليها من: https://supabase.com/dashboard → Settings → API
   ──────────────────────────────────────────────────────────────── */
   supabase: {
-    url:     'https://creative3design-cloud.vercel.app/index.html',   // ← استبدل
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',                 // ← استبدل
+    // ⚠️ الرابط الصحيح يبدأ بـ https:// وينتهي بـ .supabase.co فقط
+    // مثال صحيح:   'https://abcdefghijklmnop.supabase.co'
+    // مثال خاطئ:  'https://creative3design-cloud.vercel.app/index.html'  ← هذا رابط Vercel وليس Supabase
+    //
+    // 📍 أين تجده؟
+    //    supabase.com/dashboard → اختر مشروعك → Settings → API → Project URL
+    url:     'https://YOUR_PROJECT_ID.supabase.co',   // ← ضع هنا Project URL من Supabase
+
+    // ⚠️ المفتاح يجب أن يكون كاملاً (JWT طويل يبدأ بـ eyJ ولا ينتهي بـ ...)
+    // 📍 أين تجده؟
+    //    supabase.com/dashboard → Settings → API → anon (public) key
+    anonKey: 'YOUR_FULL_ANON_KEY_FROM_SUPABASE',      // ← ضع هنا anon key من Supabase
   },
 
   /* ── Cloudinary ────────────────────────────────────────────────
