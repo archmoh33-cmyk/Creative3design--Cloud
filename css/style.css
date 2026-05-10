@@ -203,13 +203,28 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 .nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:899; }
 .nav-overlay.open { display:block; }
+/* ── DESKTOP NAVBAR LANG BUTTON (hero pages only) ── */
+.navbar-lang-btn {
+  margin-right: auto; /* pushes to left end in RTL layout */
+  padding: .38rem .95rem;
+  border: 1.5px solid rgba(184,151,106,.55);
+  border-radius: 7px;
+  background: rgba(184,151,106,.1);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: .82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+.navbar-lang-btn:hover { background: rgba(184,151,106,.22); border-color: rgba(184,151,106,.8); }
 
 /* ── PAGE SWITCHER DROPDOWN (navbar) ── */
 /* Desktop: margin-left:auto pushes it to the far left end in RTL layout */
 .nav-page-switcher {
-  display:flex; align-items:center;
-  flex-shrink:0;
-  margin-left:auto;
+  display:none !important;
+  /* مخفي — الـ nav-links تستبدله على الكمبيوتر والـ drawer على الموبايل */
 }
 .nav-page-select {
   appearance:none; -webkit-appearance:none;
@@ -1138,3 +1153,69 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 
 /* ── Portfolio: إظهار 6 مشاريع فقط في الصفحة الرئيسية ── */
 #portfolioGrid .port-card:nth-child(n+7) { display: none !important; }
+
+/* ══════════════════════════════════════════════════
+   Compounds Marquee — سلايدر مستمر (كل الشاشات)
+══════════════════════════════════════════════════ */
+.compounds-grid.marquee-hidden { display: none !important; }
+
+.compounds-marquee-wrap {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: .5rem 0;
+}
+/* تلاشي الحواف */
+.compounds-marquee-wrap::before,
+.compounds-marquee-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 6rem;
+  z-index: 2;
+  pointer-events: none;
+}
+.compounds-marquee-wrap::before {
+  right: 0;
+  background: linear-gradient(to left, var(--black-charcoal, #1a1714), transparent);
+}
+.compounds-marquee-wrap::after {
+  left: 0;
+  background: linear-gradient(to right, var(--black-charcoal, #1a1714), transparent);
+}
+
+/* Track — اتجاه LTR دائماً لضمان حركة صحيحة */
+.compounds-marquee-track {
+  display: flex !important;
+  width: max-content !important;
+  direction: ltr !important;
+  gap: 0 !important;
+  animation: compoundsScroll 40s linear infinite !important;
+  will-change: transform;
+}
+.compounds-marquee-track:hover { animation-play-state: paused !important; }
+
+/* كل badge له margin يحل محل gap لضمان الاستمرارية */
+.compounds-marquee-track .compound-badge {
+  flex: 0 0 auto !important;
+  width: 120px !important;
+  margin-right: 1.5rem !important;
+  padding: .8rem .5rem !important;
+  text-align: center;
+  cursor: default;
+}
+.compounds-marquee-track .compound-logo-wrap {
+  width: 72px !important;
+  height: 72px !important;
+  margin: 0 auto .5rem !important;
+}
+.compounds-marquee-track .compound-name {
+  font-size: .72rem !important;
+  white-space: nowrap;
+}
+
+/* Keyframe — ينتقل بمقدار ثلث المسار (3 مجموعات مكررة) */
+@keyframes compoundsScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}

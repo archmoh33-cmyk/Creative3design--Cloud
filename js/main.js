@@ -31,6 +31,9 @@ function setLang(lang) {
   // sync hero mobile header lang button
   const heroBtn = document.getElementById('heroLangToggle');
   if (heroBtn) heroBtn.textContent = lang === 'ar' ? 'EN' : 'عربي';
+  // sync desktop navbar lang button (hero pages)
+  const navbarBtn = document.getElementById('navbarLangBtn');
+  if (navbarBtn) navbarBtn.textContent = lang === 'ar' ? 'EN' : 'عربي';
 }
 
 function toggleLang() {
@@ -43,6 +46,19 @@ function initNavbar() {
   if (!navbar) return;
   const isHeroPage = document.body.classList.contains('page-has-hero');
   const threshold = isHeroPage ? (window.innerHeight * 0.80) : 60;
+
+  // Hero pages: top-bar (with lang toggle) is hidden → inject lang button into desktop navbar
+  if (isHeroPage && window.innerWidth > 768) {
+    const inner = navbar.querySelector('.navbar-inner');
+    if (inner && !inner.querySelector('#navbarLangBtn')) {
+      const langBtn = document.createElement('button');
+      langBtn.id = 'navbarLangBtn';
+      langBtn.className = 'navbar-lang-btn';
+      langBtn.onclick = toggleLang;
+      langBtn.textContent = currentLang === 'ar' ? 'EN' : 'عربي';
+      inner.appendChild(langBtn);
+    }
+  }
 
   function onScroll() {
     navbar.classList.toggle('scrolled', window.scrollY > threshold);
@@ -382,7 +398,6 @@ function initCalculator() {
 
 /* ── COMPOUNDS MARQUEE (mobile) ── */
 function initCompoundsMarquee() {
-  if (window.innerWidth > 768) return;
   const grid = document.querySelector('.compounds-section .compounds-grid');
   if (!grid || grid.dataset.marqueeInit) return;
   grid.dataset.marqueeInit = '1';
@@ -394,16 +409,17 @@ function initCompoundsMarquee() {
   const track = document.createElement('div');
   track.className = 'compounds-marquee-track';
 
-  // Clone all badges twice for seamless loop
+  // Clone badges THREE times for perfectly seamless infinite loop
   const badges = Array.from(grid.querySelectorAll('.compound-badge'));
+  badges.forEach(b => track.appendChild(b.cloneNode(true)));
   badges.forEach(b => track.appendChild(b.cloneNode(true)));
   badges.forEach(b => track.appendChild(b.cloneNode(true)));
 
   wrap.appendChild(track);
 
-  // Insert wrapper before grid, hide original grid
+  // Insert wrapper before grid, hide original
   grid.parentNode.insertBefore(wrap, grid);
-  grid.style.display = 'none';
+  grid.classList.add('marquee-hidden');
 }
 
 
@@ -439,6 +455,10 @@ function initMobileDrawer() {
   const nav = document.getElementById('navLinks');
   if (!nav || nav.dataset.drawerInit) return;
   nav.dataset.drawerInit = '1';
+
+  // Move nav to body level — .navbar { display:none } hides all children
+  // including position:fixed descendants. Moving to body fixes the drawer.
+  document.body.appendChild(nav);
 
   // ── رأس الـ Drawer ──
   const head = document.createElement('div');

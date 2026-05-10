@@ -378,53 +378,10 @@
   /* ════ 3) المشاريع — صورة كاملة العرض مع overlay ════ */
   .portfolio-grid .port-item { width: 100% !important; }
 
-  /* ════ 4) اللوجوهات — سلايدر أفقي متحرك ════ */
-  .compounds-section .compounds-grid {
-    display: none !important; /* تُخفى وتُستبدل بالسلايدر عبر JS */
-  }
-  .compounds-marquee-wrap {
-    overflow: hidden !important;
-    position: relative !important;
-    margin: 0 -1.1rem !important;
-  }
-  .compounds-marquee-wrap::before,
-  .compounds-marquee-wrap::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important; bottom: 0 !important;
-    width: 3rem !important;
-    z-index: 2 !important;
-    pointer-events: none !important;
-  }
-  .compounds-marquee-wrap::before {
-    right: 0 !important;
-    background: linear-gradient(to left, var(--black-charcoal), transparent) !important;
-  }
-  .compounds-marquee-wrap::after {
-    left: 0 !important;
-    background: linear-gradient(to right, var(--black-charcoal), transparent) !important;
-  }
-  .compounds-marquee-track {
-    display: flex !important;
-    width: max-content !important;
-    animation: compoundsScroll 25s linear infinite !important;
-    gap: .8rem !important;
-    padding: .4rem .8rem !important;
-  }
-  .compounds-marquee-track:hover { animation-play-state: paused !important; }
-  @keyframes compoundsScroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .compounds-marquee-track .compound-badge {
-    flex: 0 0 80px !important;
-    width: 80px !important;
-    padding: .6rem .3rem !important;
-  }
-  .compounds-marquee-track .compound-logo-wrap { width: 54px !important; height: 54px !important; }
-  .compounds-marquee-track .compound-name      { font-size: .6rem !important; }
 
-  /* ════ 5) مرجع الأسعار — سكرول أفقي ════ */
+  /* ════ 4) اللوجوهات — تعالج بالـ CSS العام في style.css ════ */
+
+    /* ════ 5) مرجع الأسعار — سكرول أفقي ════ */
   .price-ref-grid {
     display: flex !important;
     overflow-x: auto !important;

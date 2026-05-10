@@ -9,6 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/mobile.css" />
+  <style>
+    /* Portfolio Skeleton Loading */
+    .port-skeleton {
+      background: var(--black-card);
+      border: 1px solid var(--gray-border);
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+    }
+    .port-skeleton::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,transparent 25%,rgba(184,151,106,.06) 50%,transparent 75%);
+      background-size: 200% 100%;
+      animation: portShimmer 1.6s infinite;
+    }
+    @keyframes portShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .portfolio-load-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+    .portfolio-load-msg svg { margin: 0 auto 1rem; opacity: .3; }
+  </style>
 </head>
 <body>
 <div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link" data-ar="واتساب" data-en="WhatsApp">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
@@ -33,34 +60,194 @@
 
 <section class="portfolio-section section-padding">
   <div class="container">
-    <div class="portfolio-filter lazy-reveal">
+
+    <!-- أزرار الفلتر — ستُزاد تصنيفات جديدة ديناميكياً -->
+    <div class="portfolio-filter lazy-reveal" id="portfolioFilter">
       <button class="filter-btn active" data-cat="all" data-ar="الكل" data-en="All">الكل</button>
-      <button class="filter-btn" data-cat="residential" data-ar="سكني" data-en="Residential">سكني</button>
-      <button class="filter-btn" data-cat="commercial" data-ar="تجاري" data-en="Commercial">تجاري</button>
-      <button class="filter-btn" data-cat="villa">فيلات</button>
+      <button class="filter-btn" data-cat="residential" data-ar="سكني"    data-en="Residential">سكني</button>
+      <button class="filter-btn" data-cat="commercial"  data-ar="تجاري"   data-en="Commercial">تجاري</button>
+      <button class="filter-btn" data-cat="villa"       data-ar="فيلات"   data-en="Villas">فيلات</button>
+      <button class="filter-btn" data-cat="hospitality" data-ar="ضيافة"   data-en="Hospitality">ضيافة</button>
+      <button class="filter-btn" data-cat="office"      data-ar="مكاتب"   data-en="Offices">مكاتب</button>
     </div>
+
+    <!-- شبكة المشاريع — تُملأ ديناميكياً أو تعود للبيانات الثابتة -->
     <div class="portfolio-grid" id="portfolioGrid">
-      <!-- سكني -->
-      <div class="port-card lazy-reveal" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم غرفة معيشة فاخرة — مشروع سكني Creative3Design" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="سكني" data-en="Residential">سكني</span><h4>شقة المهندسين الفاخرة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم رئيسية فاخرة — مشروع سكني" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="سكني" data-en="Residential">سكني</span><h4>شقة التجمع الخامس</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطبخ مودرن فاخر أوبن سبيس — شقة بالزمالك" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="سكني" data-en="Residential">سكني</span><h4>شقة الزمالك الفاخرة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم كلاسيكي راقٍ لشقة بمصر الجديدة" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="سكني" data-en="Residential">سكني</span><h4>شقة مصر الجديدة الكلاسيكية</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <!-- تجاري -->
-      <div class="port-card lazy-reveal" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب شركة احترافي بالقاهرة" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="تجاري" data-en="Commercial">تجاري</span><h4>مقر شركة التجمع الخامس</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مطعم فاخر بإضاءة مميزة بالقاهرة" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="تجاري" data-en="Commercial">تجاري</span><h4>مطعم الجزيرة الفاخر</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم عيادة طبية احترافية بمصر الجديدة" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="تجاري" data-en="Commercial">تجاري</span><h4>عيادة مصر الجديدة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم صالون تجميل فاخر بإضاءة حديثة" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat" data-ar="تجاري" data-en="Commercial">تجاري</span><h4>صالون لوكس — الزمالك</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <!-- فيلات -->
-      <div class="port-card lazy-reveal" data-cat="villa"><img data-src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا فاخرة بالقاهرة الجديدة — تصميم Creative3Design" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat">فيلات</span><h4>فيلا القاهرة الجديدة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="villa"><img data-src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="واجهة خارجية لفيلا بالشيخ زايد" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat">فيلات</span><h4>فيلا الشيخ زايد</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="villa"><img data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا سكنية فاخرة بالرحاب — تصميم عصري راقٍ" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat">فيلات</span><h4>فيلا الرحاب الفاخرة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
-      <div class="port-card lazy-reveal" data-cat="villa"><img data-src="https://images.unsplash.com/photo-1584738766473-61c083514bf4?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي لغرفة جلوس في فيلا بالمعادي" class="lazy-img" loading="lazy"/><div class="port-overlay"><span class="port-cat">فيلات</span><h4>فيلا المعادي الفاخرة</h4><a href="contact.html" class="port-link">احجز مشروع مماثل ←</a></div></div>
+      <!-- Skeleton تظهر أثناء التحميل -->
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
     </div>
+
     <div class="section-cta lazy-reveal">
-      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg">ابدأ مشروعك معنا اليوم</a>
+      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg"
+         data-ar="ابدأ مشروعك معنا اليوم" data-en="Start Your Project Today">ابدأ مشروعك معنا اليوم</a>
     </div>
   </div>
 </section>
+
+<!-- ════════════════════════════════════════════════
+     DYNAMIC PORTFOLIO SCRIPTS
+════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── Fallback: البيانات الثابتة الأصلية (تُستخدم إذا Supabase غير مُهيّأ) ── */
+  const STATIC_PROJECTS = [
+    { id:'s1', name_ar:'شقة المهندسين الفاخرة',       category:'residential', style:'modern',    location_ar:'المهندسين، القاهرة',    image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80', image_alt_ar:'تصميم غرفة معيشة فاخرة — مشروع سكني Creative3Design' },
+    { id:'s2', name_ar:'شقة التجمع الخامس',           category:'residential', style:'modern',    location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80', image_alt_ar:'غرفة نوم رئيسية فاخرة — مشروع سكني Creative3Design' },
+    { id:'s3', name_ar:'شقة الزمالك الفاخرة',         category:'residential', style:'classic',   location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', image_alt_ar:'مطبخ مودرن فاخر أوبن سبيس — شقة الزمالك Creative3Design' },
+    { id:'s4', name_ar:'شقة مصر الجديدة الكلاسيكية', category:'residential', style:'neoclassic',location_ar:'مصر الجديدة، القاهرة',    image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', image_alt_ar:'تصميم كلاسيكي راقٍ لشقة بمصر الجديدة Creative3Design' },
+    { id:'s5', name_ar:'مقر شركة التجمع الخامس',      category:'commercial',  style:'contemporary',location_ar:'التجمع الأول، القاهرة', image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80', image_alt_ar:'تصميم مكتب شركة احترافي بالقاهرة Creative3Design' },
+    { id:'s6', name_ar:'مطعم الجزيرة الفاخر',         category:'commercial',  style:'luxury',    location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80', image_alt_ar:'تصميم مطعم فاخر بإضاءة مميزة بالقاهرة Creative3Design' },
+    { id:'s7', name_ar:'عيادة مصر الجديدة',           category:'commercial',  style:'minimal',   location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80', image_alt_ar:'تصميم عيادة طبية احترافية بمصر الجديدة Creative3Design' },
+    { id:'s8', name_ar:'صالون لوكس — الزمالك',        category:'commercial',  style:'luxury',    location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=600&q=80', image_alt_ar:'تصميم صالون تجميل فاخر بإضاءة حديثة Creative3Design' },
+    { id:'s9', name_ar:'فيلا القاهرة الجديدة',        category:'villa',       style:'modern',    location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', image_alt_ar:'فيلا مودرن فاخرة بالقاهرة الجديدة Creative3Design' },
+    { id:'s10',name_ar:'فيلا الشيخ زايد',             category:'villa',       style:'neoclassic',location_ar:'الشيخ زايد، الجيزة',     image_url:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80', image_alt_ar:'واجهة خارجية لفيلا نيوكلاسيك بالشيخ زايد Creative3Design' },
+    { id:'s11',name_ar:'فيلا الرحاب الفاخرة',         category:'villa',       style:'contemporary',location_ar:'الرحاب، القاهرة',       image_url:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', image_alt_ar:'فيلا سكنية فاخرة بالرحاب تصميم Creative3Design' },
+    { id:'s12',name_ar:'فيلا المعادي الفاخرة',        category:'villa',       style:'classic',   location_ar:'المعادي، القاهرة',       image_url:'https://images.unsplash.com/photo-1584738766473-61c083514bf4?w=600&q=80', image_alt_ar:'تصميم داخلي لغرفة جلوس في فيلا بالمعادي Creative3Design' },
+  ];
+
+  const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب' };
+  const CATEGORY_EN = { residential:'Residential', commercial:'Commercial', villa:'Villas', hospitality:'Hospitality', office:'Offices' };
+  const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
+
+  let allProjects   = [];
+  let activeCat     = 'all';
+  const MAX_VISIBLE = 12;
+
+  /* ── توليد بطاقة مشروع ──────────────────────────────────────── */
+  function buildCard(p) {
+    const lang   = typeof currentLang !== 'undefined' ? currentLang : 'ar';
+    const name   = lang === 'en' && p.name_en ? p.name_en : p.name_ar;
+    const catLbl = lang === 'en' ? (CATEGORY_EN[p.category] || p.category) : (CATEGORY_AR[p.category] || p.category);
+    const loc    = lang === 'en' && p.location_en ? p.location_en : (p.location_ar || '');
+
+    /* Alt Text ديناميكي — يُقوّي SEO بتضمين اسم الخدمة والموقع */
+    const altText = typeof window.c3dAltText === 'function'
+      ? window.c3dAltText(p, lang)
+      : (p.image_alt_ar || `${p.name_ar} - ${CATEGORY_AR[p.category] || ''} - ${loc} - Creative3Design`);
+
+    /* رابط الصورة — SEO slug بدل ID */
+    const waMsg = encodeURIComponent(`أريد مشروعاً مشابهاً لـ: ${p.name_ar}`);
+
+    const card = document.createElement('div');
+    card.className = 'port-card lazy-reveal';
+    card.dataset.cat = p.category;
+    card.innerHTML = `
+      <img
+        src="${p.image_url || ''}"
+        alt="${escHtml(altText)}"
+        loading="lazy"
+        onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80'"
+        title="${escHtml(name)} — ${escHtml(loc)}"
+      />
+      <div class="port-overlay">
+        <span class="port-cat"
+          data-ar="${escHtml(CATEGORY_AR[p.category] || p.category)}"
+          data-en="${escHtml(CATEGORY_EN[p.category] || p.category)}"
+        >${escHtml(catLbl)}</span>
+        <h4>${escHtml(name)}</h4>
+        ${loc ? `<p style="font-size:.75rem;color:rgba(255,255,255,.65);margin-bottom:.4rem">${escHtml(loc)}</p>` : ''}
+        <a href="https://wa.me/201019053288?text=${waMsg}" target="_blank" rel="noopener" class="port-link"
+           data-ar="احجز مشروع مماثل ←" data-en="Book Similar Project →">احجز مشروع مماثل ←</a>
+      </div>`;
+    return card;
+  }
+
+  /* ── رسم الشبكة ──────────────────────────────────────────────── */
+  function renderGrid(projects) {
+    const grid = document.getElementById('portfolioGrid');
+    grid.innerHTML = '';
+
+    const toShow = activeCat === 'all'
+      ? projects
+      : projects.filter(p => p.category === activeCat);
+
+    if (!toShow.length) {
+      grid.innerHTML = `
+        <div class="portfolio-load-msg">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <p>لا توجد مشاريع في هذا التصنيف بعد</p>
+        </div>`;
+      return;
+    }
+
+    toShow.slice(0, MAX_VISIBLE).forEach(p => grid.appendChild(buildCard(p)));
+
+    // re-trigger lazy reveal for new cards
+    if (typeof initLazyReveal === 'function') initLazyReveal();
+    // re-trigger lazy images
+    if (typeof initLazyImages === 'function') initLazyImages();
+    // IntersectionObserver for images already in view
+    grid.querySelectorAll('.lazy-reveal').forEach(el => {
+      el.classList.add('revealed');
+    });
+  }
+
+  /* ── أزرار الفلتر ────────────────────────────────────────────── */
+  function bindFilter() {
+    document.querySelectorAll('#portfolioFilter .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#portfolioFilter .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat || 'all';
+        renderGrid(allProjects);
+      });
+    });
+  }
+
+  /* ── تحميل من Supabase ───────────────────────────────────────── */
+  async function loadFromSupabase() {
+    const { data, error } = await window.c3dFetchProjects({ limit: 50 });
+    if (error || !data || !data.length) {
+      console.info('[C3D Portfolio] Supabase أعاد بيانات فارغة — سيُستخدم الـ fallback');
+      return false;
+    }
+    allProjects = data;
+    return true;
+  }
+
+  /* ── init ────────────────────────────────────────────────────── */
+  async function init() {
+    bindFilter();
+
+    let usedSupabase = false;
+
+    if (!window.C3D_STATIC_MODE && window.c3dClient) {
+      usedSupabase = await loadFromSupabase();
+    }
+
+    if (!usedSupabase) {
+      // وضع ثابت — استخدام البيانات المدمجة في الكود
+      allProjects = STATIC_PROJECTS;
+      console.info('[C3D Portfolio] يعمل بالبيانات الثابتة');
+    }
+
+    renderGrid(allProjects);
+  }
+
+  function escHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // انتظر حتى يتم تحميل supabase-client.js
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    // تأخير بسيط لضمان تحميل supabase-client.js
+    setTimeout(init, 50);
+  }
+
+})();
+</script>
 
 <section class="consultation-section section-padding lazy-reveal">
   <div class="container"><div class="consultation-inner">
