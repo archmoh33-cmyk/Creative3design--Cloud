@@ -460,7 +460,7 @@
     align-items: flex-start !important;
     gap: .85rem !important;
     padding: .85rem .9rem !important;
-    text-align: right !important;
+    text-align: start !important;
   }
   .why-card svg { width: 28px !important; height: 28px !important; flex-shrink: 0 !important; margin: .1rem 0 0 !important; }
   .why-card h3  { font-size: .83rem !important; margin-bottom: .2rem !important; }
@@ -744,3 +744,17 @@
   .consultation-inner h2 { font-size: 1.1rem !important; }
   .consultation-inner p  { font-size: .85rem !important; }
 }
+
+
+/* ══════════════════════════════════════════════════
+   English / LTR — Mobile Overrides
+   Triggered when JS sets html[dir="ltr"]
+══════════════════════════════════════════════════ */
+html[dir="ltr"] .why-card { text-align: left !important; }
+html[dir="ltr"] .blog-card-body { text-align: left !important; }
+html[dir="ltr"] .service-card-body { text-align: left !important; }
+html[dir="ltr"] .hero-text { text-align: left !important; }
+html[dir="ltr"] .footer-col { text-align: left !important; }
+html[dir="ltr"] .footer-links { padding-right: 0 !important; padding-left: 0 !important; }
+html[dir="ltr"] .article-body ul,
+html[dir="ltr"] .article-body ol { padding-right: 0 !important; padding-left: 1.5rem !important; }
