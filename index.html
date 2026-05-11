@@ -1189,6 +1189,8 @@ function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(fu
 
   function loadHeroImages() {
     if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+
+    /* تحميل الشرائح من جدول hero_slides فقط */
     window.c3dClient
       .from('hero_slides')
       .select('image_url, title_ar')
@@ -1196,21 +1198,13 @@ function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(fu
       .order('sort_order', { ascending: true })
       .limit(10)
       .then(function(res) {
-        if (!res.error && res.data && res.data.length >= 3) {
+        if (!res.error && res.data && res.data.length > 0) {
           applyHeroImages(res.data);
-        } else {
-          window.c3dFetchProjects({ limit: 20 }).then(function(r) {
-            if (r.error || !r.data || r.data.length < 3) return;
-            var featured   = r.data.filter(function(p){ return p.featured && p.image_url; });
-            var unfeatured = r.data.filter(function(p){ return !p.featured && p.image_url; });
-            var sorted = featured.concat(unfeatured);
-            if (sorted.length >= 3) applyHeroImages(sorted);
-          });
         }
       });
   }
 
-  function waitForClient(attempts) {
+    function waitForClient(attempts) {
     if (window.c3dClient && !window.C3D_STATIC_MODE) { loadHeroImages(); }
     else if (attempts > 0) { setTimeout(function(){ waitForClient(attempts - 1); }, 400); }
   }
