@@ -16,12 +16,12 @@ window.C3D_CONFIG = {
     //
     // 📍 أين تجده؟
     //    supabase.com/dashboard → اختر مشروعك → Settings → API → Project URL
-    url:     'https://YOUR_PROJECT_ID.supabase.co',   // ← ضع هنا Project URL من Supabase
+    url:     'https://htdqzpqhofthbugluifo.supabase.co',   // ← ضع هنا Project URL من Supabase
 
-    // ⚠️ المفتاح يجب أن يكون كاملاً (JWT طويل يبدأ بـ eyJ ولا ينتهي بـ ...)
+    // ⚠️ المفتاح يجب أن يكون كاملاً (يبدأ بـ eyJ أو sb_publishable_ ولا ينتهي بـ ...)
     // 📍 أين تجده؟
     //    supabase.com/dashboard → Settings → API → anon (public) key
-    anonKey: 'YOUR_FULL_ANON_KEY_FROM_SUPABASE',      // ← ضع هنا anon key من Supabase
+    anonKey: 'sb_publishable_64La8kRo54dPT8E1FwxlWg_07lkiwP2',   // ← anon key من Supabase
   },
 
   /* ── Cloudinary ────────────────────────────────────────────────
