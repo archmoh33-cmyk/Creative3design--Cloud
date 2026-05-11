@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/mobile.css" />
   <style>
-    /* Portfolio Skeleton Loading */
     .port-skeleton {
       background: var(--black-card);
       border: 1px solid var(--gray-border);
@@ -35,20 +34,197 @@
       font-size: .9rem;
     }
     .portfolio-load-msg svg { margin: 0 auto 1rem; opacity: .3; }
+
+    #lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10,9,8,.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #lb-overlay.active { display: flex; }
+
+    .lb-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 1.25rem;
+      border-bottom: 1px solid rgba(184,151,106,.15);
+      flex-shrink: 0;
+    }
+    .lb-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e8e4dc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 70%;
+    }
+    .lb-counter {
+      font-size: .8rem;
+      color: #B8976A;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .lb-close {
+      background: rgba(184,151,106,.12);
+      border: 1px solid rgba(184,151,106,.25);
+      color: #e8e4dc;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .lb-close:hover { background: rgba(224,82,82,.25); border-color: rgba(224,82,82,.4); }
+
+    #lb-set-main {
+      background: rgba(184,151,106,.12);
+      border: 1px solid rgba(184,151,106,.4);
+      color: #B8976A;
+      border-radius: 6px;
+      padding: .35rem .75rem;
+      font-size: .75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: none;
+      gap: .3rem;
+      align-items: center;
+    }
+    #lb-set-main:hover { background: rgba(184,151,106,.28); border-color: #B8976A; color: #e8e4dc; }
+    #lb-set-main.success { background: rgba(60,180,80,.18); border-color: rgba(60,180,80,.5); color: #7effa0; pointer-events: none; }
+
+    /* Toast */
+    #lb-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1a1a1a;
+      border: 1px solid rgba(184,151,106,.35);
+      color: #e8e4dc;
+      padding: .65rem 1.4rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      z-index: 10000;
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    #lb-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .lb-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .lb-main-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+      transition: opacity .25s;
+    }
+    .lb-main-img.loading { opacity: 0; }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(184,151,106,.15);
+      border: 1px solid rgba(184,151,106,.3);
+      color: #e8e4dc;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, opacity .2s;
+      z-index: 2;
+      font-size: 1.5rem;
+    }
+    .lb-nav:hover { background: rgba(184,151,106,.35); }
+    .lb-nav.lb-prev { right: .75rem; }
+    .lb-nav.lb-next { left: .75rem; }
+
+    .lb-thumbs-wrap {
+      width: 100%;
+      padding: .6rem .75rem;
+      background: rgba(14,12,10,.8);
+      border-top: 1px solid rgba(184,151,106,.12);
+      overflow-x: auto;
+      display: flex;
+      gap: .45rem;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lb-thumbs-wrap::-webkit-scrollbar { height: 3px; }
+    .lb-thumbs-wrap::-webkit-scrollbar-thumb { background: rgba(184,151,106,.35); }
+
+    .lb-thumb {
+      width: 62px;
+      height: 46px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: .55;
+      border: 2px solid transparent;
+      transition: opacity .18s, border-color .18s;
+      flex-shrink: 0;
+    }
+    .lb-thumb:hover { opacity: .85; }
+    .lb-thumb.active { opacity: 1; border-color: #B8976A; }
+
+    .lb-spinner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .lb-spinner svg { animation: lbSpin .9s linear infinite; opacity: .5; }
+    @keyframes lbSpin { to { transform: rotate(360deg); } }
+
+    .port-card { cursor: pointer; }
+    .port-card .port-overlay { pointer-events: none; }
   </style>
 </head>
 <body>
-<div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link" data-ar="واتساب" data-en="WhatsApp">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
-<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>    <div class="nav-page-switcher">
+<div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
+<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
+    <div class="nav-page-switcher">
       <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
-        <option value="">الصفحات ▾</option>
-        <option value="index.html">🏠 الرئيسية</option>
-        <option value="about.html">🏢 عن المكتب</option>
-        <option value="services.html">⚙️ الخدمات</option>
-        <option value="packages.html">📦 الباقات</option>
-        <option value="portfolio.html">🖼️ الأعمال</option>
-        <option value="blog/index.html">📝 المدونة</option>
-        <option value="contact.html">📞 تواصل معنا</option>
+        <option value="">الصفحات</option>
+        <option value="index.html">الرئيسية</option>
+        <option value="about.html">عن المكتب</option>
+        <option value="services.html">الخدمات</option>
+        <option value="packages.html">الباقات</option>
+        <option value="portfolio.html">الأعمال</option>
+        <option value="blog/index.html">المدونة</option>
+        <option value="contact.html">تواصل معنا</option>
       </select>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button></div></nav>
@@ -60,20 +236,15 @@
 
 <section class="portfolio-section section-padding">
   <div class="container">
-
-    <!-- أزرار الفلتر — ستُزاد تصنيفات جديدة ديناميكياً -->
     <div class="portfolio-filter lazy-reveal" id="portfolioFilter">
-      <button class="filter-btn active" data-cat="all" data-ar="الكل" data-en="All">الكل</button>
-      <button class="filter-btn" data-cat="residential" data-ar="سكني"    data-en="Residential">سكني</button>
-      <button class="filter-btn" data-cat="commercial"  data-ar="تجاري"   data-en="Commercial">تجاري</button>
-      <button class="filter-btn" data-cat="villa"       data-ar="فيلات"   data-en="Villas">فيلات</button>
-      <button class="filter-btn" data-cat="hospitality" data-ar="ضيافة"   data-en="Hospitality">ضيافة</button>
-      <button class="filter-btn" data-cat="office"      data-ar="مكاتب"   data-en="Offices">مكاتب</button>
+      <button class="filter-btn active" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
+      <button class="filter-btn"        data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
+      <button class="filter-btn"        data-cat="interior-com" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</button>
+      <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارات"      data-en="Villas & Buildings">فيلات وعمارات</button>
+      <button class="filter-btn"        data-cat="hospitality"  data-ar="فنادق"              data-en="Hotels">فنادق</button>
+      <button class="filter-btn"        data-cat="commercial"   data-ar="تجاري وإداري"       data-en="Commercial & Admin">تجاري وإداري</button>
     </div>
-
-    <!-- شبكة المشاريع — تُملأ ديناميكياً أو تعود للبيانات الثابتة -->
     <div class="portfolio-grid" id="portfolioGrid">
-      <!-- Skeleton تظهر أثناء التحميل -->
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
@@ -81,173 +252,33 @@
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
     </div>
-
     <div class="section-cta lazy-reveal">
-      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg"
-         data-ar="ابدأ مشروعك معنا اليوم" data-en="Start Your Project Today">ابدأ مشروعك معنا اليوم</a>
+      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg">ابدأ مشروعك معنا اليوم</a>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     DYNAMIC PORTFOLIO SCRIPTS
-════════════════════════════════════════════════ -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script>
-<script src="js/supabase-client.js"></script>
-<script>
-(function () {
-  'use strict';
+<div id="lb-toast" role="status" aria-live="polite"></div>
 
-  /* ── Fallback: البيانات الثابتة الأصلية (تُستخدم إذا Supabase غير مُهيّأ) ── */
-  const STATIC_PROJECTS = [
-    { id:'s1', name_ar:'شقة المهندسين الفاخرة',       category:'residential', style:'modern',    location_ar:'المهندسين، القاهرة',    image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80', image_alt_ar:'تصميم غرفة معيشة فاخرة — مشروع سكني Creative3Design' },
-    { id:'s2', name_ar:'شقة التجمع الخامس',           category:'residential', style:'modern',    location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80', image_alt_ar:'غرفة نوم رئيسية فاخرة — مشروع سكني Creative3Design' },
-    { id:'s3', name_ar:'شقة الزمالك الفاخرة',         category:'residential', style:'classic',   location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', image_alt_ar:'مطبخ مودرن فاخر أوبن سبيس — شقة الزمالك Creative3Design' },
-    { id:'s4', name_ar:'شقة مصر الجديدة الكلاسيكية', category:'residential', style:'neoclassic',location_ar:'مصر الجديدة، القاهرة',    image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', image_alt_ar:'تصميم كلاسيكي راقٍ لشقة بمصر الجديدة Creative3Design' },
-    { id:'s5', name_ar:'مقر شركة التجمع الخامس',      category:'commercial',  style:'contemporary',location_ar:'التجمع الأول، القاهرة', image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80', image_alt_ar:'تصميم مكتب شركة احترافي بالقاهرة Creative3Design' },
-    { id:'s6', name_ar:'مطعم الجزيرة الفاخر',         category:'commercial',  style:'luxury',    location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80', image_alt_ar:'تصميم مطعم فاخر بإضاءة مميزة بالقاهرة Creative3Design' },
-    { id:'s7', name_ar:'عيادة مصر الجديدة',           category:'commercial',  style:'minimal',   location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80', image_alt_ar:'تصميم عيادة طبية احترافية بمصر الجديدة Creative3Design' },
-    { id:'s8', name_ar:'صالون لوكس — الزمالك',        category:'commercial',  style:'luxury',    location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=600&q=80', image_alt_ar:'تصميم صالون تجميل فاخر بإضاءة حديثة Creative3Design' },
-    { id:'s9', name_ar:'فيلا القاهرة الجديدة',        category:'villa',       style:'modern',    location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', image_alt_ar:'فيلا مودرن فاخرة بالقاهرة الجديدة Creative3Design' },
-    { id:'s10',name_ar:'فيلا الشيخ زايد',             category:'villa',       style:'neoclassic',location_ar:'الشيخ زايد، الجيزة',     image_url:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80', image_alt_ar:'واجهة خارجية لفيلا نيوكلاسيك بالشيخ زايد Creative3Design' },
-    { id:'s11',name_ar:'فيلا الرحاب الفاخرة',         category:'villa',       style:'contemporary',location_ar:'الرحاب، القاهرة',       image_url:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', image_alt_ar:'فيلا سكنية فاخرة بالرحاب تصميم Creative3Design' },
-    { id:'s12',name_ar:'فيلا المعادي الفاخرة',        category:'villa',       style:'classic',   location_ar:'المعادي، القاهرة',       image_url:'https://images.unsplash.com/photo-1584738766473-61c083514bf4?w=600&q=80', image_alt_ar:'تصميم داخلي لغرفة جلوس في فيلا بالمعادي Creative3Design' },
-  ];
-
-  const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب' };
-  const CATEGORY_EN = { residential:'Residential', commercial:'Commercial', villa:'Villas', hospitality:'Hospitality', office:'Offices' };
-  const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
-
-  let allProjects   = [];
-  let activeCat     = 'all';
-  const MAX_VISIBLE = 12;
-
-  /* ── توليد بطاقة مشروع ──────────────────────────────────────── */
-  function buildCard(p) {
-    const lang   = typeof currentLang !== 'undefined' ? currentLang : 'ar';
-    const name   = lang === 'en' && p.name_en ? p.name_en : p.name_ar;
-    const catLbl = lang === 'en' ? (CATEGORY_EN[p.category] || p.category) : (CATEGORY_AR[p.category] || p.category);
-    const loc    = lang === 'en' && p.location_en ? p.location_en : (p.location_ar || '');
-
-    /* Alt Text ديناميكي — يُقوّي SEO بتضمين اسم الخدمة والموقع */
-    const altText = typeof window.c3dAltText === 'function'
-      ? window.c3dAltText(p, lang)
-      : (p.image_alt_ar || `${p.name_ar} - ${CATEGORY_AR[p.category] || ''} - ${loc} - Creative3Design`);
-
-    /* رابط الصورة — SEO slug بدل ID */
-    const waMsg = encodeURIComponent(`أريد مشروعاً مشابهاً لـ: ${p.name_ar}`);
-
-    const card = document.createElement('div');
-    card.className = 'port-card lazy-reveal';
-    card.dataset.cat = p.category;
-    card.innerHTML = `
-      <img
-        src="${p.image_url || ''}"
-        alt="${escHtml(altText)}"
-        loading="lazy"
-        onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80'"
-        title="${escHtml(name)} — ${escHtml(loc)}"
-      />
-      <div class="port-overlay">
-        <span class="port-cat"
-          data-ar="${escHtml(CATEGORY_AR[p.category] || p.category)}"
-          data-en="${escHtml(CATEGORY_EN[p.category] || p.category)}"
-        >${escHtml(catLbl)}</span>
-        <h4>${escHtml(name)}</h4>
-        ${loc ? `<p style="font-size:.75rem;color:rgba(255,255,255,.65);margin-bottom:.4rem">${escHtml(loc)}</p>` : ''}
-        <a href="https://wa.me/201019053288?text=${waMsg}" target="_blank" rel="noopener" class="port-link"
-           data-ar="احجز مشروع مماثل ←" data-en="Book Similar Project →">احجز مشروع مماثل ←</a>
-      </div>`;
-    return card;
-  }
-
-  /* ── رسم الشبكة ──────────────────────────────────────────────── */
-  function renderGrid(projects) {
-    const grid = document.getElementById('portfolioGrid');
-    grid.innerHTML = '';
-
-    const toShow = activeCat === 'all'
-      ? projects
-      : projects.filter(p => p.category === activeCat);
-
-    if (!toShow.length) {
-      grid.innerHTML = `
-        <div class="portfolio-load-msg">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <p>لا توجد مشاريع في هذا التصنيف بعد</p>
-        </div>`;
-      return;
-    }
-
-    toShow.slice(0, MAX_VISIBLE).forEach(p => grid.appendChild(buildCard(p)));
-
-    // re-trigger lazy reveal for new cards
-    if (typeof initLazyReveal === 'function') initLazyReveal();
-    // re-trigger lazy images
-    if (typeof initLazyImages === 'function') initLazyImages();
-    // IntersectionObserver for images already in view
-    grid.querySelectorAll('.lazy-reveal').forEach(el => {
-      el.classList.add('revealed');
-    });
-  }
-
-  /* ── أزرار الفلتر ────────────────────────────────────────────── */
-  function bindFilter() {
-    document.querySelectorAll('#portfolioFilter .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#portfolioFilter .filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCat = btn.dataset.cat || 'all';
-        renderGrid(allProjects);
-      });
-    });
-  }
-
-  /* ── تحميل من Supabase ───────────────────────────────────────── */
-  async function loadFromSupabase() {
-    const { data, error } = await window.c3dFetchProjects({ limit: 50 });
-    if (error || !data || !data.length) {
-      console.info('[C3D Portfolio] Supabase أعاد بيانات فارغة — سيُستخدم الـ fallback');
-      return false;
-    }
-    allProjects = data;
-    return true;
-  }
-
-  /* ── init ────────────────────────────────────────────────────── */
-  async function init() {
-    bindFilter();
-
-    let usedSupabase = false;
-
-    if (!window.C3D_STATIC_MODE && window.c3dClient) {
-      usedSupabase = await loadFromSupabase();
-    }
-
-    if (!usedSupabase) {
-      // وضع ثابت — استخدام البيانات المدمجة في الكود
-      allProjects = STATIC_PROJECTS;
-      console.info('[C3D Portfolio] يعمل بالبيانات الثابتة');
-    }
-
-    renderGrid(allProjects);
-  }
-
-  function escHtml(str) {
-    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // انتظر حتى يتم تحميل supabase-client.js
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    // تأخير بسيط لضمان تحميل supabase-client.js
-    setTimeout(init, 50);
-  }
-
-})();
-</script>
+<div id="lb-overlay" role="dialog" aria-modal="true" aria-label="معرض صور المشروع">
+  <div class="lb-header">
+    <button class="lb-close" id="lb-close" onclick="lbClose()" aria-label="اغلاق">&#10005;</button>
+    <button id="lb-set-main" aria-label="تعيين كصورة رئيسية">📌 تعيين رئيسية</button>
+    <span class="lb-title" id="lb-title"></span>
+    <span class="lb-counter" id="lb-counter"></span>
+  </div>
+  <div class="lb-stage" id="lb-stage">
+    <div class="lb-spinner" id="lb-spinner">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B8976A" stroke-width="2">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+      </svg>
+    </div>
+    <img class="lb-main-img" id="lb-main-img" src="" alt="" />
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="السابق">&#8249;</button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="التالي">&#8250;</button>
+  </div>
+  <div class="lb-thumbs-wrap" id="lb-thumbs"></div>
+</div>
 
 <section class="consultation-section section-padding lazy-reveal">
   <div class="container"><div class="consultation-inner">
@@ -260,21 +291,299 @@
   </div></div>
 </section>
 
-<footer class="footer"><div class="container"><div class="footer-bottom" style="border-top:none;"><p data-ar="© 2025 Creative3Design — جميع الحقوق محفوظة" data-en="© 2025 Creative3Design — All Rights Reserved">© 2025 Creative3Design — جميع الحقوق محفوظة</p><a href="index.html" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer-bottom" style="border-top:none;"><p>© 2025 Creative3Design — جميع الحقوق محفوظة</p><a href="index.html">الرئيسية</a></div></div></footer>
 
-<!-- FLOATING BUTTONS -->
 <div class="float-group">
-  <a href="https://wa.me/201019053288?text=أريد الاستفسار عن مشروعي" target="_blank" rel="noopener"
-     class="float-btn float-btn-wa" aria-label="واتساب مباشر" title="تواصل عبر واتساب">
+  <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="float-btn float-btn-wa" aria-label="واتساب">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <a href="tel:00201019053288"
-     class="float-btn float-btn-call" aria-label="اتصل بنا" title="اتصال مباشر">
+  <a href="tel:00201019053288" class="float-btn float-btn-call" aria-label="اتصل بنا">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
   </a>
 </div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
-<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
-<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var STATIC_PROJECTS = [
+    { id:'s13', name_ar:'فيلا الشيخ زايد الداخلية',    category:'interior-res', style:'luxury',       location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
+    { id:'s14', name_ar:'شقة القاهرة الجديدة الداخلية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
+    { id:'s1',  name_ar:'شقة المهندسين الفاخرة',        category:'interior-res', style:'modern',       location_ar:'المهندسين، القاهرة',     image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80' },
+    { id:'s2',  name_ar:'شقة التجمع الخامس',            category:'interior-res', style:'modern',       location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
+    { id:'s3',  name_ar:'شقة الزمالك الفاخرة',          category:'interior-res', style:'classic',      location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80' },
+    { id:'s4',  name_ar:'شقة مصر الجديدة الكلاسيكية',  category:'interior-res', style:'neoclassic',   location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
+    { id:'s15', name_ar:'مكتب مدينة نصر الداخلي',      category:'interior-com', style:'contemporary', location_ar:'مدينة نصر، القاهرة',     image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80' },
+    { id:'s16', name_ar:'مطعم الجزيرة الداخلي',         category:'interior-com', style:'luxury',       location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80' },
+    { id:'s9',  name_ar:'فيلا القاهرة الجديدة',         category:'villa',        style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80' },
+    { id:'s10', name_ar:'فيلا الشيخ زايد',              category:'villa',        style:'neoclassic',   location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80' },
+    { id:'s11', name_ar:'فندق النيل الكبير',             category:'hospitality',  style:'luxury',       location_ar:'وسط البلد، القاهرة',     image_url:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
+    { id:'s5',  name_ar:'مقر شركة التجمع الخامس',       category:'commercial',   style:'contemporary', location_ar:'التجمع الأول، القاهرة',  image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80' },
+    { id:'s6',  name_ar:'مطعم الجزيرة الفاخر',          category:'commercial',   style:'luxury',       location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80' },
+    { id:'s7',  name_ar:'عيادة مصر الجديدة',            category:'commercial',   style:'minimal',      location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80' },
+    { id:'s8',  name_ar:'صالون لوكس — الزمالك',         category:'commercial',   style:'luxury',       location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=600&q=80' },
+    { id:'s12', name_ar:'مكتب التجمع التنفيذي',         category:'commercial',   style:'contemporary', location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=600&q=80' }
+  ];
+
+  var allProjects = [];
+  var activeCat   = 'all';
+
+  function renderProjects(projects) {
+    var grid   = document.getElementById('portfolioGrid');
+    var toShow = activeCat === 'all' ? projects : projects.filter(function(p){ return p.category === activeCat; });
+
+    if (!toShow.length) {
+      grid.innerHTML = '<div class="portfolio-load-msg"><p>لا توجد مشاريع في هذا التصنيف حالياً</p></div>';
+      return;
+    }
+
+    grid.innerHTML = toShow.map(function(p, i) {
+      var img  = p.image_url  || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80';
+      var alt  = p.image_alt_ar || (p.name_ar + ' — Creative3Design');
+      var name = p.name_ar || '';
+      var loc  = p.location_ar || '';
+      var cat  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
+      var sty  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : p.style;
+      return '<div class="port-item lazy-reveal" style="animation-delay:' + (i%12)*0.04 + 's"' +
+             ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
+             '<div class="port-card">' +
+             '<img src="' + img + '" alt="' + alt + '" loading="lazy" class="port-img"' +
+             ' onerror="this.src=\'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80\'" />' +
+             '<div class="port-overlay"><div class="port-info">' +
+             '<h3 class="port-name">' + name + '</h3>' +
+             '<p class="port-meta">' + cat + (sty?' · '+sty:'') + (loc?' · '+loc:'') + '</p>' +
+             '</div></div></div></div>';
+    }).join('');
+
+    grid.querySelectorAll('.lazy-reveal').forEach(function(el){ el.classList.add('revealed'); });
+  }
+
+  document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat || 'all';
+      renderProjects(allProjects);
+    });
+  });
+
+  /* ── Lightbox ── */
+  var lbImages           = [];
+  var lbCurrent          = 0;
+  var lbCurrentProjectId = null;
+
+  /* Toast helper */
+  function lbToast(msg, ok) {
+    var el = document.getElementById('lb-toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.borderColor = ok ? 'rgba(60,180,80,.5)' : 'rgba(224,82,82,.5)';
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(function(){ el.classList.remove('show'); }, 2800);
+  }
+
+  window.lbOpen = async function(projectId) {
+    var project = allProjects.find(function(p){ return String(p.id) === String(projectId); });
+    if (!project) return;
+
+    var overlay  = document.getElementById('lb-overlay');
+    var mainImg  = document.getElementById('lb-main-img');
+    var spinner  = document.getElementById('lb-spinner');
+    var counter  = document.getElementById('lb-counter');
+    var thumbsEl = document.getElementById('lb-thumbs');
+
+    document.getElementById('lb-title').textContent = project.name_ar || '';
+    lbImages           = [];
+    lbCurrent          = 0;
+    lbCurrentProjectId = projectId;
+
+    /* Show set-main button only for real Supabase projects */
+    var setMainBtn = document.getElementById('lb-set-main');
+    var isSupabase = window.c3dClient && !String(projectId).startsWith('s');
+    setMainBtn.style.display = isSupabase ? 'inline-flex' : 'none';
+    setMainBtn.classList.remove('success');
+    setMainBtn.textContent = '📌 تعيين رئيسية';
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    mainImg.classList.add('loading');
+    mainImg.src = '';
+    spinner.style.display = 'flex';
+    counter.textContent = '...';
+    thumbsEl.innerHTML  = '';
+    document.getElementById('lb-prev').style.display = 'none';
+    document.getElementById('lb-next').style.display = 'none';
+
+    if (window.c3dClient && !String(projectId).startsWith('s')) {
+      try {
+        var res = await window.c3dClient
+          .from('project_images')
+          .select('image_url, caption_ar, sort_order')
+          .eq('project_id', projectId)
+          .order('sort_order', { ascending: true });
+        if (res.error) {
+          console.warn('[C3D Lightbox] project_images error:', res.error.message, res.error);
+        } else if (res.data && res.data.length) {
+          lbImages = res.data.map(function(r){ return { url: r.image_url, caption: r.caption_ar || '' }; });
+        } else {
+          console.info('[C3D Lightbox] project_images empty for project:', projectId, '— falling back to main image_url');
+        }
+      } catch(e) {
+        console.warn('[C3D Lightbox] exception fetching project_images:', e);
+      }
+    }
+
+    if (!lbImages.length) {
+      lbImages = [{ url: project.image_url || '', caption: project.name_ar || '' }];
+    }
+
+    lbShowImage(0);
+    lbBuildThumbs();
+    lbUpdateNav();
+  };
+
+  function lbShowImage(idx) {
+    lbCurrent = Math.max(0, Math.min(idx, lbImages.length - 1));
+    var mainImg = document.getElementById('lb-main-img');
+    var spinner = document.getElementById('lb-spinner');
+    var counter = document.getElementById('lb-counter');
+
+    counter.textContent = lbImages.length > 1 ? (lbCurrent+1) + ' / ' + lbImages.length : '';
+    spinner.style.display = 'flex';
+    mainImg.classList.add('loading');
+
+    var src = (lbImages[lbCurrent] || {}).url || '';
+    if (!src) { spinner.style.display = 'none'; return; }
+
+    var tmp = new Image();
+    tmp.onload = function() {
+      mainImg.src = src;
+      mainImg.alt = (lbImages[lbCurrent] || {}).caption || '';
+      mainImg.classList.remove('loading');
+      spinner.style.display = 'none';
+    };
+    tmp.onerror = function() { mainImg.classList.remove('loading'); spinner.style.display = 'none'; };
+    tmp.src = src;
+
+    document.querySelectorAll('.lb-thumb').forEach(function(t,i){ t.classList.toggle('active', i === lbCurrent); });
+    lbUpdateNav();
+  }
+
+  function lbBuildThumbs() {
+    var wrap = document.getElementById('lb-thumbs');
+    if (lbImages.length <= 1) { wrap.innerHTML = ''; return; }
+    wrap.innerHTML = lbImages.map(function(img,i){
+      return '<img class="lb-thumb' + (i===0?' active':'') + '" src="' + img.url + '" alt="' + (img.caption||'') + '" onclick="lbShowImage(' + i + ')" loading="lazy" />';
+    }).join('');
+  }
+
+  function lbUpdateNav() {
+    var show = lbImages.length > 1 ? 'flex' : 'none';
+    document.getElementById('lb-prev').style.display = show;
+    document.getElementById('lb-next').style.display = show;
+  }
+
+  window.lbStep = function(dir) { lbShowImage(lbCurrent + dir); };
+
+  window.lbClose = function() {
+    document.getElementById('lb-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('lb-main-img').src = '';
+    lbImages           = [];
+    lbCurrent          = 0;
+    lbCurrentProjectId = null;
+  };
+
+  /* ── Set as main image ── */
+  document.getElementById('lb-set-main').addEventListener('click', async function() {
+    if (!lbCurrentProjectId || !lbImages.length || !window.c3dClient) return;
+    var currentUrl = (lbImages[lbCurrent] || {}).url;
+    if (!currentUrl) return;
+
+    var btn = this;
+    btn.textContent = '⏳ جاري الحفظ...';
+    btn.disabled = true;
+
+    try {
+      var res = await window.c3dClient
+        .from('projects')
+        .update({ image_url: currentUrl })
+        .eq('id', lbCurrentProjectId);
+
+      if (res.error) throw res.error;
+
+      btn.textContent = '✅ تم التعيين';
+      btn.classList.add('success');
+      lbToast('✅ تم تعيين الصورة الرئيسية للمشروع', true);
+
+      /* Update the in-memory project so the grid reflects it without reload */
+      var proj = allProjects.find(function(p){ return String(p.id) === String(lbCurrentProjectId); });
+      if (proj) proj.image_url = currentUrl;
+
+    } catch(err) {
+      btn.textContent = '📌 تعيين رئيسية';
+      btn.disabled = false;
+      lbToast('❌ حدث خطأ، حاول مرة أخرى', false);
+      console.error('set-main error:', err);
+    }
+  });
+
+  document.getElementById('lb-overlay').addEventListener('click', function(e) {
+    if (e.target === this) lbClose();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lb-overlay').classList.contains('active')) return;
+    if (e.key === 'Escape')     lbClose();
+    if (e.key === 'ArrowRight') lbStep(+1);
+    if (e.key === 'ArrowLeft')  lbStep(-1);
+  });
+
+  var touchStartX = 0;
+  var stage = document.getElementById('lb-stage');
+  stage.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) lbStep(diff > 0 ? -1 : +1);
+  }, { passive: true });
+
+  async function init() {
+    // Read ?cat param from URL (set by index.html filter buttons)
+    var urlCat = new URLSearchParams(window.location.search).get('cat');
+    if (urlCat) {
+      activeCat = urlCat;
+      document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.cat === urlCat);
+      });
+    }
+
+    var grid = document.getElementById('portfolioGrid');
+    if (window.C3D_STATIC_MODE || !window.c3dClient) {
+      allProjects = STATIC_PROJECTS;
+      renderProjects(allProjects);
+      return;
+    }
+    grid.innerHTML = '<div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div>';
+    var res = await window.c3dFetchProjects({ limit: 500 });
+    allProjects = (res.error || !res.data || !res.data.length) ? STATIC_PROJECTS : res.data;
+    renderProjects(allProjects);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 100);
+  }
+
+})();
+</script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
