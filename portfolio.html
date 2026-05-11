@@ -425,13 +425,13 @@
       try {
         var res = await window.c3dClient
           .from('project_images')
-          .select('image_url, caption_ar, sort_order')
+          .select('image_url, sort_order')
           .eq('project_id', projectId)
           .order('sort_order', { ascending: true });
         if (res.error) {
           console.warn('[C3D Lightbox] project_images error:', res.error.message, res.error);
         } else if (res.data && res.data.length) {
-          lbImages = res.data.map(function(r){ return { url: r.image_url, caption: r.caption_ar || '' }; });
+          lbImages = res.data.map(function(r){ return { url: r.image_url, caption: '' }; });
         } else {
           console.info('[C3D Lightbox] project_images empty for project:', projectId, '— falling back to main image_url');
         }
