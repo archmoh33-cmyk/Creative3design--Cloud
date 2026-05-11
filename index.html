@@ -90,6 +90,65 @@
   #packages-preview .lazy-reveal[style*="grid-template-columns:repeat(3"] { grid-template-columns:1fr !important; }
   #packages-preview [style*="grid-template-columns:repeat(5"] { grid-template-columns:repeat(3,1fr) !important; }
 }
+
+/* PKG5 */
+.pkg-type-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem;}
+.pkg-type-tab{padding:.5rem 1.4rem;font-size:.88rem;font-weight:700;font-family:'Cairo',sans-serif;border:1.5px solid var(--gray-border);color:var(--text-muted);background:transparent;cursor:pointer;border-radius:2rem;transition:all .22s;}
+.pkg-type-tab.active{border-color:var(--gold);color:var(--gold);background:rgba(184,151,106,.1);}
+.pkg5-scroll{overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(184,151,106,.3) transparent;}
+.pkg5-scroll::-webkit-scrollbar{height:4px;}.pkg5-scroll::-webkit-scrollbar-thumb{background:rgba(184,151,106,.35);}
+.pkg5-track{display:flex;gap:1rem;width:max-content;padding:.5rem .1rem 1rem;}
+.pkg5-card{flex:0 0 200px;background:var(--black-card);border:1.5px solid var(--gray-border);padding:1.4rem 1rem 1.1rem;text-align:center;text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;transition:all .25s;border-radius:4px;overflow:visible;}
+.pkg5-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 32px rgba(184,151,106,.18);}
+.pkg5-featured{border-color:var(--gold);background:linear-gradient(160deg,var(--black-card) 0%,rgba(184,151,106,.07) 100%);}
+.pkg5-ultravip{border-color:rgba(255,215,0,.4);}
+.pkg5-badge{position:absolute;top:-.75rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.62rem;font-weight:700;padding:.2rem .75rem;border-radius:1rem;white-space:nowrap;}
+.pkg5-badge-vip{background:linear-gradient(90deg,#b8860b,#ffd700);}
+.pkg5-icon{font-size:1.8rem;margin-bottom:.5rem;}
+.pkg5-name{font-size:.82rem;font-weight:700;color:var(--platinum);margin-bottom:.4rem;}
+.pkg5-price{font-size:1.15rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;line-height:1.2;}
+.pkg5-price span{font-size:.75rem;opacity:.7;margin:0 .1rem;}
+.pkg5-unit{font-size:.68rem;color:var(--text-muted);margin-bottom:.75rem;}
+.pkg5-feat{list-style:none;text-align:right;margin-bottom:.85rem;flex:1;}
+.pkg5-feat li{font-size:.7rem;color:var(--text-muted);line-height:1.9;}
+.pkg5-feat li::before{content:"✓ ";color:var(--gold);}
+.pkg5-cta{font-size:.75rem;font-weight:700;color:var(--gold);margin-top:auto;}
+.pkg5-scroll-hint{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:.3rem;display:none;}
+@media(max-width:900px){.pkg5-scroll-hint{display:block;}}
+/* BA Nav */
+.ba-nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;padding:.65rem 1rem;background:var(--black-card);border:1px solid var(--gray-border);}
+.ba-nav-arrow{background:rgba(184,151,106,.12);border:1px solid rgba(184,151,106,.3);color:#e8e4dc;width:38px;height:38px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.ba-nav-arrow:hover{background:rgba(184,151,106,.3);}
+.ba-nav-info{text-align:center;flex:1;}
+.ba-nav-name{display:block;font-size:.9rem;font-weight:700;color:#e8e4dc;margin-bottom:.15rem;}
+.ba-nav-counter{font-size:.75rem;color:var(--gold);font-weight:600;letter-spacing:.08em;}
+.ba-thumb-item{background:var(--black-card);border:2px solid var(--gray-border);border-radius:6px;overflow:hidden;cursor:pointer;transition:border-color .2s;padding:0;display:inline-flex;flex-direction:column;align-items:center;width:100px;}
+.ba-thumb-item img{width:100%;height:56px;object-fit:cover;display:block;}
+.ba-thumb-label{font-size:.62rem;color:var(--text-muted);padding:.3rem .4rem;text-align:center;line-height:1.3;}
+.ba-thumb-item.active{border-color:var(--gold);}.ba-thumb-item.active .ba-thumb-label{color:var(--gold);}
+/* Testimonials compact */
+.testi-compact{display:flex;align-items:center;gap:1rem;}
+.testi-arrow{background:rgba(184,151,106,.1);border:1px solid rgba(184,151,106,.25);color:#e8e4dc;width:42px;height:42px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.testi-arrow:hover{background:rgba(184,151,106,.3);}
+.testi-stage{flex:1;overflow:hidden;min-width:0;}
+.testi-slide{display:none;animation:tFadeIn .35s ease;}
+.testi-slide.active{display:block;}
+@keyframes tFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.testi-quote{font-size:.95rem;line-height:1.85;color:var(--text-light);margin:1rem 0 1.2rem;font-style:italic;}
+.testi-footer{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.2rem;}
+.testi-dots{display:flex;gap:.45rem;}
+.testi-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-border);cursor:pointer;transition:all .2s;}
+.testi-dot.active{background:var(--gold);transform:scale(1.25);}
+.testi-count{font-size:.78rem;color:var(--gold);font-weight:700;letter-spacing:.06em;}
+/* Partners track */
+.partners-scroll-track{display:flex;flex-wrap:nowrap;width:max-content;gap:3.5rem;align-items:center;padding:1.6rem 2rem;animation:compoundsScroll 28s linear infinite;}
+.partners-scroll-track:hover{animation-play-state:paused;}
+.partners-scroll-track .partner-logo-text{font-size:1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;}
+.partners-scroll-track .partner-logo-text:hover{color:var(--gold);}
+/* Footer grid links */
+.footer-links-grid ul{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .75rem;}
+.footer-links-grid ul li a{font-size:.82rem;}
+
 </style>
 </head>
 <body class="page-has-hero">
@@ -630,79 +689,27 @@
   <div class="container">
     <div class="section-header lazy-reveal">
       <p class="section-tag" data-ar="الباقات والأسعار" data-en="Packages & Pricing">الباقات والأسعار</p>
-      <h2 data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost Now">احسب تكلفة مشروعك الآن</h2>
-      <p class="section-desc" data-ar="أسعار مايو 2026 — شفافية كاملة قبل البدء في أي مشروع" data-en="May 2026 pricing — full transparency before any project">أسعار مايو 2026 — شفافية كاملة قبل البدء في أي مشروع</p>
+      <h2 data-ar="اختر باقتك — شفافية كاملة" data-en="Choose Your Package">اختر باقتك — شفافية كاملة في الأسعار</h2>
+      <p class="section-desc" data-ar="أسعار مايو 2026 — 5 باقات لكل ميزانية" data-en="May 2026 — 5 packages for every budget">أسعار مايو 2026 — 5 باقات تناسب كل ميزانية ومشروع</p>
     </div>
-    <div class="pkg-preview-grid lazy-reveal">
-
-      <!-- Card 1: Finishing -->
-      <a href="packages.html#calculator" class="pkg-preview-card">
-        <div class="pkg-preview-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3 data-ar="حاسبة التشطيب" data-en="Finishing Calculator">حاسبة التشطيب</h3>
-        <p data-ar="من 2,500 ج.م/م² (متوسط) حتى 15,000+ ج.م/م² (Ultra VIP) — 5 باقات لكل الميزانيات" data-en="From 2,500 EGP/m² to 15,000+ EGP/m² — 5 packages for every budget">من 2,500 ج.م/م² (متوسط) حتى 15,000+ ج.م/م² (Ultra VIP)</p>
-        <span class="pkg-preview-cta" data-ar="احسب الآن ←" data-en="Calculate Now ←">احسب الآن ←</span>
-      </a>
-
-      <!-- Card 2: Interior Design -->
-      <a href="packages.html?tab=design#calculator" onclick="setTimeout(()=>switchCalcExternal('design'),300)" class="pkg-preview-card">
-        <div class="pkg-preview-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-        </div>
-        <h3 data-ar="حاسبة التصميم الداخلي" data-en="Interior Design Calculator">حاسبة التصميم الداخلي</h3>
-        <p data-ar="تكلفة التصميم لجميع أنواع المشاريع — شقق، فيلات، مكاتب، مطاعم وأكثر" data-en="Design fees for all project types — apartments, villas, offices, restaurants and more">تكلفة التصميم لجميع أنواع المشاريع — شقق، فيلات، مكاتب، مطاعم</p>
-        <span class="pkg-preview-cta" data-ar="احسب الآن ←" data-en="Calculate Now ←">احسب الآن ←</span>
-      </a>
-
-      <!-- Card 3: Architectural Design — NEW -->
-      <a href="packages.html?tab=arch#calculator" class="pkg-preview-card pkg-preview-card--featured">
-        <div class="pkg-preview-badge">جديد 2026</div>
-        <div class="pkg-preview-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-        </div>
-        <h3 data-ar="حاسبة التصميم المعماري" data-en="Architectural Design Calculator">حاسبة التصميم المعماري</h3>
-        <p data-ar="رسوم التصميم المعماري لجميع أنواع المباني — فيلات، عمارات، فنادق، مستشفيات وأكثر" data-en="Architectural design fees for all building types — villas, apartment buildings, hotels, hospitals and more">رسوم التصميم المعماري للمباني السكنية والتجارية والصناعية</p>
-        <span class="pkg-preview-cta" data-ar="احسب الآن ←" data-en="Calculate Now ←">احسب الآن ←</span>
-      </a>
-
+    <div class="pkg-type-tabs lazy-reveal">
+      <button class="pkg-type-tab active" onclick="switchPkgTab(this)" data-ar="تشطيب" data-en="Finishing">🏗️ تشطيب</button>
+      <button class="pkg-type-tab" onclick="switchPkgTab(this)" data-ar="تصميم داخلي" data-en="Interior">✏️ تصميم داخلي</button>
+      <button class="pkg-type-tab" onclick="switchPkgTab(this)" data-ar="معماري" data-en="Arch">🏛️ معماري</button>
     </div>
-
-    <!-- Mini price reference -->
-    <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.5rem;margin-bottom:2rem;">
-      <p style="font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:1rem;text-align:center;" data-ar="مرجع سريع للأسعار — مايو 2026" data-en="Quick Price Reference — May 2026">مرجع سريع للأسعار — مايو 2026</p>
-      <div class="price-ref-grid">
-        <div>
-          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.3rem;" data-ar="ستاندرد" data-en="Standard">ستاندرد</div>
-          <div style="font-size:1rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;">6,000</div>
-          <div style="font-size:.7rem;color:var(--text-muted);" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</div>
-        </div>
-        <div>
-          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.3rem;" data-ar="بريميم" data-en="Premium">بريميم</div>
-          <div style="font-size:1rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;">8,000</div>
-          <div style="font-size:.7rem;color:var(--text-muted);" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</div>
-        </div>
-        <div>
-          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.3rem;" data-ar="لاكشري" data-en="Luxury">لاكشري</div>
-          <div style="font-size:1rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;">10,750</div>
-          <div style="font-size:.7rem;color:var(--text-muted);" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</div>
-        </div>
-        <div>
-          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.3rem;" data-ar="سوبر لاكشري" data-en="Super Luxury">سوبر لاكشري</div>
-          <div style="font-size:1rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;">14,250</div>
-          <div style="font-size:.7rem;color:var(--text-muted);" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</div>
-        </div>
-        <div>
-          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.3rem;">Ultra VIP</div>
-          <div style="font-size:1rem;font-weight:900;color:var(--gold);font-family:'Cairo',sans-serif;">17,000+</div>
-          <div style="font-size:.7rem;color:var(--text-muted);" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</div>
-        </div>
+    <div class="pkg5-scroll lazy-reveal">
+      <div class="pkg5-track">
+        <a href="packages.html#calculator" class="pkg5-card"><div class="pkg5-icon">🔨</div><div class="pkg5-name">ستاندرد</div><div class="pkg5-price">5,500<span>—</span>6,500</div><div class="pkg5-unit">ج.م / م²</div><ul class="pkg5-feat"><li>سيراميك بورسلان محلي</li><li>جبس مستوى أول</li><li>دهان أكريليك</li></ul><span class="pkg5-cta">احسب الآن ←</span></a>
+        <a href="packages.html#calculator" class="pkg5-card pkg5-featured"><div class="pkg5-badge">الأكثر طلباً</div><div class="pkg5-icon">⭐</div><div class="pkg5-name">بريميم</div><div class="pkg5-price">7,000<span>—</span>9,000</div><div class="pkg5-unit">ج.م / م²</div><ul class="pkg5-feat"><li>بورسلان إيطالي مستورد</li><li>جبس ديكوري 3D</li><li>إضاءة LED مخفية</li></ul><span class="pkg5-cta">احسب الآن ←</span></a>
+        <a href="packages.html#calculator" class="pkg5-card"><div class="pkg5-icon">💎</div><div class="pkg5-name">لاكشري</div><div class="pkg5-price">9,500<span>—</span>12,000</div><div class="pkg5-unit">ج.م / م²</div><ul class="pkg5-feat"><li>رخام طبيعي وستون</li><li>سنترال A/C كامل</li><li>أثاث مدمج فاخر</li></ul><span class="pkg5-cta">احسب الآن ←</span></a>
+        <a href="packages.html#calculator" class="pkg5-card"><div class="pkg5-icon">🏅</div><div class="pkg5-name">سوبر لاكشري</div><div class="pkg5-price">12,500<span>—</span>16,000</div><div class="pkg5-unit">ج.م / م²</div><ul class="pkg5-feat"><li>رخام كلاكاتا إيطالي</li><li>نظام smarthome</li><li>تصميم 3D VR</li></ul><span class="pkg5-cta">احسب الآن ←</span></a>
+        <a href="packages.html#calculator" class="pkg5-card pkg5-ultravip"><div class="pkg5-badge pkg5-badge-vip">Ultra VIP</div><div class="pkg5-icon">👑</div><div class="pkg5-name">Ultra VIP</div><div class="pkg5-price">17,000<span>+</span></div><div class="pkg5-unit">ج.م / م²</div><ul class="pkg5-feat"><li>خامات عالمية بلا حدود</li><li>مصمم مخصص بالكامل</li><li>ضمان 5 سنوات</li></ul><span class="pkg5-cta">احسب الآن ←</span></a>
       </div>
     </div>
-
+    <p class="pkg5-scroll-hint lazy-reveal">← اسحب لرؤية كل الباقات →</p>
     <div class="section-cta lazy-reveal">
-      <a href="packages.html" class="btn-gold btn-lg" data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost">احسب تكلفة مشروعك الآن</a>
-      <a href="packages.html?tab=arch#calculator" class="btn-outline-gold btn-lg" data-ar="حاسبة التصميم المعماري" data-en="Architectural Design Calculator" style="margin-right:1rem;">🏛️ حاسبة التصميم المعماري</a>
+      <a href="packages.html" class="btn-gold btn-lg">احسب تكلفة مشروعك الآن</a>
+      <a href="packages.html" class="btn-outline-gold btn-lg" style="margin-right:.75rem;">🏛️ كل الحاسبات</a>
     </div>
   </div>
 </section>
@@ -714,30 +721,24 @@
       <p class="section-tag" data-ar="قبل وبعد" data-en="Before & After">قبل وبعد</p>
       <h2 data-ar="شاهد الفرق بنفسك" data-en="See the Difference Yourself">شاهد الفرق بنفسك</h2>
     </div>
-    <div class="ba-thumbs lazy-reveal">
-      <button class="ba-thumb active" onclick="switchBA(0)">
-        <img data-src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=120&q=60" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مشروع قبل وبعد التصميم 1" class="lazy-img" loading="lazy"/>
-      </button>
-      <button class="ba-thumb" onclick="switchBA(1)">
-        <img data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=120&q=60" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مشروع قبل وبعد التصميم 2" class="lazy-img" loading="lazy"/>
-      </button>
-      <button class="ba-thumb" onclick="switchBA(2)">
-        <img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=120&q=60" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مشروع قبل وبعد التصميم 3" class="lazy-img" loading="lazy"/>
-      </button>
+    <div class="ba-nav-bar lazy-reveal">
+      <button class="ba-nav-arrow" onclick="baStep(-1)" aria-label="السابق">&#8250;</button>
+      <div class="ba-nav-info"><span class="ba-nav-name" id="ba-proj-name">شقة المهندسين الفاخرة</span><span class="ba-nav-counter" id="ba-counter">1 / 3</span></div>
+      <button class="ba-nav-arrow" onclick="baStep(+1)" aria-label="التالي">&#8249;</button>
     </div>
     <div class="ba-wrap" id="ba-wrap">
-      <img id="ba-before" data-src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="الحالة قبل التصميم الداخلي" class="lazy-img ba-img" loading="lazy"/>
-      <img id="ba-after" data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="النتيجة بعد تصميم Creative3Design" class="lazy-img ba-img" loading="lazy"/>
-      <div class="ba-divider" id="ba-divider">
-        <div class="ba-handle">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M8 3L3 8l5 5M16 3l5 5-5 5"/></svg>
-        </div>
-      </div>
+      <img id="ba-before" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80" alt="قبل التصميم" class="ba-img"/>
+      <img id="ba-after"  src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=80" alt="بعد التصميم" class="ba-img"/>
+      <div class="ba-divider" id="ba-divider"><div class="ba-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M8 3L3 8l5 5M16 3l5 5-5 5"/></svg></div></div>
       <span class="ba-label ba-label-before" data-ar="قبل" data-en="Before">قبل</span>
-      <span class="ba-label ba-label-after" data-ar="بعد" data-en="After">بعد</span>
-    <div class="section-cta lazy-reveal">
-      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold" data-ar="احصل على تصميم مشروعك" data-en="Get Your Project Designed">احصل على تصميم مشروعك</a>
+      <span class="ba-label ba-label-after"  data-ar="بعد"  data-en="After">بعد</span>
     </div>
+    <div class="ba-thumbs lazy-reveal" id="ba-thumbs-strip">
+      <button class="ba-thumb-item active" onclick="switchBA(0)"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=120&q=60" alt=""/><span class="ba-thumb-label">شقة المهندسين</span></button>
+      <button class="ba-thumb-item" onclick="switchBA(1)"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=120&q=60" alt=""/><span class="ba-thumb-label">فيلا الشيخ زايد</span></button>
+      <button class="ba-thumb-item" onclick="switchBA(2)"><img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=120&q=60" alt=""/><span class="ba-thumb-label">مكتب التجمع</span></button>
+    </div>
+    <div class="section-cta lazy-reveal"><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold">احصل على تصميم مشروعك</a></div>
   </div>
 </section>
 
@@ -919,75 +920,29 @@
       <p class="section-tag" data-ar="آراء عملائنا" data-en="Client Reviews">آراء عملائنا</p>
       <h2 data-ar="ماذا يقول عملاؤنا؟" data-en="What Our Clients Say">ماذا يقول عملاؤنا؟</h2>
     </div>
-    <div class="testi-wrap">
-      <div class="testi-track" id="testiTrack">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة." data-en="Creative3Design transformed my apartment into a masterpiece. Attention to detail and on-time delivery made the experience exceptional. Highly recommended.">Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">أ</div>
-            <div><strong>أحمد الشريف</strong><span>تجمع خامس — شقة 220 م²</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="المكتب الأفضل في مصر بلا منازع. صمموا لنا مطعمنا بطريقة جعلت العملاء يعودون فقط بسبب الديكور. النتيجة تفوق كل التوقعات." data-en="The best office in Egypt without question. They designed our restaurant in a way that brings customers back just for the decor. Results exceed all expectations.">المكتب الأفضل في مصر بلا منازع. صمموا لنا مطعمنا بطريقة جعلت العملاء يعودون فقط بسبب الديكور. النتيجة تفوق كل التوقعات.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">م</div>
-            <div><strong>محمد الغندور</strong><span>صاحب مطعم — مدينة نصر</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور." data-en="I worked with them on my villa design and the experience was excellent from start to finish. Professional team, fast communication, results more beautiful than the renderings.">تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ن</div>
-            <div><strong>نادية عمران</strong><span>فيلا — الشيخ زايد</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة." data-en="Their work speaks for itself. High trust, cost transparency, and unlimited creativity. Our office has become a reference in the area.">أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ك</div>
-            <div><strong>كريم حسام</strong><span>مدير شركة — التجمع الخامس</span></div>
-          </div>
-        </div>
+    <div class="testi-compact lazy-reveal">
+      <button class="testi-arrow" onclick="testiPrev()" aria-label="السابق">&#8250;</button>
+      <div class="testi-stage" id="testiStage">
+        <div class="testi-slide active"><div class="testi-stars">★★★★★</div><p class="testi-quote">Creative3Design حوّلت شقتي لتحفة فنية. اهتمام بالتفاصيل وتسليم في الموعد المحدد. أنصح بهم بشدة.</p><div class="testi-client"><div class="testi-avatar">أ</div><div><strong>أحمد الشريف</strong><span>التجمع الخامس — شقة 220 م²</span></div></div></div>
+        <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-quote">المكتب الأفضل في مصر. صمموا مطعمنا بطريقة جعلت العملاء يعودون بسبب الديكور. النتيجة فاقت التوقعات.</p><div class="testi-client"><div class="testi-avatar">م</div><div><strong>محمد الغندور</strong><span>صاحب مطعم — مدينة نصر</span></div></div></div>
+        <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-quote">تجربة ممتازة من البداية للنهاية. فريق محترف، تواصل سريع، والنتيجة أجمل من الصور.</p><div class="testi-client"><div class="testi-avatar">ن</div><div><strong>نادية عمران</strong><span>فيلا — الشيخ زايد</span></div></div></div>
+        <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-quote">ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</p><div class="testi-client"><div class="testi-avatar">ك</div><div><strong>كريم حسام</strong><span>مدير شركة — التجمع الخامس</span></div></div></div>
       </div>
-      <div class="testi-controls">
-        <button onclick="testiPrev()" class="testi-btn" aria-label="السابق">&#8250;</button>
-        <button onclick="testiNext()" class="testi-btn" aria-label="التالي">&#8249;</button>
-      </div>
+      <button class="testi-arrow" onclick="testiNext()" aria-label="التالي">&#8249;</button>
+    </div>
+    <div class="testi-footer lazy-reveal">
+      <div class="testi-dots" id="testiDots"><span class="testi-dot active" onclick="testiGo(0)"></span><span class="testi-dot" onclick="testiGo(1)"></span><span class="testi-dot" onclick="testiGo(2)"></span><span class="testi-dot" onclick="testiGo(3)"></span></div>
+      <span class="testi-count" id="testiCount">1 / 4</span>
     </div>
   </div>
 </section>
 
 <!-- PARTNERS SECTION -->
 <section class="partners-section section-padding" id="partners">
-  <div class="container">
-    <div class="section-header lazy-reveal">
-      <p class="section-tag" data-ar="شركاؤنا" data-en="Our Partners">شركاؤنا</p>
-      <h2 data-ar="نعمل مع الأفضل" data-en="We Work With the Best">نعمل مع الأفضل</h2>
-    </div>
-  </div>
-  <div class="marquee-outer">
-    <div class="marquee-track">
-      <div class="partner-logo-text">Porcelanosa</div>
-      <div class="partner-logo-text">Bosch</div>
-      <div class="partner-logo-text">Siemens</div>
-      <div class="partner-logo-text">Grohe</div>
-      <div class="partner-logo-text">Villeroy &amp; Boch</div>
-      <div class="partner-logo-text">Legrand</div>
-      <div class="partner-logo-text">Duravit</div>
-      <div class="partner-logo-text">Hansgrohe</div>
-      <div class="partner-logo-text">Porcelanosa</div>
-      <div class="partner-logo-text">Bosch</div>
-      <div class="partner-logo-text">Siemens</div>
-      <div class="partner-logo-text">Grohe</div>
-      <div class="partner-logo-text">Villeroy &amp; Boch</div>
-      <div class="partner-logo-text">Legrand</div>
-      <div class="partner-logo-text">Duravit</div>
-      <div class="partner-logo-text">Hansgrohe</div>
+  <div class="container"><div class="section-header lazy-reveal"><p class="section-tag" data-ar="شركاؤنا" data-en="Our Partners">شركاؤنا</p><h2 data-ar="نعمل مع الأفضل" data-en="We Work With the Best">نعمل مع الأفضل</h2></div></div>
+  <div class="compounds-marquee-wrap">
+    <div class="partners-scroll-track">
+      <span class="partner-logo-text">Porcelanosa</span><span class="partner-logo-text">Bosch</span><span class="partner-logo-text">Siemens</span><span class="partner-logo-text">Grohe</span><span class="partner-logo-text">Villeroy &amp; Boch</span><span class="partner-logo-text">Legrand</span><span class="partner-logo-text">Duravit</span><span class="partner-logo-text">Hansgrohe</span><span class="partner-logo-text">Porcelanosa</span><span class="partner-logo-text">Bosch</span><span class="partner-logo-text">Siemens</span><span class="partner-logo-text">Grohe</span><span class="partner-logo-text">Villeroy &amp; Boch</span><span class="partner-logo-text">Legrand</span><span class="partner-logo-text">Duravit</span><span class="partner-logo-text">Hansgrohe</span>
     </div>
   </div>
 </section>
@@ -1134,7 +1089,7 @@
           </a>
         </div>
       </div>
-      <div class="footer-links">
+      <div class="footer-links footer-links-grid">
         <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
         <ul>
           <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
@@ -1190,5 +1145,20 @@
 </div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 <script src="js/main.js"></script>
+<script>
+var baIdx=0;
+var baProjects=[
+  {name:'شقة المهندسين الفاخرة',before:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80',after:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=80'},
+  {name:'فيلا الشيخ زايد',before:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=80',after:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=900&q=80'},
+  {name:'مكتب التجمع الخامس',before:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=900&q=80',after:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80'}
+];
+function switchBA(idx){baIdx=idx;var p=baProjects[idx];document.getElementById('ba-before').src=p.before;document.getElementById('ba-after').src=p.after;document.getElementById('ba-proj-name').textContent=p.name;document.getElementById('ba-counter').textContent=(idx+1)+' / '+baProjects.length;document.querySelectorAll('.ba-thumb-item').forEach(function(t,i){t.classList.toggle('active',i===idx);});var d=document.getElementById('ba-divider');if(d)d.style.left='50%';}
+function baStep(dir){switchBA((baIdx+dir+baProjects.length)%baProjects.length);}
+var testiIdx=0,testiTotal=4;
+function testiGo(i){document.querySelectorAll('.testi-slide').forEach(function(s,j){s.classList.toggle('active',j===i);});document.querySelectorAll('.testi-dot').forEach(function(d,j){d.classList.toggle('active',j===i);});testiIdx=i;var el=document.getElementById('testiCount');if(el)el.textContent=(i+1)+' / '+testiTotal;}
+function testiPrev(){testiGo((testiIdx-1+testiTotal)%testiTotal);}
+function testiNext(){testiGo((testiIdx+1)%testiTotal);}
+function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+</script>
 </body>
 </html>
