@@ -350,7 +350,7 @@
       var loc  = p.location_ar || '';
       var cat  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
       var sty  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : p.style;
-      return '<div class="port-item lazy-reveal" style="animation-delay:' + (i%12)*0.04 + 's"' +
+      return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's"' +
              ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
              '<div class="port-card">' +
              '<img src="' + img + '" alt="' + alt + '" loading="lazy" class="port-img"' +
@@ -523,9 +523,16 @@
       btn.classList.add('success');
       lbToast('✅ تم تعيين الصورة الرئيسية للمشروع', true);
 
-      /* Update the in-memory project so the grid reflects it without reload */
+      /* Update the in-memory project */
       var proj = allProjects.find(function(p){ return String(p.id) === String(lbCurrentProjectId); });
       if (proj) proj.image_url = currentUrl;
+
+      /* Update the card image in the grid immediately — no page reload needed */
+      var card = document.querySelector('.port-item[data-pid="' + lbCurrentProjectId + '"]');
+      if (card) {
+        var cardImg = card.querySelector('.port-img');
+        if (cardImg) cardImg.src = currentUrl;
+      }
 
     } catch(err) {
       btn.textContent = '📌 تعيين رئيسية';
