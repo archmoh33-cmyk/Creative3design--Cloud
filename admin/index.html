@@ -326,6 +326,50 @@ img{max-width:100%;display:block}
 .hero-slide-inactive .hero-slide-img{opacity:.4}
 .hero-sql-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-size:.75rem;color:#4caf7d;direction:ltr;text-align:left;overflow-x:auto;white-space:pre;margin-top:.8rem;font-family:monospace}
 
+/* ── Media Panels (Settings / About / Services / Compounds / BA) ── */
+.media-panel{display:flex;flex-direction:column;gap:1rem}
+.panel-section{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+.panel-section-header{padding:.75rem 1.1rem;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.6rem}
+.panel-section-title{font-size:.88rem;font-weight:700;flex:1}
+.panel-section-body{padding:1.1rem;display:flex;flex-direction:column;gap:.9rem}
+.upload-slot{border:2px dashed var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;cursor:pointer;padding:2rem 1rem;text-align:center;transition:all var(--transition);background:var(--surface2);font-family:'Cairo',sans-serif;color:var(--text-muted);font-size:.8rem}
+.upload-slot:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--gold)}
+.upload-slot svg{width:28px;height:28px;opacity:.35;display:block;margin:0 auto .3rem}
+.img-preview-box{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--surface2)}
+.img-preview-box img{width:100%;display:block;object-fit:cover}
+.img-preview-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;gap:.5rem;flex-direction:column}
+.img-preview-box:hover .img-preview-overlay{display:flex}
+/* Compound cards */
+.compound-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.compound-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition)}
+.compound-card:hover{border-color:var(--border)}
+.compound-logo-area{aspect-ratio:4/3;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;cursor:pointer}
+.compound-logo-area img{max-width:80%;max-height:80%;object-fit:contain}
+.compound-logo-placeholder{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text-dim);font-size:.75rem}
+.compound-logo-placeholder svg{width:28px;height:28px;opacity:.3}
+.compound-card-body{padding:.7rem .9rem;display:flex;flex-direction:column;gap:.5rem}
+.compound-card-actions{display:flex;gap:.4rem;padding:.5rem .9rem;border-top:1px solid var(--border2)}
+/* Before/After admin */
+.ba-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.ba-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition)}
+.ba-card:hover{border-color:var(--border)}
+.ba-card-imgs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border2)}
+.ba-img-slot{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:var(--surface2);cursor:pointer}
+.ba-img-slot img{width:100%;height:100%;object-fit:cover}
+.ba-slot-label{position:absolute;bottom:0;right:0;left:0;background:rgba(0,0,0,.65);font-size:.65rem;font-weight:700;color:#fff;padding:.22rem .4rem;text-align:center}
+.ba-slot-empty{display:flex;flex-direction:column;align-items:center;gap:.3rem;color:var(--text-dim);font-size:.72rem}
+.ba-slot-empty svg{width:22px;height:22px;opacity:.3}
+.ba-card-body{padding:.7rem .9rem;display:flex;flex-direction:column;gap:.5rem}
+.ba-card-actions{display:flex;gap:.4rem;padding:.5rem .9rem;border-top:1px solid var(--border2)}
+/* Services grid */
+.services-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.service-admin-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition)}
+.service-admin-card:hover{border-color:var(--border)}
+.service-img-area{aspect-ratio:16/9;background:var(--surface2);overflow:hidden;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.service-img-area img{width:100%;height:100%;object-fit:cover}
+.service-img-area .img-preview-overlay{display:none}
+.service-img-area:hover .img-preview-overlay{display:flex}
+.service-card-body{padding:.75rem 1rem;font-size:.85rem;font-weight:700;color:var(--text)}
 /* Responsive */
 @media(max-width:768px){
   .sidebar{display:none}
@@ -462,6 +506,27 @@ img{max-width:100%;display:block}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         شرائح الهيرو
       </div>
+      <div class="sidebar-section" style="margin-top:.5rem">الصفحة الرئيسية</div>
+      <div class="sidebar-link" onclick="showView('settings',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 010-2.83l.06-.06A1.65 1.65 0 009 15.6a1.65 1.65 0 00-1.51-1H6a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        إعدادات الموقع
+      </div>
+      <div class="sidebar-link" onclick="showView('about',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        عن الشركة
+      </div>
+      <div class="sidebar-link" onclick="showView('services',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        صور الخدمات
+      </div>
+      <div class="sidebar-link" onclick="showView('compounds',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        الكمباوندات
+      </div>
+      <div class="sidebar-link" onclick="showView('beforeafter',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+        قبل وبعد
+      </div>
       <div class="sidebar-section" style="margin-top:1rem">الحساب</div>
       <div class="sidebar-link" onclick="handleLogout()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
@@ -550,6 +615,143 @@ img{max-width:100%;display:block}
         </div>
 
       </div><!-- /heroView -->
+
+      <!-- Settings View -->
+      <div id="settingsView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">&#x2699;&#xFE0F; إعدادات الموقع</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary" onclick="saveSettings()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            حفظ الإعدادات
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">&#x1F5BC;&#xFE0F; شعار الموقع</span></div>
+            <div class="panel-section-body">
+              <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap">
+                <div id="logoPreviewWrap" style="width:160px;flex-shrink:0;border-radius:var(--radius);overflow:hidden;background:var(--surface2);aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.75rem">
+                  لا يوجد شعار
+                </div>
+                <div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:.7rem">
+                  <button class="hero-upload-btn" onclick="openLogoWidget()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                    رفع شعار جديد عبر Cloudinary
+                  </button>
+                  <div class="field">
+                    <label>رابط الشعار الحالي</label>
+                    <input type="url" id="s-logo_url" placeholder="رابط الشعار..." oninput="updateLogoPreview(this.value)" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">&#x1F4DE; معلومات التواصل</span></div>
+            <div class="panel-section-body">
+              <div class="form-row form-row-2">
+                <div class="field"><label>رقم واتساب (بدون +)</label><input type="text" id="s-whatsapp" placeholder="201019053288" /></div>
+                <div class="field"><label>البريد الإلكتروني</label><input type="email" id="s-email" placeholder="info@creative3design.com" /></div>
+              </div>
+              <div class="form-row form-row-2">
+                <div class="field"><label>اسم الشركة (عربي)</label><input type="text" id="s-name_ar" /></div>
+                <div class="field"><label>اسم الشركة (إنجليزي)</label><input type="text" id="s-name_en" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /settingsView -->
+
+      <!-- About View -->
+      <div id="aboutView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">&#x1F3E0; قسم عن الشركة</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary" onclick="saveAboutImages()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            حفظ الصور
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">صور قسم عن الشركة</span></div>
+            <div class="panel-section-body">
+              <div class="form-row form-row-2">
+                <div class="field">
+                  <label>الصورة الرئيسية (كبيرة)</label>
+                  <div id="about-main-wrap">
+                    <div class="upload-slot" id="about-main-slot" onclick="openAboutWidget('main')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <p>انقر لرفع الصورة الرئيسية</p>
+                    </div>
+                    <div class="img-preview-box" id="about-main-preview" style="display:none;aspect-ratio:4/3">
+                      <img id="about-main-img" src="" alt="" style="height:100%;object-fit:cover" />
+                      <div class="img-preview-overlay">
+                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('main')">تغيير</button>
+                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('main')">حذف</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>الصورة الصغيرة</label>
+                  <div id="about-small-wrap">
+                    <div class="upload-slot" id="about-small-slot" onclick="openAboutWidget('small')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <p>انقر لرفع الصورة الصغيرة</p>
+                    </div>
+                    <div class="img-preview-box" id="about-small-preview" style="display:none;aspect-ratio:4/3">
+                      <img id="about-small-img" src="" alt="" style="height:100%;object-fit:cover" />
+                      <div class="img-preview-overlay">
+                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('small')">تغيير</button>
+                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('small')">حذف</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /aboutView -->
+
+      <!-- Services View -->
+      <div id="servicesView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">&#x1F527; صور الخدمات</span>
+          <div class="spacer"></div>
+          <button class="btn btn-outline" onclick="loadServicesImages()">&#x21BA; تحديث</button>
+        </div>
+        <div id="servicesGrid" class="services-admin-grid"></div>
+      </div><!-- /servicesView -->
+
+      <!-- Compounds View -->
+      <div id="compoundsView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">&#x1F3E2; الكمباوندات والشركاء</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary" onclick="addCompound()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة كمباوند
+          </button>
+        </div>
+        <div id="compoundsGrid" class="compound-grid"></div>
+      </div><!-- /compoundsView -->
+
+      <!-- Before/After View -->
+      <div id="beforeafterView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">&#x1F504; قبل وبعد</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary" onclick="addBAItem()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة مجموعة
+          </button>
+        </div>
+        <div id="baGrid" class="ba-admin-grid"></div>
+      </div><!-- /beforeafterView -->
+
 
     </main>
   </div><!-- app-body -->
@@ -756,6 +958,367 @@ img{max-width:100%;display:block}
 
 <script>
 'use strict';
+
+
+/* ══════════════════════════════════════════════════
+   SITE SETTINGS MANAGER
+══════════════════════════════════════════════════ */
+let settingsLoaded = false;
+let logoWidget = null;
+
+function updateLogoPreview(url) {
+  const wrap = document.getElementById('logoPreviewWrap');
+  if (!wrap) return;
+  if (url) {
+    wrap.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:contain;padding:.5rem" onerror="this.style.display='none'" />';
+  } else {
+    wrap.innerHTML = 'لا يوجد شعار';
+  }
+}
+
+function openLogoWidget() {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!logoWidget) {
+    logoWidget = window.cloudinary.createUploadWidget(
+      { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'site_settings', resourceType: 'image', multiple: false },
+      (err, res) => {
+        if (err) return;
+        if (res.event === 'success') {
+          const url = res.info.secure_url;
+          const inp = document.getElementById('s-logo_url');
+          if (inp) inp.value = url;
+          updateLogoPreview(url);
+        }
+      }
+    );
+  }
+  logoWidget.open();
+}
+
+function loadSettings() {
+  if (!window.c3dClient) return;
+  window.c3dClient.from('site_settings').select('*').limit(1).then(({ data, error }) => {
+    if (error || !data || !data.length) return;
+    const s = data[0];
+    ['logo_url','whatsapp','email','name_ar','name_en'].forEach(k => {
+      const el = document.getElementById('s-' + k);
+      if (el && s[k]) el.value = s[k];
+    });
+    if (s.logo_url) updateLogoPreview(s.logo_url);
+    settingsLoaded = true;
+  });
+}
+
+async function saveSettings() {
+  if (!window.c3dClient) return;
+  const row = {};
+  ['logo_url','whatsapp','email','name_ar','name_en'].forEach(k => {
+    const el = document.getElementById('s-' + k);
+    if (el) row[k] = el.value.trim();
+  });
+  const { error } = await window.c3dClient.from('site_settings').upsert({ id: 1, ...row }, { onConflict: 'id' });
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم حفظ الإعدادات', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   ABOUT IMAGES MANAGER
+══════════════════════════════════════════════════ */
+let aboutLoaded = false;
+let aboutData = { main: null, small: null };
+let aboutWidgets = {};
+
+function openAboutWidget(slot) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!aboutWidgets[slot]) {
+    aboutWidgets[slot] = window.cloudinary.createUploadWidget(
+      { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'about_section', resourceType: 'image', multiple: false },
+      (err, res) => {
+        if (err) return;
+        if (res.event === 'success') {
+          aboutData[slot] = res.info.secure_url;
+          renderAboutPreview(slot, aboutData[slot]);
+        }
+      }
+    );
+  }
+  aboutWidgets[slot].open();
+}
+
+function clearAboutSlot(slot) {
+  aboutData[slot] = null;
+  renderAboutPreview(slot, null);
+}
+
+function renderAboutPreview(slot, url) {
+  const slotEl = document.getElementById('about-' + slot + '-slot');
+  const prevEl = document.getElementById('about-' + slot + '-preview');
+  const imgEl  = document.getElementById('about-' + slot + '-img');
+  if (!slotEl || !prevEl || !imgEl) return;
+  if (url) {
+    slotEl.style.display = 'none';
+    prevEl.style.display = '';
+    imgEl.src = url;
+  } else {
+    slotEl.style.display = '';
+    prevEl.style.display = 'none';
+    imgEl.src = '';
+  }
+}
+
+function loadAboutImages() {
+  if (!window.c3dClient) return;
+  window.c3dClient.from('about_images').select('*').limit(1).then(({ data, error }) => {
+    if (error || !data || !data.length) return;
+    const r = data[0];
+    if (r.main_image_url) { aboutData.main = r.main_image_url; renderAboutPreview('main', r.main_image_url); }
+    if (r.small_image_url) { aboutData.small = r.small_image_url; renderAboutPreview('small', r.small_image_url); }
+    aboutLoaded = true;
+  });
+}
+
+async function saveAboutImages() {
+  if (!window.c3dClient) return;
+  const row = { id: 1 };
+  if (aboutData.main) row.main_image_url = aboutData.main;
+  if (aboutData.small) row.small_image_url = aboutData.small;
+  const { error } = await window.c3dClient.from('about_images').upsert(row, { onConflict: 'id' });
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم حفظ صور قسم عن الشركة', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   SERVICES IMAGES MANAGER
+══════════════════════════════════════════════════ */
+let servicesLoaded = false;
+let allServices = [];
+let serviceWidgets = {};
+
+const SERVICE_NAMES = {
+  residential: 'سكني', commercial: 'تجاري', villa: 'فيلات',
+  hospitality: 'ضيافة', office: 'مكاتب', interior: 'داخلي'
+};
+
+function loadServicesImages() {
+  if (!window.c3dClient) return;
+  const grid = document.getElementById('servicesGrid');
+  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
+  window.c3dClient.from('services_images').select('*').order('sort_order').then(({ data, error }) => {
+    if (error) { showToast('خطأ في التحميل', 'error'); return; }
+    allServices = data || [];
+    renderServicesGrid();
+    servicesLoaded = true;
+  });
+}
+
+function renderServicesGrid() {
+  const grid = document.getElementById('servicesGrid');
+  if (!grid) return;
+  if (!allServices.length) {
+    grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">لا توجد خدمات. أضف خدمات من قاعدة البيانات.</div>';
+    return;
+  }
+  grid.innerHTML = allServices.map(s => {
+    const hasImg = !!s.image_url;
+    return '<div class="service-admin-card">' +
+      '<div class="service-img-area" onclick="openServiceWidget(' + s.id + ')">' +
+        (hasImg ? '<img src="' + s.image_url + '" alt="" onerror="this.style.display='none'" />' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="opacity:.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>') +
+        '<div class="img-preview-overlay"><button class="btn btn-sm btn-outline">تغيير الصورة</button></div>' +
+      '</div>' +
+      '<div class="service-card-body">' + (SERVICE_NAMES[s.service_key] || s.service_key) + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function openServiceWidget(serviceId) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  const w = window.cloudinary.createUploadWidget(
+    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'services', resourceType: 'image', multiple: false },
+    async (err, res) => {
+      if (err) return;
+      if (res.event === 'success') {
+        const url = res.info.secure_url;
+        const { error } = await window.c3dClient.from('services_images').update({ image_url: url }).eq('id', serviceId);
+        if (error) { showToast('خطأ في الحفظ', 'error'); return; }
+        showToast('تم تحديث صورة الخدمة', 'success');
+        loadServicesImages();
+      }
+    }
+  );
+  w.open();
+}
+
+/* ══════════════════════════════════════════════════
+   COMPOUNDS MANAGER
+══════════════════════════════════════════════════ */
+let compoundsLoaded = false;
+let allCompounds = [];
+
+function loadCompounds() {
+  if (!window.c3dClient) return;
+  const grid = document.getElementById('compoundsGrid');
+  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
+  window.c3dClient.from('compounds').select('*').order('sort_order').then(({ data, error }) => {
+    if (error) { showToast('خطأ في التحميل', 'error'); return; }
+    allCompounds = data || [];
+    renderCompoundsGrid();
+    compoundsLoaded = true;
+  });
+}
+
+function renderCompoundsGrid() {
+  const grid = document.getElementById('compoundsGrid');
+  if (!grid) return;
+  const addCard = '<div class="compound-card" style="cursor:pointer;border:2px dashed var(--border);align-items:center;justify-content:center;min-height:160px" onclick="addCompound()">' +
+    '<div style="display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-dim);padding:2rem">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+    '<span style="font-size:.8rem">إضافة كمباوند</span></div></div>';
+  if (!allCompounds.length) { grid.innerHTML = addCard; return; }
+  grid.innerHTML = allCompounds.map(c => {
+    const hasLogo = !!c.logo_url;
+    return '<div class="compound-card" id="ccard-' + c.id + '">' +
+      '<div class="compound-logo-area" onclick="openCompoundWidget('' + c.id + '')">' +
+        (hasLogo
+          ? '<img src="' + c.logo_url + '" alt="' + (c.name || '') + '" onerror="this.style.display='none'" />'
+          : '<div class="compound-logo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>انقر لرفع الشعار</span></div>') +
+      '</div>' +
+      '<div class="compound-card-body">' +
+        '<input type="text" value="' + (c.name || '') + '" placeholder="اسم الكمباوند..." class="field-input" style="background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:.35rem .5rem;color:var(--text);font-family:Cairo,sans-serif;font-size:.85rem;width:100%" onchange="updateCompoundName('' + c.id + '',this.value)" />' +
+      '</div>' +
+      '<div class="compound-card-actions">' +
+        '<button class="btn btn-sm btn-outline" onclick="openCompoundWidget('' + c.id + '')">&#x1F5BC; شعار</button>' +
+        '<button class="btn btn-sm btn-danger" onclick="deleteCompound('' + c.id + '')">&#x1F5D1;</button>' +
+      '</div>' +
+    '</div>';
+  }).join('') + addCard;
+}
+
+function addCompound() {
+  if (!window.c3dClient) return;
+  window.c3dClient.from('compounds').insert({ name: 'كمباوند جديد', sort_order: allCompounds.length + 1 }).select().then(({ data, error }) => {
+    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+    allCompounds.push(data[0]);
+    renderCompoundsGrid();
+  });
+}
+
+async function updateCompoundName(id, name) {
+  if (!window.c3dClient) return;
+  await window.c3dClient.from('compounds').update({ name }).eq('id', id);
+}
+
+function openCompoundWidget(id) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  const w = window.cloudinary.createUploadWidget(
+    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'compounds', resourceType: 'image', multiple: false },
+    async (err, res) => {
+      if (err) return;
+      if (res.event === 'success') {
+        const url = res.info.secure_url;
+        await window.c3dClient.from('compounds').update({ logo_url: url }).eq('id', id);
+        showToast('تم تحديث الشعار', 'success');
+        loadCompounds();
+      }
+    }
+  );
+  w.open();
+}
+
+async function deleteCompound(id) {
+  if (!confirm('حذف هذا الكمباوند؟')) return;
+  await window.c3dClient.from('compounds').delete().eq('id', id);
+  allCompounds = allCompounds.filter(c => String(c.id) !== String(id));
+  renderCompoundsGrid();
+  showToast('تم الحذف', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   BEFORE/AFTER MANAGER
+══════════════════════════════════════════════════ */
+let baLoaded = false;
+let allBAItems = [];
+
+function loadBAItems() {
+  if (!window.c3dClient) return;
+  const grid = document.getElementById('baGrid');
+  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
+  window.c3dClient.from('before_after').select('*').order('sort_order').then(({ data, error }) => {
+    if (error) { showToast('خطأ في التحميل', 'error'); return; }
+    allBAItems = data || [];
+    renderBAGrid();
+    baLoaded = true;
+  });
+}
+
+function renderBAGrid() {
+  const grid = document.getElementById('baGrid');
+  if (!grid) return;
+  const addCard = '<div class="ba-card" style="cursor:pointer;border:2px dashed var(--border);align-items:center;justify-content:center;min-height:180px" onclick="addBAItem()">' +
+    '<div style="display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-dim);padding:2rem">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+    '<span style="font-size:.8rem">إضافة مجموعة قبل/بعد</span></div></div>';
+  if (!allBAItems.length) { grid.innerHTML = addCard; return; }
+  grid.innerHTML = allBAItems.map(item => {
+    return '<div class="ba-card">' +
+      '<div class="ba-card-imgs">' +
+        '<div class="ba-img-slot" onclick="openBAWidget('' + item.id + '','before')">' +
+          (item.before_url ? '<img src="' + item.before_url + '" alt="" onerror="this.style.display='none'" />' : '<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>قبل</span></div>') +
+          '<div class="ba-slot-label">قبل</div>' +
+        '</div>' +
+        '<div class="ba-img-slot" onclick="openBAWidget('' + item.id + '','after')">' +
+          (item.after_url ? '<img src="' + item.after_url + '" alt="" onerror="this.style.display='none'" />' : '<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>بعد</span></div>') +
+          '<div class="ba-slot-label">بعد</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ba-card-body">' +
+        '<input type="text" value="' + (item.title_ar || '') + '" placeholder="عنوان المشروع..." style="background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:.35rem .5rem;color:var(--text);font-family:Cairo,sans-serif;font-size:.85rem;width:100%" onchange="updateBATitle('' + item.id + '',this.value)" />' +
+      '</div>' +
+      '<div class="ba-card-actions">' +
+        '<button class="btn btn-sm btn-danger" onclick="deleteBAItem('' + item.id + '')">&#x1F5D1; حذف</button>' +
+      '</div>' +
+    '</div>';
+  }).join('') + addCard;
+}
+
+function addBAItem() {
+  if (!window.c3dClient) return;
+  window.c3dClient.from('before_after').insert({ title_ar: 'مشروع جديد', sort_order: allBAItems.length + 1 }).select().then(({ data, error }) => {
+    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+    allBAItems.push(data[0]);
+    renderBAGrid();
+  });
+}
+
+async function updateBATitle(id, title_ar) {
+  if (!window.c3dClient) return;
+  await window.c3dClient.from('before_after').update({ title_ar }).eq('id', id);
+}
+
+function openBAWidget(id, type) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  const w = window.cloudinary.createUploadWidget(
+    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'before_after', resourceType: 'image', multiple: false },
+    async (err, res) => {
+      if (err) return;
+      if (res.event === 'success') {
+        const url = res.info.secure_url;
+        const col = type === 'before' ? 'before_url' : 'after_url';
+        await window.c3dClient.from('before_after').update({ [col]: url }).eq('id', id);
+        showToast('تم تحديث الصورة', 'success');
+        loadBAItems();
+      }
+    }
+  );
+  w.open();
+}
+
+async function deleteBAItem(id) {
+  if (!confirm('حذف هذه المجموعة؟')) return;
+  await window.c3dClient.from('before_after').delete().eq('id', id);
+  allBAItems = allBAItems.filter(b => String(b.id) !== String(id));
+  renderBAGrid();
+  showToast('تم الحذف', 'success');
+}
 
 /* ══════════════════════════════════════════════════
    STATE
@@ -1253,18 +1816,29 @@ function showToast(msg, type = 'info') {
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-function showView(v) {
+function showView(v, ev) {
+  const e = ev || event;
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const pv = document.getElementById('projectsView');
-  const hv = document.getElementById('heroView');
-  if (v === 'hero') {
-    if (pv) pv.style.display = 'none';
-    if (hv) { hv.style.display = 'flex'; if (!allHeroSlides.length) loadHeroSlides(); }
-  } else {
-    if (pv) pv.style.display = 'contents';
-    if (hv) hv.style.display = 'none';
-  }
+  if (e && e.currentTarget) e.currentTarget.classList.add('active');
+  const viewMap = {
+    projects:    { id:'projectsView',    display:'contents' },
+    hero:        { id:'heroView',        display:'flex' },
+    settings:    { id:'settingsView',    display:'flex' },
+    about:       { id:'aboutView',       display:'flex' },
+    services:    { id:'servicesView',    display:'flex' },
+    compounds:   { id:'compoundsView',   display:'flex' },
+    beforeafter: { id:'beforeafterView', display:'flex' },
+  };
+  Object.values(viewMap).forEach(({ id }) => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+  const cfg = viewMap[v] || viewMap.projects;
+  const target = document.getElementById(cfg.id);
+  if (target) target.style.display = cfg.display;
+  if (v === 'hero' && !allHeroSlides.length) loadHeroSlides();
+  if (v === 'settings' && !settingsLoaded) loadSettings();
+  if (v === 'about' && !aboutLoaded) loadAboutImages();
+  if (v === 'services' && !servicesLoaded) loadServicesImages();
+  if (v === 'compounds' && !compoundsLoaded) loadCompounds();
+  if (v === 'beforeafter' && !baLoaded) loadBAItems();
 }
 
 /* ══════════════════════════════════════════════════
