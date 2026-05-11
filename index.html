@@ -211,7 +211,7 @@
 <section class="hero" id="hero">
   <div class="hero-slides" id="heroSlides">
     <!-- Slide 1 -->
-    <div class="hero-slide active" data-hero-idx="0" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80')">
+    <div class="hero-slide active" data-hero-idx="0" style="display:none">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         
@@ -225,7 +225,7 @@
       </div>
     </div>
     <!-- Slide 2 - Resort Aerial -->
-    <div class="hero-slide" data-hero-idx="1" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')">
+    <div class="hero-slide" data-hero-idx="1" style="display:none">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم معماري متكامل" data-en="Integrated Architectural Design">تصميم معماري متكامل</p>
@@ -238,7 +238,7 @@
       </div>
     </div>
     <!-- Slide 3 - Classic Building -->
-    <div class="hero-slide" data-hero-idx="2" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&q=80')">
+    <div class="hero-slide" data-hero-idx="2" style="display:none">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="الطراز الكلاسيكي الفاخر" data-en="Luxury Classic Style">الطراز الكلاسيكي الفاخر</p>
@@ -251,7 +251,7 @@
       </div>
     </div>
     <!-- Slide 4 — الخدمات السكنية -->
-    <div class="hero-slide" data-hero-idx="3" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80')">
+    <div class="hero-slide" data-hero-idx="3" style="display:none">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم داخلي سكني" data-en="Residential Interior Design">تصميم داخلي سكني</p>
@@ -264,7 +264,7 @@
       </div>
     </div>
     <!-- Slide 5 — الخدمات التجارية -->
-    <div class="hero-slide" data-hero-idx="4" style="background-image:url('https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1600&q=80')">
+    <div class="hero-slide" data-hero-idx="4" style="display:none">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior Design">تصميم داخلي تجاري</p>
@@ -1170,20 +1170,25 @@ function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(fu
 (function () {
   'use strict';
   function applyHeroImages(items) {
+    /* items: [{image_url, title_ar}] مرتّبة حسب sort_order */
     var slides = document.querySelectorAll('.hero-slide[data-hero-idx]');
-    slides.forEach(function(slide, i) {
-      if (items[i] && items[i].image_url) {
-        var url = items[i].image_url;
-        if (url.includes('res.cloudinary.com')) {
-          url = url.replace('/upload/', '/upload/c_fill,w_1920,h_1080,q_85,f_auto/');
-        }
-        var img = new Image();
-        img.onload = function() {
-          slide.style.backgroundImage = "url('" + url + "')";
-          slide.setAttribute('data-project', items[i].title_ar || items[i].name_ar || '');
-        };
-        img.src = url;
+    var dots   = document.querySelectorAll('.hero-dot');
+    slides.forEach(function(s) { s.style.display = 'none'; s.classList.remove('active'); });
+    dots.forEach(function(d) { d.style.display = 'none'; });
+    var shown = 0;
+    items.forEach(function(item, i) {
+      if (i >= slides.length || !item.image_url) return;
+      var slide = slides[i];
+      var url = item.image_url;
+      if (url.includes('res.cloudinary.com')) {
+        url = url.replace('/upload/', '/upload/c_fill,w_1920,h_1080,q_85,f_auto/');
       }
+      slide.style.display = '';
+      slide.style.backgroundImage = "url('" + url + "')";
+      slide.setAttribute('data-project', item.title_ar || '');
+      if (shown === 0) slide.classList.add('active');
+      if (dots[i]) { dots[i].style.display = ''; if (shown === 0) dots[i].classList.add('active'); }
+      shown++;
     });
   }
 
