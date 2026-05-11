@@ -308,6 +308,24 @@ img{max-width:100%;display:block}
 .confirm-text{font-size:.85rem;color:var(--text-muted)}
 .confirm-actions{display:flex;gap:.6rem;justify-content:center}
 
+/* ── Hero Manager ── */
+.hero-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.hero-slide-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition)}
+.hero-slide-card:hover{border-color:var(--border)}
+.hero-slide-img{position:relative;aspect-ratio:16/9;background:var(--surface2);overflow:hidden}
+.hero-slide-img img{width:100%;height:100%;object-fit:cover}
+.hero-slide-no-img{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:.78rem;flex-direction:column;gap:.5rem}
+.hero-slide-body{padding:.9rem 1rem;display:flex;flex-direction:column;gap:.7rem}
+.hero-order-row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.hero-order-row label{font-size:.75rem;color:var(--text-muted);font-weight:700;white-space:nowrap}
+.hero-order-input{width:64px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .5rem;color:var(--text);text-align:center;font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:700}
+.hero-upload-btn{border:1px dashed var(--border);border-radius:var(--radius);padding:.55rem;text-align:center;cursor:pointer;font-size:.8rem;color:var(--text-muted);font-family:'Cairo',sans-serif;background:none;width:100%;transition:all var(--transition);display:flex;align-items:center;justify-content:center;gap:.45rem}
+.hero-upload-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.hero-slide-actions{display:flex;gap:.4rem;padding:.6rem 1rem;border-top:1px solid var(--border2)}
+.hero-slide-num{position:absolute;top:.5rem;right:.5rem;background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;padding:.18rem .6rem;border-radius:20px}
+.hero-slide-inactive .hero-slide-img{opacity:.4}
+.hero-sql-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-size:.75rem;color:#4caf7d;direction:ltr;text-align:left;overflow-x:auto;white-space:pre;margin-top:.8rem;font-family:monospace}
+
 /* Responsive */
 @media(max-width:768px){
   .sidebar{display:none}
@@ -440,6 +458,10 @@ img{max-width:100%;display:block}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         عرض الموقع
       </div>
+      <div class="sidebar-link" onclick="showView('hero')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        شرائح الهيرو
+      </div>
       <div class="sidebar-section" style="margin-top:1rem">الحساب</div>
       <div class="sidebar-link" onclick="handleLogout()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
@@ -449,6 +471,9 @@ img{max-width:100%;display:block}
 
     <!-- Main Content -->
     <main class="main" id="mainContent">
+
+      <!-- ╔════ Projects View ════ -->
+      <div id="projectsView" style="display:contents">
 
       <!-- Stats -->
       <div class="stats-bar" id="statsBar">
@@ -492,6 +517,39 @@ img{max-width:100%;display:block}
         <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text short"></div></div>
         <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text short"></div></div>
       </div>
+
+      </div><!-- /projectsView -->
+
+      <!-- ╔════ Hero Manager View ════ -->
+      <div id="heroView" style="display:none;flex-direction:column;gap:1.5rem">
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <span class="toolbar-title">🖼️ شرائح الهيرو</span>
+          <div class="spacer"></div>
+          <button class="btn btn-outline" onclick="loadHeroSlides()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            تحديث
+          </button>
+          <button class="btn btn-outline" onclick="saveHeroOrder()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            حفظ الترتيب
+          </button>
+          <button class="btn btn-primary" onclick="addHeroSlide()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة شريحة
+          </button>
+        </div>
+
+        <div style="background:var(--gold-dim);border:1px solid rgba(184,151,106,.25);border-radius:var(--radius);padding:.7rem 1rem;font-size:.8rem;color:var(--text-muted)">
+          💡 الشرائح النشطة تظهر في الصفحة الرئيسية بالترتيب المحدد. غيّر الأرقام ثم اضغط <strong style="color:var(--gold)">حفظ الترتيب</strong>، أو اضغط <strong style="color:var(--gold)">حفظ</strong> على كل شريحة بشكل منفرد.
+        </div>
+
+        <div class="hero-grid" id="heroGrid">
+          <div style="color:var(--text-muted);padding:2rem;text-align:center">جارٍ التحميل...</div>
+        </div>
+
+      </div><!-- /heroView -->
 
     </main>
   </div><!-- app-body -->
@@ -1198,6 +1256,15 @@ function escHtml(str) {
 function showView(v) {
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
   event.currentTarget.classList.add('active');
+  const pv = document.getElementById('projectsView');
+  const hv = document.getElementById('heroView');
+  if (v === 'hero') {
+    if (pv) pv.style.display = 'none';
+    if (hv) { hv.style.display = 'flex'; if (!allHeroSlides.length) loadHeroSlides(); }
+  } else {
+    if (pv) pv.style.display = 'contents';
+    if (hv) hv.style.display = 'none';
+  }
 }
 
 /* ══════════════════════════════════════════════════
@@ -1213,6 +1280,200 @@ document.addEventListener('keydown', e => {
 /* ══════════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════
+   HERO MANAGER
+══════════════════════════════════════════════════ */
+let allHeroSlides = [];
+let heroUploadWidgets = {};
+
+const HERO_TABLE_SQL =
+`create table if not exists public.hero_slides (
+  id                   uuid primary key default gen_random_uuid(),
+  title_ar             text,
+  title_en             text,
+  image_url            text,
+  cloudinary_public_id text,
+  sort_order           int  not null default 0,
+  active               boolean not null default true,
+  created_at           timestamptz not null default now()
+);`;
+
+async function loadHeroSlides() {
+  const grid = document.getElementById('heroGrid');
+  if (!window.c3dClient || !grid) return;
+  grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جارٍ التحميل...</div>';
+  const { data, error } = await window.c3dClient
+    .from('hero_slides').select('*').order('sort_order', { ascending: true });
+  if (error) {
+    if (error.code === '42P01') {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center">
+        <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:.5rem">
+          جدول <code style="color:var(--gold);background:var(--surface2);padding:.1rem .4rem;border-radius:4px">hero_slides</code> غير موجود في Supabase بعد.
+        </p>
+        <p style="color:var(--text-dim);font-size:.82rem;margin-bottom:.8rem">أنشئه بفتح Supabase → SQL Editor ولصق الكود التالي:</p>
+        <div class="hero-sql-block">${escHtml(HERO_TABLE_SQL)}</div>
+        <button class="btn btn-outline" style="margin-top:1rem" onclick="loadHeroSlides()">إعادة المحاولة بعد الإنشاء</button>
+      </div>`;
+    } else { showToast('خطأ: ' + error.message, 'error'); grid.innerHTML = ''; }
+    return;
+  }
+  allHeroSlides = data || [];
+  renderHeroSlides();
+}
+
+function renderHeroSlides() {
+  const grid = document.getElementById('heroGrid');
+  if (!grid) return;
+  if (!allHeroSlides.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="56" height="56"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <p>لا توجد شرائح بعد</p>
+      <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">إضافة أول شريحة</button>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = allHeroSlides.map((s, i) => `
+    <div class="hero-slide-card ${s.active ? '' : 'hero-slide-inactive'}" data-slide-id="${s.id}">
+      <div class="hero-slide-img">
+        ${s.image_url
+          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.title_ar||'شريحة '+(i+1))}" loading="lazy" />`
+          : `<div class="hero-slide-no-img">
+               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+               <span>لا توجد صورة</span>
+             </div>`}
+        <span class="hero-slide-num">شريحة ${i+1}</span>
+      </div>
+      <div class="hero-slide-body">
+        <div class="field">
+          <label>عنوان الشريحة (اختياري)</label>
+          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar||'')}" placeholder="نص يظهر فوق الصورة..." />
+        </div>
+        <div class="hero-order-row">
+          <label>ترتيب الظهور:</label>
+          <input type="number" class="hero-order-input" id="hero-order-${s.id}" value="${s.sort_order??i}" min="0" max="99" />
+          <div class="toggle-row" style="margin-right:auto;gap:.45rem">
+            <label class="toggle">
+              <input type="checkbox" id="hero-active-${s.id}" ${s.active?'checked':''} onchange="toggleHeroActive('${s.id}',this.checked)" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label" id="hero-active-label-${s.id}" style="font-size:.78rem">${s.active?'نشطة':'مخفية'}</span>
+          </div>
+        </div>
+        <button class="hero-upload-btn" onclick="openHeroWidget('${s.id}')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          ${s.image_url?'تغيير الصورة':'رفع صورة'}
+        </button>
+      </div>
+      <div class="hero-slide-actions">
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+          حفظ
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}','${escHtml(s.title_ar||'شريحة '+(i+1))}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+          حذف
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+function getHeroWidget(slideId) {
+  if (heroUploadWidgets[slideId]) return heroUploadWidgets[slideId];
+  const cfg = window.C3D_CONFIG?.cloudinary;
+  if (!cfg?.cloudName || typeof cloudinary === 'undefined') return null;
+  const widget = cloudinary.createUploadWidget({
+    cloudName:cfg.cloudName, uploadPreset:cfg.uploadPreset,
+    sources:['local','url','camera'], multiple:false, maxFileSize:8000000,
+    allowedFormats:['jpg','jpeg','png','webp'], folder:'creative3design/hero',
+    cropping:true, croppingAspectRatio:16/9, showSkipCropButton:true, language:'ar',
+    showAdvancedOptions:false,
+    styles:{palette:{window:'#161311',tabIcon:'#B8976A',menuIcons:'#B8976A',
+      textDark:'#FFFFFF',textLight:'#FFFFFF',link:'#B8976A',action:'#B8976A',
+      inactiveTabIcon:'#888',error:'#E05252',inProgress:'#B8976A',complete:'#4caf7d',sourceBg:'#1e1b17'}}
+  }, async (error, result) => {
+    if (error) { showToast('خطأ في رفع الصورة: '+error.message,'error'); return; }
+    if (result.event === 'success') {
+      const { error:upErr } = await window.c3dClient.from('hero_slides')
+        .update({image_url:result.info.secure_url, cloudinary_public_id:result.info.public_id}).eq('id',slideId);
+      if (upErr) { showToast('خطأ في حفظ الصورة: '+upErr.message,'error'); return; }
+      showToast('✅ تم رفع الصورة وحفظها بنجاح','success');
+      loadHeroSlides();
+    }
+  });
+  heroUploadWidgets[slideId] = widget;
+  return widget;
+}
+
+function openHeroWidget(slideId) {
+  const w = getHeroWidget(slideId);
+  if (!w) { showToast('⚠️ Cloudinary غير مُهيّأ','error'); return; }
+  w.open();
+}
+
+async function saveHeroSlide(slideId) {
+  const titleEl=document.getElementById('hero-title-'+slideId);
+  const orderEl=document.getElementById('hero-order-'+slideId);
+  const activeEl=document.getElementById('hero-active-'+slideId);
+  if (!titleEl||!orderEl) return;
+  const { error } = await window.c3dClient.from('hero_slides')
+    .update({title_ar:titleEl.value.trim()||null, sort_order:parseInt(orderEl.value,10)||0, active:activeEl.checked})
+    .eq('id',slideId);
+  if (error) { showToast('خطأ: '+error.message,'error'); return; }
+  showToast('✅ تم حفظ الشريحة','success');
+  loadHeroSlides();
+}
+
+async function saveHeroOrder() {
+  const cards = document.querySelectorAll('.hero-slide-card[data-slide-id]');
+  if (!cards.length) { showToast('لا توجد شرائح','info'); return; }
+  let hasError = false;
+  for (const card of cards) {
+    const id = card.dataset.slideId;
+    const orderEl = document.getElementById('hero-order-'+id);
+    if (!orderEl) continue;
+    const { error } = await window.c3dClient.from('hero_slides')
+      .update({sort_order:parseInt(orderEl.value,10)||0}).eq('id',id);
+    if (error) hasError = true;
+  }
+  showToast(hasError?'حدث خطأ في بعض الشرائح':'✅ تم حفظ الترتيب', hasError?'error':'success');
+  if (!hasError) loadHeroSlides();
+}
+
+async function toggleHeroActive(slideId, active) {
+  const { error } = await window.c3dClient.from('hero_slides').update({active}).eq('id',slideId);
+  if (error) { showToast('خطأ: '+error.message,'error'); return; }
+  const card = document.querySelector(`.hero-slide-card[data-slide-id="${slideId}"]`);
+  if (card) { card.classList.toggle('hero-slide-inactive',!active); }
+  const lbl = document.getElementById('hero-active-label-'+slideId);
+  if (lbl) lbl.textContent = active?'نشطة':'مخفية';
+  const slide = allHeroSlides.find(s=>s.id===slideId);
+  if (slide) slide.active = active;
+}
+
+async function addHeroSlide() {
+  if (!window.c3dClient) return;
+  const maxOrder = allHeroSlides.reduce((m,s)=>Math.max(m,s.sort_order??0),-1);
+  const { error } = await window.c3dClient.from('hero_slides').insert([{sort_order:maxOrder+1,active:true}]);
+  if (error) { showToast('خطأ: '+error.message,'error'); return; }
+  showToast('✅ تمت إضافة شريحة جديدة','success');
+  loadHeroSlides();
+}
+
+function confirmDeleteHeroSlide(slideId, name) {
+  document.getElementById('confirmTitle').textContent = 'حذف الشريحة';
+  document.getElementById('confirmText').textContent  = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
+  document.getElementById('confirmDialog').classList.add('open');
+  document.getElementById('confirmOkBtn').onclick = async () => {
+    const { error } = await window.c3dClient.from('hero_slides').delete().eq('id',slideId);
+    if (error) { showToast('خطأ: '+error.message,'error'); return; }
+    showToast('🗑️ تم حذف الشريحة','info');
+    closeConfirm();
+    delete heroUploadWidgets[slideId];
+    loadHeroSlides();
+  };
+}
+
 initAuth();
 </script>
 </body>
