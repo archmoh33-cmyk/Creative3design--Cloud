@@ -37,10 +37,11 @@ body {
   font-family: var(--font-body);
   background: var(--black);
   color: var(--diamond-white);
-  direction: rtl;
   overflow-x: hidden;
   line-height: 1.7;
 }
+html[dir="rtl"] body { direction: rtl; }
+html[dir="ltr"] body { direction: ltr; }
 a { text-decoration:none; color:inherit; transition: color var(--transition); }
 img { max-width:100%; display:block; height:auto; }
 ul { list-style:none; }
@@ -1131,7 +1132,7 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
     align-items: flex-start;
     gap: .85rem;
     padding: .8rem .9rem;
-    text-align: right;
+    text-align: start;
   }
   .why-card svg  { width: 28px; height: 28px; flex-shrink: 0; margin: 0; }
   .why-card h3   { font-size: .82rem; margin-bottom: .2rem; }
@@ -1219,3 +1220,32 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   0%   { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
 }
+
+
+/* ══════════════════════════════════════════════════
+   English / LTR — Direction & Alignment Overrides
+   Triggered when JS sets html[dir="ltr"]
+══════════════════════════════════════════════════ */
+html[dir="ltr"] body {
+  text-align: left;
+}
+
+html[dir="ltr"] .article-body ul,
+html[dir="ltr"] .article-body ol {
+  padding-right: 0;
+  padding-left: 1.5rem;
+}
+
+html[dir="ltr"] .blog-card-body,
+html[dir="ltr"] .service-card-body { text-align: left; }
+
+html[dir="ltr"] .breadcrumb { text-align: left; }
+html[dir="ltr"] .form-group label { text-align: left; }
+html[dir="ltr"] .footer-col { text-align: left; }
+html[dir="ltr"] .footer-links { padding-right: 0; }
+html[dir="ltr"] .nav-links { right: auto; left: 0; border-right: none; border-left: 1px solid var(--gray-border); }
+html[dir="ltr"] .why-card { text-align: left; }
+html[dir="ltr"] .hero-text { text-align: left; }
+html[dir="ltr"] .hero-btns { justify-content: flex-start; }
+html[dir="ltr"] .ticker-track { direction: ltr; }
+html[dir="ltr"] .stat-item { text-align: center; }
