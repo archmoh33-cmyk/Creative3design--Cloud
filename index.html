@@ -211,7 +211,7 @@
 <section class="hero" id="hero">
   <div class="hero-slides" id="heroSlides">
     <!-- Slide 1 -->
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80')">
+    <div class="hero-slide active" data-hero-idx="0" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80')">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         
@@ -225,7 +225,7 @@
       </div>
     </div>
     <!-- Slide 2 - Resort Aerial -->
-    <div class="hero-slide" style="background-image:url('images/hero-resort.jpg')">
+    <div class="hero-slide" data-hero-idx="1" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم معماري متكامل" data-en="Integrated Architectural Design">تصميم معماري متكامل</p>
@@ -238,7 +238,7 @@
       </div>
     </div>
     <!-- Slide 3 - Classic Building -->
-    <div class="hero-slide" style="background-image:url('images/hero-classic.jpg')">
+    <div class="hero-slide" data-hero-idx="2" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&q=80')">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="الطراز الكلاسيكي الفاخر" data-en="Luxury Classic Style">الطراز الكلاسيكي الفاخر</p>
@@ -251,7 +251,7 @@
       </div>
     </div>
     <!-- Slide 4 — الخدمات السكنية -->
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80')">
+    <div class="hero-slide" data-hero-idx="3" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80')">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم داخلي سكني" data-en="Residential Interior Design">تصميم داخلي سكني</p>
@@ -264,7 +264,7 @@
       </div>
     </div>
     <!-- Slide 5 — الخدمات التجارية -->
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1600&q=80')">
+    <div class="hero-slide" data-hero-idx="4" style="background-image:url('https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1600&q=80')">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior Design">تصميم داخلي تجاري</p>
@@ -1160,6 +1160,47 @@ function testiGo(i){document.querySelectorAll('.testi-slide').forEach(function(s
 function testiPrev(){testiGo((testiIdx-1+testiTotal)%testiTotal);}
 function testiNext(){testiGo((testiIdx+1)%testiTotal);}
 function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  function loadHeroImages() {
+    if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+    window.c3dFetchProjects({ limit: 20 }).then(function(res) {
+      if (res.error || !res.data || res.data.length < 3) return;
+      var projects = res.data;
+      var featured   = projects.filter(function(p){ return p.featured && p.image_url; });
+      var unfeatured = projects.filter(function(p){ return !p.featured && p.image_url; });
+      var sorted = featured.concat(unfeatured);
+      if (sorted.length < 3) return;
+      var slides = document.querySelectorAll('.hero-slide[data-hero-idx]');
+      slides.forEach(function(slide, i) {
+        if (sorted[i] && sorted[i].image_url) {
+          var url = sorted[i].image_url;
+          if (url.includes('res.cloudinary.com')) {
+            url = url.replace('/upload/', '/upload/c_fill,w_1920,h_1080,q_85,f_auto/');
+          }
+          var img = new Image();
+          img.onload = function() {
+            slide.style.backgroundImage = "url('" + url + "')";
+            slide.setAttribute('data-project', sorted[i].name_ar || '');
+          };
+          img.src = url;
+        }
+      });
+    });
+  }
+  function waitForClient(attempts) {
+    if (window.c3dClient && !window.C3D_STATIC_MODE) { loadHeroImages(); }
+    else if (attempts > 0) { setTimeout(function(){ waitForClient(attempts - 1); }, 400); }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ waitForClient(15); }, 300); });
+  } else {
+    setTimeout(function(){ waitForClient(15); }, 300);
+  }
+})();
 </script>
 </body>
 </html>
