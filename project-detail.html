@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل المشروع | Creative3Design</title>
+  <meta name="description" content="تفاصيل مشروع Creative3Design — صور المشروع والمعلومات الكاملة" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  <style>
+    /* ── Project Detail Layout ── */
+    .pd-hero {
+      position: relative;
+      background: var(--black-card);
+      overflow: hidden;
+      max-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pd-hero-img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+      transition: opacity .4s;
+    }
+    .pd-hero-img.loading { opacity: 0; }
+    .pd-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,10,8,.85) 0%, rgba(12,10,8,.1) 60%, transparent 100%);
+    }
+    .pd-hero-text {
+      position: absolute;
+      bottom: 2rem;
+      right: 0;
+      left: 0;
+      padding: 0 2rem;
+    }
+    .pd-hero-text h1 {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 .4rem;
+      line-height: 1.2;
+    }
+    .pd-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem .9rem;
+      align-items: center;
+    }
+    .pd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: rgba(184,151,106,.18);
+      border: 1px solid rgba(184,151,106,.35);
+      color: #B8976A;
+      border-radius: 20px;
+      padding: .22rem .7rem;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .pd-loc {
+      font-size: .82rem;
+      color: rgba(232,228,220,.65);
+    }
+
+    /* ── Spinner overlay on hero ── */
+    .pd-hero-spinner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black-card);
+    }
+    .pd-hero-spinner svg { animation: pdSpin .9s linear infinite; opacity: .4; }
+    @keyframes pdSpin { to { transform: rotate(360deg); } }
+
+    /* ── Gallery thumbnails ── */
+    .pd-gallery-section {
+      padding: 2rem 0 1rem;
+    }
+    .pd-gallery-label {
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .pd-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: .5rem;
+    }
+    .pd-thumb-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color .2s, transform .15s;
+    }
+    .pd-thumb-item:hover { border-color: rgba(184,151,106,.5); transform: scale(1.02); }
+    .pd-thumb-item.active { border-color: #B8976A; }
+    .pd-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Info grid ── */
+    .pd-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .pd-info-card {
+      background: var(--black-card);
+      border: 1px solid var(--gray-border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+    .pd-info-label {
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+    .pd-info-value {
+      font-size: .92rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── Description ── */
+    .pd-desc {
+      background: var(--black-card);
+      border: 1px solid var(--gray-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      margin: 1rem 0 2rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: .9rem;
+    }
+
+    /* ── Navigation between projects ── */
+    .pd-nav-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 2rem 0 3rem;
+    }
+    .pd-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--black-card);
+      border: 1px solid var(--gray-border);
+      color: var(--text-muted);
+      border-radius: 8px;
+      padding: .65rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      flex: 1;
+      max-width: 260px;
+    }
+    .pd-nav-btn:hover { border-color: rgba(184,151,106,.45); color: #B8976A; }
+    .pd-nav-btn.pd-nav-prev { justify-content: flex-end; }
+    .pd-nav-btn.pd-nav-next { justify-content: flex-start; }
+    .pd-nav-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+    .pd-nav-back {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Error / skeleton ── */
+    .pd-skeleton-hero {
+      width: 100%;
+      height: 400px;
+      background: var(--black-card);
+      position: relative;
+      overflow: hidden;
+    }
+    .pd-skeleton-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,transparent 25%,rgba(184,151,106,.07) 50%,transparent 75%);
+      background-size: 200% 100%;
+      animation: pdShimmer 1.5s infinite;
+    }
+    @keyframes pdShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    .pd-not-found {
+      text-align: center;
+      padding: 6rem 1rem;
+      color: var(--text-muted);
+    }
+    .pd-not-found h2 { font-size: 1.5rem; margin-bottom: .75rem; }
+
+    /* ── Lightbox for gallery ── */
+    #pd-lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(8,7,6,.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #pd-lb.active { display: flex; }
+    .pd-lb-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(184,151,106,.15);
+      border: 1px solid rgba(184,151,106,.3);
+      color: #e8e4dc;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 2;
+      transition: background .2s;
+    }
+    .pd-lb-close:hover { background: rgba(224,82,82,.25); }
+    .pd-lb-counter {
+      position: absolute;
+      top: 1.1rem;
+      left: 1rem;
+      font-size: .78rem;
+      color: #B8976A;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+    .pd-lb-img {
+      max-width: 100%;
+      max-height: 92vh;
+      object-fit: contain;
+      display: block;
+      transition: opacity .22s;
+    }
+    .pd-lb-img.loading { opacity: 0; }
+    .pd-lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(184,151,106,.15);
+      border: 1px solid rgba(184,151,106,.3);
+      color: #e8e4dc;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.6rem;
+      transition: background .2s;
+    }
+    .pd-lb-nav:hover { background: rgba(184,151,106,.35); }
+    .pd-lb-prev { right: 1rem; }
+    .pd-lb-next { left: 1rem; }
+  </style>
+</head>
+<body>
+<div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
+<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
+    <div class="nav-page-switcher">
+      <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
+        <option value="">الصفحات</option>
+        <option value="index.html">الرئيسية</option>
+        <option value="about.html">عن المكتب</option>
+        <option value="services.html">الخدمات</option>
+        <option value="packages.html">الباقات</option>
+        <option value="portfolio.html">الأعمال</option>
+        <option value="blog/index.html">المدونة</option>
+        <option value="contact.html">تواصل معنا</option>
+      </select>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+
+<!-- Main content injected by JS -->
+<main id="pd-main"></main>
+
+<!-- Gallery lightbox -->
+<div id="pd-lb" role="dialog" aria-modal="true" aria-label="معرض صور المشروع">
+  <button class="pd-lb-close" onclick="pdLbClose()">&#10005;</button>
+  <span class="pd-lb-counter" id="pd-lb-counter"></span>
+  <img class="pd-lb-img" id="pd-lb-img" src="" alt="" />
+  <button class="pd-lb-nav pd-lb-prev" id="pd-lb-prev" onclick="pdLbStep(-1)">&#8249;</button>
+  <button class="pd-lb-nav pd-lb-next" id="pd-lb-next" onclick="pdLbStep(+1)">&#8250;</button>
+</div>
+
+<section class="consultation-section section-padding lazy-reveal">
+  <div class="container"><div class="consultation-inner">
+    <h2>أعجبك هذا المشروع؟</h2>
+    <p>تواصل معنا لنناقش مشروعك وننفذ فكرتك باحترافية</p>
+    <div class="consult-btns">
+      <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg">احجز استشارة مجانية</a>
+      <a href="portfolio.html" class="btn-outline-gold btn-lg">← العودة للمعرض</a>
+    </div>
+  </div></div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom" style="border-top:none;"><p>© 2025 Creative3Design — جميع الحقوق محفوظة</p><a href="index.html">الرئيسية</a></div></div></footer>
+
+<div class="float-group">
+  <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="float-btn float-btn-wa" aria-label="واتساب">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:00201019053288" class="float-btn float-btn-call" aria-label="اتصل بنا">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  var STATIC_PROJECTS = [
+    { id:'s13', name_ar:'فيلا الشيخ زايد الداخلية',    category:'interior-res', style:'luxury',       location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=85' },
+    { id:'s14', name_ar:'شقة القاهرة الجديدة الداخمية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=85' },
+    { id:'s1',  name_ar:'شقة المهندسين الفاخرة',        category:'interior-res', style:'modern',       location_ar:'المهندسين، الفاهرة',     image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=1200&q=85' },
+    { id:'s2',  name_ar:'شقة التجمع الخامس',            category:'interior-res', style:'modern',       location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=85' },
+    { id:'s3',  name_ar:'شقة الزمالك الفاخرة',          category:'interior-res', style:'classic',      location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=85' },
+    { id:'s4',  name_ar:'شقة مصر الجديدة الكلاسيكية',  category:'interior-res', style:'neoclassic',   location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=85' },
+    { id:'s15', name_ar:'مكتب مدينة نصر الداخمي',      category:'interior-com', style:'contemporary', location_ar:'مدينة نصر، القاهرة',     image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85' },
+    { id:'s16', name_ar:'مطعم الجزيرة الداخلي',         category:'interior-com', style:'luxury',       location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=85' },
+    { id:'s9',  name_ar:'فيلا القاهرة الجديدة',         category:'villa',        style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85' },
+    { id:'s10', name_ar:'فيلا الشيخ زايد',              category:'villa',        style:'neoclassic',   location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85' },
+    { id:'s11', name_ar:'فندق النيل الكبير',             category:'hospitality',  style:'luxury',       location_ar:'وسط البلد، القاهرة',     image_url:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=85' },
+    { id:'s5',  name_ar:'مقر شركة التجمع الخامس',       category:'commercial',   style:'contemporary', location_ar:'التجمع الأول، القاهرة',  image_url:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85' },
+    { id:'s6',  name_ar:'مطعم الجزيرة الفاخر',          category:'commercial',   style:'luxury',       location_ar:'الجزيرة، القاهرة',       image_url:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=85' },
+    { id:'s7',  name_ar:'عيادة مصر الجديدة',            category:'commercial',   style:'minimal',      location_ar:'مصر الجديدة، القاهرة',   image_url:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=85' },
+    { id:'s8',  name_ar:'صالون لوكس — الزمالك',         category:'commercial',   style:'luxury',       location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=1200&q=85' },
+    { id:'s12', name_ar:'مكتب التجمع التنفيذي',         category:'commercial',   style:'contemporary', location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1200&q=85' }
+  ];
+
+  var CAT_LABELS = {
+    'interior-res': 'تصميم داخلي سكني',
+    'interior-com': 'تصميم داخلي تجاري',
+    'villa':        'فيلات وعمارات',
+    'hospitality':  'فنادق',
+    'commercial':   'تجاري وإداري'
+  };
+  var STYLE_LABELS = {
+    'modern':        'مودرن',
+    'neoclassic':    'نيوكلاسيك',
+    'classic':       'كلاسيك',
+    'contemporary':  'كونتمبوراري',
+    'luxury':        'لوكس',
+    'minimal':       'ميني'
+  };
+
+  var allProjects = [];
+  var pdImages    = [];
+  var pdCurrent   = 0;
+
+  /* ── Gallery lightbox ── */
+  function pdLbOpen(idx) {
+    pdCurrent = idx;
+    var lb  = document.getElementById('pd-lb');
+    var img = document.getElementById('pd-lb-img');
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    pdLbShow(idx);
+  }
+  window.pdLbClose = function() {
+    document.getElementById('pd-lb').classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  window.pdLbStep = function(dir) { pdLbShow(pdCurrent + dir); };
+
+  function pdLbShow(idx) {
+    pdCurrent = Math.max(0, Math.min(idx, pdImages.length - 1));
+    var img = document.getElementById('pd-lb-img');
+    var ctr = document.getElementById('pd-lb-counter');
+    img.classList.add('loading');
+    img.src = '';
+    var src = (pdImages[pdCurrent] || {}).url || '';
+    if (!src) return;
+    var tmp = new Image();
+    tmp.onload  = function() { img.src = src; img.alt = (pdImages[pdCurrent] || {}).caption||''; img.classList.remove('loading'); };
+    tmp.onerror = function() { img.classList.remove('loading'); };
+    tmp.src = src;
+    ctr.textContent = pdImages.length > 1 ? (pdCurrent+1) + ' / ' + pdImages.length : '';
+    var show = pdImages.length > 1 ? 'flex' : 'none';
+    document.getElementById('pd-lb-prev').style.display = show;
+    document.getElementById('pd-lb-next').style.display = show;
+    document.querySelectorAll('.pd-thumb-item').forEach(function(t,i){ t.classList.toggle('active', i === pdCurrent); });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    var lb = document.getElementById('pd-lb');
+    if (!lb || !lb.classList.contains('active')) return;
+    if (e.key === 'Escape')     pdLbClose();
+    if (e.key === 'ArrowRight') window.pdLbStep(+1);
+    if (e.key === 'ArrowLeft')  window.pdLbStep(-1);
+  });
+  document.getElementById('pd-lb').addEventListener('click', function(e) {
+    if (e.target === this) window.pdLbClose();
+  });
+
+  /* ── Render project detail ── */
+  function renderDetail(project, images, prevProj, nextProj) {
+    pdImages = images.length ? images : [{ url: project.image_url || '', caption: project.name_ar || '' }];
+
+    /* Update page title */
+    document.title = (project.name_ar || 'تفاصيل المشروع') + ' | Creative3Design';
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = (project.name_ar || '') + ' — ' + (project.location_ar || '') + ' | Creative3Design';
+
+    var cat   = window.c3dCategoryLabel ? c3dCategoryLabel(project.category,'ar') : (CAT_LABELS[project.category]   || project.category   || '');
+    var style = window.c3dStyleLabel    ? c3dStyleLabel(project.style,'ar')       : (STYLE_LABELS[project.style]    || project.style      || '');
+    var loc   = project.location_ar || '';
+    var desc  = project.description_ar || project.description || '';
+
+    /* Build thumbnail grid */
+    var thumbsHTML = '';
+    if (pdImages.length > 1) {
+      thumbsHTML = '<div class="pd-gallery-section">' +
+        '<p class="pd-gallery-label">صور المشروع (' + pdImages.length + ')</p>' +
+        '<div class="pd-thumbs">' +
+        pdImages.map(function(img, i) {
+          return '<div class="pd-thumb-item' + (i===0?' active':'') + '" onclick="pdThumbClick(' + i + ')">' +
+                 '<img src="' + img.url + '" alt="' + (img.caption||project.name_ar||'') + '" loading="lazy" />' +
+                 '</div>';
+        }).join('') +
+        '</div></div>';
+    }
+
+    /* Build info cards */
+    var infoCards = '';
+    if (cat)   infoCards += '<div class="pd-info-card"><div class="pd-info-label">التصنيف</div><div class="pd-info-value">' + cat + '</div></div>';
+    if (style) infoCards += '<div class="pd-info-card"><div class="pd-info-label">الستايل</div><div class="pd-info-value">' + style + '</div></div>';
+    if (loc)   infoCards += '<div class="pd-info-card"><div class="pd-info-label">الموقع</div><div class="pd-info-value">' + loc + '</div></div>';
+    if (project.area)  infoCards += '<div class="pd-info-card"><div class="pd-info-label">المساحة</div><div class="pd-info-value">' + project.area + ' م²</div></div>';
+    if (project.year)  infoCards += '<div class="pd-info-card"><div class="pd-info-label">السنة</div><div class="pd-info-value">' + project.year + '</div></div>';
+
+    /* Build nav buttons */
+    var navHTML = '<div class="pd-nav-row">';
+    if (nextProj) {
+      navHTML += '<a class="pd-nav-btn pd-nav-next" href="project-detail.html?id=' + encodeURIComponent(nextProj.id) + '">' +
+                 '← <span class="pd-nav-title">' + (nextProj.name_ar || 'التالي') + '</span></a>';
+    } else { navHTML += '<span></span>'; }
+    if (prevProj) {
+      navHTML += '<a class="pd-nav-btn pd-nav-prev" href="project-detail.html?id=' + encodeURIComponent(prevProj.id) + '">' +
+                 '<span class="pd-nav-title">' + (prevProj.name_ar || 'السابق') + '</span> →</a>';
+    } else { navHTML += '<span></span>'; }
+    navHTML += '</div>';
+
+    var mainEl = document.getElementById('pd-main');
+    mainEl.innerHTML =
+      /* Hero */
+      '<div class="pd-hero">' +
+        '<img class="pd-hero-img" id="pd-hero-img" src="' + pdImages[0].url + '" alt="' + (project.name_ar||'') + '" onclick="pdLbOpen(0)" style="cursor:zoom-in" />' +
+        '<div class="pd-hero-overlay"></div>' +
+        '<div class="pd-hero-text">' +
+          '<h1>' + (project.name_ar || '') + '</h1>' +
+          '<div class="pd-meta-row">' +
+            (cat   ? '<span class="pd-badge">' + cat + '</span>'   : '') +
+            (style ? '<span class="pd-badge">' + style + '</span>' : '') +
+            (loc   ? '<span class="pd-loc">📍 ' + loc + '</span>'  : '') +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      /* Content */
+      '<div class="container" style="padding-top:2rem">' +
+        (pdImages.length > 1 ? thumbsHTML : '') +
+        (infoCards ? '<div class="pd-info-grid">' + infoCards + '</div>' : '') +
+        (desc ? '<div class="pd-desc">' + desc + '</div>' : '') +
+        '<div class="pd-nav-back">' +
+          '<a href="portfolio.html" class="btn-outline-gold">← العودة إلى المعرض</a>' +
+        '</div>' +
+        navHTML +
+      '</div>';
+
+    /* Reveal lazy */
+    setTimeout(function() {
+      document.querySelectorAll('.lazy-reveal').forEach(function(el){ el.classList.add('revealed'); });
+    }, 80);
+  }
+
+  /* Thumb click: update hero + lightbox */
+  window.pdThumbClick = function(idx) {
+    pdCurrent = idx;
+    var heroImg = document.getElementById('pd-hero-img');
+    if (heroImg) {
+      heroImg.src = (pdImages[idx] || {}).url || '';
+    }
+    document.querySelectorAll('.pd-thumb-item').forEach(function(t,i){ t.classList.toggle('active', i === idx); });
+    pdLbOpen(idx);
+  };
+
+  /* ── Init ── */
+  async function init() {
+    var projectId = new URLSearchParams(window.location.search).get('id');
+    var mainEl    = document.getElementById('pd-main');
+
+    if (!projectId) {
+      mainEl.innerHTML = '<div class="pd-not-found container"><h2>لم يُحدد مشروع</h2><p><a href="portfolio.html" class="btn-outline-gold">← العودة للمعرض</a></p></div>';
+      return;
+    }
+
+    /* Show skeleton while loading */
+    mainEl.innerHTML = '<div class="pd-skeleton-hero"></div>';
+
+    /* Fetch all projects */
+    if (window.C3D_STATIC_MODE || !window.c3dClient) {
+      allProjects = STATIC_PROJECTS;
+    } else {
+      var res = await window.c3dFetchProjects({ limit: 500 });
+      allProjects = (res.error || !res.data || !res.data.length) ? STATIC_PROJECTS : res.data;
+    }
+
+    var project = allProjects.find(function(p){ return String(p.id) === String(projectId); });
+
+    if (!project) {
+      mainEl.innerHTML = '<div class="pd-not-found container">' +
+        '<h2>المشروع غير موجود</h2>' +
+        '<p style="color:var(--text-muted);margin-bottom:1.5rem;">ربما تم حذف المشروع أو الرابط غير صحيح</p>' +
+        '<a href="portfolio.html" class="btn-outline-gold">← العودة للمعرض</a>' +
+        '</div>';
+      return;
+    }
+
+    /* Fetch images from Supabase */
+    var images = [];
+    if (window.c3dClient && !String(projectId).startsWith('s')) {
+      try {
+        var imgRes = await window.c3dClient
+          .from('project_images')
+          .select('image_url, sort_order')
+          .eq('project_id', projectId)
+          .order('sort_order', { ascending: true });
+        if (!imgRes.error && imgRes.data && imgRes.data.length) {
+          images = imgRes.data.map(function(r){ return { url: r.image_url, caption: project.name_ar || '' }; });
+        }
+      } catch(e) { console.warn('[C3D Detail] fetch images error:', e); }
+    }
+
+    /* Prev/Next */
+    var idx  = allProjects.findIndex(function(p){ return String(p.id) === String(projectId); });
+    var prev = idx > 0                        ? allProjects[idx - 1] : null;
+    var next = idx < allProjects.length - 1   ? allProjects[idx + 1] : null;
+
+    renderDetail(project, images, prev, next);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 80);
+  }
+
+})();
+</script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
