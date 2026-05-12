@@ -11,22 +11,25 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/mobile.css" />
   <style>
+    /* ── Skeleton ── */
     .port-skeleton {
       background: var(--black-card);
       border: 1px solid var(--gray-border);
       aspect-ratio: 4/3;
       position: relative;
       overflow: hidden;
+      border-radius: 4px;
     }
     .port-skeleton::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg,transparent 25%,rgba(184,151,106,.06) 50%,transparent 75%);
+      background: linear-gradient(90deg,transparent 25%,rgba(184,151,106,.07) 50%,transparent 75%);
       background-size: 200% 100%;
-      animation: portShimmer 1.6s infinite;
+      animation: portShimmer 1.5s infinite;
     }
     @keyframes portShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
     .portfolio-load-msg {
       grid-column: 1 / -1;
       text-align: center;
@@ -34,8 +37,70 @@
       color: var(--text-muted);
       font-size: .9rem;
     }
-    .portfolio-load-msg svg { margin: 0 auto 1rem; opacity: .3; }
 
+    /* ── Search bar ── */
+    .portfolio-search-wrap {
+      margin-bottom: 1rem;
+      position: relative;
+      max-width: 460px;
+    }
+    .portfolio-search-wrap svg {
+      position: absolute;
+      top: 50%;
+      right: .85rem;
+      transform: translateY(-50%);
+      opacity: .35;
+      pointer-events: none;
+    }
+    #portfolioSearch {
+      width: 100%;
+      background: var(--black-card);
+      border: 1px solid var(--gray-border);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: .88rem;
+      padding: .62rem 2.6rem .62rem 1rem;
+      border-radius: 8px;
+      transition: border-color .2s;
+      direction: rtl;
+    }
+    #portfolioSearch::placeholder { color: var(--text-muted); }
+    #portfolioSearch:focus { outline: none; border-color: rgba(184,151,106,.55); }
+
+    /* ── Style filter ── */
+    .style-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 1.1rem;
+    }
+    .style-btn {
+      background: transparent;
+      border: 1px solid var(--gray-border);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: .76rem;
+      font-weight: 600;
+      padding: .28rem .7rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .02em;
+    }
+    .style-btn:hover { border-color: rgba(184,151,106,.4); color: var(--text-secondary); }
+    .style-btn.active { background: rgba(184,151,106,.12); border-color: #B8976A; color: #B8976A; }
+
+    /* ── Result count ── */
+    .result-count {
+      font-size: .78rem;
+      color: var(--text-muted);
+      margin-bottom: .6rem;
+      min-height: 1.2em;
+      letter-spacing: .01em;
+    }
+    .result-count strong { color: #B8976A; }
+
+    /* ── Lightbox ── */
     #lb-overlay {
       display: none;
       position: fixed;
@@ -52,25 +117,26 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: .75rem 1.25rem;
+      gap: .55rem;
+      padding: .7rem 1.1rem;
       border-bottom: 1px solid rgba(184,151,106,.15);
       flex-shrink: 0;
     }
     .lb-title {
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 700;
       color: #e8e4dc;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 70%;
+      flex: 1;
     }
     .lb-counter {
-      font-size: .8rem;
+      font-size: .78rem;
       color: #B8976A;
       font-weight: 600;
       letter-spacing: .06em;
+      flex-shrink: 0;
     }
     .lb-close {
       background: rgba(184,151,106,.12);
@@ -93,19 +159,34 @@
       border: 1px solid rgba(184,151,106,.4);
       color: #B8976A;
       border-radius: 6px;
-      padding: .35rem .75rem;
-      font-size: .75rem;
+      padding: .32rem .7rem;
+      font-size: .73rem;
       font-weight: 600;
       cursor: pointer;
       transition: background .2s, border-color .2s, color .2s;
       white-space: nowrap;
       flex-shrink: 0;
       display: none;
-      gap: .3rem;
       align-items: center;
     }
     #lb-set-main:hover { background: rgba(184,151,106,.28); border-color: #B8976A; color: #e8e4dc; }
     #lb-set-main.success { background: rgba(60,180,80,.18); border-color: rgba(60,180,80,.5); color: #7effa0; pointer-events: none; }
+
+    #lb-detail-link {
+      background: transparent;
+      border: 1px solid rgba(184,151,106,.28);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: .32rem .7rem;
+      font-size: .73rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: border-color .2s, color .2s;
+      line-height: 1.4;
+    }
+    #lb-detail-link:hover { border-color: #B8976A; color: #B8976A; }
 
     /* Toast */
     #lb-toast {
@@ -162,7 +243,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background .2s, opacity .2s;
+      transition: background .2s;
       z-index: 2;
       font-size: 1.5rem;
     }
@@ -230,7 +311,7 @@
 </head>
 <body>
 <div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
-<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="PortFolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
+<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
     <div class="nav-page-switcher">
       <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
         <option value="">الصفحات</option>
@@ -252,14 +333,38 @@
 
 <section class="portfolio-section section-padding">
   <div class="container">
+
+    <!-- Category Filter -->
     <div class="portfolio-filter lazy-reveal" id="portfolioFilter">
       <button class="filter-btn active" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
       <button class="filter-btn"        data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
       <button class="filter-btn"        data-cat="interior-com" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</button>
-      <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارا֪"      data-en="Villas & Buildings">فيلات وعمارات</button>
-      <button class="filter-btn"        data-cat="hospitality"  data-ar="فمادق"              data-en="Hotels">فمادق</button>
+      <button class="filter-btn"        data-cat="villa"        data-ar="فيلا֪ وعمارا֪"      data-en="Villas & Buildings">فيلات وعمارات</button>
+      <button class="filter-btn"        data-cat="hospitality"  data-ar="فنادق"              data-en="Hotels">فنادق</button>
       <button class="filter-btn"        data-cat="commercial"   data-ar="تجاري وإداري"       data-en="Commercial & Admin">تجاري وإداري</button>
     </div>
+
+    <!-- Style Filter -->
+    <div class="style-filter lazy-reveal" id="styleFilter">
+      <button class="style-btn active" data-style="all">الكل</button>
+      <button class="style-btn" data-style="modern">مودرن</button>
+      <button class="style-btn" data-style="neoclassic">نيوكلاسيك</button>
+      <button class="style-btn" data-style="classic">كلاسيك</button>
+      <button class="style-btn" data-style="contemporary">كونتمبوراري</button>
+      <button class="style-btn" data-style="luxury">لوكس</button>
+      <button class="style-btn" data-style="minimal">ميني</button>
+    </div>
+
+    <!-- Search -->
+    <div class="portfolio-search-wrap lazy-reveal">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="portfolioSearch" placeholder="ابحث باسم المشروع أو الموقع..." autocomplete="off" />
+    </div>
+
+    <!-- Result count -->
+    <div class="result-count" id="resultCount"></div>
+
+    <!-- Grid -->
     <div class="portfolio-grid" id="portfolioGrid">
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
@@ -267,7 +372,11 @@
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
+      <div class="port-skeleton lazy-reveal"></div>
     </div>
+
     <div class="load-more-wrap lazy-reveal" id="loadMoreWrap" style="text-align:center;margin-top:2rem;display:none">
       <button class="btn-outline-gold" id="loadMoreBtn" onclick="loadMore()">عرض المزيد</button>
     </div>
@@ -283,6 +392,7 @@
   <div class="lb-header">
     <button class="lb-close" id="lb-close" onclick="lbClose()" aria-label="اغلاق">&#10005;</button>
     <button id="lb-set-main" aria-label="تعيين كصورة رئيسية">📌 تعيين رئيسية</button>
+    <a id="lb-detail-link" href="#" aria-label="عرض تفاصيل المشروع">↗ تفاصيل</a>
     <span class="lb-title" id="lb-title"></span>
     <span class="lb-counter" id="lb-counter"></span>
   </div>
@@ -333,7 +443,7 @@
 
   var STATIC_PROJECTS = [
     { id:'s13', name_ar:'فيلا الشيخ زايد الداخلية',    category:'interior-res', style:'luxury',       location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
-    { id:'s14', name_ar:'شقة الفاهرة الجديدة الداخلية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
+    { id:'s14', name_ar:'شقة القاهرة الجديدة الداخلية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
     { id:'s1',  name_ar:'شقة المهندسين الفاخرة',        category:'interior-res', style:'modern',       location_ar:'المهندسين، القاهرة',     image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80' },
     { id:'s2',  name_ar:'شقة التجمع الخامس',            category:'interior-res', style:'modern',       location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
     { id:'s3',  name_ar:'شقة الزمالك الفاخرة',          category:'interior-res', style:'classic',      location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80' },
@@ -352,16 +462,43 @@
 
   var allProjects    = [];
   var activeCat      = 'all';
+  var activeStyle    = 'all';
+  var searchQuery    = '';
   var PAGE_SIZE      = 9;
   var displayedCount = PAGE_SIZE;
+  var searchTimer    = null;
+
+  /* ── Combined filter ── */
+  function getFiltered() {
+    var q = searchQuery.trim().toLowerCase();
+    return allProjects.filter(function(p) {
+      var matchCat   = activeCat   === 'all' || p.category === activeCat;
+      var matchStyle = activeStyle === 'all' || p.style    === activeStyle;
+      var matchQ     = !q || (p.name_ar     || '').toLowerCase().indexOf(q) !== -1
+                          || (p.location_ar || '').toLowerCase().indexOf(q) !== -1
+                          || (p.name_en     || '').toLowerCase().indexOf(q) !== -1;
+      return matchCat && matchStyle && matchQ;
+    });
+  }
 
   function renderProjects(projects) {
-    var grid    = document.getElementById('portfolioGrid');
-    var wrap    = document.getElementById('loadMoreWrap');
-    var toShow  = activeCat === 'all' ? projects : projects.filter(function(p){ return p.category === activeCat; });
+    var grid  = document.getElementById('portfolioGrid');
+    var wrap  = document.getElementById('loadMoreWrap');
+    var count = document.getElementById('resultCount');
+    var toShow = getFiltered();
+
+    /* Result count */
+    if (count) {
+      var total = projects.length;
+      if (toShow.length === total) {
+        count.innerHTML = 'إجمالي <strong>' + total + '</strong> مشروع';
+      } else {
+        count.innerHTML = 'يعرض <strong>' + toShow.length + '</strong> من <strong>' + total + '</strong> مشروع';
+      }
+    }
 
     if (!toShow.length) {
-      grid.innerHTML = '<div class="portfolio-load-msg"><p>لا توجد مشاريع في هذا التصنيف حالياً</p></div>';
+      grid.innerHTML = '<div class="portfolio-load-msg"><p>لا توجد مشاريع تطابق بحثك — جرب تغيير الفلتر أو كلمة البحث</p></div>';
       if (wrap) wrap.style.display = 'none';
       return;
     }
@@ -375,14 +512,14 @@
       var loc  = p.location_ar || '';
       var cat  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
       var sty  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : p.style;
-      return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's" ' +
+      return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's"' +
              ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
              '<div class="port-card">' +
              '<img src="' + img + '" alt="' + alt + '" loading="lazy" class="port-img"' +
              ' onerror="this.src=\'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80\'" />' +
              '<div class="port-overlay"><div class="port-info">' +
              '<h3 class="port-name">' + name + '</h3>' +
-             '<p class="port-meta">' + cat + (sty?'· '+sty:'') + (loc?' · '+loc:'') + '</p>' +
+             '<p class="port-meta">' + cat + (sty?' · '+sty:'') + (loc?' · '+loc:'') + '</p>' +
              '</div></div></div></div>';
     }).join('');
 
@@ -396,6 +533,7 @@
     renderProjects(allProjects);
   };
 
+  /* ── Category filter ── */
   document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(b){ b.classList.remove('active'); });
@@ -406,12 +544,35 @@
     });
   });
 
+  /* ── Style filter ── */
+  document.querySelectorAll('#styleFilter .style-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#styleFilter .style-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeStyle    = btn.dataset.style || 'all';
+      displayedCount = PAGE_SIZE;
+      renderProjects(allProjects);
+    });
+  });
+
+  /* ── Search ── */
+  var searchEl = document.getElementById('portfolioSearch');
+  if (searchEl) {
+    searchEl.addEventListener('input', function() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function() {
+        searchQuery    = searchEl.value;
+        displayedCount = PAGE_SIZE;
+        renderProjects(allProjects);
+      }, 220);
+    });
+  }
+
   /* ── Lightbox ── */
   var lbImages           = [];
   var lbCurrent          = 0;
   var lbCurrentProjectId = null;
 
-  /* Toast helper */
   function lbToast(msg, ok) {
     var el = document.getElementById('lb-toast');
     if (!el) return;
@@ -437,7 +598,11 @@
     lbCurrent          = 0;
     lbCurrentProjectId = projectId;
 
-    /* Show set-main button only for real Supabase projects */
+    /* Detail link */
+    var detailLink = document.getElementById('lb-detail-link');
+    if (detailLink) detailLink.href = 'project-detail.html?id=' + encodeURIComponent(projectId);
+
+    /* Set-main button: only for real Supabase projects */
     var setMainBtn = document.getElementById('lb-set-main');
     var isSupabase = window.c3dClient && !String(projectId).startsWith('s');
     setMainBtn.style.display = isSupabase ? 'inline-flex' : 'none';
@@ -469,161 +634,4 @@
           console.info('[C3D Lightbox] project_images empty for project:', projectId, '— falling back to main image_url');
         }
       } catch(e) {
-        console.warn('[C3D Lightbox] exception fetching project_images:', e);
-      }
-    }
-
-    if (!lbImages.length) {
-      lbImages = [{ url: project.image_url || '', caption: project.name_ar || '' }];
-    }
-
-    lbShowImage(0);
-    lbBuildThumbs();
-    lbUpdateNav();
-  };
-
-  function lbShowImage(idx) {
-    lbCurrent = Math.max(0, Math.min(idx, lbImages.length - 1));
-    var mainImg = document.getElementById('lb-main-img');
-    var spinner = document.getElementById('lb-spinner');
-    var counter = document.getElementById('lb-counter');
-
-    counter.textContent = lbImages.length > 1 ? (lbCurrent+1) + ' / ' + lbImages.length : '';
-    spinner.style.display = 'flex';
-    mainImg.classList.add('loading');
-
-    var src = (lbImages[lbCurrent] || {}).url || '';
-    if (!src) { spinner.style.display = 'none'; return; }
-
-    var tmp = new Image();
-    tmp.onload = function() {
-      mainImg.src = src;
-      mainImg.alt = (lbImages[lbCurrent] || {}).caption || '';
-      mainImg.classList.remove('loading');
-      spinner.style.display = 'none';
-    };
-    tmp.onerror = function() { mainImg.classList.remove('loading'); spinner.style.display = 'none'; };
-    tmp.src = src;
-
-    document.querySelectorAll('.lb-thumb').forEach(function(t,i){ t.classList.toggle('active', i === lbCurrent); });
-    lbUpdateNav();
-  }
-
-  function lbBuildThumbs() {
-    var wrap = document.getElementById('lb-thumbs');
-    if (lbImages.length <= 1) { wrap.innerHTML = ''; return; }
-    wrap.innerHTML = lbImages.map(function(img,i){
-      return '<img class="lb-thumb' + (i===0?' active':'') + '" src="' + img.url + '" alt="' + (img.caption||'') + '" onclick="lbShowImage(' + i + ')" loading="lazy" />';
-    }).join('');
-  }
-
-  function lbUpdateNav() {
-    var show = lbImages.length > 1 ? 'flex' : 'none';
-    document.getElementById('lb-prev').style.display = show;
-    document.getElementById('lb-next').style.display = show;
-  }
-
-  window.lbStep = function(dir) { lbShowImage(lbCurrent + dir); };
-
-  window.lbClose = function() {
-    document.getElementById('lb-overlay').classList.remove('active');
-    document.body.style.overflow = '';
-    document.getElementById('lb-main-img').src = '';
-    lbImages           = [];
-    lbCurrent          = 0;
-    lbCurrentProjectId = null;
-  };
-
-  /* ── Set as main image ── */
-  document.getElementById('lb-set-main').addEventListener('click', async function() {
-    if (!lbCurrentProjectId || !lbImages.length || !window.c3dClient) return;
-    var currentUrl = (lbImages[lbCurrent] || {}).url;
-    if (!currentUrl) return;
-
-    var btn = this;
-    btn.textContent = '⏳ جاري الحفظ...';
-    btn.disabled = true;
-
-    try {
-      var res = await window.c3dClient
-        .from('projects')
-        .update({ image_url: currentUrl })
-        .eq('id', lbCurrentProjectId);
-
-      if (res.error) throw res.error;
-
-      btn.textContent = '✅ تم التعيين';
-      btn.classList.add('success');
-      lbToast('✅ تم تعيين الصورة الرئيسية للمشروع', true);
-
-      /* Update the in-memory project */
-      var proj = allProjects.find(function(p){ return String(p.id) === String(lbCurrentProjectId); });
-      if (proj) proj.image_url = currentUrl;
-
-      /* Update the card image in the grid immediately — no page reload needed */
-      var card = document.querySelector('.port-item[data-pid="' + lbCurrentProjectId + '"]');
-      if (card) {
-        var cardImg = card.querySelector('.port-img');
-        if (cardImg) cardImg.src = currentUrl;
-      }
-
-    } catch(err) {
-      btn.textContent = '📌 تعيين رئيسية';
-      btn.disabled = false;
-      lbToast('❌ حدث خطأ، حاول مرة أخرى', false);
-      console.error('set-main error:', err);
-    }
-  });
-
-  document.getElementById('lb-overlay').addEventListener('click', function(e) {
-    if (e.target === this) lbClose();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (!document.getElementById('lb-overlay').classList.contains('active')) return;
-    if (e.key === 'Escape')     lbClose();
-    if (e.key === 'ArrowRight') lbStep(+1);
-    if (e.key === 'ArrowLeft')  lbStep(-1);
-  });
-
-  var touchStartX = 0;
-  var stage = document.getElementById('lb-stage');
-  stage.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, { passive: true });
-  stage.addEventListener('touchend', function(e) {
-    var diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) lbStep(diff > 0 ? -1 : +1);
-  }, { passive: true });
-
-  async function init() {
-    // Read ?cat param from URL (set by index.html filter buttons)
-    var urlCat = new URLSearchParams(window.location.search).get('cat');
-    if (urlCat) {
-      activeCat = urlCat;
-      document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(b) {
-        b.classList.toggle('active', b.dataset.cat === urlCat);
-      });
-    }
-
-    var grid = document.getElementById('portfolioGrid');
-    if (window.C3D_STATIC_MODE || !window.c3dClient) {
-      allProjects = STATIC_PROJECTS;
-      renderProjects(allProjects);
-      return;
-    }
-    grid.innerHTML = '<div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div><div class="port-skeleton"></div>';
-    var res = await window.c3dFetchProjects({ limit: 500 });
-    allProjects = (res.error || !res.data || !res.data.length) ? STATIC_PROJECTS : res.data;
-    renderProjects(allProjects);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    setTimeout(init, 100);
-  }
-
-})();
-</script>
-<script src="js/main.js" defer></script>
-</body>
-</html>
+        console.warn('[C3D L
