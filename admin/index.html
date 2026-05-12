@@ -957,1098 +957,584 @@ img{max-width:100%;display:block}
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 
 <script>
-'use strict';
+/* ======================================================
+   Creative3Design â Admin Panel Script (Clean Rebuild)
+====================================================== */
+let currentUser = null;
+let settingsLoaded = false, aboutLoaded = false;
+let servicesLoaded = false, compoundsLoaded = false, baLoaded = false;
+let allHeroSlides = [], logoUrl = '';
 
+/* ââ Utilities ââ */
+function showToast(msg, type) {
+  type = type || 'success';
+  const t = document.createElement('div');
+  t.className = 'toast toast-' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 3000);
+}
 
-/* ══════════════════════════════════════════════════
-   SITE SETTINGS MANAGER
-══════════════════════════════════════════════════ */
-let settingsLoaded = false;
-let logoWidget = null;
+function escHtml(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 
 function updateLogoPreview(url) {
-  const wrap = document.getElementById('logoPreviewWrap');
+  var wrap = document.getElementById('logoPreview');
   if (!wrap) return;
-  if (url) {
-    wrap.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:contain;padding:.5rem" onerror="this.style.display='none'" />';
-  } else {
-    wrap.innerHTML = 'لا يوجد شعار';
-  }
+  if (!url) { wrap.innerHTML = ''; return; }
+  var img = document.createElement('img');
+  img.src = url;
+  img.style.cssText = 'width:100%;height:100%;object-fit:contain;padding:.5rem';
+  img.onerror = function() { this.style.display = 'none'; };
+  wrap.innerHTML = '';
+  wrap.appendChild(img);
 }
 
-function openLogoWidget() {
-  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
-  if (!logoWidget) {
-    logoWidget = window.cloudinary.createUploadWidget(
-      { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'site_settings', resourceType: 'image', multiple: false },
-      (err, res) => {
-        if (err) return;
-        if (res.event === 'success') {
-          const url = res.info.secure_url;
-          const inp = document.getElementById('s-logo_url');
-          if (inp) inp.value = url;
-          updateLogoPreview(url);
-        }
-      }
-    );
-  }
-  logoWidget.open();
-}
-
-function loadSettings() {
-  if (!window.c3dClient) return;
-  window.c3dClient.from('site_settings').select('*').limit(1).then(({ data, error }) => {
-    if (error || !data || !data.length) return;
-    const s = data[0];
-    ['logo_url','whatsapp','email','name_ar','name_en'].forEach(k => {
-      const el = document.getElementById('s-' + k);
-      if (el && s[k]) el.value = s[k];
-    });
-    if (s.logo_url) updateLogoPreview(s.logo_url);
-    settingsLoaded = true;
-  });
-}
-
-async function saveSettings() {
-  if (!window.c3dClient) return;
-  const row = {};
-  ['logo_url','whatsapp','email','name_ar','name_en'].forEach(k => {
-    const el = document.getElementById('s-' + k);
-    if (el) row[k] = el.value.trim();
-  });
-  const { error } = await window.c3dClient.from('site_settings').upsert({ id: 1, ...row }, { onConflict: 'id' });
-  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-  showToast('تم حفظ الإعدادات', 'success');
-}
-
-/* ══════════════════════════════════════════════════
-   ABOUT IMAGES MANAGER
-══════════════════════════════════════════════════ */
-let aboutLoaded = false;
-let aboutData = { main: null, small: null };
-let aboutWidgets = {};
-
-function openAboutWidget(slot) {
-  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
-  if (!aboutWidgets[slot]) {
-    aboutWidgets[slot] = window.cloudinary.createUploadWidget(
-      { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'about_section', resourceType: 'image', multiple: false },
-      (err, res) => {
-        if (err) return;
-        if (res.event === 'success') {
-          aboutData[slot] = res.info.secure_url;
-          renderAboutPreview(slot, aboutData[slot]);
-        }
-      }
-    );
-  }
-  aboutWidgets[slot].open();
-}
-
-function clearAboutSlot(slot) {
-  aboutData[slot] = null;
-  renderAboutPreview(slot, null);
-}
-
-function renderAboutPreview(slot, url) {
-  const slotEl = document.getElementById('about-' + slot + '-slot');
-  const prevEl = document.getElementById('about-' + slot + '-preview');
-  const imgEl  = document.getElementById('about-' + slot + '-img');
-  if (!slotEl || !prevEl || !imgEl) return;
-  if (url) {
-    slotEl.style.display = 'none';
-    prevEl.style.display = '';
-    imgEl.src = url;
-  } else {
-    slotEl.style.display = '';
-    prevEl.style.display = 'none';
-    imgEl.src = '';
-  }
-}
-
-function loadAboutImages() {
-  if (!window.c3dClient) return;
-  window.c3dClient.from('about_images').select('*').limit(1).then(({ data, error }) => {
-    if (error || !data || !data.length) return;
-    const r = data[0];
-    if (r.main_image_url) { aboutData.main = r.main_image_url; renderAboutPreview('main', r.main_image_url); }
-    if (r.small_image_url) { aboutData.small = r.small_image_url; renderAboutPreview('small', r.small_image_url); }
-    aboutLoaded = true;
-  });
-}
-
-async function saveAboutImages() {
-  if (!window.c3dClient) return;
-  const row = { id: 1 };
-  if (aboutData.main) row.main_image_url = aboutData.main;
-  if (aboutData.small) row.small_image_url = aboutData.small;
-  const { error } = await window.c3dClient.from('about_images').upsert(row, { onConflict: 'id' });
-  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-  showToast('تم حفظ صور قسم عن الشركة', 'success');
-}
-
-/* ══════════════════════════════════════════════════
-   SERVICES IMAGES MANAGER
-══════════════════════════════════════════════════ */
-let servicesLoaded = false;
-let allServices = [];
-let serviceWidgets = {};
-
-const SERVICE_NAMES = {
-  residential: 'سكني', commercial: 'تجاري', villa: 'فيلات',
-  hospitality: 'ضيافة', office: 'مكاتب', interior: 'داخلي'
-};
-
-function loadServicesImages() {
-  if (!window.c3dClient) return;
-  const grid = document.getElementById('servicesGrid');
-  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
-  window.c3dClient.from('services_images').select('*').order('sort_order').then(({ data, error }) => {
-    if (error) { showToast('خطأ في التحميل', 'error'); return; }
-    allServices = data || [];
-    renderServicesGrid();
-    servicesLoaded = true;
-  });
-}
-
-function renderServicesGrid() {
-  const grid = document.getElementById('servicesGrid');
-  if (!grid) return;
-  if (!allServices.length) {
-    grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">لا توجد خدمات. أضف خدمات من قاعدة البيانات.</div>';
-    return;
-  }
-  grid.innerHTML = allServices.map(s => {
-    const hasImg = !!s.image_url;
-    return '<div class="service-admin-card">' +
-      '<div class="service-img-area" onclick="openServiceWidget(' + s.id + ')">' +
-        (hasImg ? '<img src="' + s.image_url + '" alt="" onerror="this.style.display='none'" />' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="opacity:.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>') +
-        '<div class="img-preview-overlay"><button class="btn btn-sm btn-outline">تغيير الصورة</button></div>' +
-      '</div>' +
-      '<div class="service-card-body">' + (SERVICE_NAMES[s.service_key] || s.service_key) + '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function openServiceWidget(serviceId) {
-  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
-  const w = window.cloudinary.createUploadWidget(
-    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'services', resourceType: 'image', multiple: false },
-    async (err, res) => {
-      if (err) return;
-      if (res.event === 'success') {
-        const url = res.info.secure_url;
-        const { error } = await window.c3dClient.from('services_images').update({ image_url: url }).eq('id', serviceId);
-        if (error) { showToast('خطأ في الحفظ', 'error'); return; }
-        showToast('تم تحديث صورة الخدمة', 'success');
-        loadServicesImages();
-      }
-    }
-  );
-  w.open();
-}
-
-/* ══════════════════════════════════════════════════
-   COMPOUNDS MANAGER
-══════════════════════════════════════════════════ */
-let compoundsLoaded = false;
-let allCompounds = [];
-
-function loadCompounds() {
-  if (!window.c3dClient) return;
-  const grid = document.getElementById('compoundsGrid');
-  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
-  window.c3dClient.from('compounds').select('*').order('sort_order').then(({ data, error }) => {
-    if (error) { showToast('خطأ في التحميل', 'error'); return; }
-    allCompounds = data || [];
-    renderCompoundsGrid();
-    compoundsLoaded = true;
-  });
-}
-
-function renderCompoundsGrid() {
-  const grid = document.getElementById('compoundsGrid');
-  if (!grid) return;
-  const addCard = '<div class="compound-card" style="cursor:pointer;border:2px dashed var(--border);align-items:center;justify-content:center;min-height:160px" onclick="addCompound()">' +
-    '<div style="display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-dim);padding:2rem">' +
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
-    '<span style="font-size:.8rem">إضافة كمباوند</span></div></div>';
-  if (!allCompounds.length) { grid.innerHTML = addCard; return; }
-  grid.innerHTML = allCompounds.map(c => {
-    const hasLogo = !!c.logo_url;
-    return '<div class="compound-card" id="ccard-' + c.id + '">' +
-      '<div class="compound-logo-area" onclick="openCompoundWidget('' + c.id + '')">' +
-        (hasLogo
-          ? '<img src="' + c.logo_url + '" alt="' + (c.name || '') + '" onerror="this.style.display='none'" />'
-          : '<div class="compound-logo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>انقر لرفع الشعار</span></div>') +
-      '</div>' +
-      '<div class="compound-card-body">' +
-        '<input type="text" value="' + (c.name || '') + '" placeholder="اسم الكمباوند..." class="field-input" style="background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:.35rem .5rem;color:var(--text);font-family:Cairo,sans-serif;font-size:.85rem;width:100%" onchange="updateCompoundName('' + c.id + '',this.value)" />' +
-      '</div>' +
-      '<div class="compound-card-actions">' +
-        '<button class="btn btn-sm btn-outline" onclick="openCompoundWidget('' + c.id + '')">&#x1F5BC; شعار</button>' +
-        '<button class="btn btn-sm btn-danger" onclick="deleteCompound('' + c.id + '')">&#x1F5D1;</button>' +
-      '</div>' +
-    '</div>';
-  }).join('') + addCard;
-}
-
-function addCompound() {
-  if (!window.c3dClient) return;
-  window.c3dClient.from('compounds').insert({ name: 'كمباوند جديد', sort_order: allCompounds.length + 1 }).select().then(({ data, error }) => {
-    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-    allCompounds.push(data[0]);
-    renderCompoundsGrid();
-  });
-}
-
-async function updateCompoundName(id, name) {
-  if (!window.c3dClient) return;
-  await window.c3dClient.from('compounds').update({ name }).eq('id', id);
-}
-
-function openCompoundWidget(id) {
-  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
-  const w = window.cloudinary.createUploadWidget(
-    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'compounds', resourceType: 'image', multiple: false },
-    async (err, res) => {
-      if (err) return;
-      if (res.event === 'success') {
-        const url = res.info.secure_url;
-        await window.c3dClient.from('compounds').update({ logo_url: url }).eq('id', id);
-        showToast('تم تحديث الشعار', 'success');
-        loadCompounds();
-      }
-    }
-  );
-  w.open();
-}
-
-async function deleteCompound(id) {
-  if (!confirm('حذف هذا الكمباوند؟')) return;
-  await window.c3dClient.from('compounds').delete().eq('id', id);
-  allCompounds = allCompounds.filter(c => String(c.id) !== String(id));
-  renderCompoundsGrid();
-  showToast('تم الحذف', 'success');
-}
-
-/* ══════════════════════════════════════════════════
-   BEFORE/AFTER MANAGER
-══════════════════════════════════════════════════ */
-let baLoaded = false;
-let allBAItems = [];
-
-function loadBAItems() {
-  if (!window.c3dClient) return;
-  const grid = document.getElementById('baGrid');
-  if (grid) grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem">جارٍ التحميل...</div>';
-  window.c3dClient.from('before_after').select('*').order('sort_order').then(({ data, error }) => {
-    if (error) { showToast('خطأ في التحميل', 'error'); return; }
-    allBAItems = data || [];
-    renderBAGrid();
-    baLoaded = true;
-  });
-}
-
-function renderBAGrid() {
-  const grid = document.getElementById('baGrid');
-  if (!grid) return;
-  const addCard = '<div class="ba-card" style="cursor:pointer;border:2px dashed var(--border);align-items:center;justify-content:center;min-height:180px" onclick="addBAItem()">' +
-    '<div style="display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-dim);padding:2rem">' +
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
-    '<span style="font-size:.8rem">إضافة مجموعة قبل/بعد</span></div></div>';
-  if (!allBAItems.length) { grid.innerHTML = addCard; return; }
-  grid.innerHTML = allBAItems.map(item => {
-    return '<div class="ba-card">' +
-      '<div class="ba-card-imgs">' +
-        '<div class="ba-img-slot" onclick="openBAWidget('' + item.id + '','before')">' +
-          (item.before_url ? '<img src="' + item.before_url + '" alt="" onerror="this.style.display='none'" />' : '<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>قبل</span></div>') +
-          '<div class="ba-slot-label">قبل</div>' +
-        '</div>' +
-        '<div class="ba-img-slot" onclick="openBAWidget('' + item.id + '','after')">' +
-          (item.after_url ? '<img src="' + item.after_url + '" alt="" onerror="this.style.display='none'" />' : '<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>بعد</span></div>') +
-          '<div class="ba-slot-label">بعد</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="ba-card-body">' +
-        '<input type="text" value="' + (item.title_ar || '') + '" placeholder="عنوان المشروع..." style="background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:.35rem .5rem;color:var(--text);font-family:Cairo,sans-serif;font-size:.85rem;width:100%" onchange="updateBATitle('' + item.id + '',this.value)" />' +
-      '</div>' +
-      '<div class="ba-card-actions">' +
-        '<button class="btn btn-sm btn-danger" onclick="deleteBAItem('' + item.id + '')">&#x1F5D1; حذف</button>' +
-      '</div>' +
-    '</div>';
-  }).join('') + addCard;
-}
-
-function addBAItem() {
-  if (!window.c3dClient) return;
-  window.c3dClient.from('before_after').insert({ title_ar: 'مشروع جديد', sort_order: allBAItems.length + 1 }).select().then(({ data, error }) => {
-    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-    allBAItems.push(data[0]);
-    renderBAGrid();
-  });
-}
-
-async function updateBATitle(id, title_ar) {
-  if (!window.c3dClient) return;
-  await window.c3dClient.from('before_after').update({ title_ar }).eq('id', id);
-}
-
-function openBAWidget(id, type) {
-  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
-  const w = window.cloudinary.createUploadWidget(
-    { cloudName: window.C3D_CLOUD_NAME || 'dxhqyuvkk', uploadPreset: window.C3D_UPLOAD_PRESET || 'c3d_unsigned', folder: 'before_after', resourceType: 'image', multiple: false },
-    async (err, res) => {
-      if (err) return;
-      if (res.event === 'success') {
-        const url = res.info.secure_url;
-        const col = type === 'before' ? 'before_url' : 'after_url';
-        await window.c3dClient.from('before_after').update({ [col]: url }).eq('id', id);
-        showToast('تم تحديث الصورة', 'success');
-        loadBAItems();
-      }
-    }
-  );
-  w.open();
-}
-
-async function deleteBAItem(id) {
-  if (!confirm('حذف هذه المجموعة؟')) return;
-  await window.c3dClient.from('before_after').delete().eq('id', id);
-  allBAItems = allBAItems.filter(b => String(b.id) !== String(id));
-  renderBAGrid();
-  showToast('تم الحذف', 'success');
-}
-
-/* ══════════════════════════════════════════════════
-   STATE
-══════════════════════════════════════════════════ */
-let allProjects   = [];
-let editingId     = null;    // null = new, uuid = edit
-let formImageUrl  = '';
-let formCloudId   = '';
-let confirmCb     = null;
-let cloudWidget   = null;
-
-const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب' };
-const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
-
-/* ══════════════════════════════════════════════════
-   AUTH
-══════════════════════════════════════════════════ */
-async function initAuth() {
-
-  /* ── فحص أخطاء الإعداد أولاً ── */
-  const errors = window.C3D_CONFIG_ERRORS || [];
-  if (!window.c3dClient || errors.length) {
-    const overlay = document.getElementById('configErrorOverlay');
-    const list    = document.getElementById('configErrorList');
-    if (overlay && list) {
-      list.innerHTML = errors.map(e =>
-        `<div style="margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.05)">${
-          e.replace(/\n/g,'<br/>')
-        }</div>`
-      ).join('') || '<div>⚠️ لم يتم تهيئة Supabase Client — راجع js/config.js</div>';
-      overlay.style.display = 'flex';
-    }
-    // عرض رسالة في صندوق تسجيل الدخول أيضاً
-    showLoginError('⚠️ راجع إعدادات Supabase في js/config.js — انظر التعليمات أعلاه');
-    return;
-  }
-
-  /* ── التحقق من جلسة موجودة ── */
-  const { data: { session } } = await window.c3dClient.auth.getSession();
-  if (session) {
-    onLogin(session.user);
-  }
-
-  /* ── الاستماع لتغييرات Auth ── */
-  window.c3dClient.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN' && session)  onLogin(session.user);
-    if (event === 'SIGNED_OUT') onLogout();
-  });
-}
-
+/* ââ Auth ââ */
 async function handleLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPass').value;
-  const btn   = document.getElementById('loginBtn');
-  const err   = document.getElementById('loginError');
-
-  if (!email || !pass) { showLoginError('أدخل البريد الإلكتروني وكلمة المرور'); return; }
-  if (!window.c3dClient) { showLoginError('Supabase غير مُهيّأ — راجع js/config.js'); return; }
-
-  btn.disabled = true;
-  btn.textContent = 'جارٍ الدخول...';
-  err.classList.remove('show');
-
-  let result;
+  var email = (document.getElementById('loginEmail') || {}).value || '';
+  var pass  = (document.getElementById('loginPassword') || {}).value || '';
+  if (!email || !pass) { showToast('Ø£Ø¯Ø®Ù Ø§ÙØ¨Ø±ÙØ¯ ÙÙÙÙØ© Ø§ÙÙØ±ÙØ±', 'error'); return; }
+  var btn = document.getElementById('loginBtn');
+  if (btn) btn.disabled = true;
   try {
-    result = await window.c3dClient.auth.signInWithPassword({ email, password: pass });
-  } catch (e) {
-    showLoginError('خطأ في الاتصال بـ Supabase — تحقق من صحة Project URL في js/config.js');
-    btn.disabled = false; btn.textContent = 'دخول'; return;
-  }
-
-  const { error } = result;
-  if (error) {
-    const msg =
-      error.message.includes('Invalid login credentials') ? 'بريد إلكتروني أو كلمة مرور خاطئة' :
-      error.message.includes('Failed to fetch')           ? 'تعذّر الاتصال بـ Supabase — تأكد من صحة Project URL' :
-      error.message.includes('NetworkError')              ? 'خطأ في الشبكة — تحقق من الاتصال بالإنترنت' :
-      error.message;
-    showLoginError(msg);
-    btn.disabled = false;
-    btn.textContent = 'دخول';
+    var res = await window.c3dClient.auth.signInWithPassword({ email: email, password: pass });
+    if (res.error) throw res.error;
+    currentUser = res.data.user;
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('userEmail').textContent = currentUser.email || '';
+    showView('projects');
+  } catch (err) {
+    showToast(err.message || 'Ø®Ø·Ø£ ÙÙ ØªØ³Ø¬ÙÙ Ø§ÙØ¯Ø®ÙÙ', 'error');
+    if (btn) btn.disabled = false;
   }
 }
 
 function handleLogout() {
-  if (window.c3dClient) window.c3dClient.auth.signOut();
-  else onLogout();
-}
-
-function onLogin(user) {
-  document.getElementById('loginScreen').style.display  = 'none';
-  document.getElementById('appShell').style.display     = 'flex';
-  document.getElementById('headerUser').textContent     = user.email;
-  loadProjects();
-  initCloudinaryWidget();
-}
-
-function onLogout() {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('appShell').style.display    = 'none';
-}
-
-function showLoginError(msg) {
-  const el = document.getElementById('loginError');
-  el.textContent = msg;
-  el.classList.add('show');
-}
-
-// Allow Enter key on login form
-document.getElementById('loginPass').addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleLogin();
-});
-
-/* ══════════════════════════════════════════════════
-   LOAD & RENDER PROJECTS
-══════════════════════════════════════════════════ */
-async function loadProjects() {
-  if (!window.c3dClient) return;
-
-  const { data, error } = await window.c3dClient
-    .from('projects')
-    .select('*')
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: false });
-
-  if (error) { showToast('خطأ في تحميل المشاريع: ' + error.message, 'error'); return; }
-
-  allProjects = data || [];
-  updateStats();
-  renderProjects(allProjects);
-}
-
-function renderProjects(projects) {
-  const grid = document.getElementById('projectsGrid');
-  if (!projects.length) {
-    grid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <p>لا توجد مشاريع بعد</p>
-        <button class="btn btn-primary btn-sm" onclick="openModal()">أضف مشروعاً الآن</button>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML = projects.map(p => `
-    <div class="project-card" data-id="${p.id}">
-      <div class="card-img-wrap">
-        ${p.image_url
-          ? `<img src="${p.image_url}" alt="${escHtml(p.image_alt_ar || p.name_ar)}" loading="lazy" />`
-          : `<div class="card-no-img">لا توجد صورة</div>`}
-        <span class="card-badge">${CATEGORY_AR[p.category] || p.category}</span>
-        ${p.status === 'draft' ? '<span class="card-status-draft">مسوّدة</span>' : ''}
-      </div>
-      <div class="card-body">
-        <div class="card-name">${escHtml(p.name_ar)}</div>
-        <div class="card-meta">
-          <span class="card-tag">${STYLE_AR[p.style] || p.style}</span>
-          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">⭐ مميّز</span>' : ''}
-        </div>
-        ${p.location_ar ? `<div class="card-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${escHtml(p.location_ar)}</div>` : ''}
-      </div>
-      <div class="card-actions">
-        <button class="btn btn-outline btn-sm" onclick="openModal('${p.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          تعديل
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}','${escHtml(p.name_ar)}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-          حذف
-        </button>
-      </div>
-    </div>`).join('');
-}
-
-function filterProjects() {
-  const search = document.getElementById('searchInput').value.trim().toLowerCase();
-  const cat    = document.getElementById('catFilter').value;
-  const status = document.getElementById('statusFilter').value;
-
-  const filtered = allProjects.filter(p => {
-    const matchSearch = !search ||
-      p.name_ar.toLowerCase().includes(search) ||
-      (p.name_en || '').toLowerCase().includes(search) ||
-      (p.location_ar || '').toLowerCase().includes(search);
-    const matchCat    = !cat    || p.category === cat;
-    const matchStatus = !status || p.status   === status;
-    return matchSearch && matchCat && matchStatus;
+  window.c3dClient.auth.signOut().then(function() {
+    currentUser = null;
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('loginSection').style.display = 'flex';
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
   });
-  renderProjects(filtered);
 }
 
-function updateStats() {
-  const published = allProjects.filter(p => p.status === 'published');
-  document.getElementById('statTotal').textContent = published.length;
-  document.getElementById('statRes').textContent   = published.filter(p => p.category === 'residential').length;
-  document.getElementById('statCom').textContent   = published.filter(p => p.category === 'commercial').length;
-  document.getElementById('statVil').textContent   = published.filter(p => p.category === 'villa').length;
-  document.getElementById('statDraft').textContent = allProjects.filter(p => p.status === 'draft').length;
-}
-
-/* ══════════════════════════════════════════════════
-   MODAL — Open / Close
-══════════════════════════════════════════════════ */
-function openModal(projectId = null) {
-  editingId = projectId;
-  resetForm();
-
-  if (projectId) {
-    const p = allProjects.find(x => x.id === projectId);
-    if (!p) return;
-    document.getElementById('modalTitle').textContent = 'تعديل المشروع';
-    document.getElementById('saveBtnText').textContent = 'حفظ التعديلات';
-    populateForm(p);
+async function initAuth() {
+  var res = await window.c3dClient.auth.getSession();
+  if (res.data && res.data.session && res.data.session.user) {
+    currentUser = res.data.session.user;
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('userEmail').textContent = currentUser.email || '';
+    showView('projects');
   } else {
-    document.getElementById('modalTitle').textContent = 'مشروع جديد';
-    document.getElementById('saveBtnText').textContent = 'حفظ المشروع';
+    document.getElementById('loginSection').style.display = 'flex';
+    document.getElementById('adminPanel').style.display = 'none';
   }
-  document.getElementById('projectModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+}
+
+/* ââ Navigation ââ */
+function showView(view) {
+  document.querySelectorAll('.view-section').forEach(function(s) { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  var el = document.getElementById(view + 'View');
+  if (el) el.style.display = 'block';
+  var nav = document.querySelector('[data-view="' + view + '"]');
+  if (nav) nav.classList.add('active');
+  if (view === 'projects' && !window.projectsLoaded) loadProjects();
+  if (view === 'settings' && !settingsLoaded) loadSettings();
+  if (view === 'about' && !aboutLoaded) loadAbout();
+  if (view === 'services' && !servicesLoaded) loadServices();
+  if (view === 'compounds' && !compoundsLoaded) loadCompounds();
+  if (view === 'ba' && !baLoaded) loadBAItems();
+  if (view === 'hero') loadHero();
+}
+
+/* ââ Projects ââ */
+window.projectsLoaded = false;
+
+async function loadProjects() {
+  var grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="loading">Ø¬Ø§Ø±Ù Ø§ÙØªØ­ÙÙÙ...</div>';
+  var res = await window.c3dClient.from('projects').select('*').order('created_at', { ascending: false });
+  if (res.error) { grid.innerHTML = '<div class="no-data">Ø®Ø·Ø£ ÙÙ ØªØ­ÙÙÙ Ø§ÙÙØ´Ø§Ø±ÙØ¹</div>'; return; }
+  var data = res.data || [];
+  window.projectsLoaded = true;
+  if (!data.length) { grid.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ÙØ´Ø§Ø±ÙØ¹ Ø¨Ø¹Ø¯</div>'; return; }
+  grid.innerHTML = data.map(function(p) {
+    var imgHtml = p.cover_url
+      ? '<img src="' + escHtml(p.cover_url) + '" alt="' + escHtml(p.name_ar || '') + '" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=&#39;none&#39;">'
+      : '<div class="no-img">ÙØ§ ØªÙØ¬Ø¯ ØµÙØ±Ø©</div>';
+    return '<div class="project-card">'
+      + '<div class="card-img">' + imgHtml + '</div>'
+      + '<div class="card-body">'
+      + '<h3>' + escHtml(p.name_ar || '') + '</h3>'
+      + '<p>' + escHtml(p.category || '') + '</p>'
+      + '<div class="card-actions">'
+      + '<button class="btn btn-sm edit-proj" data-id="' + escHtml(p.id) + '">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger del-proj" data-id="' + escHtml(p.id) + '" data-name="' + escHtml(p.name_ar || '') + '">Ø­Ø°Ù</button>'
+      + '</div></div></div>';
+  }).join('');
+  grid.querySelectorAll('.edit-proj').forEach(function(btn) {
+    btn.addEventListener('click', function() { openModal(btn.dataset.id); });
+  });
+  grid.querySelectorAll('.del-proj').forEach(function(btn) {
+    btn.addEventListener('click', function() { confirmDeleteProject(btn.dataset.id, btn.dataset.name); });
+  });
+}
+
+function openModal(id) {
+  document.getElementById('projectModal').style.display = 'flex';
+  loadProjectForEdit(id);
 }
 
 function closeModal() {
-  document.getElementById('projectModal').classList.remove('open');
-  document.body.style.overflow = '';
+  document.getElementById('projectModal').style.display = 'none';
 }
 
-function onBackdropClick(e) {
-  if (e.target === document.getElementById('projectModal')) closeModal();
-}
-
-function resetForm() {
-  ['f-name_ar','f-name_en','f-location_ar','f-location_en','f-description_ar','f-description_en',
-   'f-seo_title','f-seo_description','f-seo_keywords','f-image_alt_ar'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
-  });
-  document.getElementById('f-category').value = '';
-  document.getElementById('f-style').value = '';
-  document.getElementById('f-status').value = 'published';
-  document.getElementById('f-sort_order').value = '0';
-  document.getElementById('f-featured').checked = false;
-  removeImage(true);
-  clearErrors();
-  updateSEOCount();
-}
-
-function populateForm(p) {
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
-  set('f-name_ar',         p.name_ar);
-  set('f-name_en',         p.name_en);
-  set('f-category',        p.category);
-  set('f-style',           p.style);
-  set('f-location_ar',     p.location_ar);
-  set('f-location_en',     p.location_en);
-  set('f-description_ar',  p.description_ar);
-  set('f-description_en',  p.description_en);
-  set('f-seo_title',       p.seo_title);
-  set('f-seo_description', p.seo_description);
-  set('f-seo_keywords',    p.seo_keywords);
-  set('f-image_alt_ar',    p.image_alt_ar);
-  set('f-sort_order',      p.sort_order ?? 0);
-  document.getElementById('f-featured').checked = !!p.featured;
-  document.getElementById('f-status').value = p.status || 'published';
-
-  if (p.image_url) {
-    formImageUrl = p.image_url;
-    formCloudId  = p.cloudinary_public_id || '';
-    showImagePreview(p.image_url);
-  }
-  updateSEOCount();
-}
-
-/* ══════════════════════════════════════════════════
-   SAVE PROJECT
-══════════════════════════════════════════════════ */
-async function saveProject() {
-  clearErrors();
-  if (!validateForm()) return;
-
-  const btn = document.getElementById('saveBtn');
-  btn.disabled = true;
-  document.getElementById('saveBtnText').textContent = 'جارٍ الحفظ...';
-
-  const payload = {
-    name_ar:              document.getElementById('f-name_ar').value.trim(),
-    name_en:              document.getElementById('f-name_en').value.trim() || null,
-    category:             document.getElementById('f-category').value,
-    style:                document.getElementById('f-style').value,
-    location_ar:          document.getElementById('f-location_ar').value.trim() || null,
-    location_en:          document.getElementById('f-location_en').value.trim() || null,
-    description_ar:       document.getElementById('f-description_ar').value.trim() || null,
-    description_en:       document.getElementById('f-description_en').value.trim() || null,
-    seo_title:            document.getElementById('f-seo_title').value.trim() || null,
-    seo_description:      document.getElementById('f-seo_description').value.trim() || null,
-    seo_keywords:         document.getElementById('f-seo_keywords').value.trim() || null,
-    image_url:            formImageUrl || null,
-    cloudinary_public_id: formCloudId  || null,
-    image_alt_ar:         document.getElementById('f-image_alt_ar').value.trim() || null,
-    featured:             document.getElementById('f-featured').checked,
-    sort_order:           parseInt(document.getElementById('f-sort_order').value, 10) || 0,
-    status:               document.getElementById('f-status').value,
-  };
-
-  let error;
-  if (editingId) {
-    ({ error } = await window.c3dClient.from('projects').update(payload).eq('id', editingId));
-  } else {
-    ({ error } = await window.c3dClient.from('projects').insert([payload]));
-  }
-
-  btn.disabled = false;
-  document.getElementById('saveBtnText').textContent = editingId ? 'حفظ التعديلات' : 'حفظ المشروع';
-
-  if (error) {
-    showToast('حدث خطأ: ' + error.message, 'error');
+async function loadProjectForEdit(id) {
+  var form = document.getElementById('projectForm');
+  if (!id) {
+    if (form) form.reset();
+    document.getElementById('projectId').value = '';
+    updateLogoPreview('');
     return;
   }
+  var res = await window.c3dClient.from('projects').select('*').eq('id', id).single();
+  if (res.error || !res.data) { showToast('Ø®Ø·Ø£ ÙÙ ØªØ­ÙÙÙ Ø§ÙÙØ´Ø±ÙØ¹', 'error'); return; }
+  var p = res.data;
+  document.getElementById('projectId').value = p.id || '';
+  document.getElementById('projectNameAr').value = p.name_ar || '';
+  document.getElementById('projectNameEn').value = p.name_en || '';
+  document.getElementById('projectCategory').value = p.category || '';
+  document.getElementById('projectDescAr').value = p.desc_ar || '';
+  document.getElementById('projectDescEn').value = p.desc_en || '';
+  document.getElementById('projectYear').value = p.year || '';
+  document.getElementById('projectCoverUrl').value = p.cover_url || '';
+  updateLogoPreview(p.cover_url || '');
+}
 
-  showToast(editingId ? '✅ تم تحديث المشروع بنجاح' : '✅ تم إضافة المشروع بنجاح', 'success');
+async function saveProject() {
+  var id      = (document.getElementById('projectId') || {}).value || '';
+  var nameAr  = (document.getElementById('projectNameAr') || {}).value || '';
+  var nameEn  = (document.getElementById('projectNameEn') || {}).value || '';
+  var cat     = (document.getElementById('projectCategory') || {}).value || '';
+  var descAr  = (document.getElementById('projectDescAr') || {}).value || '';
+  var descEn  = (document.getElementById('projectDescEn') || {}).value || '';
+  var year    = (document.getElementById('projectYear') || {}).value || '';
+  var cover   = (document.getElementById('projectCoverUrl') || {}).value || '';
+  if (!nameAr) { showToast('Ø£Ø¯Ø®Ù Ø§Ø³Ù Ø§ÙÙØ´Ø±ÙØ¹ Ø¨Ø§ÙØ¹Ø±Ø¨Ù', 'error'); return; }
+  var payload = { name_ar: nameAr, name_en: nameEn, category: cat, desc_ar: descAr, desc_en: descEn, year: year, cover_url: cover };
+  var res;
+  if (id) {
+    res = await window.c3dClient.from('projects').update(payload).eq('id', id);
+  } else {
+    res = await window.c3dClient.from('projects').insert(payload);
+  }
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸: ' + res.error.message, 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­ÙØ¸ Ø¨ÙØ¬Ø§Ø­');
   closeModal();
+  window.projectsLoaded = false;
   loadProjects();
 }
 
-function validateForm() {
-  let valid = true;
-  if (!document.getElementById('f-name_ar').value.trim()) {
-    document.getElementById('field-name_ar').classList.add('has-error'); valid = false;
-  }
-  if (!document.getElementById('f-category').value) {
-    document.getElementById('field-category').classList.add('has-error'); valid = false;
-  }
-  if (!document.getElementById('f-style').value) {
-    document.getElementById('field-style').classList.add('has-error'); valid = false;
-  }
-  return valid;
+async function confirmDeleteProject(id, name) {
+  if (!confirm('ÙÙ ØªØ±ÙØ¯ Ø­Ø°Ù: ' + (name || id) + '?')) return;
+  var res = await window.c3dClient.from('projects').delete().eq('id', id);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­Ø°Ù', 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­Ø°Ù');
+  window.projectsLoaded = false;
+  loadProjects();
 }
 
-function clearErrors() {
-  document.querySelectorAll('.field.has-error').forEach(el => el.classList.remove('has-error'));
-}
-
-/* ══════════════════════════════════════════════════
-   DELETE
-══════════════════════════════════════════════════ */
-function confirmDelete(id, name) {
-  document.getElementById('confirmText').textContent = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
-  document.getElementById('confirmDialog').classList.add('open');
-  confirmCb = async () => {
-    const { error } = await window.c3dClient.from('projects').delete().eq('id', id);
-    if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
-    showToast('🗑️ تم حذف المشروع', 'info');
-    closeConfirm();
-    loadProjects();
-  };
-  document.getElementById('confirmOkBtn').onclick = confirmCb;
-}
-
-function closeConfirm() {
-  document.getElementById('confirmDialog').classList.remove('open');
-  confirmCb = null;
-}
-
-/* ══════════════════════════════════════════════════
-   CLOUDINARY WIDGET
-══════════════════════════════════════════════════ */
-function initCloudinaryWidget() {
-  const cfg = window.C3D_CONFIG?.cloudinary;
-  if (!cfg?.cloudName || cfg.cloudName.includes('YOUR_')) {
-    console.warn('[C3D] Cloudinary غير مُهيّأ');
-    return;
-  }
-  if (typeof cloudinary === 'undefined') {
-    console.error('[C3D] Cloudinary Widget JS غير محمّل');
-    return;
-  }
-
-  cloudWidget = cloudinary.createUploadWidget({
-    cloudName:    cfg.cloudName,
-    uploadPreset: cfg.uploadPreset,
-    sources:      ['local', 'url', 'camera'],
-    multiple:     false,
-    maxFileSize:  5000000,
-    allowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
-    folder:       cfg.folder || 'creative3design/portfolio',
-    cropping:     false,
-    language:     'ar',
-    showAdvancedOptions: false,
-    styles: {
-      palette: {
-        window:'#161311', tabIcon:'#B8976A', menuIcons:'#B8976A',
-        textDark:'#FFFFFF', textLight:'#FFFFFF', link:'#B8976A',
-        action:'#B8976A', inactiveTabIcon:'#888',
-        error:'#E05252', inProgress:'#B8976A', complete:'#4caf7d',
-        sourceBg:'#1e1b17'
-      }
-    }
-  }, (error, result) => {
-    if (error) { showToast('خطأ في رفع الصورة: ' + error.message, 'error'); return; }
-    if (result.event === 'success') {
-      formImageUrl = result.info.secure_url;
-      formCloudId  = result.info.public_id;
-      showImagePreview(formImageUrl);
-      showToast('✅ تم رفع الصورة بنجاح', 'success');
-      generateAlt(); // auto alt text after upload
-    }
-  });
-}
-
-function openCloudinaryWidget() {
-  if (!cloudWidget) {
-    showToast('⚠️ Cloudinary غير مُهيّأ — عبّئ js/config.js أولاً', 'error');
-    return;
-  }
-  cloudWidget.open();
-}
-
-function showImagePreview(url) {
-  document.getElementById('imageUploadArea').style.display  = 'none';
-  document.getElementById('imagePreviewWrap').style.display = 'block';
-  document.getElementById('imagePreviewImg').src = url;
-}
-
-function removeImage(silent = false) {
-  formImageUrl = '';
-  formCloudId  = '';
-  document.getElementById('imageUploadArea').style.display  = 'flex';
-  document.getElementById('imagePreviewWrap').style.display = 'none';
-  document.getElementById('imagePreviewImg').src = '';
-  if (!silent) showToast('تمت إزالة الصورة', 'info');
-}
-
-/* ══════════════════════════════════════════════════
-   SEO AUTO-GENERATION
-══════════════════════════════════════════════════ */
-function autoSEO(force = false) {
-  const name    = document.getElementById('f-name_ar').value.trim();
-  const catVal  = document.getElementById('f-category').value;
-  const styleVal= document.getElementById('f-style').value;
-  const loc     = document.getElementById('f-location_ar').value.trim() || 'القاهرة';
-  const catAr   = CATEGORY_AR[catVal]  || '';
-  const styleAr = STYLE_AR[styleVal]   || '';
-
-  if (!name) return;
-
-  const titleEl = document.getElementById('f-seo_title');
-  const descEl  = document.getElementById('f-seo_description');
-  const kwEl    = document.getElementById('f-seo_keywords');
-
-  if (force || !titleEl.value) {
-    titleEl.value = `${name} - طراز ${styleAr} - ${loc} | Creative3Design`;
-  }
-  if (force || !descEl.value) {
-    descEl.value = `مشروع ${catAr} بطراز ${styleAr} في ${loc}. تصميم احترافي من Creative3Design — مكتب تصميم داخلي معتمد منذ 2003.`;
-  }
-  if (force || !kwEl.value) {
-    kwEl.value = `تصميم داخلي, ${catAr}, ${styleAr}, ${loc}, Creative3Design, مكتب تصميم القاهرة`;
-  }
-  updateSEOCount();
-}
-
-function generateAlt() {
-  const name    = document.getElementById('f-name_ar').value.trim() || 'مشروع';
-  const catVal  = document.getElementById('f-category').value;
-  const styleVal= document.getElementById('f-style').value;
-  const loc     = document.getElementById('f-location_ar').value.trim() || 'القاهرة';
-  const catAr   = CATEGORY_AR[catVal]  || '';
-  const styleAr = STYLE_AR[styleVal]   || '';
-  document.getElementById('f-image_alt_ar').value =
-    `تصميم ${catAr} ${styleAr} - ${name} - ${loc} - Creative3Design`;
-}
-
-function updateSEOCount() {
-  const titleLen = document.getElementById('f-seo_title').value.length;
-  const descLen  = document.getElementById('f-seo_description').value.length;
-  document.getElementById('seoTitleCount').textContent = `${titleLen} حرف — المثالي: 50-60 حرف`;
-  document.getElementById('seoDescCount').textContent  = `${descLen} حرف — المثالي: 150-160 حرف`;
-}
-document.getElementById('f-seo_title').addEventListener('input', updateSEOCount);
-
-/* ══════════════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════════════ */
-function showToast(msg, type = 'info') {
-  const wrap = document.getElementById('toastWrap');
-  const div  = document.createElement('div');
-  div.className = `toast ${type}`;
-  div.textContent = msg;
-  wrap.appendChild(div);
-  setTimeout(() => div.remove(), 3500);
-}
-
-/* ══════════════════════════════════════════════════
-   UTILS
-══════════════════════════════════════════════════ */
-function escHtml(str) {
-  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function showView(v, ev) {
-  const e = ev || event;
-  document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
-  if (e && e.currentTarget) e.currentTarget.classList.add('active');
-  const viewMap = {
-    projects:    { id:'projectsView',    display:'contents' },
-    hero:        { id:'heroView',        display:'flex' },
-    settings:    { id:'settingsView',    display:'flex' },
-    about:       { id:'aboutView',       display:'flex' },
-    services:    { id:'servicesView',    display:'flex' },
-    compounds:   { id:'compoundsView',   display:'flex' },
-    beforeafter: { id:'beforeafterView', display:'flex' },
-  };
-  Object.values(viewMap).forEach(({ id }) => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-  const cfg = viewMap[v] || viewMap.projects;
-  const target = document.getElementById(cfg.id);
-  if (target) target.style.display = cfg.display;
-  if (v === 'hero' && !allHeroSlides.length) loadHeroSlides();
-  if (v === 'settings' && !settingsLoaded) loadSettings();
-  if (v === 'about' && !aboutLoaded) loadAboutImages();
-  if (v === 'services' && !servicesLoaded) loadServicesImages();
-  if (v === 'compounds' && !compoundsLoaded) loadCompounds();
-  if (v === 'beforeafter' && !baLoaded) loadBAItems();
-}
-
-/* ══════════════════════════════════════════════════
-   KEYBOARD
-══════════════════════════════════════════════════ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal();
-    closeConfirm();
-  }
-});
-
-/* ══════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════ */
-
-/* ══════════════════════════════════════════════════
-   HERO MANAGER
-══════════════════════════════════════════════════ */
-let allHeroSlides = [];
-let heroUploadWidgets = {};
-
-const HERO_TABLE_SQL =
-`create table if not exists public.hero_slides (
-  id                   uuid primary key default gen_random_uuid(),
-  title_ar             text,
-  title_en             text,
-  image_url            text,
-  cloudinary_public_id text,
-  sort_order           int  not null default 0,
-  active               boolean not null default true,
-  created_at           timestamptz not null default now()
-);`;
-
-async function loadHeroSlides() {
-  const grid = document.getElementById('heroGrid');
-  if (!window.c3dClient || !grid) return;
-  grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جارٍ التحميل...</div>';
-  const { data, error } = await window.c3dClient
-    .from('hero_slides').select('*').order('sort_order', { ascending: true });
-  if (error) {
-    if (error.code === '42P01') {
-      grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center">
-        <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:.5rem">
-          جدول <code style="color:var(--gold);background:var(--surface2);padding:.1rem .4rem;border-radius:4px">hero_slides</code> غير موجود في Supabase بعد.
-        </p>
-        <p style="color:var(--text-dim);font-size:.82rem;margin-bottom:.8rem">أنشئه بفتح Supabase → SQL Editor ولصق الكود التالي:</p>
-        <div class="hero-sql-block">${escHtml(HERO_TABLE_SQL)}</div>
-        <button class="btn btn-outline" style="margin-top:1rem" onclick="loadHeroSlides()">إعادة المحاولة بعد الإنشاء</button>
-      </div>`;
-    } else { showToast('خطأ: ' + error.message, 'error'); grid.innerHTML = ''; }
-    return;
-  }
-  allHeroSlides = data || [];
+/* ââ Hero ââ */
+async function loadHero() {
+  var res = await window.c3dClient.from('hero_slides').select('*').order('sort_order', { ascending: true });
+  allHeroSlides = (res.data || []);
   renderHeroSlides();
+  var lr = await window.c3dClient.from('site_settings').select('value').eq('key', 'logo_url').single();
+  logoUrl = (lr.data && lr.data.value) ? lr.data.value : '';
+  var li = document.getElementById('currentLogoUrl');
+  if (li) li.value = logoUrl;
+  updateLogoPreview(logoUrl);
 }
 
 function renderHeroSlides() {
-  const grid = document.getElementById('heroGrid');
-  if (!grid) return;
-  if (!allHeroSlides.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="56" height="56"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      <p>لا توجد شرائح بعد</p>
-      <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">إضافة أول شريحة</button>
-    </div>`;
-    return;
-  }
-  grid.innerHTML = allHeroSlides.map((s, i) => `
-    <div class="hero-slide-card ${s.active ? '' : 'hero-slide-inactive'}" data-slide-id="${s.id}">
-      <div class="hero-slide-img">
-        ${s.image_url
-          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.title_ar||'شريحة '+(i+1))}" loading="lazy" />`
-          : `<div class="hero-slide-no-img">
-               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-               <span>لا توجد صورة</span>
-             </div>`}
-        <span class="hero-slide-num">شريحة ${i+1}</span>
-      </div>
-      <div class="hero-slide-body">
-        <div class="field">
-          <label>عنوان الشريحة (اختياري)</label>
-          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar||'')}" placeholder="نص يظهر فوق الصورة..." />
-        </div>
-        <div class="hero-order-row">
-          <label>ترتيب الظهور:</label>
-          <input type="number" class="hero-order-input" id="hero-order-${s.id}" value="${s.sort_order??i}" min="0" max="99" />
-          <div class="toggle-row" style="margin-right:auto;gap:.45rem">
-            <label class="toggle">
-              <input type="checkbox" id="hero-active-${s.id}" ${s.active?'checked':''} onchange="toggleHeroActive('${s.id}',this.checked)" />
-              <span class="toggle-slider"></span>
-            </label>
-            <span class="toggle-label" id="hero-active-label-${s.id}" style="font-size:.78rem">${s.active?'نشطة':'مخفية'}</span>
-          </div>
-        </div>
-        <button class="hero-upload-btn" onclick="openHeroWidget('${s.id}')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          ${s.image_url?'تغيير الصورة':'رفع صورة'}
-        </button>
-      </div>
-      <div class="hero-slide-actions">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
-          حفظ
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}','${escHtml(s.title_ar||'شريحة '+(i+1))}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-          حذف
-        </button>
-      </div>
-    </div>`).join('');
+  var list = document.getElementById('heroSlidesList');
+  if (!list) return;
+  if (!allHeroSlides.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ Ø´Ø±Ø§Ø¦Ø­</div>'; return; }
+  list.innerHTML = allHeroSlides.map(function(s, i) {
+    return '<div class="slide-item">'
+      + '<img src="' + escHtml(s.image_url || '') + '" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:4px">'
+      + '<div style="flex:1;padding:0 1rem">'
+      + '<div><b>' + escHtml(s.title_ar || '') + '</b></div>'
+      + '<div style="font-size:.8rem;color:#666">' + escHtml(s.subtitle_ar || '') + '</div>'
+      + '</div>'
+      + '<div class="slide-actions">'
+      + '<button class="btn btn-sm" onclick="editSlide(' + i + ')">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger" onclick="deleteSlide(\'' + escHtml(s.id) + '\')">Ø­Ø°Ù</button>'
+      + '</div>'
+      + '</div>';
+  }).join('');
 }
 
-function getHeroWidget(slideId) {
-  if (heroUploadWidgets[slideId]) return heroUploadWidgets[slideId];
-  const cfg = window.C3D_CONFIG?.cloudinary;
-  if (!cfg?.cloudName || typeof cloudinary === 'undefined') return null;
-  const widget = cloudinary.createUploadWidget({
-    cloudName:cfg.cloudName, uploadPreset:cfg.uploadPreset,
-    sources:['local','url','camera'], multiple:false, maxFileSize:8000000,
-    allowedFormats:['jpg','jpeg','png','webp'], folder:'creative3design/hero',
-    cropping:true, croppingAspectRatio:16/9, showSkipCropButton:true, language:'ar',
-    showAdvancedOptions:false,
-    styles:{palette:{window:'#161311',tabIcon:'#B8976A',menuIcons:'#B8976A',
-      textDark:'#FFFFFF',textLight:'#FFFFFF',link:'#B8976A',action:'#B8976A',
-      inactiveTabIcon:'#888',error:'#E05252',inProgress:'#B8976A',complete:'#4caf7d',sourceBg:'#1e1b17'}}
-  }, async (error, result) => {
-    if (error) { showToast('خطأ في رفع الصورة: '+error.message,'error'); return; }
-    if (result.event === 'success') {
-      const { error:upErr } = await window.c3dClient.from('hero_slides')
-        .update({image_url:result.info.secure_url, cloudinary_public_id:result.info.public_id}).eq('id',slideId);
-      if (upErr) { showToast('خطأ في حفظ الصورة: '+upErr.message,'error'); return; }
-      showToast('✅ تم رفع الصورة وحفظها بنجاح','success');
-      loadHeroSlides();
-    }
+function editSlide(idx) {
+  var s = allHeroSlides[idx];
+  if (!s) return;
+  document.getElementById('slideId').value = s.id || '';
+  document.getElementById('slideImageUrl').value = s.image_url || '';
+  document.getElementById('slideTitleAr').value = s.title_ar || '';
+  document.getElementById('slideTitleEn').value = s.title_en || '';
+  document.getElementById('slideSubtitleAr').value = s.subtitle_ar || '';
+  document.getElementById('slideSubtitleEn').value = s.subtitle_en || '';
+  document.getElementById('slideOrder').value = s.sort_order || 0;
+}
+
+async function saveSlide() {
+  var id       = (document.getElementById('slideId') || {}).value || '';
+  var imgUrl   = (document.getElementById('slideImageUrl') || {}).value || '';
+  var titleAr  = (document.getElementById('slideTitleAr') || {}).value || '';
+  var titleEn  = (document.getElementById('slideTitleEn') || {}).value || '';
+  var subAr    = (document.getElementById('slideSubtitleAr') || {}).value || '';
+  var subEn    = (document.getElementById('slideSubtitleEn') || {}).value || '';
+  var order    = parseInt((document.getElementById('slideOrder') || {}).value || '0', 10);
+  var payload  = { image_url: imgUrl, title_ar: titleAr, title_en: titleEn, subtitle_ar: subAr, subtitle_en: subEn, sort_order: order };
+  var res = id
+    ? await window.c3dClient.from('hero_slides').update(payload).eq('id', id)
+    : await window.c3dClient.from('hero_slides').insert(payload);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙØ´Ø±ÙØ­Ø©');
+  document.getElementById('slideId').value = '';
+  loadHero();
+}
+
+async function deleteSlide(id) {
+  if (!confirm('Ø­Ø°Ù Ø§ÙØ´Ø±ÙØ­Ø©Ø')) return;
+  await window.c3dClient.from('hero_slides').delete().eq('id', id);
+  loadHero();
+}
+
+async function saveLogo() {
+  var url = (document.getElementById('currentLogoUrl') || {}).value || '';
+  var res = await window.c3dClient.from('site_settings').upsert({ key: 'logo_url', value: url }, { onConflict: 'key' });
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø­ÙØ¸ Ø§ÙÙÙØ¬Ù', 'error'); return; }
+  logoUrl = url;
+  updateLogoPreview(url);
+  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙÙÙØ¬Ù');
+}
+
+/* ââ Settings ââ */
+async function loadSettings() {
+  var res = await window.c3dClient.from('site_settings').select('*');
+  var data = res.data || [];
+  var map = {};
+  data.forEach(function(r) { map[r.key] = r.value; });
+  var fields = ['site_name_ar','site_name_en','phone','email','address_ar','address_en','facebook','instagram','linkedin','whatsapp'];
+  fields.forEach(function(f) {
+    var el = document.getElementById('setting_' + f);
+    if (el) el.value = map[f] || '';
   });
-  heroUploadWidgets[slideId] = widget;
-  return widget;
+  settingsLoaded = true;
 }
 
-function openHeroWidget(slideId) {
-  const w = getHeroWidget(slideId);
-  if (!w) { showToast('⚠️ Cloudinary غير مُهيّأ','error'); return; }
-  w.open();
+async function saveSettings() {
+  var fields = ['site_name_ar','site_name_en','phone','email','address_ar','address_en','facebook','instagram','linkedin','whatsapp'];
+  var upserts = fields.map(function(f) {
+    var el = document.getElementById('setting_' + f);
+    return { key: f, value: el ? el.value : '' };
+  });
+  var res = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙØ¥Ø¹Ø¯Ø§Ø¯Ø§Øª');
 }
 
-async function saveHeroSlide(slideId) {
-  const titleEl=document.getElementById('hero-title-'+slideId);
-  const orderEl=document.getElementById('hero-order-'+slideId);
-  const activeEl=document.getElementById('hero-active-'+slideId);
-  if (!titleEl||!orderEl) return;
-  const { error } = await window.c3dClient.from('hero_slides')
-    .update({title_ar:titleEl.value.trim()||null, sort_order:parseInt(orderEl.value,10)||0, active:activeEl.checked})
-    .eq('id',slideId);
-  if (error) { showToast('خطأ: '+error.message,'error'); return; }
-  showToast('✅ تم حفظ الشريحة','success');
-  loadHeroSlides();
+/* ââ About ââ */
+async function loadAbout() {
+  var res = await window.c3dClient.from('about_content').select('*').order('sort_order', { ascending: true });
+  var data = res.data || [];
+  var list = document.getElementById('aboutItemsList');
+  if (!list) { aboutLoaded = true; return; }
+  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ÙÙØ¬Ø¯ ÙØ­ØªÙÙ</div>'; aboutLoaded = true; return; }
+  list.innerHTML = data.map(function(item) {
+    return '<div class="about-item" data-id="' + escHtml(item.id) + '">'
+      + '<div><b>' + escHtml(item.title_ar || '') + '</b></div>'
+      + '<div style="font-size:.8rem;color:#666">' + escHtml(item.content_ar || '').substring(0, 80) + '...</div>'
+      + '<div class="item-actions">'
+      + '<button class="btn btn-sm edit-about" data-id="' + escHtml(item.id) + '">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger del-about" data-id="' + escHtml(item.id) + '">Ø­Ø°Ù</button>'
+      + '</div></div>';
+  }).join('');
+  list.querySelectorAll('.edit-about').forEach(function(btn) {
+    btn.addEventListener('click', function() { editAbout(btn.dataset.id, data); });
+  });
+  list.querySelectorAll('.del-about').forEach(function(btn) {
+    btn.addEventListener('click', function() { deleteAbout(btn.dataset.id); });
+  });
+  aboutLoaded = true;
 }
 
-async function saveHeroOrder() {
-  const cards = document.querySelectorAll('.hero-slide-card[data-slide-id]');
-  if (!cards.length) { showToast('لا توجد شرائح','info'); return; }
-  let hasError = false;
-  for (const card of cards) {
-    const id = card.dataset.slideId;
-    const orderEl = document.getElementById('hero-order-'+id);
-    if (!orderEl) continue;
-    const { error } = await window.c3dClient.from('hero_slides')
-      .update({sort_order:parseInt(orderEl.value,10)||0}).eq('id',id);
-    if (error) hasError = true;
-  }
-  showToast(hasError?'حدث خطأ في بعض الشرائح':'✅ تم حفظ الترتيب', hasError?'error':'success');
-  if (!hasError) loadHeroSlides();
+function editAbout(id, data) {
+  var item = data.find(function(d) { return d.id == id; });
+  if (!item) return;
+  document.getElementById('aboutId').value = item.id || '';
+  document.getElementById('aboutTitleAr').value = item.title_ar || '';
+  document.getElementById('aboutTitleEn').value = item.title_en || '';
+  document.getElementById('aboutContentAr').value = item.content_ar || '';
+  document.getElementById('aboutContentEn').value = item.content_en || '';
+  document.getElementById('aboutImageUrl').value = item.image_url || '';
+  document.getElementById('aboutOrder').value = item.sort_order || 0;
 }
 
-async function toggleHeroActive(slideId, active) {
-  const { error } = await window.c3dClient.from('hero_slides').update({active}).eq('id',slideId);
-  if (error) { showToast('خطأ: '+error.message,'error'); return; }
-  const card = document.querySelector(`.hero-slide-card[data-slide-id="${slideId}"]`);
-  if (card) { card.classList.toggle('hero-slide-inactive',!active); }
-  const lbl = document.getElementById('hero-active-label-'+slideId);
-  if (lbl) lbl.textContent = active?'نشطة':'مخفية';
-  const slide = allHeroSlides.find(s=>s.id===slideId);
-  if (slide) slide.active = active;
-}
-
-async function addHeroSlide() {
-  if (!window.c3dClient) return;
-  const maxOrder = allHeroSlides.reduce((m,s)=>Math.max(m,s.sort_order??0),-1);
-  const { error } = await window.c3dClient.from('hero_slides').insert([{sort_order:maxOrder+1,active:true}]);
-  if (error) { showToast('خطأ: '+error.message,'error'); return; }
-  showToast('✅ تمت إضافة شريحة جديدة','success');
-  loadHeroSlides();
-}
-
-function confirmDeleteHeroSlide(slideId, name) {
-  document.getElementById('confirmTitle').textContent = 'حذف الشريحة';
-  document.getElementById('confirmText').textContent  = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
-  document.getElementById('confirmDialog').classList.add('open');
-  document.getElementById('confirmOkBtn').onclick = async () => {
-    const { error } = await window.c3dClient.from('hero_slides').delete().eq('id',slideId);
-    if (error) { showToast('خطأ: '+error.message,'error'); return; }
-    showToast('🗑️ تم حذف الشريحة','info');
-    closeConfirm();
-    delete heroUploadWidgets[slideId];
-    loadHeroSlides();
+async function saveAbout() {
+  var id = (document.getElementById('aboutId') || {}).value || '';
+  var payload = {
+    title_ar: (document.getElementById('aboutTitleAr') || {}).value || '',
+    title_en: (document.getElementById('aboutTitleEn') || {}).value || '',
+    content_ar: (document.getElementById('aboutContentAr') || {}).value || '',
+    content_en: (document.getElementById('aboutContentEn') || {}).value || '',
+    image_url: (document.getElementById('aboutImageUrl') || {}).value || '',
+    sort_order: parseInt((document.getElementById('aboutOrder') || {}).value || '0', 10)
   };
+  var res = id
+    ? await window.c3dClient.from('about_content').update(payload).eq('id', id)
+    : await window.c3dClient.from('about_content').insert(payload);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
+  document.getElementById('aboutId').value = '';
+  aboutLoaded = false;
+  loadAbout();
 }
 
-initAuth();
+async function deleteAbout(id) {
+  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙØ¹ÙØµØ±Ø')) return;
+  await window.c3dClient.from('about_content').delete().eq('id', id);
+  aboutLoaded = false;
+  loadAbout();
+}
+
+/* ââ Services ââ */
+async function loadServices() {
+  var res = await window.c3dClient.from('services').select('*').order('sort_order', { ascending: true });
+  var data = res.data || [];
+  var list = document.getElementById('servicesList');
+  if (!list) { servicesLoaded = true; return; }
+  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ Ø®Ø¯ÙØ§Øª</div>'; servicesLoaded = true; return; }
+  list.innerHTML = data.map(function(s) {
+    return '<div class="service-item">'
+      + '<div><b>' + escHtml(s.name_ar || '') + '</b></div>'
+      + '<div class="item-actions">'
+      + '<button class="btn btn-sm edit-svc" data-id="' + escHtml(s.id) + '">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger del-svc" data-id="' + escHtml(s.id) + '">Ø­Ø°Ù</button>'
+      + '</div></div>';
+  }).join('');
+  list.querySelectorAll('.edit-svc').forEach(function(btn) {
+    btn.addEventListener('click', function() { editService(btn.dataset.id, data); });
+  });
+  list.querySelectorAll('.del-svc').forEach(function(btn) {
+    btn.addEventListener('click', function() { deleteService(btn.dataset.id); });
+  });
+  servicesLoaded = true;
+}
+
+function editService(id, data) {
+  var s = data.find(function(d) { return d.id == id; });
+  if (!s) return;
+  document.getElementById('serviceId').value = s.id || '';
+  document.getElementById('serviceNameAr').value = s.name_ar || '';
+  document.getElementById('serviceNameEn').value = s.name_en || '';
+  document.getElementById('serviceDescAr').value = s.desc_ar || '';
+  document.getElementById('serviceIconUrl').value = s.icon_url || '';
+  document.getElementById('serviceOrder').value = s.sort_order || 0;
+}
+
+async function saveService() {
+  var id = (document.getElementById('serviceId') || {}).value || '';
+  var payload = {
+    name_ar: (document.getElementById('serviceNameAr') || {}).value || '',
+    name_en: (document.getElementById('serviceNameEn') || {}).value || '',
+    desc_ar: (document.getElementById('serviceDescAr') || {}).value || '',
+    icon_url: (document.getElementById('serviceIconUrl') || {}).value || '',
+    sort_order: parseInt((document.getElementById('serviceOrder') || {}).value || '0', 10)
+  };
+  var res = id
+    ? await window.c3dClient.from('services').update(payload).eq('id', id)
+    : await window.c3dClient.from('services').insert(payload);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
+  document.getElementById('serviceId').value = '';
+  servicesLoaded = false;
+  loadServices();
+}
+
+async function deleteService(id) {
+  if (!confirm('Ø­Ø°Ù ÙØ°Ù Ø§ÙØ®Ø¯ÙØ©Ø')) return;
+  await window.c3dClient.from('services').delete().eq('id', id);
+  servicesLoaded = false;
+  loadServices();
+}
+
+/* ââ Compounds ââ */
+async function loadCompounds() {
+  var res = await window.c3dClient.from('compounds').select('*').order('sort_order', { ascending: true });
+  var data = res.data || [];
+  var list = document.getElementById('compoundsList');
+  if (!list) { compoundsLoaded = true; return; }
+  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ÙØ¬ÙØ¹Ø§Øª</div>'; compoundsLoaded = true; return; }
+  list.innerHTML = data.map(function(c) {
+    return '<div class="compound-item">'
+      + '<div><b>' + escHtml(c.name_ar || '') + '</b></div>'
+      + '<div class="item-actions">'
+      + '<button class="btn btn-sm edit-cmp" data-id="' + escHtml(c.id) + '">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger del-cmp" data-id="' + escHtml(c.id) + '">Ø­Ø°Ù</button>'
+      + '</div></div>';
+  }).join('');
+  list.querySelectorAll('.edit-cmp').forEach(function(btn) {
+    btn.addEventListener('click', function() { editCompound(btn.dataset.id, data); });
+  });
+  list.querySelectorAll('.del-cmp').forEach(function(btn) {
+    btn.addEventListener('click', function() { deleteCompound(btn.dataset.id); });
+  });
+  compoundsLoaded = true;
+}
+
+function editCompound(id, data) {
+  var c = data.find(function(d) { return d.id == id; });
+  if (!c) return;
+  document.getElementById('compoundId').value = c.id || '';
+  document.getElementById('compoundNameAr').value = c.name_ar || '';
+  document.getElementById('compoundNameEn').value = c.name_en || '';
+  document.getElementById('compoundDescAr').value = c.desc_ar || '';
+  document.getElementById('compoundImageUrl').value = c.image_url || '';
+  document.getElementById('compoundOrder').value = c.sort_order || 0;
+}
+
+async function saveCompound() {
+  var id = (document.getElementById('compoundId') || {}).value || '';
+  var payload = {
+    name_ar: (document.getElementById('compoundNameAr') || {}).value || '',
+    name_en: (document.getElementById('compoundNameEn') || {}).value || '',
+    desc_ar: (document.getElementById('compoundDescAr') || {}).value || '',
+    image_url: (document.getElementById('compoundImageUrl') || {}).value || '',
+    sort_order: parseInt((document.getElementById('compoundOrder') || {}).value || '0', 10)
+  };
+  var res = id
+    ? await window.c3dClient.from('compounds').update(payload).eq('id', id)
+    : await window.c3dClient.from('compounds').insert(payload);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
+  document.getElementById('compoundId').value = '';
+  compoundsLoaded = false;
+  loadCompounds();
+}
+
+async function deleteCompound(id) {
+  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙÙØ¬ÙØ¹Ø')) return;
+  await window.c3dClient.from('compounds').delete().eq('id', id);
+  compoundsLoaded = false;
+  loadCompounds();
+}
+
+/* ââ Before/After ââ */
+async function loadBAItems() {
+  var res = await window.c3dClient.from('before_after').select('*').order('sort_order', { ascending: true });
+  var data = res.data || [];
+  var list = document.getElementById('baList');
+  if (!list) { baLoaded = true; return; }
+  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ØµÙØ±</div>'; baLoaded = true; return; }
+  list.innerHTML = data.map(function(b) {
+    return '<div class="ba-item">'
+      + '<div><b>' + escHtml(b.title_ar || '') + '</b></div>'
+      + '<div class="item-actions">'
+      + '<button class="btn btn-sm edit-ba" data-id="' + escHtml(b.id) + '">ØªØ¹Ø¯ÙÙ</button> '
+      + '<button class="btn btn-sm btn-danger del-ba" data-id="' + escHtml(b.id) + '">Ø­Ø°Ù</button>'
+      + '</div></div>';
+  }).join('');
+  list.querySelectorAll('.edit-ba').forEach(function(btn) {
+    btn.addEventListener('click', function() { editBA(btn.dataset.id, data); });
+  });
+  list.querySelectorAll('.del-ba').forEach(function(btn) {
+    btn.addEventListener('click', function() { deleteBA(btn.dataset.id); });
+  });
+  baLoaded = true;
+}
+
+function editBA(id, data) {
+  var b = data.find(function(d) { return d.id == id; });
+  if (!b) return;
+  document.getElementById('baId').value = b.id || '';
+  document.getElementById('baTitleAr').value = b.title_ar || '';
+  document.getElementById('baTitleEn').value = b.title_en || '';
+  document.getElementById('baBeforeUrl').value = b.before_url || '';
+  document.getElementById('baAfterUrl').value = b.after_url || '';
+  document.getElementById('baOrder').value = b.sort_order || 0;
+}
+
+async function saveBA() {
+  var id = (document.getElementById('baId') || {}).value || '';
+  var payload = {
+    title_ar: (document.getElementById('baTitleAr') || {}).value || '',
+    title_en: (document.getElementById('baTitleEn') || {}).value || '',
+    before_url: (document.getElementById('baBeforeUrl') || {}).value || '',
+    after_url: (document.getElementById('baAfterUrl') || {}).value || '',
+    sort_order: parseInt((document.getElementById('baOrder') || {}).value || '0', 10)
+  };
+  var res = id
+    ? await window.c3dClient.from('before_after').update(payload).eq('id', id)
+    : await window.c3dClient.from('before_after').insert(payload);
+  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
+  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
+  document.getElementById('baId').value = '';
+  baLoaded = false;
+  loadBAItems();
+}
+
+async function deleteBA(id) {
+  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙØ¹ÙØµØ±Ø')) return;
+  await window.c3dClient.from('before_after').delete().eq('id', id);
+  baLoaded = false;
+  loadBAItems();
+}
+
+/* ââ Init ââ */
+document.addEventListener('DOMContentLoaded', function() {
+  var loginBtn = document.getElementById('loginBtn');
+  if (loginBtn) loginBtn.addEventListener('click', handleLogin);
+  var logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+  document.querySelectorAll('.nav-item').forEach(function(n) {
+    n.addEventListener('click', function() { showView(n.dataset.view); });
+  });
+  var newProjBtn = document.getElementById('newProjectBtn');
+  if (newProjBtn) newProjBtn.addEventListener('click', function() { openModal(null); });
+  var saveProjBtn = document.getElementById('saveProjectBtn');
+  if (saveProjBtn) saveProjBtn.addEventListener('click', saveProject);
+  var closeModalBtns = document.querySelectorAll('.close-modal');
+  closeModalBtns.forEach(function(b) { b.addEventListener('click', closeModal); });
+  var saveSettBtn = document.getElementById('saveSettingsBtn');
+  if (saveSettBtn) saveSettBtn.addEventListener('click', saveSettings);
+  var saveSlideBtn = document.getElementById('saveSlideBtn');
+  if (saveSlideBtn) saveSlideBtn.addEventListener('click', saveSlide);
+  var saveLogoBtn = document.getElementById('saveLogoBtn');
+  if (saveLogoBtn) saveLogoBtn.addEventListener('click', saveLogo);
+  var saveAboutBtn = document.getElementById('saveAboutBtn');
+  if (saveAboutBtn) saveAboutBtn.addEventListener('click', saveAbout);
+  var saveSvcBtn = document.getElementById('saveServiceBtn');
+  if (saveSvcBtn) saveSvcBtn.addEventListener('click', saveService);
+  var saveCmpBtn = document.getElementById('saveCompoundBtn');
+  if (saveCmpBtn) saveCmpBtn.addEventListener('click', saveCompound);
+  var saveBABtn = document.getElementById('saveBABtn');
+  if (saveBABtn) saveBABtn.addEventListener('click', saveBA);
+  var logoInput = document.getElementById('currentLogoUrl');
+  if (logoInput) logoInput.addEventListener('input', function() { updateLogoPreview(logoInput.value); });
+  var coverInput = document.getElementById('projectCoverUrl');
+  if (coverInput) coverInput.addEventListener('input', function() { updateLogoPreview(coverInput.value); });
+  if (window.c3dClient) { initAuth(); }
+});
+
 </script>
 </body>
 </html>
