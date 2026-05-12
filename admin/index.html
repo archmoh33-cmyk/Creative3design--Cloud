@@ -994,7 +994,7 @@ function updateLogoPreview(url) {
 /* ââ Auth ââ */
 async function handleLogin() {
   var email = (document.getElementById('loginEmail') || {}).value || '';
-  var pass  = (document.getElementById('loginPassword') || {}).value || '';
+  var pass  = (document.getElementById('loginPass') || {}).value || '';
   if (!email || !pass) { showToast('Ø£Ø¯Ø®Ù Ø§ÙØ¨Ø±ÙØ¯ ÙÙÙÙØ© Ø§ÙÙØ±ÙØ±', 'error'); return; }
   var btn = document.getElementById('loginBtn');
   if (btn) btn.disabled = true;
@@ -1002,9 +1002,9 @@ async function handleLogin() {
     var res = await window.c3dClient.auth.signInWithPassword({ email: email, password: pass });
     if (res.error) throw res.error;
     currentUser = res.data.user;
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('userEmail').textContent = currentUser.email || '';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appShell').style.display = 'block';
+    document.getElementById('headerUser').textContent = currentUser.email || '';
     showView('projects');
   } catch (err) {
     showToast(err.message || 'Ø®Ø·Ø£ ÙÙ ØªØ³Ø¬ÙÙ Ø§ÙØ¯Ø®ÙÙ', 'error');
@@ -1015,10 +1015,10 @@ async function handleLogin() {
 function handleLogout() {
   window.c3dClient.auth.signOut().then(function() {
     currentUser = null;
-    document.getElementById('adminPanel').style.display = 'none';
-    document.getElementById('loginSection').style.display = 'flex';
+    document.getElementById('appShell').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
     document.getElementById('loginEmail').value = '';
-    document.getElementById('loginPassword').value = '';
+    document.getElementById('loginPass').value = '';
   });
 }
 
@@ -1026,13 +1026,13 @@ async function initAuth() {
   var res = await window.c3dClient.auth.getSession();
   if (res.data && res.data.session && res.data.session.user) {
     currentUser = res.data.session.user;
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('userEmail').textContent = currentUser.email || '';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appShell').style.display = 'block';
+    document.getElementById('headerUser').textContent = currentUser.email || '';
     showView('projects');
   } else {
-    document.getElementById('loginSection').style.display = 'flex';
-    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('appShell').style.display = 'none';
   }
 }
 
