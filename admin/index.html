@@ -370,6 +370,7 @@ img{max-width:100%;display:block}
 .service-img-area .img-preview-overlay{display:none}
 .service-img-area:hover .img-preview-overlay{display:flex}
 .service-card-body{padding:.75rem 1rem;font-size:.85rem;font-weight:700;color:var(--text)}
+
 /* Responsive */
 @media(max-width:768px){
   .sidebar{display:none}
@@ -419,14 +420,14 @@ img{max-width:100%;display:block}
       </p>
       <ol style="color:#8a8278; font-size:.82rem; line-height:2.2; padding-right:1.2rem">
         <li>اذهب إلى <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
-        <li>اختر مشروعك ثم اضغط <strong style="color:#e8e4dc">Settings ← API</strong></li>
+        <li>اختر مشروعك ثم اظغ�w <strong style="color:#e8e4dc">Settings ← API</strong></li>
         <li>انسخ <strong style="color:#B8976A">Project URL</strong> — شكله:
           <br/><code style="
             background:#1e1b17; color:#4caf7d; padding:.15rem .5rem;
             border-radius:4px; font-size:.78rem; display:inline-block; margin-top:.2rem;
           ">https://XXXXXXXXXXXX.supabase.co</code>
         </li>
-        <li>انسخ <strong style="color:#B8976A">anon public key</strong> (JWT كامل يبدأ بـ eyJ)</li>
+        <li>انسخ <strong style="color:#B8976A">anon public key</strong> (يبدأ بـ <code style="color:#4caf7d">eyJ</code> أو <code style="color:#4caf7d">sb_publishable_</code>)</li>
         <li>الصق القيمتين في <strong style="color:#e8e4dc">js/config.js</strong></li>
         <li>أعد تحميل هذه الصفحة</li>
       </ol>
@@ -482,6 +483,7 @@ img{max-width:100%;display:block}
   <header class="app-header">
     <div class="header-logo">Creative<span>3</span>D <span style="color:var(--text-dim);font-weight:400;font-size:.8rem">| لوحة التحكم</span></div>
     <div class="header-spacer"></div>
+    <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ترتيب المشاريع">🔀 ترتيب المشاريع</a>
     <span class="header-user" id="headerUser"></span>
     <button class="header-logout btn btn-sm btn-outline" onclick="handleLogout()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
@@ -527,7 +529,7 @@ img{max-width:100%;display:block}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
         قبل وبعد
       </div>
-      <div class="sidebar-section" style="margin-top:1rem">الحساب</div>
+      <div class="sidebar-section" style="margin-top:.5rem">الحساب</div>
       <div class="sidebar-link" onclick="handleLogout()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
         تسجيل الخروج
@@ -537,7 +539,7 @@ img{max-width:100%;display:block}
     <!-- Main Content -->
     <main class="main" id="mainContent">
 
-      <!-- ╔════ Projects View ════ -->
+      <!-- ════ Projects View ════ -->
       <div id="projectsView" style="display:contents">
 
       <!-- Stats -->
@@ -571,7 +573,7 @@ img{max-width:100%;display:block}
         </select>
         <button class="btn btn-primary" onclick="openModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          مشروع جديد
+          مشريع جديد
         </button>
       </div>
 
@@ -585,7 +587,7 @@ img{max-width:100%;display:block}
 
       </div><!-- /projectsView -->
 
-      <!-- ╔════ Hero Manager View ════ -->
+      <!-- ════ Hero Manager View ════ -->
       <div id="heroView" style="display:none;flex-direction:column;gap:1.5rem">
 
         <!-- Toolbar -->
@@ -606,20 +608,22 @@ img{max-width:100%;display:block}
           </button>
         </div>
 
+        <!-- Info bar -->
         <div style="background:var(--gold-dim);border:1px solid rgba(184,151,106,.25);border-radius:var(--radius);padding:.7rem 1rem;font-size:.8rem;color:var(--text-muted)">
-          💡 الشرائح النشطة تظهر في الصفحة الرئيسية بالترتيب المحدد. غيّر الأرقام ثم اضغط <strong style="color:var(--gold)">حفظ الترتيب</strong>، أو اضغط <strong style="color:var(--gold)">حفظ</strong> على كل شريحة بشكل منفرد.
+          💡 الشرائح النشطة تظهر في الصفحة الرئيسية بالترتيب المحدد. غيّر الأرفام ثم اضغط <strong style="color:var(--gold)">حفظ الترتيب</strong>، أو اضغط <strong style="color:var(--gold)">حفظ</strong> على كل شريحة بشكل منفرد.
         </div>
 
+        <!-- Slides Grid -->
         <div class="hero-grid" id="heroGrid">
           <div style="color:var(--text-muted);padding:2rem;text-align:center">جارٍ التحميل...</div>
         </div>
 
       </div><!-- /heroView -->
 
-      <!-- Settings View -->
+      <!-- ════ Settings View ════ -->
       <div id="settingsView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">&#x2699;&#xFE0F; إعدادات الموقع</span>
+          <span class="toolbar-title">⚙️ إعدادات الموقع</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="saveSettings()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -628,7 +632,7 @@ img{max-width:100%;display:block}
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">&#x1F5BC;&#xFE0F; شعار الموقع</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">🖼️ شعار الموقع</span></div>
             <div class="panel-section-body">
               <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap">
                 <div id="logoPreviewWrap" style="width:160px;flex-shrink:0;border-radius:var(--radius);overflow:hidden;background:var(--surface2);aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.75rem">
@@ -641,14 +645,14 @@ img{max-width:100%;display:block}
                   </button>
                   <div class="field">
                     <label>رابط الشعار الحالي</label>
-                    <input type="url" id="s-logo_url" placeholder="رابط الشعار..." oninput="updateLogoPreview(this.value)" />
+                    <input type="url" id="s-logo_url" placeholder="https://res.cloudinary.com/..." oninput="updateLogoPreview(this.value)" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">&#x1F4DE; معلومات التواصل</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">📞 معلومات التواصل</span></div>
             <div class="panel-section-body">
               <div class="form-row form-row-2">
                 <div class="field"><label>رقم واتساب (بدون +)</label><input type="text" id="s-whatsapp" placeholder="201019053288" /></div>
@@ -663,10 +667,10 @@ img{max-width:100%;display:block}
         </div>
       </div><!-- /settingsView -->
 
-      <!-- About View -->
+      <!-- ════ About View ════ -->
       <div id="aboutView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">&#x1F3E0; قسم عن الشركة</span>
+          <span class="toolbar-title">🏠 قسم عن الشركة</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="saveAboutImages()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -716,20 +720,20 @@ img{max-width:100%;display:block}
         </div>
       </div><!-- /aboutView -->
 
-      <!-- Services View -->
+      <!-- ════ Services View ════ -->
       <div id="servicesView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">&#x1F527; صور الخدمات</span>
+          <span class="toolbar-title">🔧 صور الخدمات</span>
           <div class="spacer"></div>
-          <button class="btn btn-outline" onclick="loadServicesImages()">&#x21BA; تحديث</button>
+          <button class="btn btn-outline" onclick="loadServicesImages()">↺ تحديث</button>
         </div>
         <div id="servicesGrid" class="services-admin-grid"></div>
       </div><!-- /servicesView -->
 
-      <!-- Compounds View -->
+      <!-- ════ Compounds View ════ -->
       <div id="compoundsView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">&#x1F3E2; الكمباوندات والشركاء</span>
+          <span class="toolbar-title">🏢 الكمباوندات والشركاء</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="addCompound()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -739,10 +743,10 @@ img{max-width:100%;display:block}
         <div id="compoundsGrid" class="compound-grid"></div>
       </div><!-- /compoundsView -->
 
-      <!-- Before/After View -->
+      <!-- ════ Before/After View ════ -->
       <div id="beforeafterView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">&#x1F504; قبل وبعد</span>
+          <span class="toolbar-title">🔄 قبل وبعد</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="addBAItem()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -751,7 +755,6 @@ img{max-width:100%;display:block}
         </div>
         <div id="baGrid" class="ba-admin-grid"></div>
       </div><!-- /beforeafterView -->
-
 
     </main>
   </div><!-- app-body -->
@@ -823,7 +826,7 @@ img{max-width:100%;display:block}
         <div class="form-row form-row-2">
           <div class="field">
             <label>الموقع (عربي)</label>
-            <input type="text" id="f-location_ar" placeholder="التجمع الخامس، القاهرة" oninput="autoSEO()" />
+            <input type="text" id="f-location_ar" placeholder="التجمع الخامس، الفاهرة" oninput="autoSEO()" />
           </div>
           <div class="field">
             <label>الموقع (إنجليزي)</label>
@@ -847,12 +850,12 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- ─── الصورة ─── -->
+      <!-- ─── صورت ─── -->
       <div class="form-section">
-        <div class="form-section-title">صورة المشروع</div>
+        <div class="form-section-title">صورت المئ المئروع</div>
         <div id="imageUploadArea" class="image-upload-area" onclick="openCloudinaryWidget()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p>اضغط لرفع صورة من جهازك</p>
+          <p>باحت لرeض صورة من حنة</p>
           <p><span>Cloudinary CDN</span> — JPG / PNG / WebP — حد أقصى 5MB</p>
         </div>
         <div id="imagePreviewWrap" style="display:none" class="image-preview-wrap">
@@ -903,11 +906,12 @@ img{max-width:100%;display:block}
             <span class="field-hint">رقم أصغر = يظهر أولاً</span>
           </div>
           <div class="field" style="justify-content:center">
-            <label>مشروع مميّز (Featured)</label>
+            <label>⭐ ممثّل القسم في الصفحة الرئيسية</label>
             <div class="toggle-row" style="margin-top:.3rem">
               <label class="toggle"><input type="checkbox" id="f-featured" /><span class="toggle-slider"></span></label>
-              <span class="toggle-label">يظهر في أعلى القائمة</span>
+              <span class="toggle-label">يظهر في "الكل" بالصفحة الرئيسية</span>
             </div>
+            <p style="font-size:.72rem;color:var(--text-muted);margin-top:.4rem;line-height:1.4">فعّل هذا الخيار ليمثّل المشروع قسمه في قسم "مشاريع نفخر بها" — يُعرض أول 2 مميّز من كل قسم</p>
           </div>
           <div class="field">
             <label>حالة النشر</label>
@@ -957,584 +961,1120 @@ img{max-width:100%;display:block}
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 
 <script>
-/* ======================================================
-   Creative3Design â Admin Panel Script (Clean Rebuild)
-====================================================== */
-let currentUser = null;
-let settingsLoaded = false, aboutLoaded = false;
-let servicesLoaded = false, compoundsLoaded = false, baLoaded = false;
-let allHeroSlides = [], logoUrl = '';
+'use strict';
 
-/* ââ Utilities ââ */
-function showToast(msg, type) {
-  type = type || 'success';
-  const t = document.createElement('div');
-  t.className = 'toast toast-' + type;
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(function() { t.remove(); }, 3000);
-}
+/* ══════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════ */
+let allProjects   = [];
+let editingId     = null;    // null = new, uuid = edit
+let formImageUrl  = '';
+let formCloudId   = '';
+let confirmCb     = null;
+let cloudWidget   = null;
 
-function escHtml(s) {
-  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
+const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب' };
+const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
+
+/* ══════════════════════════════════════════════════
+   SITE SETTINGS MANAGER
+══════════════════════════════════════════════════ */
+let settingsLoaded = false;
+let logoWidget = null;
 
 function updateLogoPreview(url) {
-  var wrap = document.getElementById('logoPreview');
+  const wrap = document.getElementById('logoPreviewWrap');
   if (!wrap) return;
-  if (!url) { wrap.innerHTML = ''; return; }
-  var img = document.createElement('img');
-  img.src = url;
-  img.style.cssText = 'width:100%;height:100%;object-fit:contain;padding:.5rem';
-  img.onerror = function() { this.style.display = 'none'; };
-  wrap.innerHTML = '';
-  wrap.appendChild(img);
-}
-
-/* ââ Auth ââ */
-async function handleLogin() {
-  var email = (document.getElementById('loginEmail') || {}).value || '';
-  var pass  = (document.getElementById('loginPass') || {}).value || '';
-  if (!email || !pass) { showToast('Ø£Ø¯Ø®Ù Ø§ÙØ¨Ø±ÙØ¯ ÙÙÙÙØ© Ø§ÙÙØ±ÙØ±', 'error'); return; }
-  var btn = document.getElementById('loginBtn');
-  if (btn) btn.disabled = true;
-  try {
-    var res = await window.c3dClient.auth.signInWithPassword({ email: email, password: pass });
-    if (res.error) throw res.error;
-    currentUser = res.data.user;
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('appShell').style.display = 'block';
-    document.getElementById('headerUser').textContent = currentUser.email || '';
-    showView('projects');
-  } catch (err) {
-    showToast(err.message || 'Ø®Ø·Ø£ ÙÙ ØªØ³Ø¬ÙÙ Ø§ÙØ¯Ø®ÙÙ', 'error');
-    if (btn) btn.disabled = false;
-  }
-}
-
-function handleLogout() {
-  window.c3dClient.auth.signOut().then(function() {
-    currentUser = null;
-    document.getElementById('appShell').style.display = 'none';
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('loginEmail').value = '';
-    document.getElementById('loginPass').value = '';
-  });
-}
-
-async function initAuth() {
-  var res = await window.c3dClient.auth.getSession();
-  if (res.data && res.data.session && res.data.session.user) {
-    currentUser = res.data.session.user;
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('appShell').style.display = 'block';
-    document.getElementById('headerUser').textContent = currentUser.email || '';
-    showView('projects');
+  if (url) {
+    wrap.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:contain;padding:.5rem" onerror="this.style.display='none'" />`;
   } else {
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('appShell').style.display = 'none';
+    wrap.innerHTML = 'لا يوجد شعار';
   }
 }
 
-/* ââ Navigation ââ */
-function showView(view) {
-  document.querySelectorAll('.view-section').forEach(function(s) { s.style.display = 'none'; });
-  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-  var el = document.getElementById(view + 'View');
-  if (el) el.style.display = 'block';
-  var nav = document.querySelector('[data-view="' + view + '"]');
-  if (nav) nav.classList.add('active');
-  if (view === 'projects' && !window.projectsLoaded) loadProjects();
-  if (view === 'settings' && !settingsLoaded) loadSettings();
-  if (view === 'about' && !aboutLoaded) loadAbout();
-  if (view === 'services' && !servicesLoaded) loadServices();
-  if (view === 'compounds' && !compoundsLoaded) loadCompounds();
-  if (view === 'ba' && !baLoaded) loadBAItems();
-  if (view === 'hero') loadHero();
-}
-
-/* ââ Projects ââ */
-window.projectsLoaded = false;
-
-async function loadProjects() {
-  var grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-  grid.innerHTML = '<div class="loading">Ø¬Ø§Ø±Ù Ø§ÙØªØ­ÙÙÙ...</div>';
-  var res = await window.c3dClient.from('projects').select('*').order('created_at', { ascending: false });
-  if (res.error) { grid.innerHTML = '<div class="no-data">Ø®Ø·Ø£ ÙÙ ØªØ­ÙÙÙ Ø§ÙÙØ´Ø§Ø±ÙØ¹</div>'; return; }
-  var data = res.data || [];
-  window.projectsLoaded = true;
-  if (!data.length) { grid.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ÙØ´Ø§Ø±ÙØ¹ Ø¨Ø¹Ø¯</div>'; return; }
-  grid.innerHTML = data.map(function(p) {
-    var imgHtml = p.cover_url
-      ? '<img src="' + escHtml(p.cover_url) + '" alt="' + escHtml(p.name_ar || '') + '" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=&#39;none&#39;">'
-      : '<div class="no-img">ÙØ§ ØªÙØ¬Ø¯ ØµÙØ±Ø©</div>';
-    return '<div class="project-card">'
-      + '<div class="card-img">' + imgHtml + '</div>'
-      + '<div class="card-body">'
-      + '<h3>' + escHtml(p.name_ar || '') + '</h3>'
-      + '<p>' + escHtml(p.category || '') + '</p>'
-      + '<div class="card-actions">'
-      + '<button class="btn btn-sm edit-proj" data-id="' + escHtml(p.id) + '">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger del-proj" data-id="' + escHtml(p.id) + '" data-name="' + escHtml(p.name_ar || '') + '">Ø­Ø°Ù</button>'
-      + '</div></div></div>';
-  }).join('');
-  grid.querySelectorAll('.edit-proj').forEach(function(btn) {
-    btn.addEventListener('click', function() { openModal(btn.dataset.id); });
-  });
-  grid.querySelectorAll('.del-proj').forEach(function(btn) {
-    btn.addEventListener('click', function() { confirmDeleteProject(btn.dataset.id, btn.dataset.name); });
-  });
-}
-
-function openModal(id) {
-  document.getElementById('projectModal').style.display = 'flex';
-  loadProjectForEdit(id);
-}
-
-function closeModal() {
-  document.getElementById('projectModal').style.display = 'none';
-}
-
-async function loadProjectForEdit(id) {
-  var form = document.getElementById('projectForm');
-  if (!id) {
-    if (form) form.reset();
-    document.getElementById('projectId').value = '';
-    updateLogoPreview('');
-    return;
+function openLogoWidget() {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!logoWidget) {
+    logoWidget = cloudinary.createUploadWidget({
+      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      folder: 'creative3design/logo', maxFiles: 1,
+      sources: ['local','url','camera'],
+      clientAllowedFormats: ['png','jpg','jpeg','webp','svg']
+    }, (err, result) => {
+      if (!err && result.event === 'success') {
+        const url = result.info.secure_url;
+        const input = document.getElementById('s-logo_url');
+        if (input) { input.value = url; }
+        updateLogoPreview(url);
+        showToast('تم رفع الشعار بنجاح ✓', 'success');
+      }
+    });
   }
-  var res = await window.c3dClient.from('projects').select('*').eq('id', id).single();
-  if (res.error || !res.data) { showToast('Ø®Ø·Ø£ ÙÙ ØªØ­ÙÙÙ Ø§ÙÙØ´Ø±ÙØ¹', 'error'); return; }
-  var p = res.data;
-  document.getElementById('projectId').value = p.id || '';
-  document.getElementById('projectNameAr').value = p.name_ar || '';
-  document.getElementById('projectNameEn').value = p.name_en || '';
-  document.getElementById('projectCategory').value = p.category || '';
-  document.getElementById('projectDescAr').value = p.desc_ar || '';
-  document.getElementById('projectDescEn').value = p.desc_en || '';
-  document.getElementById('projectYear').value = p.year || '';
-  document.getElementById('projectCoverUrl').value = p.cover_url || '';
-  updateLogoPreview(p.cover_url || '');
+  logoWidget.open();
 }
 
-async function saveProject() {
-  var id      = (document.getElementById('projectId') || {}).value || '';
-  var nameAr  = (document.getElementById('projectNameAr') || {}).value || '';
-  var nameEn  = (document.getElementById('projectNameEn') || {}).value || '';
-  var cat     = (document.getElementById('projectCategory') || {}).value || '';
-  var descAr  = (document.getElementById('projectDescAr') || {}).value || '';
-  var descEn  = (document.getElementById('projectDescEn') || {}).value || '';
-  var year    = (document.getElementById('projectYear') || {}).value || '';
-  var cover   = (document.getElementById('projectCoverUrl') || {}).value || '';
-  if (!nameAr) { showToast('Ø£Ø¯Ø®Ù Ø§Ø³Ù Ø§ÙÙØ´Ø±ÙØ¹ Ø¨Ø§ÙØ¹Ø±Ø¨Ù', 'error'); return; }
-  var payload = { name_ar: nameAr, name_en: nameEn, category: cat, desc_ar: descAr, desc_en: descEn, year: year, cover_url: cover };
-  var res;
-  if (id) {
-    res = await window.c3dClient.from('projects').update(payload).eq('id', id);
-  } else {
-    res = await window.c3dClient.from('projects').insert(payload);
-  }
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸: ' + res.error.message, 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­ÙØ¸ Ø¨ÙØ¬Ø§Ø­');
-  closeModal();
-  window.projectsLoaded = false;
-  loadProjects();
-}
-
-async function confirmDeleteProject(id, name) {
-  if (!confirm('ÙÙ ØªØ±ÙØ¯ Ø­Ø°Ù: ' + (name || id) + '?')) return;
-  var res = await window.c3dClient.from('projects').delete().eq('id', id);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­Ø°Ù', 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­Ø°Ù');
-  window.projectsLoaded = false;
-  loadProjects();
-}
-
-/* ââ Hero ââ */
-async function loadHero() {
-  var res = await window.c3dClient.from('hero_slides').select('*').order('sort_order', { ascending: true });
-  allHeroSlides = (res.data || []);
-  renderHeroSlides();
-  var lr = await window.c3dClient.from('site_settings').select('value').eq('key', 'logo_url').single();
-  logoUrl = (lr.data && lr.data.value) ? lr.data.value : '';
-  var li = document.getElementById('currentLogoUrl');
-  if (li) li.value = logoUrl;
-  updateLogoPreview(logoUrl);
-}
-
-function renderHeroSlides() {
-  var list = document.getElementById('heroSlidesList');
-  if (!list) return;
-  if (!allHeroSlides.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ Ø´Ø±Ø§Ø¦Ø­</div>'; return; }
-  list.innerHTML = allHeroSlides.map(function(s, i) {
-    return '<div class="slide-item">'
-      + '<img src="' + escHtml(s.image_url || '') + '" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:4px">'
-      + '<div style="flex:1;padding:0 1rem">'
-      + '<div><b>' + escHtml(s.title_ar || '') + '</b></div>'
-      + '<div style="font-size:.8rem;color:#666">' + escHtml(s.subtitle_ar || '') + '</div>'
-      + '</div>'
-      + '<div class="slide-actions">'
-      + '<button class="btn btn-sm" onclick="editSlide(' + i + ')">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger" onclick="deleteSlide(\'' + escHtml(s.id) + '\')">Ø­Ø°Ù</button>'
-      + '</div>'
-      + '</div>';
-  }).join('');
-}
-
-function editSlide(idx) {
-  var s = allHeroSlides[idx];
-  if (!s) return;
-  document.getElementById('slideId').value = s.id || '';
-  document.getElementById('slideImageUrl').value = s.image_url || '';
-  document.getElementById('slideTitleAr').value = s.title_ar || '';
-  document.getElementById('slideTitleEn').value = s.title_en || '';
-  document.getElementById('slideSubtitleAr').value = s.subtitle_ar || '';
-  document.getElementById('slideSubtitleEn').value = s.subtitle_en || '';
-  document.getElementById('slideOrder').value = s.sort_order || 0;
-}
-
-async function saveSlide() {
-  var id       = (document.getElementById('slideId') || {}).value || '';
-  var imgUrl   = (document.getElementById('slideImageUrl') || {}).value || '';
-  var titleAr  = (document.getElementById('slideTitleAr') || {}).value || '';
-  var titleEn  = (document.getElementById('slideTitleEn') || {}).value || '';
-  var subAr    = (document.getElementById('slideSubtitleAr') || {}).value || '';
-  var subEn    = (document.getElementById('slideSubtitleEn') || {}).value || '';
-  var order    = parseInt((document.getElementById('slideOrder') || {}).value || '0', 10);
-  var payload  = { image_url: imgUrl, title_ar: titleAr, title_en: titleEn, subtitle_ar: subAr, subtitle_en: subEn, sort_order: order };
-  var res = id
-    ? await window.c3dClient.from('hero_slides').update(payload).eq('id', id)
-    : await window.c3dClient.from('hero_slides').insert(payload);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙØ´Ø±ÙØ­Ø©');
-  document.getElementById('slideId').value = '';
-  loadHero();
-}
-
-async function deleteSlide(id) {
-  if (!confirm('Ø­Ø°Ù Ø§ÙØ´Ø±ÙØ­Ø©Ø')) return;
-  await window.c3dClient.from('hero_slides').delete().eq('id', id);
-  loadHero();
-}
-
-async function saveLogo() {
-  var url = (document.getElementById('currentLogoUrl') || {}).value || '';
-  var res = await window.c3dClient.from('site_settings').upsert({ key: 'logo_url', value: url }, { onConflict: 'key' });
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø­ÙØ¸ Ø§ÙÙÙØ¬Ù', 'error'); return; }
-  logoUrl = url;
-  updateLogoPreview(url);
-  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙÙÙØ¬Ù');
-}
-
-/* ââ Settings ââ */
 async function loadSettings() {
-  var res = await window.c3dClient.from('site_settings').select('*');
-  var data = res.data || [];
-  var map = {};
-  data.forEach(function(r) { map[r.key] = r.value; });
-  var fields = ['site_name_ar','site_name_en','phone','email','address_ar','address_en','facebook','instagram','linkedin','whatsapp'];
-  fields.forEach(function(f) {
-    var el = document.getElementById('setting_' + f);
-    if (el) el.value = map[f] || '';
-  });
+  if (!window.c3dClient) return;
   settingsLoaded = true;
+  const { data } = await window.c3dClient.from('site_settings').select('key,value');
+  if (!data) return;
+  const map = {};
+  data.forEach(r => map[r.key] =(r.value);
+  ['logo_url','whatsapp','email','name_ar','name_en'].forEach(k => {
+    const el = document.getElementById('s-' + k);
+    if (el) el.value = map[k] || '';
+  });
+  updateLogoPreview(map.logo_url || '');
 }
 
 async function saveSettings() {
-  var fields = ['site_name_ar','site_name_en','phone','email','address_ar','address_en','facebook','instagram','linkedin','whatsapp'];
-  var upserts = fields.map(function(f) {
-    var el = document.getElementById('setting_' + f);
-    return { key: f, value: el ? el.value : '' };
-  });
-  var res = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø­ÙØ¸ Ø§ÙØ¥Ø¹Ø¯Ø§Ø¯Ø§Øª');
+  if (!window.c3dClient) return;
+  const keys = ['logo_url','whatsapp','email','name_ar','name_en'];
+  const upserts = keys.map(k => ({ key: k, value: (document.getElementById('s-' + k) || {}).value || '' }));
+  const { error } = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم حفظ الإعدادات ✓', 'success');
 }
 
-/* ââ About ââ */
-async function loadAbout() {
-  var res = await window.c3dClient.from('about_content').select('*').order('sort_order', { ascending: true });
-  var data = res.data || [];
-  var list = document.getElementById('aboutItemsList');
-  if (!list) { aboutLoaded = true; return; }
-  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ÙÙØ¬Ø¯ ÙØ­ØªÙÙ</div>'; aboutLoaded = true; return; }
-  list.innerHTML = data.map(function(item) {
-    return '<div class="about-item" data-id="' + escHtml(item.id) + '">'
-      + '<div><b>' + escHtml(item.title_ar || '') + '</b></div>'
-      + '<div style="font-size:.8rem;color:#666">' + escHtml(item.content_ar || '').substring(0, 80) + '...</div>'
-      + '<div class="item-actions">'
-      + '<button class="btn btn-sm edit-about" data-id="' + escHtml(item.id) + '">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger del-about" data-id="' + escHtml(item.id) + '">Ø­Ø°Ù</button>'
-      + '</div></div>';
-  }).join('');
-  list.querySelectorAll('.edit-about').forEach(function(btn) {
-    btn.addEventListener('click', function() { editAbout(btn.dataset.id, data); });
-  });
-  list.querySelectorAll('.del-about').forEach(function(btn) {
-    btn.addEventListener('click', function() { deleteAbout(btn.dataset.id); });
-  });
+/* ══════════════════════════════════════════════════
+   ABOUT IMAGES MANAGER
+══════════════════════════════════════════════════ */
+let aboutLoaded = false;
+let aboutData = { main: null, small: null };
+let aboutWidgets = {};
+
+function openAboutWidget(slot) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!aboutWidgets[slot]) {
+    aboutWidgets[slot] = cloudinary.createUploadWidget({
+      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      folder: 'creative3design/about', maxFiles: 1,
+      sources: ['local','url','camera'],
+      cropping: true, croppingAspectRatio: 4/3,
+      clientAllowedFormats: ['jpg','jpeg','png','webp']
+    }, (err, result) => {
+      if (!err && result.event === 'success') {
+        const info = result.info;
+        aboutData[slot] = { image_url: info.secure_url, cloudinary_id: info.public_id };
+        setAboutPreview(slot, info.secure_url);
+        showToast('تم رفع الصورة ✓', 'success');
+      }
+    });
+  }
+  aboutWidgets[slot].open();
+}
+
+function setAboutPreview(slot, url) {
+  const slotEl = document.getElementById('about-' + slot + '-slot');
+  const preview = document.getElementById('about-' + slot + '-preview');
+  const img = document.getElementById('about-' + slot + '-img');
+  if (slotEl) slotEl.style.display = 'none';
+  if (preview) preview.style.display = 'block';
+  if (img) img.src = url;
+}
+
+function clearAboutSlot(slot) {
+  aboutData[slot] = { image_url: '', cloudinary_id: '' };
+  const slotEl = document.getElementById('about-' + slot + '-slot');
+  const preview = document.getElementById('about-' + slot + '-preview');
+  if (slotEl) slotEl.style.display = '';
+  if (preview) preview.style.display = 'none';
+}
+
+async function loadAboutImages() {
+  if (!window.c3dClient) return;
   aboutLoaded = true;
-}
-
-function editAbout(id, data) {
-  var item = data.find(function(d) { return d.id == id; });
-  if (!item) return;
-  document.getElementById('aboutId').value = item.id || '';
-  document.getElementById('aboutTitleAr').value = item.title_ar || '';
-  document.getElementById('aboutTitleEn').value = item.title_en || '';
-  document.getElementById('aboutContentAr').value = item.content_ar || '';
-  document.getElementById('aboutContentEn').value = item.content_en || '';
-  document.getElementById('aboutImageUrl').value = item.image_url || '';
-  document.getElementById('aboutOrder').value = item.sort_order || 0;
-}
-
-async function saveAbout() {
-  var id = (document.getElementById('aboutId') || {}).value || '';
-  var payload = {
-    title_ar: (document.getElementById('aboutTitleAr') || {}).value || '',
-    title_en: (document.getElementById('aboutTitleEn') || {}).value || '',
-    content_ar: (document.getElementById('aboutContentAr') || {}).value || '',
-    content_en: (document.getElementById('aboutContentEn') || {}).value || '',
-    image_url: (document.getElementById('aboutImageUrl') || {}).value || '',
-    sort_order: parseInt((document.getElementById('aboutOrder') || {}).value || '0', 10)
-  };
-  var res = id
-    ? await window.c3dClient.from('about_content').update(payload).eq('id', id)
-    : await window.c3dClient.from('about_content').insert(payload);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
-  document.getElementById('aboutId').value = '';
-  aboutLoaded = false;
-  loadAbout();
-}
-
-async function deleteAbout(id) {
-  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙØ¹ÙØµØ±Ø')) return;
-  await window.c3dClient.from('about_content').delete().eq('id', id);
-  aboutLoaded = false;
-  loadAbout();
-}
-
-/* ââ Services ââ */
-async function loadServices() {
-  var res = await window.c3dClient.from('services').select('*').order('sort_order', { ascending: true });
-  var data = res.data || [];
-  var list = document.getElementById('servicesList');
-  if (!list) { servicesLoaded = true; return; }
-  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ Ø®Ø¯ÙØ§Øª</div>'; servicesLoaded = true; return; }
-  list.innerHTML = data.map(function(s) {
-    return '<div class="service-item">'
-      + '<div><b>' + escHtml(s.name_ar || '') + '</b></div>'
-      + '<div class="item-actions">'
-      + '<button class="btn btn-sm edit-svc" data-id="' + escHtml(s.id) + '">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger del-svc" data-id="' + escHtml(s.id) + '">Ø­Ø°Ù</button>'
-      + '</div></div>';
-  }).join('');
-  list.querySelectorAll('.edit-svc').forEach(function(btn) {
-    btn.addEventListener('click', function() { editService(btn.dataset.id, data); });
+  const { data } = await window.c3dClient.from('about_images').select('*');
+  if (!data) return;
+  data.forEach(row => {
+    aboutData[row.slot] = row;
+    if (row.image_url) setAboutPreview(row.slot, row.image_url);
   });
-  list.querySelectorAll('.del-svc').forEach(function(btn) {
-    btn.addEventListener('click', function() { deleteService(btn.dataset.id); });
-  });
+}
+
+async function saveAboutImages() {
+  if (!window.c3dClient) return;
+  const updates = Object.entries(aboutData).map(([slot, d]) => ({
+    slot, image_url: d ? (d.image_url || '') : '', cloudinary_id: d ? (d.cloudinary_id || '') : ''
+  }));
+  const { error } = await window.c3dClient.from('about_images').upsert(updates, { onConflict: 'slot' });
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم حفظ صور عن الشركة ✓', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   SERVICES IMAGES MANAGER
+══════════════════════════════════════════════════ */
+let servicesLoaded = false;
+let allServices = [];
+let serviceWidgets = {};
+
+async function loadServicesImages() {
+  if (!window.c3dClient) return;
   servicesLoaded = true;
+  const { data } = await window.c3dClient.from('services_images').select('*').order('sort_order');
+  if (!data) return;
+  allServices = data;
+  renderServicesGrid();
 }
 
-function editService(id, data) {
-  var s = data.find(function(d) { return d.id == id; });
-  if (!s) return;
-  document.getElementById('serviceId').value = s.id || '';
-  document.getElementById('serviceNameAr').value = s.name_ar || '';
-  document.getElementById('serviceNameEn').value = s.name_en || '';
-  document.getElementById('serviceDescAr').value = s.desc_ar || '';
-  document.getElementById('serviceIconUrl').value = s.icon_url || '';
-  document.getElementById('serviceOrder').value = s.sort_order || 0;
+function renderServicesGrid() {
+  const grid = document.getElementById('servicesGrid');
+  if (!grid) return;
+  grid.innerHTML = allServices.map(s => `
+    <div class="service-admin-card" data-skey="${escHtml(s.service_key)}">
+      <div class="service-img-area" onclick="openServiceWidget('${escHtml(s.service_key)}')">
+        ${s.image_url
+          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.name_ar)}" /><div class="img-preview-overlay"><button class="btn btn-sm btn-outline" onclick="event.stopPropagation();openServiceWidget('${escHtml(s.service_key)}')">تغيير</button></div>`
+          : `<div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text-dim)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="font-size:.75rem">انقر لرفع صورة</span></div>`}
+      </div>
+      <div class="service-card-body">${escHtml(s.name_ar)}</div>
+    </div>
+  `).join('');
 }
 
-async function saveService() {
-  var id = (document.getElementById('serviceId') || {}).value || '';
-  var payload = {
-    name_ar: (document.getElementById('serviceNameAr') || {}).value || '',
-    name_en: (document.getElementById('serviceNameEn') || {}).value || '',
-    desc_ar: (document.getElementById('serviceDescAr') || {}).value || '',
-    icon_url: (document.getElementById('serviceIconUrl') || {}).value || '',
-    sort_order: parseInt((document.getElementById('serviceOrder') || {}).value || '0', 10)
-  };
-  var res = id
-    ? await window.c3dClient.from('services').update(payload).eq('id', id)
-    : await window.c3dClient.from('services').insert(payload);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
-  document.getElementById('serviceId').value = '';
-  servicesLoaded = false;
-  loadServices();
+function openServiceWidget(serviceKey) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!serviceWidgets[serviceKey]) {
+    serviceWidgets[serviceKey] = cloudinary.createUploadWidget({
+      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      folder: 'creative3design/services', maxFiles: 1,
+      sources: ['local','url','camera'],
+      cropping: true, croppingAspectRatio: 16/9,
+      clientAllowedFormats: ['jpg','jpeg','png','webp']
+    }, async (err, result) => {
+      if (!err && result.event === 'success') {
+        const info = result.info;
+        const s = allServices.find(x => x.service_key === serviceKey);
+        if (s) { s.image_url = info.secure_url; s.cloudinary_id = info.public_id; }
+        const { error } = await window.c3dClient.from('services_images')
+          .update({ image_url: info.secure_url, cloudinary_id: info.public_id })
+          .eq('service_key', serviceKey);
+        if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+        renderServicesGrid();
+        showToast('تم حفظ صورة الخدمة ✓', 'success');
+      }
+    });
+  }
+  serviceWidgets[serviceKey].open();
 }
 
-async function deleteService(id) {
-  if (!confirm('Ø­Ø°Ù ÙØ°Ù Ø§ÙØ®Ø¯ÙØ©Ø')) return;
-  await window.c3dClient.from('services').delete().eq('id', id);
-  servicesLoaded = false;
-  loadServices();
-}
+/* ══════════════════════════════════════════════════
+   COMPOUNDS MANAGER
+══════════════════════════════════════════════════ */
+let compoundsLoaded = false;
+let allCompounds = [];
+let compoundWidgets = {};
 
-/* ââ Compounds ââ */
 async function loadCompounds() {
-  var res = await window.c3dClient.from('compounds').select('*').order('sort_order', { ascending: true });
-  var data = res.data || [];
-  var list = document.getElementById('compoundsList');
-  if (!list) { compoundsLoaded = true; return; }
-  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ÙØ¬ÙØ¹Ø§Øª</div>'; compoundsLoaded = true; return; }
-  list.innerHTML = data.map(function(c) {
-    return '<div class="compound-item">'
-      + '<div><b>' + escHtml(c.name_ar || '') + '</b></div>'
-      + '<div class="item-actions">'
-      + '<button class="btn btn-sm edit-cmp" data-id="' + escHtml(c.id) + '">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger del-cmp" data-id="' + escHtml(c.id) + '">Ø­Ø°Ù</button>'
-      + '</div></div>';
-  }).join('');
-  list.querySelectorAll('.edit-cmp').forEach(function(btn) {
-    btn.addEventListener('click', function() { editCompound(btn.dataset.id, data); });
-  });
-  list.querySelectorAll('.del-cmp').forEach(function(btn) {
-    btn.addEventListener('click', function() { deleteCompound(btn.dataset.id); });
-  });
+  if (!window.c3dClient) return;
   compoundsLoaded = true;
+  const { data } = await window.c3dClient.from('compounds').select('*').order('sort_order');
+  allCompounds = data || [];
+  renderCompoundsGrid();
 }
 
-function editCompound(id, data) {
-  var c = data.find(function(d) { return d.id == id; });
-  if (!c) return;
-  document.getElementById('compoundId').value = c.id || '';
-  document.getElementById('compoundNameAr').value = c.name_ar || '';
-  document.getElementById('compoundNameEn').value = c.name_en || '';
-  document.getElementById('compoundDescAr').value = c.desc_ar || '';
-  document.getElementById('compoundImageUrl').value = c.image_url || '';
-  document.getElementById('compoundOrder').value = c.sort_order || 0;
+function renderCompoundsGrid() {
+  const grid = document.getElementById('compoundsGrid');
+  if (!grid) return;
+  if (!allCompounds.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><p>لا توجد كمباوندات بعد</p></div>`;
+    return;
+  }
+  grid.innerHTML = allCompounds.map(c => `
+    <div class="compound-card ${c.active ? '' : 'hero-slide-inactive'}" data-cid="${c.id}">
+      <div class="compound-logo-area" onclick="openCompoundWidget('${c.id}')">
+        ${c.logo_url
+          ? `<img src="${escHtml(c.logo_url)}" alt="${escHtml(c.name_ar)}" />`
+          : `<div class="compound-logo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>رفع اللوجو</span></div>`}
+      </div>
+      <div class="compound-card-body">
+        <input type="text" value="${escHtml(c.name_ar)}" placeholder="اسم الكمباوند" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateCompoundName('${c.id}',this.value)" />
+        <div class="toggle-row" style="margin-top:.2rem">
+          <label class="toggle"><input type="checkbox" ${c.active ? 'checked' : ''} onchange="toggleCompound('${c.id}',this.checked)" /><span class="toggle-slider"></span></label>
+          <span class="toggle-label" style="font-size:.78rem">${c.active ? 'ظاهر' : 'مخفي'}</span>
+        </div>
+      </div>
+      <div class="compound-card-actions">
+        <button class="btn btn-sm btn-outline" style="flex:1" onclick="openCompoundWidget('${c.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          رفع لوجو
+        </button>
+        <button class="btn btn-sm btn-danger" onclick="confirmDeleteCompound('${c.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
 }
 
-async function saveCompound() {
-  var id = (document.getElementById('compoundId') || {}).value || '';
-  var payload = {
-    name_ar: (document.getElementById('compoundNameAr') || {}).value || '',
-    name_en: (document.getElementById('compoundNameEn') || {}).value || '',
-    desc_ar: (document.getElementById('compoundDescAr') || {}).value || '',
-    image_url: (document.getElementById('compoundImageUrl') || {}).value || '',
-    sort_order: parseInt((document.getElementById('compoundOrder') || {}).value || '0', 10)
-  };
-  var res = id
-    ? await window.c3dClient.from('compounds').update(payload).eq('id', id)
-    : await window.c3dClient.from('compounds').insert(payload);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
-  document.getElementById('compoundId').value = '';
-  compoundsLoaded = false;
-  loadCompounds();
+function openCompoundWidget(cid) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  if (!compoundWidgets[cid]) {
+    compoundWidgets[cid] = cloudinary.createUploadWidget({
+      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      folder: 'creative3design/compounds', maxFiles: 1,
+      sources: ['local','url','camera'],
+      clientAllowedFormats: ['png','jpg','jpeg','webp','svg']
+    }, async (err, result) => {
+      if (!err && result.event === 'success') {
+        const { secure_url, public_id } = result.info;
+        const { error } = await window.c3dClient.from('compounds')
+          .update({ logo_url: secure_url, cloudinary_id: public_id }).eq('id', cid);
+        if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+        const c = allCompounds.find(x => x.id === cid);
+        if (c) c.logo_url = secure_url;
+        renderCompoundsGrid();
+        showToast('تم رفع اللوجو ✓', 'success');
+      }
+    });
+  }
+  compoundWidgets[cid].open();
 }
 
-async function deleteCompound(id) {
-  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙÙØ¬ÙØ¹Ø')) return;
-  await window.c3dClient.from('compounds').delete().eq('id', id);
-  compoundsLoaded = false;
-  loadCompounds();
+async function updateCompoundName(cid, name) {
+  const c = allCompounds.find(x => x.id === cid);
+  if (c) c.name_ar = name;
+  await window.c3dClient.from('compounds').update({ name_ar: name }).eq('id', cid);
 }
 
-/* ââ Before/After ââ */
+async function toggleCompound(cid, active) {
+  await window.c3dClient.from('compounds').update({ active }).eq('id', cid);
+  const c = allCompounds.find(x => x.id === cid);
+  if (c) c.active = active;
+  const card = document.querySelector(`[data-cid="${cid}"]`);
+  if (card) card.classList.toggle('hero-slide-inactive', !active);
+  const lbl = card && card.querySelector('.toggle-label');
+  if (lbl) lbl.textContent = active ? 'ظاهر' : 'مخفي';
+}
+
+async function addCompound() {
+  if (!window.c3dClient) return;
+  const max = allCompounds.reduce((m, c) => Math.max(m, c.sort_order || 0), -1);
+  const { data, error } = await window.c3dClient.from('compounds')
+    .insert({ name_ar: 'كمباوند جديد', sort_order: max + 1, active: true }).select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allCompounds.push(data);
+  renderCompoundsGrid();
+  showToast('تم إضافة الكمباوند — ارفع اللوجو وعدّل الاسم', 'info');
+}
+
+function confirmDeleteCompound(cid) {
+  showConfirm('حذف الكمباوند؟', 'لا يمكن التراجع عن هذا الإجراء.', async () => {
+    await window.c3dClient.from('compounds').delete().eq('id', cid);
+    allCompounds = allCompounds.filter(x => x.id !== cid);
+    delete compoundWidgets[cid];
+    renderCompoundsGrid();
+    showToast('تم الحذف', 'success');
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   BEFORE / AFTER MANAGER
+══════════════════════════════════════════════════ */
+let baLoaded = false;
+let allBAItems = [];
+let baWidgets = {};
+
 async function loadBAItems() {
-  var res = await window.c3dClient.from('before_after').select('*').order('sort_order', { ascending: true });
-  var data = res.data || [];
-  var list = document.getElementById('baList');
-  if (!list) { baLoaded = true; return; }
-  if (!data.length) { list.innerHTML = '<div class="no-data">ÙØ§ ØªÙØ¬Ø¯ ØµÙØ±</div>'; baLoaded = true; return; }
-  list.innerHTML = data.map(function(b) {
-    return '<div class="ba-item">'
-      + '<div><b>' + escHtml(b.title_ar || '') + '</b></div>'
-      + '<div class="item-actions">'
-      + '<button class="btn btn-sm edit-ba" data-id="' + escHtml(b.id) + '">ØªØ¹Ø¯ÙÙ</button> '
-      + '<button class="btn btn-sm btn-danger del-ba" data-id="' + escHtml(b.id) + '">Ø­Ø°Ù</button>'
-      + '</div></div>';
-  }).join('');
-  list.querySelectorAll('.edit-ba').forEach(function(btn) {
-    btn.addEventListener('click', function() { editBA(btn.dataset.id, data); });
-  });
-  list.querySelectorAll('.del-ba').forEach(function(btn) {
-    btn.addEventListener('click', function() { deleteBA(btn.dataset.id); });
-  });
+  if (!window.c3dClient) return;
   baLoaded = true;
+  const { data } = await window.c3dClient.from('before_after').select('*').order('sort_order');
+  allBAItems = data || [];
+  renderBAGrid();
 }
 
-function editBA(id, data) {
-  var b = data.find(function(d) { return d.id == id; });
-  if (!b) return;
-  document.getElementById('baId').value = b.id || '';
-  document.getElementById('baTitleAr').value = b.title_ar || '';
-  document.getElementById('baTitleEn').value = b.title_en || '';
-  document.getElementById('baBeforeUrl').value = b.before_url || '';
-  document.getElementById('baAfterUrl').value = b.after_url || '';
-  document.getElementById('baOrder').value = b.sort_order || 0;
+function renderBAGrid() {
+  const grid = document.getElementById('baGrid');
+  if (!grid) return;
+  if (!allBAItems.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg><p>لا توجد مجموعات قبل/بعد بعد</p></div>`;
+    return;
+  }
+  grid.innerHTML = allBAItems.map(item => `
+    <div class="ba-card ${item.active ? '' : 'hero-slide-inactive'}" data-baid="${item.id}">
+      <div class="ba-card-imgs">
+        <div class="ba-img-slot" onclick="openBAWidget('${item.id}','before')">
+          ${item.before_url ? `<img src="${escHtml(item.before_url)}" alt="قبل" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>قبل</span></div>`}
+          <div class="ba-slot-label">قبل</div>
+        </div>
+        <div class="ba-img-slot" onclick="openBAWidget('${item.id}','after')">
+          ${item.after_url ? `<img src="${escHtml(item.after_url)}" alt="بعد" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>بعد</span></div>`}
+          <div class="ba-slot-label">بعد</div>
+        </div>
+      </div>
+      <div class="ba-card-body">
+        <input type="text" value="${escHtml(item.title_ar || '')}" placeholder="عنوان المشروع" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateBATitle('${item.id}',this.value)" />
+        <div class="toggle-row">
+          <label class="toggle"><input type="checkbox" ${item.active ? 'checked' : ''} onchange="toggleBA('${item.id}',this.checked)" /><span class="toggle-slider"></span></label>
+          <span class="toggle-label" style="font-size:.78rem">${item.active ? 'ظاهر' : 'مخفي'}</span>
+        </div>
+      </div>
+      <div class="ba-card-actions">
+        <button class="btn btn-sm btn-danger" onclick="confirmDeleteBA('${item.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          حذف
+        </button>
+      </div>
+    </div>
+  `).join('');
 }
 
-async function saveBA() {
-  var id = (document.getElementById('baId') || {}).value || '';
-  var payload = {
-    title_ar: (document.getElementById('baTitleAr') || {}).value || '',
-    title_en: (document.getElementById('baTitleEn') || {}).value || '',
-    before_url: (document.getElementById('baBeforeUrl') || {}).value || '',
-    after_url: (document.getElementById('baAfterUrl') || {}).value || '',
-    sort_order: parseInt((document.getElementById('baOrder') || {}).value || '0', 10)
-  };
-  var res = id
-    ? await window.c3dClient.from('before_after').update(payload).eq('id', id)
-    : await window.c3dClient.from('before_after').insert(payload);
-  if (res.error) { showToast('Ø®Ø·Ø£ ÙÙ Ø§ÙØ­ÙØ¸', 'error'); return; }
-  showToast('ØªÙ Ø§ÙØ­ÙØ¸');
-  document.getElementById('baId').value = '';
-  baLoaded = false;
-  loadBAItems();
+function openBAWidget(itemId, type) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  const key = itemId + '_' + type;
+  if (!baWidgets[key]) {
+    baWidgets[key] = cloudinary.createUploadWidget({
+      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      folder: 'creative3design/before-after', maxFiles: 1,
+      sources: ['local','url','camera'],
+      cropping: true, croppingAspectRatio: 4/3,
+      clientAllowedFormats: ['jpg','jpeg','png','webp']
+    }, async (err, result) => {
+      if (!err && result.event === 'success') {
+        const { secure_url, public_id } = result.info;
+        const urlField  = type + '_url';
+        const cidField  = type + '_cid';
+        const { error } = await window.c3dClient.from('before_after')
+          .update({ [urlField]: secure_url, [cidField]: public_id }).eq('id', itemId);
+        if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+        const item = allBAItems.find(x => x.id === itemId);
+        if (item) { item[urlField] = secure_url; item[cidField] = public_id; }
+        renderBAGrid();
+        showToast('تم رفع الصورة ✓', 'success');
+      }
+    });
+  }
+  baWidgets[key].open();
 }
 
-async function deleteBA(id) {
-  if (!confirm('Ø­Ø°Ù ÙØ°Ø§ Ø§ÙØ¹ÙØµØ±Ø')) return;
-  await window.c3dClient.from('before_after').delete().eq('id', id);
-  baLoaded = false;
-  loadBAItems();
+async function updateBATitle(itemId, title) {
+  const item = allBAItems.find(x => x.id === itemId);
+  if (item) item.title_ar = title;
+  await window.c3dClient.from('before_after').update({ title_ar: title }).eq('id', itemId);
 }
 
-/* ââ Init ââ */
-document.addEventListener('DOMContentLoaded', function() {
-  var loginBtn = document.getElementById('loginBtn');
-  if (loginBtn) loginBtn.addEventListener('click', handleLogin);
-  var logoutBtn = document.getElementById('logoutBtn');
-  if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
-  document.querySelectorAll('.nav-item').forEach(function(n) {
-    n.addEventListener('click', function() { showView(n.dataset.view); });
+async function toggleBA(itemId, active) {
+  await window.c3dClient.from('before_after').update({ active }).eq('id', itemId);
+  const item = allBAItems.find(x => x.id === itemId);
+  if (item) item.active = active;
+  const card = document.querySelector(`[data-baid="${itemId}"]`);
+  if (card) card.classList.toggle('hero-slide-inactive', !active);
+  const lbl = card && card.querySelector('.toggle-label');
+  if (lbl) lbl.textContent = active ? 'ظاهر' : 'مخفي';
+}
+
+async function addBAItem() {
+  if (!window.c3dClient) return;
+  const max = allBAItems.reduce((m, x) => Math.max(m, x.sort_order || 0), -1);
+  const { data, error } = await window.c3dClient.from('before_after')
+    .insert({ title_ar: '', sort_order: max + 1, active: true }).select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allBAItems.push(data);
+  renderBAGrid();
+  showToast('أضف الصور للمجموعة الجديدة', 'info');
+}
+
+function confirmDeleteBA(itemId) {
+  showConfirm('حذف المجموعة؟', 'سيُحذف سجل قبل/بعد هذا نهائياً.', async () => {
+    await window.c3dClient.from('before_after').delete().eq('id', itemId);
+    allBAItems = allBAItems.filter(x => x.id !== itemId);
+    renderBAGrid();
+    showToast('تم الحذف', 'success');
   });
-  var newProjBtn = document.getElementById('newProjectBtn');
-  if (newProjBtn) newProjBtn.addEventListener('click', function() { openModal(null); });
-  var saveProjBtn = document.getElementById('saveProjectBtn');
-  if (saveProjBtn) saveProjBtn.addEventListener('click', saveProject);
-  var closeModalBtns = document.querySelectorAll('.close-modal');
-  closeModalBtns.forEach(function(b) { b.addEventListener('click', closeModal); });
-  var saveSettBtn = document.getElementById('saveSettingsBtn');
-  if (saveSettBtn) saveSettBtn.addEventListener('click', saveSettings);
-  var saveSlideBtn = document.getElementById('saveSlideBtn');
-  if (saveSlideBtn) saveSlideBtn.addEventListener('click', saveSlide);
-  var saveLogoBtn = document.getElementById('saveLogoBtn');
-  if (saveLogoBtn) saveLogoBtn.addEventListener('click', saveLogo);
-  var saveAboutBtn = document.getElementById('saveAboutBtn');
-  if (saveAboutBtn) saveAboutBtn.addEventListener('click', saveAbout);
-  var saveSvcBtn = document.getElementById('saveServiceBtn');
-  if (saveSvcBtn) saveSvcBtn.addEventListener('click', saveService);
-  var saveCmpBtn = document.getElementById('saveCompoundBtn');
-  if (saveCmpBtn) saveCmpBtn.addEventListener('click', saveCompound);
-  var saveBABtn = document.getElementById('saveBABtn');
-  if (saveBABtn) saveBABtn.addEventListener('click', saveBA);
-  var logoInput = document.getElementById('currentLogoUrl');
-  if (logoInput) logoInput.addEventListener('input', function() { updateLogoPreview(logoInput.value); });
-  var coverInput = document.getElementById('projectCoverUrl');
-  if (coverInput) coverInput.addEventListener('input', function() { updateLogoPreview(coverInput.value); });
-  if (window.c3dClient) { initAuth(); }
+}
+
+/* ══════════════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════════════ */
+async function initAuth() {
+
+  /* ── فحص أخطاء الإعداد أولاً ── */
+  const errors = window.C3D_CONFIG_ERRORS || [];
+  if (!window.c3dClient || errors.length) {
+    const overlay = document.getElementById('configErrorOverlay');
+    const list    = document.getElementById('configErrorList');
+    if (overlay && list) {
+      list.innerHTML = errors.map(e =>
+        `<div style="margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.05)">${
+          e.replace(/\n/g,'<br/>')
+        }</div>`
+      ).join('') || '<div>⚠️ لم يتم تهي٦ة Supabase Client — راجع js/config.js</div>';
+      overlay.style.display = 'flex';
+    }
+    // عرض رسالة في صندوق تسجيل الدخول أيضاً
+    showLoginError('⚠️ راجع إعدادات Supabase في js/config.js — انظq التعليم�)�a6(�.va6)�a��N�]\��B��ʈ8� 8� 6)�a6*�+v`�`�6ava�6+6a6,�*H6avb6+6b6+�*H8� 8� 
+��ۜ��]N���\��[ۈHHH]�Z]�[��˘���Y[��]]��]�\��[ۊ
+NY�
+�\��[ۊHۓ��[��\��[ۋ�\�\�NB��ʈ8� 8� 6)�a6)�,�*�av)�.H6a6*�.�b�b�,v)�*�]]8� 8� 
+��[��˘���Y[��]]�ې]]�]P�[��J
+]�[��\��[ۊHO�Y�
+]�[�OOH	��QӑQ�S��	���\��[ۊHۓ��[��\��[ۋ�\�\�NY�
+]�[�OOH	��QӑQ��U	�Hۓ���]
+
+NJNB��\�[���[��[ۈ[�S��[�
+H�ۜ�[XZ[H��[Y[���][[Y[��RY
+	���[�[XZ[	�K��[YK��[J
+N�ۜ�\��H��[Y[���][[Y[��RY
+	���[�\���K��[YN�ۜ���H��[Y[���][[Y[��RY
+	���[����N�ۜ�\��H��[Y[���][[Y[��RY
+	���[�\��܉�N�Y�
+Y[XZ[\\��H������[�\��܊	�(�+�+�a6)�a6*6,vb�+�6)�a6)va6`�*�,vb6a�b�6b6`�a6av*H6)�a6av,vb6,I�N��]\���B�Y�
+]�[��˘���Y[�
+H������[�\��܊	��\X�\�H6.�b�,H6avc�a�b�dv(�8�%6,v)�+6.H����ۙ�Y˚���N��]\���B�����\�X�YH�YN���^�۝[�H	�+6)�,vcH6)�a6+�+�b6a����\����\��\���[[ݙJ	�����N�]�\�[�H�\�[H]�Z]�[��˘���Y[��]]��Yے[��]\���ܙ
+�[XZ[\���ܙ�\��JNH�]�
+JH�����[�\��܊	�+�-�(�6`vb�6)�a6)�*�-v)�a6*6`�\X�\�H8�%6*�+v`�`�6ava�6-v+v*H�ڙX�T�6`vb�����ۙ�Y˚���N���\�X�YH�[�N����^�۝[�H	�+�+�b6a	���]\��B���ۜ��\��܈HH�\�[Y�
+\��܊H�ۜ�\��B�\��܋�Y\��Y�K�[��Y\�	�[��[Y��[�ܙY[�X[��H�	�*6,vb�+�6)va6`�*�,vb6a�b�6(�b6`�a6av*H6av,vb6,H6+�)�-�)�*I���\��܋�Y\��Y�K�[��Y\�	јZ[Y��]�	�H�	�*�.v,6dv,H6)�a6)�*�-v)�a6*6`�\X�\�H8�%6*�(�`�+�6ava�6-v+v*H�ڙX�T�	���\��܋�Y\��Y�K�[��Y\�	ә]�ܚ�\��܉�H�	�+�-�(�6`vb�6)�a6-6*6`�*H8�%6*�+v`�`�6ava�6)�a6)�*�-v)�a6*6)�a6)va�*�,va�*����\��܋�Y\��Y�N�����[�\��܊\��N���\�X�YH�[�N���^�۝[�H	�+�+�b6a	�B�B���[��[ۈ[�S���]
+
+HY�
+�[��˘���Y[�
+H�[��˘���Y[��]]��Yۓ�]
+
+N[�Hۓ���]
+
+NB���[��[ۈۓ��[�\�\�H��[Y[���][[Y[��RY
+	���[��ܙY[��K��[K�\�^HH	ۛۙI���[Y[���][[Y[��RY
+	�\�[	�K��[K�\�^HH	ٛ^	���[Y[���][[Y[��RY
+	�XY\�\�\��K�^�۝[�H\�\��[XZ[�Y�ڙX��
+N[�]��Y[�\�U�Y�]
+
+NB���[��[ۈۓ���]
+
+H��[Y[���][[Y[��RY
+	���[��ܙY[��K��[K�\�^HH	ٛ^	���[Y[���][[Y[��RY
+	�\�[	�K��[K�\�^HH	ۛۙI�B���[��[ۈ�����[�\��܊\��H�ۜ�[H��[Y[���][[Y[��RY
+	���[�\��܉�N[�^�۝[�H\��[��\��\��Y
+	�����NB����[��[�\��^Hۈ��[��ܛB���[Y[���][[Y[��RY
+	���[�\���K�Y]�[�\�[�\�	��^Y�ۉ�HO�Y�
+K��^HOOH	�[�\��H[�S��[�
+NJN�ʈ8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��Q	��S�T��ґP�¸�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d
+�\�[���[��[ۈ�Y�ڙX��
+HY�
+]�[��˘���Y[�
+H�]\����ۜ��]K\��܈HH]�Z]�[��˘���Y[������J	��ڙX���B���[X�
+	ʉ�B��ܙ\�	��ܝ�ܙ\���\��[�[�Έ�YHJB��ܙ\�	�ܙX]Y�]	��\��[�[�Έ�[�HJN�Y�
+\��܊H�����\�
+	�+�-�(�6`vb�6*�+vavb�a6)�a6av-6)�,vb�.N�	�
+�\��܋�Y\��Y�K	�\��܉�N��]\���B��[�ڙX��H]H�N\]T�]�
+N�[�\��ڙX��[�ڙX��NB���[��[ۈ�[�\��ڙX���ڙX��H�ۜ�ܚYH��[Y[���][[Y[��RY
+	��ڙX��ܚY	�NY�
+\�ڙX�˛[��
+HܚY�[��\�SH�]��\��H�[\K\�]H��[OH�ܚYX��[[��K�LH���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH�H���X�H�ȈOH�Ȉ�YH�ȈZY�H�ȋϏ�X�H�M�OH�Ȉ�YH�ȈZY�H�ȋϏ�X�H�M�OH�M��YH�ȈZY�H�ȋϏ�X�H�ȈOH�M��YH�ȈZY�H�ȋϏ�ݙς��a6)�6*�b6+6+�6av-6)�,vb�.H6*6.v+�����]ۈ�\��H�����\�[X\�H��\�H�ۘ�X��H��[�[�[
+
+H��(�-�`H6av-6,vb6.v)�b�6)�a6(�a�؝]ۏ���]���]\��B��ܚY�[��\�SH�ڙX�˛X\
+O��]��\��H��ڙX�X�\��]KZYH���YH���]��\��H��\�Z[Y�]ܘ\���	��[XY�W�\���[Y�ܘ�H���[XY�W�\�H�[H��\��[
+�[XY�W�[�\���[YW�\�_H��Y[��H�^�H�Ϙ��]��\��H��\�[��Z[Yȏ�a5��6*�b6+6+�6-vb6,v*O�]��B��[��\��H��\�X�Y�H����UQ�ԖW�T����]Y�ܞWH��]Y�ܞ_O��[���	���]\�OOH	��Y�	��	��[��\��H��\�\�]\�Y�Y���av,�b6dv+�*O��[����	��B��]���]��\��H��\�X��H���]��\��H��\�[�[YH���\��[
+��[YW�\�_O�]���]��\��H��\�[Y]H����[��\��H��\�]Yȏ���SW�T����[WH��[_O��[���	���X]\�Y�	��[��\��H��\�]YȈ�[OH��X��ܛ�[���ؘJ
+͋M�KL�K�L�N���܎���Y��؛ܙ\�X��܎��ؘJ
+͋M�KL�K��JH���d6avavb�dv,���[����	��B��]���	����][ۗ�\��]��\��H��\�[�ȏ�ݙ��YH�LH�ZY�H�LH��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����]H�L�HL�
+�NHL�NHL��NKM�NKLL�NHHLN��Ϗ�\��H�H�L���OH�L��H�ȋϏ�ݙω�\��[
+���][ۗ�\�_O�]���	��B��]���]��\��H��\�XX�[ۜȏ���]ۈ�\��H�����[�][�H��\�H�ۘ�X��H��[�[�[
+	���YI�H���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����YH�LȈZY�H�Lȏ�]H�LLH
+
+L��L���ML����ML���L��MȋϏ]H�LN�H��XL��L�H��L�HL��L�M[MHKMK�KNK�^��Ϗ�ݙς�6*�.v+�b�a�؝]ۏ���]ۈ�\��H�����Y[��\���\�H�ۘ�X��H��ۙ�\�Q[]J	���YI�	��\��[
+��[YW�\�_I�H���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����YH�LȈZY�H�Lȏ��[[�H�[��H��
+�
+H
+��H
+��Ϗ]H�LNH
+�LHML��KL��L��KL�L�
+H
+��Ϗ]H�LLL]��LML]���Ϗ�ݙς�6+v,6`B�؝]ۏ���]����]��
+K���[�	��NB���[��[ۈ�[\��ڙX��
+H�ۜ��X\��H��[Y[���][[Y[��RY
+	��X\��[�]	�K��[YK��[J
+K����\��\�J
+N�ۜ��]H��[Y[���][[Y[��RY
+	��]�[\��K��[YN�ۜ��]\�H��[Y[���][[Y[��RY
+	��]\њ[\��K��[YN��ۜ��[\�YH[�ڙX�˙�[\�O��ۜ�X]��X\��H\�X\�����[YW�\�����\��\�J
+K�[��Y\��X\��
+H�
+��[YW�[�	��K����\��\�J
+K�[��Y\��X\��
+H�
+���][ۗ�\�	��K����\��\�J
+K�[��Y\��X\��
+N�ۜ�X]��]HX�]��]Y�ܞHOOH�]�ۜ�X]��]\�H\�]\���]\�OOH�]\��]\��X]��X\��	��X]��]	��X]��]\�JN�[�\��ڙX���[\�Y
+NB���[��[ۈ\]T�]�
+H�ۜ�X�\�YH[�ڙX�˙�[\�O���]\�OOH	�X�\�Y	�N��[Y[���][[Y[��RY
+	��]�[	�K�^�۝[�HX�\�Y�[����[Y[���][[Y[��RY
+	��]�\��K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	ܙ\�Y[�X[	�K�[����[Y[���][[Y[��RY
+	��]��I�K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	���[Y\��X[	�K�[����[Y[���][[Y[��RY
+	��]�[	�K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	ݚ[I�K�[����[Y[���][[Y[��RY
+	��]�Y�	�K�^�۝[�H[�ڙX�˙�[\�O���]\�OOH	��Y�	�K�[��B��ʈ8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�S�S8�%�[�����B��d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d
+��[��[ۈ�[�[�[
+�ڙX�YH�[
+HY][��YH�ڙX�Y�\�]�ܛJ
+N�Y�
+�ڙX�Y
+H�ۜ�H[�ڙX�˙�[�
+O��YOOH�ڙX�Y
+NY�
+\
+H�]\����[Y[���][[Y[��RY
+	�[�[]I�K�^�۝[�H	�*�.v+�b�a6)�a6av-6,vb6.I���[Y[���][[Y[��RY
+	��]�P��^	�K�^�۝[�H	�+v`v.6)�a6*�.v+�b�a6)�*���[]Q�ܛJ
+NH[�H��[Y[���][[Y[��RY
+	�[�[]I�K�^�۝[�H	�av-6,vb6.H6+6+�b�+����[Y[���][[Y[��RY
+	��]�P��^	�K�^�۝[�H	�+v`v.6)�a6av-6,vb6.I�B���[Y[���][[Y[��RY
+	��ڙX�[�[	�K��\��\��Y
+	��[��N��[Y[����K��[K�ݙ\����H	�Y[��B���[��[ۈ���S[�[
+
+H��[Y[���][[Y[��RY
+	��ڙX�[�[	�K��\��\���[[ݙJ	��[��N��[Y[����K��[K�ݙ\����H	��B���[��[ۈې�X�����X��JHY�
+K�\��]OOH��[Y[���][[Y[��RY
+	��ڙX�[�[	�JH���S[�[
+
+NB���[��[ۈ�\�]�ܛJ
+H�ً[�[YW�\��	ً[�[YW�[��	ً[��][ۗ�\��	ً[��][ۗ�[��	ًY\�ܚ\[ۗ�\��	ًY\�ܚ\[ۗ�[���	ً\�[��]I�	ً\�[��\�ܚ\[ۉ�	ً\�[���^]�ܙ��'ًZ[XY�W�[�\��K��ܑXX�
+YO��ۜ�[H��[Y[���][[Y[��RY
+Y
+NY�
+[
+H[��[YHH	��JN��[Y[���][[Y[��RY
+	ًX�]Y�ܞI�K��[YHH	����[Y[���][[Y[��RY
+	ً\�[I�K��[YHH	����[Y[���][[Y[��RY
+	ً\�]\��K��[YHH	�X�\�Y	���[Y[���][[Y[��RY
+	ً\�ܝ�ܙ\��K��[YHH	�	���[Y[���][[Y[��RY
+	ًY�X]\�Y	�K��X��YH�[�N�[[ݙR[XY�J�YJN�X\�\��ܜ�
+N\]T�S���[�
+
+NB���[��[ۈ�[]Q�ܛJ
+H�ۜ��]H
+Y�[
+HO���ۜ�[H��[Y[���][[Y[��RY
+Y
+N�Y�
+[
+H[��[YHH�[	���N�]
+	ً[�[YW�\����[YW�\�N�]
+	ً[�[YW�[����[YW�[�N�]
+	ًX�]Y�ܞI���]Y�ܞJN�]
+	ً\�[I���[JN�]
+	ً[��][ۗ�\�����][ۗ�\�N�]
+	ً[��][ۗ�[�����][ۗ�[�N�]
+	ًY\�ܚ\[ۗ�\���\�ܚ\[ۗ�\�N�]
+	ًY\�ܚ\[ۗ�[���\�ܚ\[ۗ�[�N�]
+	ً\�[��]I���[��]JN�]
+	ً\�[��\�ܚ\[ۉ���[��\�ܚ\[ۊN�]
+	ً\�[���^]�ܙ�����͕�}���ݽɑ̤�(��͕Р��������}���}�Ȝ������������}���}�Ȥ�(��͕Р���ͽ��}�ɑ�Ȝ���������ͽ��}�ɑ�Ȁ������(�����յ��й���������	�%����������ɕ������������􀄅�������ɕ��(�����յ��й���������	�%������х��̜��م�Ք�����х��́�����Չ��͡����((�������������}�ɰ���(������ɵ%����Uɰ���������}�ɰ�(������ɵ
+��Ց%���������Ց�����}�Չ���}���������(����͡��%����Aɕ٥�ܡ�������}�ɰ��(���(������ѕM=
+�չР��)�((����VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�V@(���MY�AI=)
+P+�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�V@���═══ */
+async function saveProject() {
+  clearErrors();
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  document.getElementById('saveBtnText').textContent = 'جارٍ الحفظ...';
+
+  const payload = {
+    name_ar:              document.getElementById('f-name_ar').value.trim(),
+    name_en:              document.getElementById('f-name_en').value.trim() || null,
+    category:             document.getElementById('f-category').value,
+    style:                document.getElementById('f-style').value,
+    location_ar:          document.getElementById('f-location_ar').value.trim() || null,
+    location_en:          document.getElementById('f-location_en').value.trim() || null,
+    description_ar:       document.getElementById('f-description_ar').value.trim() || null,
+    description_en:       document.getElementById('f-description_en').value.trim() || null,
+    seo_title:            document.getElementById('f-seo_title').value.trim() || null,
+    seo_description:      document.getElementById('f-seo_description').value.trim() || null,
+    seo_keywords:         document.getElementById('f-seo_keywords').value.trim() || null,
+    image_url:            formImageUrl || null,
+    cloudinary_public_id: formCloudId  || null,
+    image_alt_ar:         document.getElementById('f-image_alt_ar').value.trim() || null,
+    featured:             document.getElementById('f-featured').checked,
+    sort_order:           parseInt(document.getElementById('f-sort_order').value, 10) || 0,
+    status:               document.getElementById('f-status').value,
+  };
+
+  let error;
+  if (editingId) {
+    ({ error } = await window.c3dClient.from('projects').update(payload).eq('id', editingId));
+  } else {
+    ({ error } = await window.c3dClient.from('projects').insert([payload]));
+  }
+
+  btn.disabled = false;
+  document.getElementById('saveBtnText').textContent = editingId ? 'حفظ التعديلات' : 'حفظ المشروع';
+
+  if (error) {
+    showToast('حدث خطأ: ' + error.message, 'error');
+    return;
+  }
+
+  showToast(editingId ? '✅ تم تحديث المشروع بنجاح' : '✅ تم إضافة المشروع بنجاح', 'success');
+  closeModal();
+  loadProjects();
+}
+
+function validateForm() {
+  let valid = true;
+  if (!document.getElementById('f-name_ar').value.trim()) {
+    document.getElementById('field-name_ar').classList.add('has-error'); valid = false;
+  }
+  if (!document.getElementById('f-category').value) {
+    document.getElementById('field-category').classList.add('has-error'); valid = false;
+  }
+  if (!document.getElementById('f-style').value) {
+    document.getElementById('field-style').classList.add('has-error'); valid = false;
+  }
+  return valid;
+}
+
+function clearErrors() {
+  document.querySelectorAll('.field.has-error').forEach(el => el.classList.remove('has-error'));
+}
+
+/* ══════════════════════════════════════════════════
+   DELETE
+══════════════════════════════════════════════════ */
+function confirmDelete(id, name) {
+  document.getElementById('confirmText').textContent = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
+  document.getElementById('confirmDialog').classList.add('open');
+  confirmCb = async () => {
+    const { error } = await window.c3dClient.from('projects').delete().eq('id', id);
+    if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
+    showToast('🗑️ تم حذف المشروع', 'info');
+    closeConfirm();
+    loadProjects();
+  };
+  document.getElementById('confirmOkBtn').onclick = confirmCb;
+}
+
+function closeConfirm() {
+  document.getElementById('confirmDialog').classList.remove('open');
+  confirmCb = null;
+}
+
+/* ══════════════════════════════════════════════════
+   CLOUDINARY WIDGET
+══════════════════════════════════════════════════ */
+function initCloudinaryWidget() {
+  const cfg = window.C3D_CONFIG?.cloudinary;
+  if (!cfg?.cloudName || cfg.cloudName.includes('YOUR_')) {
+    console.warn('[C3D] Cloudinary غير مُهيّأ');
+    return;
+  }
+  if (typeof cloudinary === 'undefined') {
+    console.error('[C3D] Cloudinary Widget JS غير محمّل');
+    return;
+  }
+
+  cloudWidget = cloudinary.createUploadWidget({
+    cloudName:    cfg.cloudName,
+    uploadPreset: cfg.uploadPreset,
+    sources:      ['local', 'url', 'camera'],
+    multiple:     false,
+    maxFileSize:  5000000,
+    allowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+    folder:       cfg.folder || 'creative3design/portfolio',
+    cropping:     false,
+    language:     'ar',
+    showAdvancedOptions: false,
+    styles: {
+      palette: {
+        window:'#161311', tabIcon:'#B8976A', menuIcons:'#B8976A',
+        textDark:'#FFFFFF', textLight:'#FFFFFF', link:'#B8976A',
+        action:'#B8976A', inactiveTabIcon:'#888',
+        error:'#E05252', inProgress:'#B8976A', complete:'#4caf7d',
+        sourceBg:'#1e1b17'
+      }
+    }
+  }, (error, result) => {
+    if (error) { showToast('خطأ في رفع الصورة: ' + error.message, 'error'); return; }
+    if (result.event === 'success') {
+      formImageUrl = result.info.secure_url;
+      formCloudId  = result.info.public_id;
+      showImagePreview(formImageUrl);
+      showToast('✅ تم رفع الصورة بنجاح', 'success');
+      generateAlt(); // auto alt text after upload
+    }
+  });
+}
+
+function openCloudinaryWidget() {
+  if (!cloudWidget) {
+    showToast('⚠️ Cloudinary غير مُهيّأ — عبّئ js/config.js أولاً', 'error');
+    return;
+  }
+  cloudWidget.open();
+}
+
+function showImagePreview(url) {
+  document.getElementById('imageUploadArea').style.display  = 'none';
+  document.getElementById('imagePreviewWrap').style.display = 'block';
+  document.getElementById('imagePreviewImg').src = url;
+}
+
+function removeImage(silent = false) {
+  formImageUrl = '';
+  formCloudId  = '';
+  document.getElementById('imageUploadArea').style.display  = 'flex';
+  document.getElementById('imagePreviewWrap').style.display = 'none';
+  document.getElementById('imagePreviewImg').src = '';
+  if (!silent) showToast('تمت إزالة الصورة', 'info');
+}
+
+/* ══════════════════════════════════════════════════
+   SEO AUTO-GENERATION
+══════════════════════════════════════════════════ */
+function autoSEO(force = false) {
+  const name    = document.getElementById('f-name_ar').value.trim();
+  const catVal  = document.getElementById('f-category').value;
+  const styleVal= document.getElementById('f-style').value;
+  const loc     = document.getElementById('f-location_ar').value.trim() || 'القاهرة';
+  const catAr   = CATEGORY_AR[catVal]  || '';
+  const styleAr = STYLE_AR[styleVal]   || '';
+
+  if (!name) return;
+
+  const titleEl = document.getElementById('f-seo_title');
+  const descEl  = document.getElementById('f-seo_description');
+  const kwEl    = document.getElementById('f-seo_keywords');
+
+  if (force || !titleEl.value) {
+    titleEl.value = `${name} - طراز ${styleAr} - ${loc} | Creative3Design`;
+  }
+  if (force || !descEl.value) {
+    descEl.value = `مشروع ${catAr} بطراز ${styleAr} في ${loc}. تصميم احترافي من Creative3Design — مكتب تصميم داخلي معتمد منذ 2003.`;
+  }
+  if (force || !kwEl.value) {
+    kwEl.value = `تصميم داخلي, ${catAr}, ${styleAr}, ${loc}, Creative3Design, مكتب تصميم الفاهرة`;
+  }
+  updateSEOCount();
+}
+
+function generateAlt() {
+  const name    = document.getElementById('f-name_ar').value.trim() || 'مشروع';
+  const catVal  = document.getElementById('f-category').value;
+  const styleVal= document.getElementById('f-style').value;
+  const loc     = document.getElementById('f-location_ar').value.trim() || 'القاهرة';
+  const catAr   = CATEGORY_AR[catVal]  || '';
+  const styleAr = STYLE_AR[styleVal]   || '';
+  document.getElementById('f-image_alt_ar').value =
+    `تصميم ${catAr} ${styleAr} - ${name} - ${loc} - Creative3Design`;
+}
+
+function updateSEOCount() {
+  const titleLen = document.getElementById('f-seo_title').value.length;
+  const descLen  = document.getElementById('f-seo_description').value.length;
+  document.getElementById('seoTitleCount').textContent = `${titleLen} حرف — المثالي: 50-60 حرف`;
+  document.getElementById('seoDescCount').textContent  = `${descLen} حرف — المثالي: 150-160 حرف`;
+}
+document.getElementById('f-seo_title').addEventListener('input', updateSEOCount);
+
+/* ══════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════ */
+function showToast(msg, type = 'info') {
+  const wrap = document.getElementById('toastWrap');
+  const div  = document.createElement('div');
+  div.className = `toast ${type}`;
+  div.textContent = msg;
+  wrap.appendChild(div);
+  setTimeout(() => div.remove(), 3500);
+}
+
+/* ══════════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════════ */
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function showView(v, ev) {
+  const e = ev || event;
+  document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+  if (e && e.currentTarget) e.currentTarget.classList.add('active');
+  const viewMap = {
+    projects:    { id:'projectsView',    display:'contents' },
+    hero:        { id:'heroView',        display:'flex' },
+    settings:    { id:'settingsView',    display:'flex' },
+    about:       { id:'aboutView',       display:'flex' },
+    services:    { id:'servicesView',    display:'flex' },
+    compounds:   { id:'compoundsView',   display:'flex' },
+    beforeafter: { id:'beforeafterView', display:'flex' },
+  };
+  Object.values(viewMap).forEach(({ id }) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const cfg = viewMap[v] || viewMap.projects;
+  const target = document.getElementById(cfg.id);
+  if (target) target.style.display = cfg.display;
+  if (v === 'hero'        && !allHeroSlides.length) loadHeroSlides();
+  if (v === 'settings'    && !settingsLoaded)       loadSettings();
+  if (v === 'about'       && !aboutLoaded)          loadAboutImages();
+  if (v === 'services'    && !servicesLoaded)       loadServicesImages();
+  if (v === 'compounds'   && !compoundsLoaded)      loadCompounds();
+  if (v === 'beforeafter' && !baLoaded)             loadBAItems();
+}
+
+/* ══════════════════════════════════════════════════
+   HERO MANAGER
+══════════════════════════════════════════════════ */
+let allHeroSlides = [];
+let heroUploadWidgets = {};
+
+const HERO_TABLE_SQL =
+`create table if not exists public.hero_slides (
+  id                   uuid primary key default gen_random_uuid(),
+  title_ar             text,
+  title_en             text,
+  image_url            text,
+  cloudinary_public_id text,
+  sort_order           int  not null default 0,
+  active               boolean not null default true,
+  created_at           timestamptz not null default now()
+);`;
+
+async function loadHeroSlides() {
+  const grid = document.getElementById('heroGrid');
+  if (!window.c3dClient || !grid) return;
+
+  grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جارٍ التحميل...</div>';
+
+  const { data, error } = await window.c3dClient
+    .from('hero_slides')
+    .select('*')
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    if (error.code === '42P01') {
+      grid.innerHTML = `
+        <div style="grid-column:1/-1;padding:2rem;text-align:center">
+          <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:.5rem">
+            جدول <code style="color:var(--gold);background:var(--surface2);padding:.1rem .4rem;border-radius:4px">hero_slides</code> غير موجود في Supabase بعد.
+          </p>
+          <p style="color:var(--text-dim);font-size:.82rem;margin-bottom:.8rem">أنشئه بفتح Supabase → SQL Editor ولصق الكود الةالي:</p>
+          <div class="hero-sql-block">${escHtml(HERO_TABLE_SQL)}</div>
+          <button class="btn btn-outline" style="margin-top:1rem" onclick="loadHeroSlides()">إعادة المحاولة بعد الإنشاء</button>
+        </div>`;
+    } else {
+      showToast('خطأ في تحميل الشرائح: ' + error.message, 'error');
+      grid.innerHTML = '';
+    }
+    return;
+  }
+
+  allHeroSlides = data || [];
+  renderHeroSlides();
+}
+
+function renderHeroSlides() {
+  const grid = document.getElementById('heroGrid');
+  if (!grid) return;
+
+  if (!allHeroSlides.length) {
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="56" height="56"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <p>لا توجد شرائح بعد</p>
+        <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">إضافة أول شريحة</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = allHeroSlides.map((s, i) => `
+    <div class="hero-slide-card ${s.active ? '' : 'hero-slide-inactive'}" data-slide-id="${s.id}">
+
+      <div class="hero-slide-img">
+        ${s.image_url
+          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.title_ar || 'شريحة ' + (i + 1))}" loading="lazy" />`
+          : `<div class="hero-slide-no-img">
+               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+               <span>قا توجد صورة</span>
+             </div>`}
+        <span class="hero-slide-num">شريحة ${i + 1}</span>
+      </div>
+
+      <div class="hero-slide-body">
+        <div class="field">
+          <label>عنوان الشريحة (اختياري)</label>
+          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar || '')}" placeholder="نص يظهر فوق الصورة..." />
+        </div>
+
+        <div class="hero-order-row">
+          <label>ترتيب الظهور:</label>
+          <input type="number" class="hero-order-input" id="hero-order-${s.id}" value="${s.sort_order ?? i}" min="0" max="99" />
+          <div class="toggle-row" style="margin-right:auto;gap:.45rem">
+            <label class="toggle">
+              <input type="checkbox" id="hero-active-${s.id}" ${s.active ? 'checked' : ''} onchange="toggleHeroActive('${s.id}',this.checked)" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label" id="hero-active-label-${s.id}" style="font-size:.78rem">${s.active ? 'نشطة' : 'مدفية'}</span>
+          </div>
+        </div>
+
+        <button class="hero-upload-btn" onclick="openHeroWidget('${s.id}')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          ${s.image_url ? 'تغيير الصورة' : 'رفع صورة'}
+        </button>
+      </div>
+
+      <div class="hero-slide-actions">
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+          حفظ
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}', '${escHtml(s.title_ar || 'شريحة ' + (i+1))}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+          حذف
+        </button>
+      </div>
+
+    </div>`).join('');
+}
+
+function getHeroWidget(slideId) {
+  if (heroUploadWidgets[slideId]) return heroUploadWidgets[slideId];
+
+  const cfg = window.C3D_CONFIG?.cloudinary;
+  if (!cfg?.cloudName || typeof cloudinary === 'undefined') return null;
+
+  const widget = cloudinary.createUploadWidget({
+    cloudName:           cfg.cloudName,
+    uploadPreset:        cfg.uploadPreset,
+    sources:             ['local', 'url', 'camera'],
+    multiple:            false,
+    maxFileSize:         8000000,
+    allowedFormats:      ['jpg', 'jpeg', 'png', 'webp'],
+    folder:              'creative3design/hero',
+    cropping:            true,
+    croppingAspectRatio: 16 / 9,
+    showSkipCropButton:  true,
+    language:            'ar',
+    showAdvancedOptions: false,
+    styles: {
+      palette: {
+        window:'#161311', tabIcon:'#B8976A', menuIcons:'#B8976A',
+        textDark:'#FFFFFF', textLight:'#FFFFFF', link:'#B8976A',
+        action:'#B8976A', inactiveTabIcon:'#888',
+        error:'#E05252', inProgress:'#B8976A', complete:'#4caf7d',
+        sourceBg:'#1e1b17'
+      }
+    }
+  }, async (error, result) => {
+    if (error) { showToast('خطأ في رفع الصورة: ' + error.message, 'error'); return; }
+    if (result.event === 'success') {
+      const url = result.info.secure_url;
+      const pid = result.info.public_id;
+      const { error: upErr } = await window.c3dClient
+        .from('hero_slides')
+        .update({ image_url: url, cloudinary_public_id: pid })
+        .eq('id', slideId);
+      if (upErr) { showToast('خطأ في حفظ الصورة: ' + upErr.message, 'error'); return; }
+      showToast('✅ تم رفع الصورة وحفظها بنجاح', 'success');
+      loadHeroSlides();
+    }
+  });
+
+  heroUploadWidgets[slideId] = widget;
+  return widget;
+}
+
+function openHeroWidget(slideId) {
+  const w = getHeroWidget(slideId);
+  if (!w) { showToast('⚠️ Cloudinary غير مُهيّأ — عبّئ js/config.js', 'error'); return; }
+  w.open();
+}
+
+async function saveHeroSlide(slideId) {
+  const titleEl  = document.getElementById('hero-title-'  + slideId);
+  const orderEl  = document.getElementById('hero-order-'  + slideId);
+  const activeEl = document.getElementById('hero-active-' + slideId);
+  if (!titleEl || !orderEl) return;
+
+  const { error } = await window.c3dClient
+    .from('hero_slides')
+    .update({
+      title_ar:   titleEl.value.trim()  || null,
+      sort_order: parseInt(orderEl.value, 10) || 0,
+      active:     activeEl.checked,
+    })
+    .eq('id', slideId);
+
+  if (error) { showToast('خطأ في الحفظ: ' + error.message, 'error'); return; }
+  showToast('✅ تم حفظ الشريحة بنجاح', 'success');
+  loadHeroSlides();
+}
+
+async function saveHeroOrder() {
+  const cards = document.querySelectorAll('.hero-slide-card[data-slide-id]');
+  if (!cards.length) { showToast('لا توجد شرائح لحفظ ترتيبها', 'info'); return; }
+
+  let hasError = false;
+  for (const card of cards) {
+    const id      = card.dataset.slideId;
+    const orderEl = document.getElementById('hero-order-' + id);
+    if (!orderEl) continue;
+    const { error } = await window.c3dClient
+      .from('hero_slides')
+      .update({ sort_order: parseInt(orderEl.value, 10) || 0 })
+      .eq('id', id);
+    if (error) hasError = true;
+  }
+
+  showToast(hasError ? 'حدث خطأ في بعض الشرائح' : '✅ تم حفظ الترتيب بنجاح', hasError ? 'error' : 'success');
+  if (!hasError) loadHeroSlides();
+}
+
+async function toggleHeroActive(slideId, active) {
+  const { error } = await window.c3dClient
+    .from('hero_slides')
+    .update({ active })
+    .eq('id', slideId);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const card = document.querySelector(`.hero-slide-card[data-slide-id="${slideId}"]`);
+  if (card) {
+    card.classList.toggle('hero-slide-inactive', !active);
+    const lbl = document.getElementById('hero-active-label-' + slideId);
+    if (lbl) lbl.textContent = active ? 'نشطة' : 'مدفية';
+  }
+  const slide = allHeroSlides.find(s => s.id === slideId);
+  if (slide) slide.active = active;
+}
+
+async function addHeroSlide() {
+  if (!window.c3dClient) return;
+  const maxOrder = allHeroSlides.reduce((m, s) => Math.max(m, s.sort_order ?? 0), -1);
+  const { error } = await window.c3dClient
+    .from('hero_slides')
+    .insert([{ sort_order: maxOrder + 1, active: true }]);
+  if (error) { showToast('خطأ في إنشاء الشريحة: ' + error.message, 'error'); return; }
+  showToast('✅ تمت إضافة شريحة جديدة', 'success');
+  loadHeroSlides();
+}
+
+function confirmDeleteHeroSlide(slideId, name) {
+  document.getElementById('confirmTitle').textContent = 'حذف الشريحة';
+  document.getElementById('confirmText').textContent  = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
+  document.getElementById('confirmDialog').classList.add('open');
+  document.getElementById('confirmOkBtn').onclick = async () => {
+    const { error } = await window.c3dClient.from('hero_slides').delete().eq('id', slideId);
+    if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
+    showToast('🗑️ تم حذف الشريحة', 'info');
+    closeConfirm();
+    delete heroUploadWidgets[slideId];
+    loadHeroSlides();
+  };
+}
+
+/* ══════════════════════════════════════════════════
+   KEYBOARD
+══════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeConfirm();
+  }
 });
 
+/* ══════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════ */
+initAuth();
 </script>
 </body>
 </html>
