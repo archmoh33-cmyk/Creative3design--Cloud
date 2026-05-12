@@ -1039,7 +1039,7 @@ async function loadSettings() {
   const { data } = await window.c3dClient.from('site_settings').select('key,value');
   if (!data) return;
   const map = {};
-  data.forEach(r => map[r.key] =(r.value);
+  data.forEach(r => map[r.key] = r.value);
   ['logo_url','whatsapp','email','name_ar','name_en','google_maps_embed'].forEach(k => {
     const el = document.getElementById('s-' + k);
     if (el) el.value = map[k] || '';
