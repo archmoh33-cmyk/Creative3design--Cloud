@@ -1530,6 +1530,75 @@ async function loadProjects() {
   updateStats();
   renderProjects(allProjects);
 }
+function renderProjects(projects) {
+  const grid = document.getElementById('projectsGrid');
+  if (!projects.length) {
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <p>\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0634\u0627\u0631\u064a\u0639 \u0628\u0639\u062f</p>
+        <button class="btn btn-primary btn-sm" onclick="openModal()">\u0623\u0636\u0641 \u0645\u0634\u0631\u0648\u0639\u0627\u064b \u0627\u0644\u0622\u0646</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = projects.map(p => `
+    <div class="project-card" data-id="${p.id}">
+      <div class="card-img-wrap">
+        ${p.image_url
+          ? `<img src="${p.image_url}" alt="${escHtml(p.image_alt_ar || p.name_ar)}" loading="lazy" />`
+          : `<div class="card-no-img">\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629</div>`}
+        <span class="card-badge">${CATEGORY_AR[p.category] || p.category}</span>
+        ${p.status === 'draft' ? '<span class="card-status-draft">\u0645\u0633\u0648\u0651\u062f\u0629</span>' : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-name">${escHtml(p.name_ar)}</div>
+        <div class="card-meta">
+          <span class="card-tag">${STYLE_AR[p.style] || p.style}</span>
+          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">\u2b50 \u0645\u0645\u064a\u0651\u0632</span>' : ''}
+        </div>
+        ${p.location_ar ? `<div class="card-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${escHtml(p.location_ar)}</div>` : ''}
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-outline btn-sm" onclick="openModal('${p.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          \u062a\u0639\u062f\u064a\u0644
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}','${escHtml(p.name_ar)}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+          \u062d\u0630\u0641
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+function filterProjects() {
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+  const cat    = document.getElementById('catFilter').value;
+  const status = document.getElementById('statusFilter').value;
+
+  const filtered = allProjects.filter(p => {
+    const matchSearch = !search ||
+      p.name_ar.toLowerCase().includes(search) ||
+      (p.name_en || '').toLowerCase().includes(search) ||
+      (p.location_ar || '').toLowerCase().includes(search);
+    const matchCat    = !cat    || p.category === cat;
+    const matchStatus = !status || p.status   === status;
+    return matchSearch && matchCat && matchStatus;
+  });
+  renderProjects(filtered);
+}
+
+function updateStats() {
+  const published = allProjects.filter(p => p.status === 'published');
+  document.getElementById('statTotal').textContent = published.length;
+  document.getElementById('statRes').textContent   = published.filter(p => p.category === 'residential').length;
+  document.getElementById('statCom').textContent   = published.filter(p => p.category === 'commercial').length;
+  document.getElementById('statVil').textContent   = published.filter(p => p.category === 'villa').length;
+  document.getElementById('statDraft').textContent = allProjects.filter(p => p.status === 'draft').length;
+}
+
+
 async function saveProject() {
   clearErrors();
   if (!validateForm()) return;
