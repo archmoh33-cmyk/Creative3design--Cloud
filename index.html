@@ -1210,7 +1210,11 @@ function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(fu
   }
 
     function waitForClient(attempts) {
-    if (window.c3dClient && !window.C3D_STATIC_MODE) { loadHeroImages(); }
+    if (window.c3dClient && !window.C3D_STATIC_MODE) { loadHeroImages();
+      loadAboutSection();
+      loadServicesSection();
+      loadCompoundsSection();
+      loadBASection();; }
     else if (attempts > 0) { setTimeout(function(){ waitForClient(attempts - 1); }, 400); }
   }
   if (document.readyState === 'loading') {
@@ -1219,6 +1223,60 @@ function switchPkgTab(btn){document.querySelectorAll('.pkg-type-tab').forEach(fu
     setTimeout(function(){ waitForClient(15); }, 300);
   }
 })();
+
+/* ── Dynamic Section Loaders ── */
+function loadAboutSection() {
+  if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+  window.c3dClient.from('about_images').select('main_image_url, small_image_url').limit(1).then(function(res) {
+    if (res.error || !res.data || !res.data.length) return;
+    var r = res.data[0];
+    var main = document.getElementById('about-main-img');
+    var small = document.getElementById('about-small-img');
+    if (main && r.main_image_url) { main.src = r.main_image_url; main.style.display = ''; }
+    if (small && r.small_image_url) { small.src = r.small_image_url; small.style.display = ''; }
+  });
+}
+
+function loadServicesSection() {
+  if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+  window.c3dClient.from('services_images').select('service_key, image_url').order('sort_order').then(function(res) {
+    if (res.error || !res.data) return;
+    res.data.forEach(function(s) {
+      var el = document.querySelector('[data-service="' + s.service_key + '"] img');
+      if (el && s.image_url) el.src = s.image_url;
+    });
+  });
+}
+
+function loadCompoundsSection() {
+  if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+  window.c3dClient.from('compounds').select('name, logo_url, website_url').eq('active', true).order('sort_order').then(function(res) {
+    if (res.error || !res.data || !res.data.length) return;
+    var grid = document.getElementById('compoundsGrid') || document.querySelector('.compounds-grid');
+    if (!grid) return;
+    grid.innerHTML = res.data.map(function(c) {
+      return '<div class="compound-logo-item">' +
+        (c.logo_url ? '<img src="' + c.logo_url + '" alt="' + (c.name || '') + '" loading="lazy" />' : '') +
+        '</div>';
+    }).join('');
+  });
+}
+
+function loadBASection() {
+  if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+  window.c3dClient.from('before_after').select('title_ar, before_url, after_url').eq('active', true).order('sort_order').then(function(res) {
+    if (res.error || !res.data || !res.data.length) return;
+    var container = document.getElementById('baContainer') || document.querySelector('.before-after-container');
+    if (!container) return;
+    container.innerHTML = res.data.map(function(item) {
+      return '<div class="ba-item">' +
+        '<div class="ba-before"><img src="' + (item.before_url || '') + '" alt="before" loading="lazy" /></div>' +
+        '<div class="ba-after"><img src="' + (item.after_url || '') + '" alt="after" loading="lazy" /></div>' +
+        (item.title_ar ? '<div class="ba-title">' + item.title_ar + '</div>' : '') +
+      '</div>';
+    }).join('');
+  });
+}
 </script>
 </body>
 </html>
