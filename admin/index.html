@@ -420,7 +420,7 @@ img{max-width:100%;display:block}
       </p>
       <ol style="color:#8a8278; font-size:.82rem; line-height:2.2; padding-right:1.2rem">
         <li>اذهب إلى <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
-        <li>اختر مشروعك ثم اظغ�w <strong style="color:#e8e4dc">Settings ← API</strong></li>
+        <li>اختر مشروعك ثم اضغط <strong style="color:#e8e4dc">Settings ← API</strong></li>
         <li>انسخ <strong style="color:#B8976A">Project URL</strong> — شكله:
           <br/><code style="
             background:#1e1b17; color:#4caf7d; padding:.15rem .5rem;
@@ -1424,164 +1424,112 @@ async function initAuth() {
       overlay.style.display = 'flex';
     }
     // عرض رسالة في صندوق تسجيل الدخول أيضاً
-    showLoginError('⚠️ راجع إعدادات Supabase في js/config.js — انظq التعليم�)�a6(�.va6)�a��N�]\��B��ʈ8� 8� 6)�a6*�+v`�`�6ava�6+6a6,�*H6avb6+6b6+�*H8� 8� 
-��ۜ��]N���\��[ۈHHH]�Z]�[��˘���Y[��]]��]�\��[ۊ
-NY�
-�\��[ۊHۓ��[��\��[ۋ�\�\�NB��ʈ8� 8� 6)�a6)�,�*�av)�.H6a6*�.�b�b�,v)�*�]]8� 8� 
-��[��˘���Y[��]]�ې]]�]P�[��J
-]�[��\��[ۊHO�Y�
-]�[�OOH	��QӑQ�S��	���\��[ۊHۓ��[��\��[ۋ�\�\�NY�
-]�[�OOH	��QӑQ��U	�Hۓ���]
+    showLoginError('⚠️ راجع إعدادات Supabase في js/config.js — انظر التعليمات أعلاه');
+    return;
+  }
 
-NJNB��\�[���[��[ۈ[�S��[�
-H�ۜ�[XZ[H��[Y[���][[Y[��RY
-	���[�[XZ[	�K��[YK��[J
-N�ۜ�\��H��[Y[���][[Y[��RY
-	���[�\���K��[YN�ۜ���H��[Y[���][[Y[��RY
-	���[����N�ۜ�\��H��[Y[���][[Y[��RY
-	���[�\��܉�N�Y�
-Y[XZ[\\��H������[�\��܊	�(�+�+�a6)�a6*6,vb�+�6)�a6)va6`�*�,vb6a�b�6b6`�a6av*H6)�a6av,vb6,I�N��]\���B�Y�
-]�[��˘���Y[�
-H������[�\��܊	��\X�\�H6.�b�,H6avc�a�b�dv(�8�%6,v)�+6.H����ۙ�Y˚���N��]\���B�����\�X�YH�YN���^�۝[�H	�+6)�,vcH6)�a6+�+�b6a����\����\��\���[[ݙJ	�����N�]�\�[�H�\�[H]�Z]�[��˘���Y[��]]��Yے[��]\���ܙ
-�[XZ[\���ܙ�\��JNH�]�
-JH�����[�\��܊	�+�-�(�6`vb�6)�a6)�*�-v)�a6*6`�\X�\�H8�%6*�+v`�`�6ava�6-v+v*H�ڙX�T�6`vb�����ۙ�Y˚���N���\�X�YH�[�N����^�۝[�H	�+�+�b6a	���]\��B���ۜ��\��܈HH�\�[Y�
-\��܊H�ۜ�\��B�\��܋�Y\��Y�K�[��Y\�	�[��[Y��[�ܙY[�X[��H�	�*6,vb�+�6)va6`�*�,vb6a�b�6(�b6`�a6av*H6av,vb6,H6+�)�-�)�*I���\��܋�Y\��Y�K�[��Y\�	јZ[Y��]�	�H�	�*�.v,6dv,H6)�a6)�*�-v)�a6*6`�\X�\�H8�%6*�(�`�+�6ava�6-v+v*H�ڙX�T�	���\��܋�Y\��Y�K�[��Y\�	ә]�ܚ�\��܉�H�	�+�-�(�6`vb�6)�a6-6*6`�*H8�%6*�+v`�`�6ava�6)�a6)�*�-v)�a6*6)�a6)va�*�,va�*����\��܋�Y\��Y�N�����[�\��܊\��N���\�X�YH�[�N���^�۝[�H	�+�+�b6a	�B�B���[��[ۈ[�S���]
+  /* ── التحقق من جلسة موجودة ── */
+  const { data: { session } } = await window.c3dClient.auth.getSession();
+  if (session) {
+    onLogin(session.user);
+  }
 
-HY�
-�[��˘���Y[�
-H�[��˘���Y[��]]��Yۓ�]
+  /* ── الاستماع لتغييرات Auth ── */
+  window.c3dClient.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session)  onLogin(session.user);
+    if (event === 'SIGNED_OUT') onLogout();
+  });
+}
 
-N[�Hۓ���]
+async function handleLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  const btn   = document.getElementById('loginBtn');
+  const err   = document.getElementById('loginError');
 
-NB���[��[ۈۓ��[�\�\�H��[Y[���][[Y[��RY
-	���[��ܙY[��K��[K�\�^HH	ۛۙI���[Y[���][[Y[��RY
-	�\�[	�K��[K�\�^HH	ٛ^	���[Y[���][[Y[��RY
-	�XY\�\�\��K�^�۝[�H\�\��[XZ[�Y�ڙX��
-N[�]��Y[�\�U�Y�]
+  if (!email || !pass) { showLoginError('أدخل البريد الإلكتروني وكلمة المرور'); return; }
+  if (!window.c3dClient) { showLoginError('Supabase غير مُهيّأ — راجع js/config.js'); return; }
 
-NB���[��[ۈۓ���]
+  btn.disabled = true;
+  btn.textContent = 'جارٍ الدخول...';
+  err.classList.remove('show');
 
-H��[Y[���][[Y[��RY
-	���[��ܙY[��K��[K�\�^HH	ٛ^	���[Y[���][[Y[��RY
-	�\�[	�K��[K�\�^HH	ۛۙI�B���[��[ۈ�����[�\��܊\��H�ۜ�[H��[Y[���][[Y[��RY
-	���[�\��܉�N[�^�۝[�H\��[��\��\��Y
-	�����NB����[��[�\��^Hۈ��[��ܛB���[Y[���][[Y[��RY
-	���[�\���K�Y]�[�\�[�\�	��^Y�ۉ�HO�Y�
-K��^HOOH	�[�\��H[�S��[�
-NJN�ʈ8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��Q	��S�T��ґP�¸�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d
-�\�[���[��[ۈ�Y�ڙX��
-HY�
-]�[��˘���Y[�
-H�]\����ۜ��]K\��܈HH]�Z]�[��˘���Y[������J	��ڙX���B���[X�
-	ʉ�B��ܙ\�	��ܝ�ܙ\���\��[�[�Έ�YHJB��ܙ\�	�ܙX]Y�]	��\��[�[�Έ�[�HJN�Y�
-\��܊H�����\�
-	�+�-�(�6`vb�6*�+vavb�a6)�a6av-6)�,vb�.N�	�
-�\��܋�Y\��Y�K	�\��܉�N��]\���B��[�ڙX��H]H�N\]T�]�
-N�[�\��ڙX��[�ڙX��NB���[��[ۈ�[�\��ڙX���ڙX��H�ۜ�ܚYH��[Y[���][[Y[��RY
-	��ڙX��ܚY	�NY�
-\�ڙX�˛[��
-HܚY�[��\�SH�]��\��H�[\K\�]H��[OH�ܚYX��[[��K�LH���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH�H���X�H�ȈOH�Ȉ�YH�ȈZY�H�ȋϏ�X�H�M�OH�Ȉ�YH�ȈZY�H�ȋϏ�X�H�M�OH�M��YH�ȈZY�H�ȋϏ�X�H�ȈOH�M��YH�ȈZY�H�ȋϏ�ݙς��a6)�6*�b6+6+�6av-6)�,vb�.H6*6.v+�����]ۈ�\��H�����\�[X\�H��\�H�ۘ�X��H��[�[�[
+  let result;
+  try {
+    result = await window.c3dClient.auth.signInWithPassword({ email, password: pass });
+  } catch (e) {
+    showLoginError('خطأ في الاتصال بـ Supabase — تحقق من صحة Project URL في js/config.js');
+    btn.disabled = false; btn.textContent = 'دخول'; return;
+  }
 
-H��(�-�`H6av-6,vb6.v)�b�6)�a6(�a�؝]ۏ���]���]\��B��ܚY�[��\�SH�ڙX�˛X\
-O��]��\��H��ڙX�X�\��]KZYH���YH���]��\��H��\�Z[Y�]ܘ\���	��[XY�W�\���[Y�ܘ�H���[XY�W�\�H�[H��\��[
-�[XY�W�[�\���[YW�\�_H��Y[��H�^�H�Ϙ��]��\��H��\�[��Z[Yȏ�a5��6*�b6+6+�6-vb6,v*O�]��B��[��\��H��\�X�Y�H����UQ�ԖW�T����]Y�ܞWH��]Y�ܞ_O��[���	���]\�OOH	��Y�	��	��[��\��H��\�\�]\�Y�Y���av,�b6dv+�*O��[����	��B��]���]��\��H��\�X��H���]��\��H��\�[�[YH���\��[
-��[YW�\�_O�]���]��\��H��\�[Y]H����[��\��H��\�]Yȏ���SW�T����[WH��[_O��[���	���X]\�Y�	��[��\��H��\�]YȈ�[OH��X��ܛ�[���ؘJ
-͋M�KL�K�L�N���܎���Y��؛ܙ\�X��܎��ؘJ
-͋M�KL�K��JH���d6avavb�dv,���[����	��B��]���	����][ۗ�\��]��\��H��\�[�ȏ�ݙ��YH�LH�ZY�H�LH��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����]H�L�HL�
-�NHL�NHL��NKM�NKLL�NHHLN��Ϗ�\��H�H�L���OH�L��H�ȋϏ�ݙω�\��[
-���][ۗ�\�_O�]���	��B��]���]��\��H��\�XX�[ۜȏ���]ۈ�\��H�����[�][�H��\�H�ۘ�X��H��[�[�[
-	���YI�H���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����YH�LȈZY�H�Lȏ�]H�LLH
-
-L��L���ML����ML���L��MȋϏ]H�LN�H��XL��L�H��L�HL��L�M[MHKMK�KNK�^��Ϗ�ݙς�6*�.v+�b�a�؝]ۏ���]ۈ�\��H�����Y[��\���\�H�ۘ�X��H��ۙ�\�Q[]J	���YI�	��\��[
-��[YW�\�_I�H���ݙ��Y]Л�H�����[H��ۙH�����OH��\��[���܈�����K]�YH����YH�LȈZY�H�Lȏ��[[�H�[��H��
-�
-H
-��H
-��Ϗ]H�LNH
-�LHML��KL��L��KL�L�
-H
-��Ϗ]H�LLL]��LML]���Ϗ�ݙς�6+v,6`B�؝]ۏ���]����]��
-K���[�	��NB���[��[ۈ�[\��ڙX��
-H�ۜ��X\��H��[Y[���][[Y[��RY
-	��X\��[�]	�K��[YK��[J
-K����\��\�J
-N�ۜ��]H��[Y[���][[Y[��RY
-	��]�[\��K��[YN�ۜ��]\�H��[Y[���][[Y[��RY
-	��]\њ[\��K��[YN��ۜ��[\�YH[�ڙX�˙�[\�O��ۜ�X]��X\��H\�X\�����[YW�\�����\��\�J
-K�[��Y\��X\��
-H�
-��[YW�[�	��K����\��\�J
-K�[��Y\��X\��
-H�
-���][ۗ�\�	��K����\��\�J
-K�[��Y\��X\��
-N�ۜ�X]��]HX�]��]Y�ܞHOOH�]�ۜ�X]��]\�H\�]\���]\�OOH�]\��]\��X]��X\��	��X]��]	��X]��]\�JN�[�\��ڙX���[\�Y
-NB���[��[ۈ\]T�]�
-H�ۜ�X�\�YH[�ڙX�˙�[\�O���]\�OOH	�X�\�Y	�N��[Y[���][[Y[��RY
-	��]�[	�K�^�۝[�HX�\�Y�[����[Y[���][[Y[��RY
-	��]�\��K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	ܙ\�Y[�X[	�K�[����[Y[���][[Y[��RY
-	��]��I�K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	���[Y\��X[	�K�[����[Y[���][[Y[��RY
-	��]�[	�K�^�۝[�HX�\�Y��[\�O���]Y�ܞHOOH	ݚ[I�K�[����[Y[���][[Y[��RY
-	��]�Y�	�K�^�۝[�H[�ڙX�˙�[\�O���]\�OOH	��Y�	�K�[��B��ʈ8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�S�S8�%�[�����B��d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d
-��[��[ۈ�[�[�[
-�ڙX�YH�[
-HY][��YH�ڙX�Y�\�]�ܛJ
-N�Y�
-�ڙX�Y
-H�ۜ�H[�ڙX�˙�[�
-O��YOOH�ڙX�Y
-NY�
-\
-H�]\����[Y[���][[Y[��RY
-	�[�[]I�K�^�۝[�H	�*�.v+�b�a6)�a6av-6,vb6.I���[Y[���][[Y[��RY
-	��]�P��^	�K�^�۝[�H	�+v`v.6)�a6*�.v+�b�a6)�*���[]Q�ܛJ
-NH[�H��[Y[���][[Y[��RY
-	�[�[]I�K�^�۝[�H	�av-6,vb6.H6+6+�b�+����[Y[���][[Y[��RY
-	��]�P��^	�K�^�۝[�H	�+v`v.6)�a6av-6,vb6.I�B���[Y[���][[Y[��RY
-	��ڙX�[�[	�K��\��\��Y
-	��[��N��[Y[����K��[K�ݙ\����H	�Y[��B���[��[ۈ���S[�[
+  const { error } = result;
+  if (error) {
+    const msg =
+      error.message.includes('Invalid login credentials') ? 'بريد إلكتروني أو كلمة مرور خاطئة' :
+      error.message.includes('Failed to fetch')           ? 'تعذّر الاتصال بـ Supabase — تأكد من صحة Project URL' :
+      error.message.includes('NetworkError')              ? 'خطأ في الشبكة — تحقق من الاتصال بالإنترنت' :
+      error.message;
+    showLoginError(msg);
+    btn.disabled = false;
+    btn.textContent = 'دخول';
+  }
+}
 
-H��[Y[���][[Y[��RY
-	��ڙX�[�[	�K��\��\���[[ݙJ	��[��N��[Y[����K��[K�ݙ\����H	��B���[��[ۈې�X�����X��JHY�
-K�\��]OOH��[Y[���][[Y[��RY
-	��ڙX�[�[	�JH���S[�[
+function handleLogout() {
+  if (window.c3dClient) window.c3dClient.auth.signOut();
+  else onLogout();
+}
 
-NB���[��[ۈ�\�]�ܛJ
-H�ً[�[YW�\��	ً[�[YW�[��	ً[��][ۗ�\��	ً[��][ۗ�[��	ًY\�ܚ\[ۗ�\��	ًY\�ܚ\[ۗ�[���	ً\�[��]I�	ً\�[��\�ܚ\[ۉ�	ً\�[���^]�ܙ��'ًZ[XY�W�[�\��K��ܑXX�
-YO��ۜ�[H��[Y[���][[Y[��RY
-Y
-NY�
-[
-H[��[YHH	��JN��[Y[���][[Y[��RY
-	ًX�]Y�ܞI�K��[YHH	����[Y[���][[Y[��RY
-	ً\�[I�K��[YHH	����[Y[���][[Y[��RY
-	ً\�]\��K��[YHH	�X�\�Y	���[Y[���][[Y[��RY
-	ً\�ܝ�ܙ\��K��[YHH	�	���[Y[���][[Y[��RY
-	ًY�X]\�Y	�K��X��YH�[�N�[[ݙR[XY�J�YJN�X\�\��ܜ�
-N\]T�S���[�
+function onLogin(user) {
+  document.getElementById('loginScreen').style.display  = 'none';
+  document.getElementById('appShell').style.display     = 'flex';
+  document.getElementById('headerUser').textContent     = user.email;
+  loadProjects();
+  loadSettings();
+  loadHeroSlides();
+  loadAboutImages();
+  loadServicesImages();
+  loadCompounds();
+  loadBAItems();
+  loadPaymentMethods();
+  loadVideoLibrary();
+  initCloudinaryWidget();
+}
 
-NB���[��[ۈ�[]Q�ܛJ
-H�ۜ��]H
-Y�[
-HO���ۜ�[H��[Y[���][[Y[��RY
-Y
-N�Y�
-[
-H[��[YHH�[	���N�]
-	ً[�[YW�\����[YW�\�N�]
-	ً[�[YW�[����[YW�[�N�]
-	ًX�]Y�ܞI���]Y�ܞJN�]
-	ً\�[I���[JN�]
-	ً[��][ۗ�\�����][ۗ�\�N�]
-	ً[��][ۗ�[�����][ۗ�[�N�]
-	ًY\�ܚ\[ۗ�\���\�ܚ\[ۗ�\�N�]
-	ًY\�ܚ\[ۗ�[���\�ܚ\[ۗ�[�N�]
-	ً\�[��]I���[��]JN�]
-	ً\�[��\�ܚ\[ۉ���[��\�ܚ\[ۊN�]
-	ً\�[���^]�ܙ�����͕�}���ݽɑ̤�(��͕Р��������}���}�Ȝ������������}���}�Ȥ�(��͕Р���ͽ��}�ɑ�Ȝ���������ͽ��}�ɑ�Ȁ������(�����յ��й���������	�%����������ɕ������������􀄅�������ɕ��(�����յ��й���������	�%������х��̜��م�Ք�����х��́�����Չ��͡����((�������������}�ɰ���(������ɵ%����Uɰ���������}�ɰ�(������ɵ
-��Ց%���������Ց�����}�Չ���}���������(����͡��%����Aɕ٥�ܡ�������}�ɰ��(���(������ѕM=
-�չР��)�((����VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�V@(���MY�AI=)
-P+�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�VC�V@���═══ */
+function onLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('appShell').style.display    = 'none';
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+// Allow Enter key on login form
+document.getElementById('loginPass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleLogin();
+});
+
+/* ════════════════════════════════════════════════
+   LOAD & RENDER PROJECTS
+════════════════════════════════════════════════ */
+async function loadProjects() {
+  if (!window.c3dClient) return;
+
+  const { data, error } = await window.c3dClient
+    .from('projects')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false });
+
+  if (error) { showToast('خطأ في تحميل المشاريع: ' + error.message, 'error'); return; }
+
+  allProjects = data || [];
+  updateStats();
+  renderProjects(allProjects);
+}
 async function saveProject() {
   clearErrors();
   if (!validateForm()) return;
