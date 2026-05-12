@@ -1599,6 +1599,79 @@ function updateStats() {
 }
 
 
+/* ══════════════════════════════════════════════════
+   MODAL — Open / Close
+══════════════════════════════════════════════════ */
+function openModal(projectId = null) {
+  editingId = projectId;
+  resetForm();
+
+  if (projectId) {
+    const p = allProjects.find(x => x.id === projectId);
+    if (!p) return;
+    document.getElementById("modalTitle").textContent = "تعديل المشروع";
+    document.getElementById("saveBtnText").textContent = "حفظ التعديمات";
+    populateForm(p);
+  } else {
+    document.getElementById("modalTitle").textContent = "مشروع جديد";
+    document.getElementById("saveBtnText").textContent = "حفظ المشروع";
+  }
+  document.getElementById("projectModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("projectModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function onBackdropClick(e) {
+  if (e.target === document.getElementById("projectModal")) closeModal();
+}
+
+function resetForm() {
+  ["f-name_ar","f-name_en","f-location_ar","f-location_en","f-description_ar","f-description_en",
+   "f-seo_title","f-seo_description","f-seo_keywords","f-image_alt_ar"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  document.getElementById("f-category").value = "";
+  document.getElementById("f-style").value = "";
+  document.getElementById("f-status").value = "published";
+  document.getElementById("f-sort_order").value = "0";
+  document.getElementById("f-featured").checked = false;
+  removeImage(true);
+  clearErrors();
+  updateSEOCount();
+}
+
+function populateForm(p) {
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ""; };
+  set("f-name_ar",         p.name_ar);
+  set("f-name_en",         p.name_en);
+  set("f-category",        p.category);
+  set("f-style",           p.style);
+  set("f-location_ar",     p.location_ar);
+  set("f-location_en",     p.location_en);
+  set("f-description_ar",  p.description_ar);
+  set("f-description_en",  p.description_en);
+  set("f-seo_title",       p.seo_title);
+  set("f-seo_description", p.seo_description);
+  set("f-seo_keywords",    p.seo_keywords);
+  set("f-image_alt_ar",    p.image_alt_ar);
+  set("f-sort_order",      p.sort_order ?? 0);
+  document.getElementById("f-featured").checked = !!p.featured;
+  document.getElementById("f-status").value = p.status || "published";
+
+  if (p.image_url) {
+    formImageUrl = p.image_url;
+    formCloudId  = p.cloudinary_public_id || "";
+    showImagePreview(p.image_url);
+  }
+  updateSEOCount();
+}
+
+
 async function saveProject() {
   clearErrors();
   if (!validateForm()) return;
