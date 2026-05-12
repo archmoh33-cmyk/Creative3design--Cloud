@@ -1016,7 +1016,7 @@ function openLogoWidget() {
   if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
   if (!logoWidget) {
     logoWidget = cloudinary.createUploadWidget({
-      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/logo', maxFiles: 1,
       sources: ['local','url','camera'],
       clientAllowedFormats: ['png','jpg','jpeg','webp','svg']
@@ -1068,7 +1068,7 @@ function openAboutWidget(slot) {
   if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
   if (!aboutWidgets[slot]) {
     aboutWidgets[slot] = cloudinary.createUploadWidget({
-      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/about', maxFiles: 1,
       sources: ['local','url','camera'],
       cropping: true, croppingAspectRatio: 4/3,
@@ -1158,7 +1158,7 @@ function openServiceWidget(serviceKey) {
   if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
   if (!serviceWidgets[serviceKey]) {
     serviceWidgets[serviceKey] = cloudinary.createUploadWidget({
-      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/services', maxFiles: 1,
       sources: ['local','url','camera'],
       cropping: true, croppingAspectRatio: 16/9,
@@ -1233,7 +1233,7 @@ function openCompoundWidget(cid) {
   if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
   if (!compoundWidgets[cid]) {
     compoundWidgets[cid] = cloudinary.createUploadWidget({
-      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/compounds', maxFiles: 1,
       sources: ['local','url','camera'],
       clientAllowedFormats: ['png','jpg','jpeg','webp','svg']
@@ -1346,7 +1346,7 @@ function openBAWidget(itemId, type) {
   const key = itemId + '_' + type;
   if (!baWidgets[key]) {
     baWidgets[key] = cloudinary.createUploadWidget({
-      cloudName: 'dxhqyuvkk', uploadPreset: 'c3d_unsigned',
+      cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/before-after', maxFiles: 1,
       sources: ['local','url','camera'],
       cropping: true, croppingAspectRatio: 4/3,
