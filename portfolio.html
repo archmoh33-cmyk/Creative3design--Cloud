@@ -213,12 +213,24 @@
     .port-card .port-overlay { pointer-events: none; }
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CollectionPage","name":"معرض أعمال Creative3Design","url":"https://creative3design.com/portfolio.html","description":"أكثر من 1100 مشروع تصميم داخلي وتشطيب في مصر","provider":{"@type":"Organization","name":"Creative3Design","url":"https://creative3design.com"}}
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "معرض أعمال Creative3Design",
+    "url": "https://creative3design.com/portfolio.html",
+    "description": "أكثر من 1100 مشروع تصميم داخلي وتشطيب في مصر — فيلات، شقق، مكاتب، فنادق، ومحلات تجارية.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Creative3Design",
+      "url": "https://creative3design.com",
+      "telephone": "+201019053288"
+    }
+  }
   </script>
 </head>
 <body>
 <div class="top-bar"><div class="container top-bar-inner"><div class="top-bar-contact"><a href="tel:00201019053288" class="top-bar-link">00201019053288</a><a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="top-bar-link">واتساب</a></div><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></div></div>
-<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
+<nav class="navbar" id="navbar"><div class="container navbar-inner"><a href="index.html" class="nav-logo"><span class="logo-fullname">Creative3Design</span><span class="logo-divider"></span><span class="logo-abbr" dir="ltr"><span class="logo-c3">C3</span><span class="logo-d">D</span></span></a><ul class="nav-links" id="navLinks"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="about.html" data-ar="عن المكتب" data-en="About">عن المكتب</a></li><li><a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li><li><a href="portfolio.html" aria-current="page" data-ar="الأعمال" data-en="PortFolio">الأعمال</a></li><li><a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a></li><li><a href="contact.html" class="nav-cta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li></ul>
     <div class="nav-page-switcher">
       <select class="nav-page-select" onchange="if(this.value)location.href=this.value" aria-label="انتقل إلى صفحة">
         <option value="">الصفحات</option>
@@ -244,8 +256,8 @@
       <button class="filter-btn active" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
       <button class="filter-btn"        data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
       <button class="filter-btn"        data-cat="interior-com" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</button>
-      <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارات"      data-en="Villas & Buildings">فيلات وعمارات</button>
-      <button class="filter-btn"        data-cat="hospitality"  data-ar="فنادق"              data-en="Hotels">فنادق</button>
+      <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارا֪"      data-en="Villas & Buildings">فيلات وعمارات</button>
+      <button class="filter-btn"        data-cat="hospitality"  data-ar="فمادق"              data-en="Hotels">فمادق</button>
       <button class="filter-btn"        data-cat="commercial"   data-ar="تجاري وإداري"       data-en="Commercial & Admin">تجاري وإداري</button>
     </div>
     <div class="portfolio-grid" id="portfolioGrid">
@@ -255,6 +267,9 @@
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
       <div class="port-skeleton lazy-reveal"></div>
+    </div>
+    <div class="load-more-wrap lazy-reveal" id="loadMoreWrap" style="text-align:center;margin-top:2rem;display:none">
+      <button class="btn-outline-gold" id="loadMoreBtn" onclick="loadMore()">عرض المزيد</button>
     </div>
     <div class="section-cta lazy-reveal">
       <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold btn-lg">ابدأ مشروعك معنا اليوم</a>
@@ -318,7 +333,7 @@
 
   var STATIC_PROJECTS = [
     { id:'s13', name_ar:'فيلا الشيخ زايد الداخلية',    category:'interior-res', style:'luxury',       location_ar:'الشيخ زايد، الجيزة',    image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
-    { id:'s14', name_ar:'شقة القاهرة الجديدة الداخلية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
+    { id:'s14', name_ar:'شقة الفاهرة الجديدة الداخلية', category:'interior-res', style:'modern',       location_ar:'القاهرة الجديدة',        image_url:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80' },
     { id:'s1',  name_ar:'شقة المهندسين الفاخرة',        category:'interior-res', style:'modern',       location_ar:'المهندسين، القاهرة',     image_url:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80' },
     { id:'s2',  name_ar:'شقة التجمع الخامس',            category:'interior-res', style:'modern',       location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80' },
     { id:'s3',  name_ar:'شقة الزمالك الفاخرة',          category:'interior-res', style:'classic',      location_ar:'الزمالك، القاهرة',       image_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80' },
@@ -335,44 +350,58 @@
     { id:'s12', name_ar:'مكتب التجمع التنفيذي',         category:'commercial',   style:'contemporary', location_ar:'التجمع الخامس، القاهرة', image_url:'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=600&q=80' }
   ];
 
-  var allProjects = [];
-  var activeCat   = 'all';
+  var allProjects    = [];
+  var activeCat      = 'all';
+  var PAGE_SIZE      = 9;
+  var displayedCount = PAGE_SIZE;
 
   function renderProjects(projects) {
-    var grid   = document.getElementById('portfolioGrid');
-    var toShow = activeCat === 'all' ? projects : projects.filter(function(p){ return p.category === activeCat; });
+    var grid    = document.getElementById('portfolioGrid');
+    var wrap    = document.getElementById('loadMoreWrap');
+    var toShow  = activeCat === 'all' ? projects : projects.filter(function(p){ return p.category === activeCat; });
 
     if (!toShow.length) {
       grid.innerHTML = '<div class="portfolio-load-msg"><p>لا توجد مشاريع في هذا التصنيف حالياً</p></div>';
+      if (wrap) wrap.style.display = 'none';
       return;
     }
 
-    grid.innerHTML = toShow.map(function(p, i) {
+    var slice = toShow.slice(0, displayedCount);
+
+    grid.innerHTML = slice.map(function(p, i) {
       var img  = p.image_url  || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80';
       var alt  = p.image_alt_ar || (p.name_ar + ' — Creative3Design');
       var name = p.name_ar || '';
       var loc  = p.location_ar || '';
       var cat  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
       var sty  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : p.style;
-      return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's"' +
+      return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's" ' +
              ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
              '<div class="port-card">' +
              '<img src="' + img + '" alt="' + alt + '" loading="lazy" class="port-img"' +
              ' onerror="this.src=\'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80\'" />' +
              '<div class="port-overlay"><div class="port-info">' +
              '<h3 class="port-name">' + name + '</h3>' +
-             '<p class="port-meta">' + cat + (sty?' · '+sty:'') + (loc?' · '+loc:'') + '</p>' +
+             '<p class="port-meta">' + cat + (sty?'· '+sty:'') + (loc?' · '+loc:'') + '</p>' +
              '</div></div></div></div>';
     }).join('');
 
     grid.querySelectorAll('.lazy-reveal').forEach(function(el){ el.classList.add('revealed'); });
+
+    if (wrap) wrap.style.display = displayedCount >= toShow.length ? 'none' : 'block';
   }
+
+  window.loadMore = function() {
+    displayedCount += PAGE_SIZE;
+    renderProjects(allProjects);
+  };
 
   document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#portfolioFilter .filter-btn').forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
-      activeCat = btn.dataset.cat || 'all';
+      activeCat      = btn.dataset.cat || 'all';
+      displayedCount = PAGE_SIZE;
       renderProjects(allProjects);
     });
   });
