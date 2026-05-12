@@ -174,7 +174,180 @@ VALUES
   );
 
 -- ================================================================
+--  7) جدول صور المشاريع (project_images) — صور متعددة لكل مشروع
+-- ================================================================
+CREATE TABLE IF NOT EXISTS project_images (
+  id                   UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  project_id           UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  image_url            TEXT NOT NULL,
+  cloudinary_public_id TEXT,
+  sort_order           INTEGER   DEFAULT 0,
+  is_cover             BOOLEAN   DEFAULT FALSE,
+  created_at           TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_project_images_project
+  ON project_images (project_id, sort_order);
+
+ALTER TABLE project_images ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_select_images"
+  ON project_images FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM projects p
+      WHERE p.id = project_images.project_id
+        AND p.status = 'published'
+    )
+  );
+
+CREATE POLICY "admin_all_images"
+  ON project_images FOR ALL
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+-- Trigger: يضمن وجود غلاف واحد فقط لكل مشروع
+CREATE OR REPLACE FUNCTION set_single_cover()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.is_cover = TRUE THEN
+    UPDATE project_images
+       SET is_cover = FALSE
+     WHERE project_id = NEW.project_id
+       AND id <> NEW.id;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trg_single_cover ON project_images;
+CREATE TRIGGER trg_single_cover
+  AFTER INSERT OR UPDATE ON project_images
+  FOR EACH ROW
+  WHEN (NEW.is_cover = TRUE)
+  EXECUTE FUNCTION set_single_cover();
+
+-- ================================================================
+--  8) جدول شرائح الهيرو (hero_slides)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.hero_slides (
+  id                    UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title_ar              TEXT,
+  title_en              TEXT,
+  image_url             TEXT,
+  cloudinary_public_id  TEXT,
+  sort_order            INT  NOT NULL DEFAULT 0,
+  active                BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at            TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE hero_slides ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_select_hero"
+  ON hero_slides FOR SELECT USING (active = TRUE);
+
+CREATE POLICY "admin_all_hero"
+  ON hero_slides FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+CREATE INDEX IF NOT EXISTS idx_hero_slides_order ON hero_slides (sort_order);
+
+-- ================================================================
+--  9) جدول طرق الدفع (payment_methods)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.payment_methods (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name_ar     TEXT NOT NULL,          -- اسم طريقة الدفع بالعربية
+  name_en     TEXT,
+  type        TEXT NOT NULL           -- vodafone_cash | instapay | visa | easy_cash | bank_transfer
+    CHECK (type IN ('vodafone_cash','instapay','visa','easy_cash','bank_transfer','other')),
+  account_number TEXT,                -- رقم المحفظة / الحساب
+  account_name   TEXT,                -- اسم صاحب الحساب
+  instructions_ar TEXT,               -- تعليمات إضافية
+  icon_url       TEXT,                -- أيقونة (اختياري)
+  active         BOOLEAN NOT NULL DEFAULT TRUE,
+  sort_order     INT     NOT NULL DEFAULT 0,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE payment_methods ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_select_payment"
+  ON payment_methods FOR SELECT USING (active = TRUE);
+
+CREATE POLICY "admin_all_payment"
+  ON payment_methods FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+CREATE INDEX IF NOT EXISTS idx_payment_sort ON payment_methods (sort_order);
+
+-- بيانات أولية لطرق الدفع
+INSERT INTO payment_methods (name_ar, name_en, type, sort_order) VALUES
+  ('فودافون كاش',  'Vodafone Cash',  'vodafone_cash',  1),
+  ('انستاباي',     'InstaPay',       'instapay',       2),
+  ('فيزا / ماستر', 'Visa / Master',  'visa',           3),
+  ('إيزي كاش',    'Easy Cash',      'easy_cash',      4)
+ON CONFLICT DO NOTHING;
+
+-- ================================================================
+--  10) مكتبة الفيديو (video_library)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.video_library (
+  id                    UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title_ar              TEXT NOT NULL,
+  title_en              TEXT,
+  cloudinary_public_id  TEXT,          -- Cloudinary video public_id
+  video_url             TEXT,          -- رابط الفيديو (Cloudinary أو YouTube)
+  thumbnail_url         TEXT,          -- صورة مصغرة
+  duration_sec          INT,           -- مدة الفيديو بالثواني
+  category              TEXT DEFAULT 'general',
+  sort_order            INT NOT NULL DEFAULT 0,
+  active                BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at            TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE video_library ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_select_video"
+  ON video_library FOR SELECT USING (active = TRUE);
+
+CREATE POLICY "admin_all_video"
+  ON video_library FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+CREATE INDEX IF NOT EXISTS idx_video_sort ON video_library (sort_order);
+
+-- ================================================================
+--  11) تحديث جدول إعدادات الموقع (site_settings) — إضافة حقل Google Maps
+-- ================================================================
+-- تأكد من وجود الجدول أولاً (قد يكون موجوداً من قبل)
+CREATE TABLE IF NOT EXISTS public.site_settings (
+  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  key          TEXT UNIQUE NOT NULL,
+  value        TEXT,
+  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_select_settings"
+  ON site_settings FOR SELECT USING (true);
+
+CREATE POLICY "admin_all_settings"
+  ON site_settings FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+-- إدرا�,/تحديث حقل Google Maps
+INSERT INTO site_settings (key, value) VALUES
+  ('google_maps_embed', '')
+ON CONFLICT (key) DO NOTHING;
+
+-- ================================================================
 --  ✅ اكتملت الإعدادات
---  الخطوة التالية: أضف مستخدم Admin من:
---  Supabase Dashboard → Authentication → Users → Invite User
+--  الخطواڪ التالية:
+--  1) أضف مستخدم Admin من: Supabase → Authentication → Users → Invite User
+--  2) ارفع مشاريعك من: /admin/bulk-upload.html
+--  3) كل مشروع يمكن أن يضم عدداً غير محدود من الصور في project_images
+--  4) شغّل هذا الملف في Supabase SQL Editor لإنشاء الجداول الجديدة
 -- ================================================================
