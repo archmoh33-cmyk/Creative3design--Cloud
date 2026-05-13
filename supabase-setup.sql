@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS projects (
   featured             BOOLEAN   DEFAULT FALSE, -- مشروع مميز (يظهر أولاً)
   sort_order           INTEGER   DEFAULT 0,     -- ترتيب العرض (رقم أصغر = أعلى)
   status               TEXT      DEFAULT 'published'
-    CHECK (status IN ('published','draft')),    -- حالة النشر
+    CHECK (status IN ('published','draft')),    -- جȧلة النشر
 
   -- ─── توقيتات ───────────────────────────────────────────────
   created_at           TIMESTAMPTZ DEFAULT NOW(),
@@ -82,7 +82,7 @@ CREATE POLICY "public_select_published"
   ON projects FOR SELECT
   USING (status = 'published');
 
--- المسؤول (كل العمليات) — يتطلب تسجيل الدخول عبر Supabase Auth
+-- المسؤول (كل العمليات) — يتطلب تسجيل الدخول ظبر Supabase Auth
 CREATE POLICY "admin_all"
   ON projects FOR ALL
   TO authenticated
@@ -99,7 +99,7 @@ CREATE INDEX IF NOT EXISTS idx_projects_sort      ON projects (sort_order, creat
 
 -- ================================================================
 --  6) بيانات تجريبية للاختبار
---     يمكنك حذف هذا القسم بعد إضافة مشاريعك الحقيقية
+--     يمكنك حذف هذا القسم بعد إضافة مشاريضك الحقيقية
 -- ================================================================
 INSERT INTO projects
   (name_ar, name_en, category, style, location_ar, location_en,
@@ -338,16 +338,52 @@ CREATE POLICY "admin_all_settings"
   ON site_settings FOR ALL TO authenticated
   USING (true) WITH CHECK (true);
 
--- إدرا�,/تحديث حقل Google Maps
+-- إدراج/تحديث حقل Google Maps
 INSERT INTO site_settings (key, value) VALUES
   ('google_maps_embed', '')
 ON CONFLICT (key) DO NOTHING;
 
 -- ================================================================
 --  ✅ اكتملت الإعدادات
---  الخطواڪ التالية:
+--  الخطوات التالية:
 --  1) أضف مستخدم Admin من: Supabase → Authentication → Users → Invite User
 --  2) ارفع مشاريعك من: /admin/bulk-upload.html
 --  3) كل مشروع يمكن أن يضم عدداً غير محدود من الصور في project_images
 --  4) شغّل هذا الملف في Supabase SQL Editor لإنشاء الجداول الجديدة
 -- ================================================================
+
+-- ══════════════════════════════════════════════════
+--  11) جدول الشركاء (partners)
+-- ══════════════════════════════════════════════════
+CREATE TABLE IF NOT EXISTS public.partners (
+  id         uuid    PRIMARY KEY DEFAULT gen_random_uuid(),
+  name_ar    text,
+  name_en    text,
+  logo_url   text,
+  website    text,
+  active     boolean NOT NULL DEFAULT true,
+  sort_order int     NOT NULL DEFAULT 0,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+ALTER TABLE partners ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public read active partners"
+  ON partners FOR SELECT USING (active = TRUE);
+
+CREATE POLICY "Authenticated manage partners"
+  ON partners FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+CREATE INDEX IF NOT EXISTS idx_partners_sort ON partners (sort_order);
+
+-- ══════════════════════════════════════════════════
+--  الأتعاب — تُخزن في جدول site_settings بمفاتيح:
+--   fee_packages  (JSON array)
+--   fee_unit      (sqm | sqft)
+--   fee_min_area  (رقم)
+--  وإعدادات المدونة والشركاء:
+--   blog_nav_visible        (true|false)
+--   blog_section_visible    (true|false)
+--   partners_section_visible (true|false)
+-- ══════════════════════════════════════════════════
