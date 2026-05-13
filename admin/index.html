@@ -420,7 +420,7 @@ img{max-width:100%;display:block}
       </p>
       <ol style="color:#8a8278; font-size:.82rem; line-height:2.2; padding-right:1.2rem">
         <li>اذهب إلى <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
-        <li>اختر مشروعك ثم اضغط <strong style="color:#e8e4dc">Settings ← API</strong></li>
+        <li>اختر مشروعك ثم اظغط <strong style="color:#e8e4dc">Settings ← API</strong></li>
         <li>انسخ <strong style="color:#B8976A">Project URL</strong> — شكله:
           <br/><code style="
             background:#1e1b17; color:#4caf7d; padding:.15rem .5rem;
@@ -462,14 +462,14 @@ img{max-width:100%;display:block}
         <input type="email" id="loginEmail" placeholder="admin@creative3design.com" autocomplete="email" />
       </div>
       <div class="field">
-        <label>كلمة المرور</label>
+        <label>كممة اممرور</label>
         <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" />
       </div>
       <div id="loginError" class="login-error"></div>
       <button class="login-btn" id="loginBtn" onclick="handleLogin()">دخول</button>
     </div>
     <p style="text-align:center;font-size:.75rem;color:var(--text-dim)">
-      للوصول إلى الموقع الرئيسي: <a href="../index.html" style="color:var(--gold)">العودة للرئيسية</a>
+      للوصول إلى الموقى الرئيسي: <a href="../index.html" style="color:var(--gold)">العودة للرئيسية</a>
     </p>
   </div>
 </div>
@@ -481,9 +481,9 @@ img{max-width:100%;display:block}
 
   <!-- Header -->
   <header class="app-header">
-    <div class="header-logo">Creative<span>3</span>D <span style="color:var(--text-dim);font-weight:400;font-size:.8rem">| لوحة التحكم</span></div>
+    <div class="header-logo">Creative<span>3</span>D (span style="color:var(--text-dim);font-weight:400;font-size:.8rem">| لوحة التحكم</span></div>
     <div class="header-spacer"></div>
-    <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ترتيب المشاريع">🔀 ترتيب المشاريع</a>
+    <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ترتيب اممراريع">🔀 ترتيب اممروريع</a>
     <span class="header-user" id="headerUser"></span>
     <button class="header-logout btn btn-sm btn-outline" onclick="handleLogout()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
@@ -502,7 +502,7 @@ img{max-width:100%;display:block}
       </div>
       <div class="sidebar-link" onclick="window.open('../portfolio.html','_blank')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        عرض الموقع
+        عرض امموقع
       </div>
       <div class="sidebar-link" onclick="showView('hero')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -519,7 +519,7 @@ img{max-width:100%;display:block}
       </div>
       <div class="sidebar-link" onclick="showView('services',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        صور الخدمات
+        صور امخدمات
       </div>
       <div class="sidebar-link" onclick="showView('compounds',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
@@ -537,6 +537,14 @@ img{max-width:100%;display:block}
       <div class="sidebar-link" onclick="showView('video',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
         مكتبة الفيديو
+      </div>
+      <div class="sidebar-link" onclick="showView('fee',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        حساب الأتعاب
+      </div>
+      <div class="sidebar-link" onclick="showView('partners',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        الشركاء والمدونة
       </div>
       <div class="sidebar-section" style="margin-top:.5rem">الحساب</div>
       <div class="sidebar-link" onclick="handleLogout()">
@@ -580,10 +588,13 @@ img{max-width:100%;display:block}
           <option value="published">منشور</option>
           <option value="draft">مسوّدة</option>
         </select>
-        <button class="btn btn-outline" id="sortModeBtn" onclick="toggleSortMode()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg> ترتيب</button>
+        <button class="btn btn-outline" id="sortModeBtn" onclick="toggleSortMode()" title="اسحب البطاقات لإعادة الترتيب">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          ترتيب
+        </button>
         <button class="btn btn-primary" onclick="openModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          مشريع جديد
+          مشروع جديد
         </button>
       </div>
 
@@ -620,7 +631,7 @@ img{max-width:100%;display:block}
 
         <!-- Info bar -->
         <div style="background:var(--gold-dim);border:1px solid rgba(184,151,106,.25);border-radius:var(--radius);padding:.7rem 1rem;font-size:.8rem;color:var(--text-muted)">
-          💡 الشرائح النشطة تظهر في الصفحة الرئيسية بالترتيب المحدد. غيّر الأرفام ثم اضغط <strong style="color:var(--gold)">حفظ الترتيب</strong>، أو اضغط <strong style="color:var(--gold)">حفظ</strong> على كل شريحة بشكل منفرد.
+          💡 الشرائح النشطة تظهر في الصفحة الرئيسية بالترتيب المحدد. غيّر الأرقام ثم اظغط <strong style="color:var(--gold)">حفظ الترتيب</strong>، أو اظغط <strong style="color:var(--gold)">حفظ</strong> على كل شريحة بشكل منفرد.
         </div>
 
         <!-- Slides Grid -->
@@ -674,8 +685,25 @@ img{max-width:100%;display:block}
               </div>
             </div>
           </div>
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">🗺️ خريطة جوجل</span></div>
+            <div class="panel-section-body">
+              <div class="field">
+                <label>رابط تضمين خريطة جوجل (Google Maps Embed URL)</label>
+                <input type="url" id="s-google_maps_embed"
+                  placeholder="https://www.google.com/maps/embed?pb=..."
+                  style="direction:ltr;text-align:left" />
+                <small style="color:var(--text-dim);font-size:.78rem">
+                  من Google Maps → مشاركة → تضمين خريطة → انسخ الرابط src فقط
+                </small>
+              </div>
+              <div id="mapsPreview" style="display:none;margin-top:.8rem;border-radius:var(--radius);overflow:hidden;height:220px">
+                <iframe id="mapsIframe" src="" width="100%" height="220" style="border:0" allowfullscreen loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
         </div>
-                <div class="panel-section"><div class="panel-section-header"><span class="panel-section-title">🗺️ خريطة جوجل</span></div><div class="panel-section-body"><div class="field"><label>رابط Google Maps Embed URL</label><input type="url" id="s-google_maps_embed" placeholder="https://www.google.com/maps/embed?pb=..." style="direction:ltr;text-align:left" oninput="updateMapsPreview(this.value)" /><small style="color:var(--text-dim);font-size:.78rem">من Google Maps → مشاركة → تضمين خريطة → انسخ رابط src فقط</small></div><div id="mapsPreview" style="display:none;margin-top:.8rem;border-radius:var(--radius);overflow:hidden;height:220px"><iframe id="mapsIframe" src="" width="100%" height="220" style="border:0" allowfullscreen loading="lazy"></iframe></div></div></div></div></div><!-- /settingsView -->
+      </div><!-- /settingsView -->
 
       <!-- ════ About View ════ -->
       <div id="aboutView" style="display:none;flex-direction:column;gap:1.5rem">
@@ -766,16 +794,175 @@ img{max-width:100%;display:block}
         <div id="baGrid" class="ba-admin-grid"></div>
       </div><!-- /beforeafterView -->
 
-      <!-- Payment View -->
+      <!-- ════ Payment Methods View ════ -->
       <div id="paymentView" style="display:none;flex-direction:column;gap:1.5rem">
-        <div class="toolbar"><span class="toolbar-title">💳 طرق الدفع</span><div class="spacer"></div><button class="btn btn-primary btn-sm" onclick="addPaymentMethod()">+ إضافة</button></div>
-        <div class="media-panel"><div class="panel-section"><div class="panel-section-header"><span class="panel-section-title">طرق الدفع المتاحة</span></div><div class="panel-section-body"><div id="paymentList"><div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جاري التحميل...</div></div></div></div></div>
+        <div class="toolbar">
+          <span class="toolbar-title">💳 طرق الدفع</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="addPaymentMethod()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة طريقة
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">طرق الدفع المتاحة</span></div>
+            <div class="panel-section-body">
+              <div id="paymentList" style="display:flex;flex-direction:column;gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- /paymentView -->
-      <!-- Video View -->
+
+      <!-- ════ Video Library View ════ -->
       <div id="videoView" style="display:none;flex-direction:column;gap:1.5rem">
-        <div class="toolbar"><span class="toolbar-title">🎬 مكتبة الفيديو</span><div class="spacer"></div><button class="btn btn-primary btn-sm" onclick="addVideoItem()">+ إضافة فيديو</button></div>
-        <div class="media-panel"><div class="panel-section"><div class="panel-section-header"><span class="panel-section-title">الفيديوهات المضافة</span></div><div class="panel-section-body"><div id="videoList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem"><div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div></div></div></div></div>
+        <div class="toolbar">
+          <span class="toolbar-title">🎬 مكتبة الفيديو</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="addVideoItem()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة فيديو
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">الفيديوهات المضافة</span></div>
+            <div class="panel-section-body">
+              <div id="videoList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- /videoView -->
+
+      <!-- ════ Fee Calculator View ════ -->
+      <div id="feeView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">💰 حساب الأتعاب — الباقات والمعاملات</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="saveFeeSettings()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
+            حفظ الإعدادات
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">📐 وحدة الحساب</span></div>
+            <div class="panel-section-body">
+              <div class="form-row form-row-2">
+                <div class="field">
+                  <label>وحدة القياس</label>
+                  <select id="fee-unit" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)">
+                    <option value="sqm">متر مربع (م²)</option>
+                    <option value="sqft">قدم مربع (ft²)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>الحد الأدنى للمساحة</label>
+                  <input type="number" id="fee-min-area" placeholder="50" min="1" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">📦 الباقات وسعر المتر</span></div>
+            <div class="panel-section-body">
+              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">حدّد سعر المتر المربع لكل باقة — يُستخدم لحساب تقديرات الأتعاب للعملاء</p>
+              <div id="feePackagesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem"></div>
+              <div style="margin-top:1rem">
+                <button class="btn btn-sm" style="border:1px dashed var(--gray-border);color:var(--text-muted);background:transparent" onclick="addFeePackage()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  إضافة باقة
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">🧮 تجربة الحاسبة</span></div>
+            <div class="panel-section-body">
+              <div class="form-row form-row-2">
+                <div class="field">
+                  <label>المساحة (للتجربة)</label>
+                  <input type="number" id="fee-test-area" placeholder="150" min="1" oninput="calcFeePreview()" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" />
+                </div>
+              </div>
+              <div id="feePreviewResult" style="margin-top:.8rem;padding:.8rem;background:var(--black-hover);border-radius:var(--radius);display:none">
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.5rem">التقديرات حسب الباقة:</p>
+                <div id="feePreviewRows" style="display:flex;flex-direction:column;gap:.35rem"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /feeView -->
+
+      <!-- ════ Partners & Blog View ════ -->
+      <div id="partnersView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">🤝 الشركاء والمدونة</span>
+        </div>
+        <div class="media-panel">
+
+          <!-- Blog Toggle -->
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">📝 المدونة</span></div>
+            <div class="panel-section-body">
+              <div style="display:flex;flex-direction:column;gap:1rem">
+                <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.6rem .8rem;background:var(--black-hover);border-radius:var(--radius)">
+                  <div>
+                    <p style="font-size:.85rem;font-weight:600;margin:0">إظهار رابط المدونة في القائمة</p>
+                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">يُظهر أو يُخفي زر "المدونة" في شريط التنقل</p>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" id="blog-nav-visible" onchange="saveBlogSettings()" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.6rem .8rem;background:var(--black-hover);border-radius:var(--radius)">
+                  <div>
+                    <p style="font-size:.85rem;font-weight:600;margin:0">إظهار قسم المدونة في الصفحة الرئيسية</p>
+                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">يُظهر أو يُخفي عرض آخر المقالات في الهوم</p>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" id="blog-section-visible" onchange="saveBlogSettings()" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partners -->
+          <div class="panel-section">
+            <div class="panel-section-header">
+              <span class="panel-section-title">🤝 الشركاء والعملاء</span>
+              <button class="btn btn-primary btn-sm" onclick="addPartnerItem()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                إضافة شريك
+              </button>
+            </div>
+            <div class="panel-section-body">
+              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">شعارات الشركات والعملاء المميزين — تظهر في قسم "شركاؤنا" بالموقع</p>
+              <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.5rem .8rem;background:var(--black-hover);border-radius:var(--radius);margin-bottom:1rem">
+                <span style="font-size:.82rem">إظهار قسم الشركاء في الرئيسية</span>
+                <label class="toggle">
+                  <input type="checkbox" id="partners-section-visible" onchange="savePartnersSettings()" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div id="partnersList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /partnersView -->
+
     </main>
   </div><!-- app-body -->
 </div><!-- appShell -->
@@ -802,7 +989,7 @@ img{max-width:100%;display:block}
             <span class="field-error">هذا الحقل مطلوب</span>
           </div>
           <div class="field">
-            <label>اسم المشروع (إنجليزي)</label>
+            <label>اسم المشروع (إنجليسي)</label>
             <input type="text" id="f-name_en" placeholder="New Cairo Luxury Apartment" />
           </div>
         </div>
@@ -845,8 +1032,8 @@ img{max-width:100%;display:block}
         <div class="form-section-title">الموقع الجغرافي</div>
         <div class="form-row form-row-2">
           <div class="field">
-            <label>الموقع (عربي)</label>
-            <input type="text" id="f-location_ar" placeholder="التجمع الخامس، الفاهرة" oninput="autoSEO()" />
+            <label>الموقع (ضربي)</label>
+            <input type="text" id="f-location_ar" placeholder="التجمع الخامس، القاهرة" oninput="autoSEO()" />
           </div>
           <div class="field">
             <label>الموقع (إنجليزي)</label>
@@ -870,12 +1057,12 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- ─── صورت ─── -->
+      <!-- ─── الصورة ─── -->
       <div class="form-section">
-        <div class="form-section-title">صورت المئ المئروع</div>
+        <div class="form-section-title">صورة المشروع</div>
         <div id="imageUploadArea" class="image-upload-area" onclick="openCloudinaryWidget()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p>باحت لرeض صورة من حنة</p>
+          <p>اضغط لرفع صورة من جهازك</p>
           <p><span>Cloudinary CDN</span> — JPG / PNG / WebP — حد أقصى 5MB</p>
         </div>
         <div id="imagePreviewWrap" style="display:none" class="image-preview-wrap">
@@ -895,7 +1082,7 @@ img{max-width:100%;display:block}
       <div class="form-section">
         <div class="form-section-title">
           SEO — محركات البحث
-          <button class="seo-auto-btn" style="margin-right:.5rem" onclick="autoSEO(true)">⚡ توليد تلقائي</button>
+          <button class="seo-auto-btn" style="margin-right:.5rem" onclick="autoSEO(true)">⚡ توليد تلفائي</button>
         </div>
         <div class="form-row">
           <div class="field">
@@ -1053,9 +1240,27 @@ async function saveSettings() {
   const keys = ['logo_url','whatsapp','email','name_ar','name_en','google_maps_embed'];
   const upserts = keys.map(k => ({ key: k, value: (document.getElementById('s-' + k) || {}).value || '' }));
   const { error } = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
-  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  if (error) { showToast('ضطأ: ' + error.message, 'error'); return; }
   showToast('تم حفظ الإعدادات ✓', 'success');
 }
+
+function updateMapsPreview(url) {
+  const wrap  = document.getElementById('mapsPreview');
+  const frame = document.getElementById('mapsIframe');
+  if (!wrap || !frame) return;
+  if (url && url.includes('google.com/maps')) {
+    frame.src = url;
+    wrap.style.display = 'block';
+  } else {
+    wrap.style.display = 'none';
+    frame.src = '';
+  }
+}
+// Live preview when user types maps URL
+document.addEventListener('DOMContentLoaded', () => {
+  const mapsInput = document.getElementById('s-google_maps_embed');
+  if (mapsInput) mapsInput.addEventListener('input', () => updateMapsPreview(mapsInput.value));
+});
 
 /* ══════════════════════════════════════════════════
    ABOUT IMAGES MANAGER
@@ -1130,7 +1335,7 @@ let servicesLoaded = false;
 let allServices = [];
 let serviceWidgets = {};
 
-async function loadServicesImages() {
+alync function loadServicesImages() {
   if (!window.c3dClient) return;
   servicesLoaded = true;
   const { data } = await window.c3dClient.from('services_images').select('*').order('sort_order');
@@ -1420,7 +1625,7 @@ async function initAuth() {
         `<div style="margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.05)">${
           e.replace(/\n/g,'<br/>')
         }</div>`
-      ).join('') || '<div>⚠️ لم يتم تهي٦ة Supabase Client — راجع js/config.js</div>';
+      ).join('') || '<div>⚠️ لم يتم تهيئة Supabase Client — راجع js/config.js</div>';
       overlay.style.display = 'flex';
     }
     // عرض رسالة في صندوق تسجيل الدخول أيضاً
@@ -1428,13 +1633,13 @@ async function initAuth() {
     return;
   }
 
-  /* ── التحقق من جلسة موجودة ── */
+  /* ── التصقق من جلسة موجودة ── */
   const { data: { session } } = await window.c3dClient.auth.getSession();
   if (session) {
     onLogin(session.user);
   }
 
-  /* ── الاستماع لتغييرات Auth ── */
+  /* ── الاستماع لتغييرا֪ Auth ── */
   window.c3dClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN' && session)  onLogin(session.user);
     if (event === 'SIGNED_OUT') onLogout();
@@ -1485,14 +1690,6 @@ function onLogin(user) {
   document.getElementById('appShell').style.display     = 'flex';
   document.getElementById('headerUser').textContent     = user.email;
   loadProjects();
-  loadSettings();
-  loadHeroSlides();
-  loadAboutImages();
-  loadServicesImages();
-  loadCompounds();
-  loadBAItems();
-  loadPaymentMethods();
-  loadVideoLibrary();
   initCloudinaryWidget();
 }
 
@@ -1512,9 +1709,9 @@ document.getElementById('loginPass').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleLogin();
 });
 
-/* ════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    LOAD & RENDER PROJECTS
-════════════════════════════════════════════════ */
+══════════════════════════════════════════════════ */
 async function loadProjects() {
   if (!window.c3dClient) return;
 
@@ -1530,14 +1727,15 @@ async function loadProjects() {
   updateStats();
   renderProjects(allProjects);
 }
+
 function renderProjects(projects) {
   const grid = document.getElementById('projectsGrid');
   if (!projects.length) {
     grid.innerHTML = `
       <div class="empty-state" style="grid-column:1/-1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <p>\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0634\u0627\u0631\u064a\u0639 \u0628\u0639\u062f</p>
-        <button class="btn btn-primary btn-sm" onclick="openModal()">\u0623\u0636\u0641 \u0645\u0634\u0631\u0648\u0639\u0627\u064b \u0627\u0644\u0622\u0646</button>
+        <p>لا توجد مشاريع بعد</p>
+        <button class="btn btn-primary btn-sm" onclick="openModal()">أضف مشروعاً الآن</button>
       </div>`;
     return;
   }
@@ -1547,26 +1745,26 @@ function renderProjects(projects) {
       <div class="card-img-wrap">
         ${p.image_url
           ? `<img src="${p.image_url}" alt="${escHtml(p.image_alt_ar || p.name_ar)}" loading="lazy" />`
-          : `<div class="card-no-img">\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629</div>`}
+          : `<div class="card-no-img">لا توجد صورة</div>`}
         <span class="card-badge">${CATEGORY_AR[p.category] || p.category}</span>
-        ${p.status === 'draft' ? '<span class="card-status-draft">\u0645\u0633\u0648\u0651\u062f\u0629</span>' : ''}
+        ${p.status === 'draft' ? '<span class="card-status-draft">مسوّدة</span>' : ''}
       </div>
       <div class="card-body">
         <div class="card-name">${escHtml(p.name_ar)}</div>
         <div class="card-meta">
           <span class="card-tag">${STYLE_AR[p.style] || p.style}</span>
-          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">\u2b50 \u0645\u0645\u064a\u0651\u0632</span>' : ''}
+          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">⭐ مميّز</span>' : ''}
         </div>
         ${p.location_ar ? `<div class="card-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${escHtml(p.location_ar)}</div>` : ''}
       </div>
       <div class="card-actions">
         <button class="btn btn-outline btn-sm" onclick="openModal('${p.id}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          \u062a\u0639\u062f\u064a\u0644
+          تعديل
         </button>
         <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}','${escHtml(p.name_ar)}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-          \u062d\u0630\u0641
+          حذف
         </button>
       </div>
     </div>`).join('');
@@ -1598,7 +1796,6 @@ function updateStats() {
   document.getElementById('statDraft').textContent = allProjects.filter(p => p.status === 'draft').length;
 }
 
-
 /* ══════════════════════════════════════════════════
    MODAL — Open / Close
 ══════════════════════════════════════════════════ */
@@ -1609,69 +1806,71 @@ function openModal(projectId = null) {
   if (projectId) {
     const p = allProjects.find(x => x.id === projectId);
     if (!p) return;
-    document.getElementById("modalTitle").textContent = "تعديل المشروع";
-    document.getElementById("saveBtnText").textContent = "حفظ التعديمات";
+    document.getElementById('modalTitle').textContent = 'تعديل المشروع';
+    document.getElementById('saveBtnText').textContent = 'حفظ التعديلات';
     populateForm(p);
   } else {
-    document.getElementById("modalTitle").textContent = "مشروع جديد";
-    document.getElementById("saveBtnText").textContent = "حفظ المشروع";
+    document.getElementById('modalTitle').textContent = 'مشروع جديد';
+    document.getElementById('saveBtnText').textContent = 'حفظ المشروع';
   }
-  document.getElementById("projectModal").classList.add("open");
-  document.body.style.overflow = "hidden";
+  document.getElementById('projectModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById("projectModal").classList.remove("open");
-  document.body.style.overflow = "";
+  document.getElementById('projectModal').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function onBackdropClick(e) {
-  if (e.target === document.getElementById("projectModal")) closeModal();
+  if (e.target === document.getElementById('projectModal')) closeModal();
 }
 
 function resetForm() {
-  ["f-name_ar","f-name_en","f-location_ar","f-location_en","f-description_ar","f-description_en",
-   "f-seo_title","f-seo_description","f-seo_keywords","f-image_alt_ar"].forEach(id => {
+  ['f-name_ar','f-name_en','f-location_ar','f-location_en','f-description_ar','f-description_en',
+   'f-seo_title','f-seo_description','f-seo_keywords','f-image_alt_ar'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.value = "";
+    if (el) el.value = '';
   });
-  document.getElementById("f-category").value = "";
-  document.getElementById("f-style").value = "";
-  document.getElementById("f-status").value = "published";
-  document.getElementById("f-sort_order").value = "0";
-  document.getElementById("f-featured").checked = false;
+  document.getElementById('f-category').value = '';
+  document.getElementById('f-style').value = '';
+  document.getElementById('f-status').value = 'published';
+  document.getElementById('f-sort_order').value = '0';
+  document.getElementById('f-featured').checked = false;
   removeImage(true);
   clearErrors();
   updateSEOCount();
 }
 
 function populateForm(p) {
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ""; };
-  set("f-name_ar",         p.name_ar);
-  set("f-name_en",         p.name_en);
-  set("f-category",        p.category);
-  set("f-style",           p.style);
-  set("f-location_ar",     p.location_ar);
-  set("f-location_en",     p.location_en);
-  set("f-description_ar",  p.description_ar);
-  set("f-description_en",  p.description_en);
-  set("f-seo_title",       p.seo_title);
-  set("f-seo_description", p.seo_description);
-  set("f-seo_keywords",    p.seo_keywords);
-  set("f-image_alt_ar",    p.image_alt_ar);
-  set("f-sort_order",      p.sort_order ?? 0);
-  document.getElementById("f-featured").checked = !!p.featured;
-  document.getElementById("f-status").value = p.status || "published";
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+  set('f-name_ar',         p.name_ar);
+  set('f-name_en',         p.name_en);
+  set('f-category',        p.category);
+  set('f-style',           p.style);
+  set('f-location_ar',     p.location_ar);
+  set('f-location_en',     p.location_en);
+  set('f-description_ar',  p.description_ar);
+  set('f-description_en',  p.description_en);
+  set('f-seo_title',       p.seo_title);
+  set('f-seo_description', p.seo_description);
+  set('f-seo_keywords',    p.seo_keywords);
+  set('f-image_alt_ar',    p.image_alt_ar);
+  set('f-sort_order',      p.sort_order ?? 0);
+  document.getElementById('f-featured').checked = !!p.featured;
+  document.getElementById('f-status').value = p.status || 'published';
 
   if (p.image_url) {
     formImageUrl = p.image_url;
-    formCloudId  = p.cloudinary_public_id || "";
+    formCloudId  = p.cloudinary_public_id || '';
     showImagePreview(p.image_url);
   }
   updateSEOCount();
 }
 
-
+/* ══════════════════════════════════════════════════
+   SAVE PROJECT
+══════════════════════════════════════════════════ */
 async function saveProject() {
   clearErrors();
   if (!validateForm()) return;
@@ -1715,7 +1914,7 @@ async function saveProject() {
     return;
   }
 
-  showToast(editingId ? '✅ تم تحديث المشروع بنجاح' : '✅ تم إضافة المشروع بنجاح', 'success');
+  showToast(editingId ? '✅ تم تحديث المشروع بنجاح' : '✅ تم إغافة المشروع بنجاح', 'success');
   closeModal();
   loadProjects();
 }
@@ -1852,7 +2051,7 @@ function autoSEO(force = false) {
     descEl.value = `مشروع ${catAr} بطراز ${styleAr} في ${loc}. تصميم احترافي من Creative3Design — مكتب تصميم داخلي معتمد منذ 2003.`;
   }
   if (force || !kwEl.value) {
-    kwEl.value = `تصميم داخلي, ${catAr}, ${styleAr}, ${loc}, Creative3Design, مكتب تصميم الفاهرة`;
+    kwEl.value = `تصميم داخلي, ${catAr}, ${styleAr}, ${loc}, Creative3Design, مكتب تصميم القاهرة`;
   }
   updateSEOCount();
 }
@@ -1876,24 +2075,37 @@ function updateSEOCount() {
 }
 document.getElementById('f-seo_title').addEventListener('input', updateSEOCount);
 
+/* ══════
 /* ══════════════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════════════ */
-function showToast(msg, type = 'info') {
-  const wrap = document.getElementById('toastWrap');
-  const div  = document.createElement('div');
-  div.className = `toast ${type}`;
-  div.textContent = msg;
-  wrap.appendChild(div);
-  setTimeout(() => div.remove(), 3500);
-}
-
-/* ══════════════════════════════════════════════════
-   UTILS
+   UTILITIES
 ══════════════════════════════════════════════════ */
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+function showToast(msg, type = 'success') {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;pointer-events:none';
+    document.body.appendChild(container);
+  }
+  const t = document.createElement('div');
+  const colors = { success:'rgba(60,180,80,.9)', error:'rgba(220,60,60,.9)', info:'rgba(184,151,106,.9)' };
+  t.style.cssText = `background:${colors[type]||colors.info};color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-size:.85rem;font-family:'Cairo',sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.4);pointer-events:auto;opacity:0;transform:translateY(8px);transition:all .25s`;
+  t.textContent = msg;
+  container.appendChild(t);
+  requestAnimationFrame(() => { t.style.opacity='1'; t.style.transform='translateY(0)'; });
+  setTimeout(() => {
+    t.style.opacity='0'; t.style.transform='translateY(8px)';
+    setTimeout(() => t.remove(), 300);
+  }, 3500);
+}
+
+/* ══════════════════════════════════════════════════
+   VIEW ROUTER
+══════════════════════════════════════════════════ */
 function showView(v, ev) {
   const e = ev || event;
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
@@ -1908,6 +2120,8 @@ function showView(v, ev) {
     beforeafter: { id:'beforeafterView', display:'flex' },
     payment:     { id:'paymentView',     display:'flex' },
     video:       { id:'videoView',       display:'flex' },
+    fee:         { id:'feeView',         display:'flex' },
+    partners:    { id:'partnersView',    display:'flex' },
   };
   Object.values(viewMap).forEach(({ id }) => {
     const el = document.getElementById(id);
@@ -1924,55 +2138,23 @@ function showView(v, ev) {
   if (v === 'beforeafter' && !baLoaded)             loadBAItems();
   if (v === 'payment'     && !paymentLoaded)        loadPaymentMethods();
   if (v === 'video'       && !videoLoaded)          loadVideoLibrary();
+  if (v === 'fee'         && !feeLoaded)            loadFeeSettings();
+  if (v === 'partners'    && !partnersLoaded)       loadPartnersView();
 }
 
 /* ══════════════════════════════════════════════════
-   HERO MANAGER
+   HERO SLIDES MANAGER
 ══════════════════════════════════════════════════ */
-let allHeroSlides = [];
+let allHeroSlides    = [];
 let heroUploadWidgets = {};
 
-const HERO_TABLE_SQL =
-`create table if not exists public.hero_slides (
-  id                   uuid primary key default gen_random_uuid(),
-  title_ar             text,
-  title_en             text,
-  image_url            text,
-  cloudinary_public_id text,
-  sort_order           int  not null default 0,
-  active               boolean not null default true,
-  created_at           timestamptz not null default now()
-);`;
-
 async function loadHeroSlides() {
-  const grid = document.getElementById('heroGrid');
-  if (!window.c3dClient || !grid) return;
-
-  grid.innerHTML = '<div style="color:var(--text-muted);padding:2rem;text-align:center">⏳ جارٍ التحميل...</div>';
-
+  if (!window.c3dClient) return;
   const { data, error } = await window.c3dClient
     .from('hero_slides')
     .select('*')
     .order('sort_order', { ascending: true });
-
-  if (error) {
-    if (error.code === '42P01') {
-      grid.innerHTML = `
-        <div style="grid-column:1/-1;padding:2rem;text-align:center">
-          <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:.5rem">
-            جدول <code style="color:var(--gold);background:var(--surface2);padding:.1rem .4rem;border-radius:4px">hero_slides</code> غير موجود في Supabase بعد.
-          </p>
-          <p style="color:var(--text-dim);font-size:.82rem;margin-bottom:.8rem">أنشئه بفتح Supabase → SQL Editor ولصق الكود الةالي:</p>
-          <div class="hero-sql-block">${escHtml(HERO_TABLE_SQL)}</div>
-          <button class="btn btn-outline" style="margin-top:1rem" onclick="loadHeroSlides()">إعادة المحاولة بعد الإنشاء</button>
-        </div>`;
-    } else {
-      showToast('خطأ في تحميل الشرائح: ' + error.message, 'error');
-      grid.innerHTML = '';
-    }
-    return;
-  }
-
+  if (error) { showToast('خطأ في تحميل شرائح الهيرو: ' + error.message, 'error'); return; }
   allHeroSlides = data || [];
   renderHeroSlides();
 }
@@ -1980,377 +2162,584 @@ async function loadHeroSlides() {
 function renderHeroSlides() {
   const grid = document.getElementById('heroGrid');
   if (!grid) return;
-
   if (!allHeroSlides.length) {
-    grid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="56" height="56"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        <p>لا توجد شرائح بعد</p>
-        <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">إضافة أول شريحة</button>
-      </div>`;
+    grid.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
+      <p style="margin-bottom:1rem">لا توجد شرائح بعد</p>
+      <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">إظافة أول شريحة</button>
+    </div>`;
     return;
   }
-
   grid.innerHTML = allHeroSlides.map((s, i) => `
     <div class="hero-slide-card ${s.active ? '' : 'hero-slide-inactive'}" data-slide-id="${s.id}">
-
       <div class="hero-slide-img">
         ${s.image_url
-          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.title_ar || 'شريحة ' + (i + 1))}" loading="lazy" />`
-          : `<div class="hero-slide-no-img">
+          ? `<img src="${escHtml(s.image_url)}" alt="شريحة ${i+1}" loading="lazy" />`
+          : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:.5rem;color:var(--text-muted)">
                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-               <span>قا توجد صورة</span>
+               <span style="font-size:.75rem">لا توجد صورة</span>
              </div>`}
-        <span class="hero-slide-num">شريحة ${i + 1}</span>
+        <span style="position:absolute;top:.5rem;right:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:.2rem .5rem;border-radius:4px">شريحة ${i+1}</span>
       </div>
-
       <div class="hero-slide-body">
         <div class="field">
           <label>عنوان الشريحة (اختياري)</label>
-          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar || '')}" placeholder="نص يظهر فوق الصورة..." />
+          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar||'')}" placeholder="نص فوق الصورة..." style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.5rem .75rem;border-radius:var(--radius)" />
         </div>
-
-        <div class="hero-order-row">
-          <label>ترتيب الظهور:</label>
-          <input type="number" class="hero-order-input" id="hero-order-${s.id}" value="${s.sort_order ?? i}" min="0" max="99" />
-          <div class="toggle-row" style="margin-right:auto;gap:.45rem">
-            <label class="toggle">
-              <input type="checkbox" id="hero-active-${s.id}" ${s.active ? 'checked' : ''} onchange="toggleHeroActive('${s.id}',this.checked)" />
-              <span class="toggle-slider"></span>
-            </label>
-            <span class="toggle-label" id="hero-active-label-${s.id}" style="font-size:.78rem">${s.active ? 'نشطة' : 'مدفية'}</span>
-          </div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-top:.4rem">
+          <label style="font-size:.78rem;color:var(--text-muted)">ترتيب:</label>
+          <input type="number" id="hero-order-${s.id}" value="${s.sort_order??i}" min="0" max="99" style="width:60px;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.35rem .5rem;border-radius:var(--radius);text-align:center" />
+          <label class="toggle" style="margin-right:auto">
+            <input type="checkbox" id="hero-active-${s.id}" ${s.active?'checked':''} onchange="toggleHeroActive('${s.id}',this.checked)" />
+            <span class="toggle-slider"></span>
+          </label>
+          <span id="hero-active-lbl-${s.id}" style="font-size:.75rem;color:var(--text-muted)">${s.active?'نشطة':'مخفية'}</span>
         </div>
-
-        <button class="hero-upload-btn" onclick="openHeroWidget('${s.id}')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <button class="hero-upload-btn" style="margin-top:.6rem" onclick="openHeroWidget('${s.id}')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           ${s.image_url ? 'تغيير الصورة' : 'رفع صورة'}
         </button>
       </div>
-
-      <div class="hero-slide-actions">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
-          حفظ
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}', '${escHtml(s.title_ar || 'شريحة ' + (i+1))}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-          حذف
-        </button>
+      <div style="display:flex;gap:.5rem;padding:.6rem;border-top:1px solid var(--gray-border)">
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">حفظ</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}')">حذف</button>
       </div>
-
     </div>`).join('');
+}
+
+async function addHeroSlide() {
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient
+    .from('hero_slides')
+    .insert({ sort_order: allHeroSlides.length, active: true })
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allHeroSlides.push(data);
+  renderHeroSlides();
+  showToast('تمت إظافة شريحة جديدة — ارفظ صورة وحفظ', 'info');
+}
+
+async function saveHeroSlide(slideId) {
+  if (!window.c3dClient) return;
+  const titleEl = document.getElementById('hero-title-' + slideId);
+  const orderEl = document.getElementById('hero-order-' + slideId);
+  const title_ar   = titleEl?.value.trim() || null;
+  const sort_order = parseInt(orderEl?.value) || 0;
+  const { error } = await window.c3dClient
+    .from('hero_slides')
+    .update({ title_ar, sort_order })
+    .eq('id', slideId);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const slide = allHeroSlides.find(s => s.id === slideId);
+  if (slide) { slide.title_ar = title_ar; slide.sort_order = sort_order; }
+  showToast('تم حفظ الشريحة ✓', 'success');
+}
+
+async function saveHeroOrder() {
+  if (!window.c3dClient || !allHeroSlides.length) return;
+  const updates = allHeroSlides.map(s => {
+    const orderEl = document.getElementById('hero-order-' + s.id);
+    const sort_order = orderEl ? parseInt(orderEl.value)||0 : s.sort_order;
+    return window.c3dClient.from('hero_slides').update({ sort_order }).eq('id', s.id);
+  });
+  await Promise.all(updates);
+  showToast('تم حفظ الترتيب ✓', 'success');
+  await loadHeroSlides();
+}
+
+async function toggleHeroActive(slideId, active) {
+  if (!window.c3dClient) return;
+  const { error } = await window.c3dClient
+    .from('hero_slides').update({ active }).eq('id', slideId);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const lbl = document.getElementById('hero-active-lbl-' + slideId);
+  if (lbl) lbl.textContent = active ? 'نشطة' : 'مخفية';
+  const slide = allHeroSlides.find(s => s.id === slideId);
+  if (slide) slide.active = active;
+}
+
+async function confirmDeleteHeroSlide(slideId) {
+  const slide = allHeroSlides.find(s => s.id === slideId);
+  const label = slide?.title_ar || ('شريحة ' + (allHeroSlides.indexOf(slide)+1));
+  if (!confirm(`حذف "${label}"؟`)) return;
+  if (!window.c3dClient) return;
+  const { error } = await window.c3dClient.from('hero_slides').delete().eq('id', slideId);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allHeroSlides = allHeroSlides.filter(s => s.id !== slideId);
+  renderHeroSlides();
+  showToast('تم الحذف ✓', 'success');
 }
 
 function getHeroWidget(slideId) {
   if (heroUploadWidgets[slideId]) return heroUploadWidgets[slideId];
-
   const cfg = window.C3D_CONFIG?.cloudinary;
   if (!cfg?.cloudName || typeof cloudinary === 'undefined') return null;
-
   const widget = cloudinary.createUploadWidget({
-    cloudName:           cfg.cloudName,
-    uploadPreset:        cfg.uploadPreset,
-    sources:             ['local', 'url', 'camera'],
-    multiple:            false,
-    maxFileSize:         8000000,
-    allowedFormats:      ['jpg', 'jpeg', 'png', 'webp'],
-    folder:              'creative3design/hero',
-    cropping:            true,
-    croppingAspectRatio: 16 / 9,
-    showSkipCropButton:  true,
-    language:            'ar',
-    showAdvancedOptions: false,
-    styles: {
-      palette: {
-        window:'#161311', tabIcon:'#B8976A', menuIcons:'#B8976A',
-        textDark:'#FFFFFF', textLight:'#FFFFFF', link:'#B8976A',
-        action:'#B8976A', inactiveTabIcon:'#888',
-        error:'#E05252', inProgress:'#B8976A', complete:'#4caf7d',
-        sourceBg:'#1e1b17'
-      }
-    }
-  }, async (error, result) => {
-    if (error) { showToast('خطأ في رفع الصورة: ' + error.message, 'error'); return; }
-    if (result.event === 'success') {
-      const url = result.info.secure_url;
-      const pid = result.info.public_id;
-      const { error: upErr } = await window.c3dClient
-        .from('hero_slides')
-        .update({ image_url: url, cloudinary_public_id: pid })
-        .eq('id', slideId);
-      if (upErr) { showToast('خطأ في حفظ الصورة: ' + upErr.message, 'error'); return; }
-      showToast('✅ تم رفع الصورة وحفظها بنجاح', 'success');
-      loadHeroSlides();
-    }
+    cloudName: cfg.cloudName, uploadPreset: cfg.uploadPreset,
+    folder: 'creative3design/hero', maxFiles: 1,
+    sources: ['local','url','camera'],
+    clientAllowedFormats: ['jpg','jpeg','png','webp'],
+    transformation: [{ width: 1920, crop: 'limit', quality: 'auto:good' }]
+  }, async (err, result) => {
+    if (err) { showToast('خطأ في الرفع', 'error'); return; }
+    if (result.event !== 'success') return;
+    const url = result.info.secure_url;
+    const cid = result.info.public_id;
+    const { error } = await window.c3dClient
+      .from('hero_slides')
+      .update({ image_url: url, cloudinary_public_id: cid })
+      .eq('id', slideId);
+    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+    const slide = allHeroSlides.find(s => s.id === slideId);
+    if (slide) slide.image_url = url;
+    renderHeroSlides();
+    showToast('تم رفظ صورة الشريحة ✓', 'success');
   });
-
   heroUploadWidgets[slideId] = widget;
   return widget;
 }
 
 function openHeroWidget(slideId) {
   const w = getHeroWidget(slideId);
-  if (!w) { showToast('⚠️ Cloudinary غير مُهيّأ — عبّئ js/config.js', 'error'); return; }
-  w.open();
+  if (w) w.open();
+  else showToast('Cloudinary غير متاح', 'error');
 }
 
-async function saveHeroSlide(slideId) {
-  const titleEl  = document.getElementById('hero-title-'  + slideId);
-  const orderEl  = document.getElementById('hero-order-'  + slideId);
-  const activeEl = document.getElementById('hero-active-' + slideId);
-  if (!titleEl || !orderEl) return;
-
-  const { error } = await window.c3dClient
-    .from('hero_slides')
-    .update({
-      title_ar:   titleEl.value.trim()  || null,
-      sort_order: parseInt(orderEl.value, 10) || 0,
-      active:     activeEl.checked,
-    })
-    .eq('id', slideId);
-
-  if (error) { showToast('خطأ في الحفظ: ' + error.message, 'error'); return; }
-  showToast('✅ تم حفظ الشريحة بنجاح', 'success');
-  loadHeroSlides();
-}
-
-async function saveHeroOrder() {
-  const cards = document.querySelectorAll('.hero-slide-card[data-slide-id]');
-  if (!cards.length) { showToast('لا توجد شرائح لحفظ ترتيبها', 'info'); return; }
-
-  let hasError = false;
-  for (const card of cards) {
-    const id      = card.dataset.slideId;
-    const orderEl = document.getElementById('hero-order-' + id);
-    if (!orderEl) continue;
-    const { error } = await window.c3dClient
-      .from('hero_slides')
-      .update({ sort_order: parseInt(orderEl.value, 10) || 0 })
-      .eq('id', id);
-    if (error) hasError = true;
-  }
-
-  showToast(hasError ? 'حدث خطأ في بعض الشرائح' : '✅ تم حفظ الترتيب بنجاح', hasError ? 'error' : 'success');
-  if (!hasError) loadHeroSlides();
-}
-
-async function toggleHeroActive(slideId, active) {
-  const { error } = await window.c3dClient
-    .from('hero_slides')
-    .update({ active })
-    .eq('id', slideId);
-  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-  const card = document.querySelector(`.hero-slide-card[data-slide-id="${slideId}"]`);
-  if (card) {
-    card.classList.toggle('hero-slide-inactive', !active);
-    const lbl = document.getElementById('hero-active-label-' + slideId);
-    if (lbl) lbl.textContent = active ? 'نشطة' : 'مدفية';
-  }
-  const slide = allHeroSlides.find(s => s.id === slideId);
-  if (slide) slide.active = active;
-}
-
-async function addHeroSlide() {
-  if (!window.c3dClient) return;
-  const maxOrder = allHeroSlides.reduce((m, s) => Math.max(m, s.sort_order ?? 0), -1);
-  const { error } = await window.c3dClient
-    .from('hero_slides')
-    .insert([{ sort_order: maxOrder + 1, active: true }]);
-  if (error) { showToast('خطأ في إنشاء الشريحة: ' + error.message, 'error'); return; }
-  showToast('✅ تمت إضافة شريحة جديدة', 'success');
-  loadHeroSlides();
-}
-
-function confirmDeleteHeroSlide(slideId, name) {
-  document.getElementById('confirmTitle').textContent = 'حذف الشريحة';
-  document.getElementById('confirmText').textContent  = `هل أنت متأكد من حذف "${name}"؟ لا يمكن التراجع.`;
-  document.getElementById('confirmDialog').classList.add('open');
-  document.getElementById('confirmOkBtn').onclick = async () => {
-    const { error } = await window.c3dClient.from('hero_slides').delete().eq('id', slideId);
-    if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
-    showToast('🗑️ تم حذف الشريحة', 'info');
-    closeConfirm();
-    delete heroUploadWidgets[slideId];
-    loadHeroSlides();
-  };
-}
-
-/* ══════════════════════════════════════════════════
-   DRAG & DROP SORT — Projects Grid
-══════════════════════════════════════════════════ */
-let sortModeActive = false, dragSrcCard = null;
-function toggleSortMode() {
-  sortModeActive = !sortModeActive;
-  const btn = document.getElementById('sortModeBtn');
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-  if (sortModeActive) {
-    btn.textContent = '✔ حفظ الترتيب';
-    btn.classList.add('btn-primary'); btn.classList.remove('btn-outline');
-    grid.querySelectorAll('.project-card').forEach(card => {
-      card.setAttribute('draggable','true'); card.style.cursor='grab';
-      card.addEventListener('dragstart', onDragStart);
-      card.addEventListener('dragover',  onDragOver);
-      card.addEventListener('drop',      onDrop);
-      card.addEventListener('dragend',   onDragEnd);
-    });
-    showToast('اسحب البطاقات لإعادة الترتيب ثم اضغط حفظ','info');
-  } else {
-    btn.textContent = '⇅ ترتيب';
-    btn.classList.remove('btn-primary'); btn.classList.add('btn-outline');
-    saveDragOrder();
-  }
-}
-function onDragStart(e) { dragSrcCard=this; e.dataTransfer.effectAllowed='move'; this.style.opacity='0.4'; }
-function onDragOver(e)  { e.preventDefault(); this.style.outline='2px dashed var(--gold)'; }
-function onDrop(e) {
-  e.stopPropagation();
-  if (dragSrcCard!==this) {
-    const g=document.getElementById('projectsGrid'), cards=[...g.querySelectorAll('.project-card')];
-    const fi=cards.indexOf(dragSrcCard), ti=cards.indexOf(this);
-    if(fi<ti) g.insertBefore(dragSrcCard,this.nextSibling); else g.insertBefore(dragSrcCard,this);
-  }
-}
-function onDragEnd() { document.querySelectorAll('.project-card').forEach(c=>{c.style.opacity='';c.style.outline='';}); dragSrcCard=null; }
-async function saveDragOrder() {
-  const cards=document.querySelectorAll('.project-card[data-id]');
-  if (!cards.length) return;
-  let err=false, i=0;
-  for (const c of cards) { const {error}=await window.c3dClient.from('projects').update({sort_order:i++}).eq('id',c.dataset.id); if(error) err=true; }
-  showToast(err?'خطأ في حفظ الترتيب':'✅ تم حفظ ترتيب المشاريع',err?'error':'success');
-}
-function updateMapsPreview(url) {
-  const wrap=document.getElementById('mapsPreview'), frame=document.getElementById('mapsIframe');
-  if(!wrap||!frame) return;
-  if(url&&url.includes('google.com/maps')) { frame.src=url; wrap.style.display='block'; }
-  else { wrap.style.display='none'; frame.src=''; }
-}
 /* ══════════════════════════════════════════════════
    PAYMENT METHODS MANAGER
 ══════════════════════════════════════════════════ */
-let paymentLoaded=false, allPayments=[];
-const PICONS={vodafone_cash:'🔴',instapay:'💙',visa:'💳',easy_cash:'💚',bank_transfer:'🏦',other:'💰'};
+let paymentLoaded = false;
+
 async function loadPaymentMethods() {
-  if(!window.c3dClient) return; paymentLoaded=true;
-  const {data,error}=await window.c3dClient.from('payment_methods').select('*').order('sort_order');
-  if(error){document.getElementById('paymentList').innerHTML='<p style="color:var(--text-muted);padding:1rem">خطأ — أنشئ جدول payment_methods في Supabase أولاً</p>';return;}
-  allPayments=data||[]; renderPaymentMethods();
+  paymentLoaded = true;
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient
+    .from('payment_methods')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { showToast('خطأ في تحميل طرق الدفع: ' + error.message, 'error'); return; }
+  renderPaymentList(data || []);
 }
-function renderPaymentMethods() {
-  const list=document.getElementById('paymentList'); if(!list) return;
-  if(!allPayments.length){list.innerHTML='<div class="empty-state"><p>لا توجد طرق دفع</p><button class="btn btn-primary btn-sm" onclick="addPaymentMethod()">إضافة</button></div>';return;}
-  list.innerHTML=allPayments.map(p=>`
-    <div class="panel-section" style="margin:0">
-      <div class="panel-section-body" style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
-        <div style="font-size:2rem">${PICONS[p.type]||'💰'}</div>
-        <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:.6rem">
-          <div class="form-row form-row-2">
-            <div class="field"><label>الاسم (عربي)</label><input type="text" id="pay-name-${p.id}" value="${escHtml(p.name_ar)}" /></div>
-            <div class="field"><label>النوع</label><select id="pay-type-${p.id}" class="filter-select" style="width:100%">${['vodafone_cash','instapay','visa','easy_cash','bank_transfer','other'].map(tp=>`<option value="${tp}" ${p.type===tp?'selected':''}>${tp.replace('_',' ')}</option>`).join('')}</select></div>
-          </div>
-          <div class="form-row form-row-2">
-            <div class="field"><label>رقم الحساب</label><input type="text" id="pay-acc-${p.id}" value="${escHtml(p.account_number||'')}" style="direction:ltr" /></div>
-            <div class="field"><label>اسم الحساب</label><input type="text" id="pay-owner-${p.id}" value="${escHtml(p.account_name||'')}" /></div>
-          </div>
-          <div class="field"><label>تعليمات</label><textarea id="pay-inst-${p.id}" rows="2">${escHtml(p.instructions_ar||'')}</textarea></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:.5rem">
-          <label class="toggle"><input type="checkbox" ${p.active?'checked':''} onchange="togglePaymentActive('${p.id}',this.checked)"/><span class="toggle-slider"></span></label>
-          <button class="btn btn-primary btn-sm" onclick="savePaymentMethod('${p.id}')">حفظ</button>
-          <button class="btn btn-danger btn-sm" onclick="deletePaymentMethod('${p.id}')">حذف</button>
-        </div>
+
+function renderPaymentList(items) {
+  const container = document.getElementById('paymentList');
+  if (!container) return;
+  if (!items.length) {
+    container.innerHTML = `<div style="color:var(--text-muted);padding:2rem;text-align:center">
+      لا توجد طرق دفع — اضغط "إضافة طريقة دفع" أعلاه
+    </div>`;
+    return;
+  }
+  container.innerHTML = items.map(item => `
+    <div style="display:flex;gap:1rem;align-items:center;padding:.75rem 1rem;background:var(--black-hover);border-radius:var(--radius);border:1px solid var(--gray-border)">
+      ${item.icon_url ? `<img src="${escHtml(item.icon_url)}" style="width:40px;height:40px;object-fit:contain;border-radius:4px" />` : `<div style="width:40px;height:40px;background:var(--surface2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">${escHtml(item.icon_emoji||'💳')}</div>`}
+      <div style="flex:1">
+        <p style="font-weight:600;font-size:.88rem;margin:0">${escHtml(item.name_ar||'')}</p>
+        <p style="font-size:.75rem;color:var(--text-muted);margin:.15rem 0 0">${escHtml(item.description||'')}</p>
       </div>
+      <label class="toggle">
+        <input type="checkbox" ${item.active?'checked':''} onchange="togglePayment('${item.id}',this.checked)" />
+        <span class="toggle-slider"></span>
+      </label>
+      <button class="btn btn-danger btn-sm" onclick="deletePaymentMethod('${item.id}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+      </button>
     </div>`).join('');
 }
+
 async function addPaymentMethod() {
-  if(!window.c3dClient) return;
-  const max=allPayments.reduce((m,p)=>Math.max(m,p.sort_order||0),-1);
-  const {error}=await window.c3dClient.from('payment_methods').insert([{name_ar:'طريقة جديدة',type:'other',sort_order:max+1}]);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('✅ تمت الإضافة','success'); paymentLoaded=false; loadPaymentMethods();
+  if (!window.c3dClient) return;
+  const name = prompt('اسم طريقة الدفع (مثال: فيزا، كاش، فوري):');
+  if (!name) return;
+  const desc = prompt('وصف مختصر (اختياري):') || '';
+  const emoji = prompt('رمز تعبيري (اختياري، مثال: 💳):') || '💳';
+  const { data, error } = await window.c3dClient
+    .from('payment_methods')
+    .insert({ name_ar: name, description: desc, icon_emoji: emoji, active: true, sort_order: 0 })
+    .select();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تمت الإضافة ✓', 'success');
+  await loadPaymentMethods();
 }
-async function savePaymentMethod(id) {
-  const g=sid=>(document.getElementById(sid)||{}).value||'';
-  const {error}=await window.c3dClient.from('payment_methods').update({name_ar:g('pay-name-'+id),type:g('pay-type-'+id),account_number:g('pay-acc-'+id),account_name:g('pay-owner-'+id),instructions_ar:g('pay-inst-'+id)}).eq('id',id);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('✅ تم الحفظ','success'); paymentLoaded=false; loadPaymentMethods();
+
+async function togglePayment(id, active) {
+  if (!window.c3dClient) return;
+  await window.c3dClient.from('payment_methods').update({ active }).eq('id', id);
 }
-async function togglePaymentActive(id,active) { await window.c3dClient.from('payment_methods').update({active}).eq('id',id); }
+
 async function deletePaymentMethod(id) {
-  if(!confirm('حذف طريقة الدفع؟')) return;
-  const {error}=await window.c3dClient.from('payment_methods').delete().eq('id',id);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('🗑️ تم الحذف','info'); paymentLoaded=false; loadPaymentMethods();
+  if (!confirm('حذف طريقة الدفع هذه؟')) return;
+  if (!window.c3dClient) return;
+  const { error } = await window.c3dClient.from('payment_methods').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم الحذف ✓', 'success');
+  await loadPaymentMethods();
 }
+
 /* ══════════════════════════════════════════════════
    VIDEO LIBRARY MANAGER
 ══════════════════════════════════════════════════ */
-let videoLoaded=false, allVideos=[];
+let videoLoaded = false;
+let allVideos   = [];
+
 async function loadVideoLibrary() {
-  if(!window.c3dClient) return; videoLoaded=true;
-  const {data,error}=await window.c3dClient.from('video_library').select('*').order('sort_order');
-  if(error){document.getElementById('videoList').innerHTML='<p style="color:var(--text-muted);padding:1rem;grid-column:1/-1">خطأ — أنشئ جدول video_library في Supabase أولاً</p>';return;}
-  allVideos=data||[]; renderVideoLibrary();
+  videoLoaded = true;
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient
+    .from('video_library')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .order('created_at',  { ascending: false });
+  if (error) { showToast('خطأ في تحميل الفيديوهات: ' + error.message, 'error'); return; }
+  allVideos = data || [];
+  renderVideoList();
 }
-function renderVideoLibrary() {
-  const list=document.getElementById('videoList'); if(!list) return;
-  if(!allVideos.length){list.innerHTML='<div class="empty-state" style="grid-column:1/-1"><p>لا توجد فيديوهات</p><button class="btn btn-primary btn-sm" onclick="addVideoItem()">إضافة فيديو</button></div>';return;}
-  list.innerHTML=allVideos.map(v=>`
-    <div class="panel-section" style="margin:0">
-      <div class="panel-section-body" style="display:flex;flex-direction:column;gap:.8rem">
-        <div style="aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--surface2)">
-          ${v.thumbnail_url?
-            `<img src="${escHtml(v.thumbnail_url)}" style="width:100%;height:100%;object-fit:cover" loading="lazy" />`:
-            `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim)">🎬 لا توجد صورة</div>`}
+
+function renderVideoList() {
+  const container = document.getElementById('videoList');
+  if (!container) return;
+  if (!allVideos.length) {
+    container.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48" style="margin-bottom:.75rem;opacity:.4"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      <p>لا توجد فيديوهات — اضغط "إضافة فيديو"</p>
+    </div>`;
+    return;
+  }
+  container.innerHTML = allVideos.map(v => {
+    const thumbUrl = getVideoThumbnail(v.url || '');
+    return `
+    <div style="background:var(--black-hover);border:1px solid var(--gray-border);border-radius:var(--radius);overflow:hidden">
+      <div style="aspect-ratio:16/9;background:#000;position:relative;cursor:pointer" onclick="previewVideo('${escHtml(v.url||'')}')">
+        ${thumbUrl ? `<img src="${thumbUrl}" style="width:100%;height:100%;object-fit:cover;opacity:.85" />` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>`}
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <div style="width:44px;height:44px;background:rgba(184,151,106,.85);border-radius:50%;display:flex;align-items:center;justify-content:center">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="color:#fff;margin-right:-2px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
         </div>
-        <div class="field"><label>العنوان</label><input type="text" id="vid-title-${v.id}" value="${escHtml(v.title_ar)}" /></div>
-        <div class="field"><label>رابط الفيديو</label><input type="url" id="vid-url-${v.id}" value="${escHtml(v.video_url||'')}" style="direction:ltr" /></div>
-        <div class="field"><label>رابط Thumbnail</label><input type="url" id="vid-thumb-${v.id}" value="${escHtml(v.thumbnail_url||'')}" style="direction:ltr" /></div>
+        ${v.active === false ? `<div style="position:absolute;top:.4rem;left:.4rem;background:rgba(0,0,0,.7);color:#fff;font-size:.68rem;padding:.2rem .45rem;border-radius:3px">مخفي</div>` : ''}
+      </div>
+      <div style="padding:.75rem">
+        <p style="font-weight:600;font-size:.85rem;margin:0 0 .2rem">${escHtml(v.title_ar||'فيديو بدون عنوان')}</p>
+        <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 .6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(v.url||'')}</p>
         <div style="display:flex;gap:.5rem;align-items:center">
-          <label class="toggle"><input type="checkbox" ${v.active?'checked':''} onchange="toggleVideoActive('${v.id}',this.checked)"/><span class="toggle-slider"></span></label>
-          <span style="font-size:.78rem;color:var(--text-muted)">${v.active?'نشط':'مخفي'}</span>
-          <div class="spacer"></div>
-          <button class="btn btn-primary btn-sm" onclick="saveVideoItem('${v.id}')">حفظ</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteVideoItem('${v.id}')">حذف</button>
+          <label class="toggle">
+            <input type="checkbox" ${v.active!==false?'checked':''} onchange="toggleVideo('${v.id}',this.checked)" />
+            <span class="toggle-slider"></span>
+          </label>
+          <button class="btn btn-sm btn-outline" style="margin-right:auto" onclick="editVideoItem('${v.id}')">تعديل</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteVideoItem('${v.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function getVideoThumbnail(url) {
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if (ytMatch) return `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
+  return '';
+}
+
+function previewVideo(url) {
+  if (!url) return;
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if (ytMatch) {
+    window.open(`https://www.youtube.com/watch?v=${ytMatch[1]}`, '_blank');
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+async function addVideoItem() {
+  const url = prompt('رابط الفيديو (YouTube أو Vimeo):');
+  if (!url) return;
+  const title = prompt('عنوان الفيديو (عربي):') || 'فيديو جديد';
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient
+    .from('video_library')
+    .insert({ url, title_ar: title, active: true, sort_order: allVideos.length })
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allVideos.push(data);
+  renderVideoList();
+  showToast('تمت إظافة الفيديو ✓', 'success');
+}
+
+async function editVideoItem(id) {
+  const video = allVideos.find(v => String(v.id) === String(id));
+  if (!video) return;
+  const url   = prompt('رابط الفيديو:', video.url || '');
+  if (url === null) return;
+  const title = prompt('العنوان:', video.title_ar || '') || '';
+  const { error } = await window.c3dClient
+    .from('video_library')
+    .update({ url, title_ar: title })
+    .eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  video.url = url; video.title_ar = title;
+  renderVideoList();
+  showToast('تم التعديل ✓', 'success');
+}
+
+async function toggleVideo(id, active) {
+  if (!window.c3dClient) return;
+  await window.c3dClient.from('video_library').update({ active }).eq('id', id);
+  const v = allVideos.find(v => String(v.id) === String(id));
+  if (v) v.active = active;
+}
+
+async function deleteVideoItem(id) {
+  if (!confirm('حذف هذا الفيديو؟')) return;
+  if (!window.c3dClient) return;
+  const { error } = await window.c3dClient.from('video_library').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allVideos = allVideos.filter(v => String(v.id) !== String(id));
+  renderVideoList();
+  showToast('تم الحذف ✓', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   FEE CALCULATOR MANAGER
+══════════════════════════════════════════════════ */
+let feeLoaded   = false;
+let feePackages = [];
+
+const DEFAULT_FEE_PACKAGES = [
+  { name: 'باقة الأساسية',    key: 'basic',    price: 350,  color: '#6B7280' },
+  { name: 'باقة المتميزة',    key: 'premium',  price: 600,  color: '#B8976A' },
+  { name: 'باقة الفاخرة',     key: 'luxury',   price: 900,  color: '#EFB547' },
+];
+
+async function loadFeeSettings() {
+  feeLoaded = true;
+  if (!window.c3dClient) {
+    feePackages = DEFAULT_FEE_PACKAGES.map(p => ({...p}));
+    renderFeePackages();
+    return;
+  }
+  const { data } = await window.c3dClient
+    .from('site_settings')
+    .select('key,value')
+    .like('key', 'fee_%');
+  const map = {};
+  (data || []).forEach(r => { try { map[r.key] = JSON.parse(r.value); } catch(e) { map[r.key] = r.value; } });
+  if (map.fee_packages && Array.isArray(map.fee_packages)) {
+    feePackages = map.fee_packages;
+  } else {
+    feePackages = DEFAULT_FEE_PACKAGES.map(p => ({...p}));
+  }
+  if (map.fee_unit) {
+    const sel = document.getElementById('fee-unit');
+    if (sel) sel.value = map.fee_unit;
+  }
+  if (map.fee_min_area !== undefined) {
+    const el = document.getElementById('fee-min-area');
+    if (el) el.value = map.fee_min_area;
+  }
+  renderFeePackages();
+}
+
+function renderFeePackages() {
+  const grid = document.getElementById('feePackagesGrid');
+  if (!grid) return;
+  grid.innerHTML = feePackages.map((pkg, i) => `
+    <div style="background:var(--black-hover);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;gap:.75rem">
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:10px;height:10px;border-radius:50%;background:${escHtml(pkg.color||'#B8976A')};flex-shrink:0"></div>
+        <input type="text" value="${escHtml(pkg.name||'')}" placeholder="اسم الباقة"
+          onchange="feePackages[${i}].name=this.value"
+          style="flex:1;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.35rem .6rem;border-radius:4px" />
+        <button onclick="removeFeePackage(${i})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:.2rem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="field">
+        <label style="font-size:.76rem">السعر لكل م² (بالجنيه)</label>
+        <input type="number" value="${pkg.price||0}" min="0" step="10"
+          onchange="feePackages[${i}].price=parseFloat(this.value)||0"
+          style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.45rem .7rem;border-radius:var(--radius)" />
+      </div>
+    </div>`).join('');
+}
+
+function addFeePackage() {
+  feePackages.push({ name: 'باقة جديدة', key: 'pkg_' + Date.now(), price: 500, color: '#B8976A' });
+  renderFeePackages();
+}
+
+function removeFeePackage(index) {
+  feePackages.splice(index, 1);
+  renderFeePackages();
+}
+
+async function saveFeeSettings() {
+  const unit    = document.getElementById('fee-unit')?.value || 'sqm';
+  const minArea = parseInt(document.getElementById('fee-min-area')?.value) || 0;
+  if (!window.c3dClient) { showToast('Supabase غير متصل', 'error'); return; }
+  const upserts = [
+    { key: 'fee_packages',  value: JSON.stringify(feePackages) },
+    { key: 'fee_unit',      value: unit },
+    { key: 'fee_min_area',  value: String(minArea) },
+  ];
+  const { error } = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  showToast('تم حفظ إعدادات الأتعاب ✓', 'success');
+}
+
+function calcFeePreview() {
+  const area   = parseFloat(document.getElementById('fee-test-area')?.value) || 0;
+  const result = document.getElementById('feePreviewResult');
+  const rows   = document.getElementById('feePreviewRows');
+  if (!area || !feePackages.length) { if (result) result.style.display = 'none'; return; }
+  if (result) result.style.display = 'block';
+  rows.innerHTML = feePackages.map(pkg => {
+    const total = (area * (pkg.price||0)).toLocaleString('ar-EG');
+    return `<div style="display:flex;justify-content:space-between;font-size:.83rem;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,.06)">
+      <span style="color:var(--text-secondary)">${escHtml(pkg.name)}</span>
+      <strong style="color:var(--gold)">${total} جنيه</strong>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   PARTNERS & BLOG MANAGER
+══════════════════════════════════════════════════ */
+let partnersLoaded = false;
+let allPartners    = [];
+let partnerWidget  = null;
+
+async function loadPartnersView() {
+  partnersLoaded = true;
+  if (!window.c3dClient) return;
+
+  // Load blog settings
+  const { data: settingsData } = await window.c3dClient
+    .from('site_settings')
+    .select('key,value')
+    .in('key', ['blog_nav_visible','blog_section_visible','partners_section_visible']);
+  const sMap = {};
+  (settingsData||[]).forEach(r => sMap[r.key] = r.value);
+
+  const blogNav  = document.getElementById('blog-nav-visible');
+  const blogSec  = document.getElementById('blog-section-visible');
+  const partSec  = document.getElementById('partners-section-visible');
+  if (blogNav)  blogNav.checked  = sMap.blog_nav_visible  !== 'false';
+  if (blogSec)  blogSec.checked  = sMap.blog_section_visible !== 'false';
+  if (partSec)  partSec.checked  = sMap.partners_section_visible !== 'false';
+
+  // Load partners
+  const { data: partnersData, error } = await window.c3dClient
+    .from('partners')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .catch(() => ({ data: null, error: { message: 'جدول partners غير موجود — أنشئه من SQL Editor' } }));
+
+  if (error) {
+    document.getElementById('partnersList').innerHTML = `<div style="color:var(--text-muted);padding:1.5rem;text-align:center;grid-column:1/-1;font-size:.82rem">⚠️ ${error.message}</div>`;
+    return;
+  }
+  allPartners = partnersData || [];
+  renderPartnersList();
+}
+
+function renderPartnersList() {
+  const container = document.getElementById('partnersList');
+  if (!container) return;
+  if (!allPartners.length) {
+    container.innerHTML = `<div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1;font-size:.82rem">لا يوجد شركاء — اضغط "إظافة شريك"</div>`;
+    return;
+  }
+  container.innerHTML = allPartners.map(p => `
+    <div style="background:var(--black-hover);border:1px solid var(--gray-border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column">
+      <div style="aspect-ratio:2/1;background:var(--surface2);display:flex;align-items:center;justify-content:center;padding:.75rem;cursor:pointer" onclick="openPartnerWidget('${p.id}')">
+        ${p.logo_url
+          ? `<img src="${escHtml(p.logo_url)}" style="max-width:100%;max-height:100%;object-fit:contain" />`
+          : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="32" height="32" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`}
+      </div>
+      <div style="padding:.6rem;display:flex;flex-direction:column;gap:.4rem">
+        <input type="text" value="${escHtml(p.name_ar||'')}" placeholder="اسم الشريك"
+          onchange="updatePartnerName('${p.id}',this.value)"
+          style="background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.8rem;padding:.35rem .55rem;border-radius:4px;width:100%" />
+        <div style="display:flex;gap:.4rem">
+          <button class="btn btn-sm btn-outline" style="flex:1;font-size:.72rem" onclick="openPartnerWidget('${p.id}')">رفع لوجو</button>
+          <button class="btn btn-sm btn-danger" onclick="deletePartner('${p.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+          </button>
         </div>
       </div>
     </div>`).join('');
 }
-async function addVideoItem() {
-  if(!window.c3dClient) return;
-  const max=allVideos.reduce((m,v)=>Math.max(m,v.sort_order||0),-1);
-  const {error}=await window.c3dClient.from('video_library').insert([{title_ar:'فيديو جديد',sort_order:max+1}]);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('✅ تمت الإضافة','success'); videoLoaded=false; loadVideoLibrary();
-}
-async function saveVideoItem(id) {
-  const g=sid=>(document.getElementById(sid)||{}).value||'';
-  const {error}=await window.c3dClient.from('video_library').update({title_ar:g('vid-title-'+id),video_url:g('vid-url-'+id),thumbnail_url:g('vid-thumb-'+id)}).eq('id',id);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('✅ تم الحفظ','success'); videoLoaded=false; loadVideoLibrary();
-}
-async function toggleVideoActive(id,active) { await window.c3dClient.from('video_library').update({active}).eq('id',id); }
-async function deleteVideoItem(id) {
-  if(!confirm('حذف الفيديو؟')) return;
-  const {error}=await window.c3dClient.from('video_library').delete().eq('id',id);
-  if(error){showToast('خطأ: '+error.message,'error');return;}
-  showToast('🗑️ تم الحذف','info'); videoLoaded=false; loadVideoLibrary();
-}
-/* ══════════════════════════════════════════════════
-   KEYBOARD
-══════════════════════════════════════════════════ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal();
-    closeConfirm();
-  }
-});
 
-/* ══════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════ */
-initAuth();
+async function addPartnerItem() {
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient
+    .from('partners')
+    .insert({ name_ar: 'شريك جديد', active: true, sort_order: allPartners.length })
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allPartners.push(data);
+  renderPartnersList();
+  showToast('تمت إضافة الشريك — ارفع اللوجو وعدّل الاسم', 'info');
+}
+
+async function updatePartnerName(id, name) {
+  if (!window.c3dClient) return;
+  await window.c3dClient.from('partners').update({ name_ar: name }).eq('id', id);
+}
+
+async function deletePartner(id) {
+  if (!confirm('حذف هذا الشريك؟')) return;
+  if (!window.c3dClient) return;
+  const { error } = await window.c3dClient.from('partners').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allPartners = allPartners.filter(p => String(p.id) !== String(id));
+  renderPartnersList();
+  showToast('تم الحذف ✓', 'success');
+}
+
+function openPartnerWidget(partnerId) {
+  if (!window.cloudinary) { showToast('Cloudinary غير محمّل', 'error'); return; }
+  const cfg = window.C3D_CONFIG?.cloudinary;
+  cloudinary.createUploadWidget({
+    cloudName: cfg?.cloudName || 'dwh2y3lvz',
+    uploadPreset: cfg?.uploadPreset || 'creative3design',
+    folder: 'creative3design/partners', maxFiles: 1,
+    sources: ['local','url','camera'],
+    clientAllowedFormats: ['png','jpg','jpeg','webp','svg']
+  }, async (err, result) => {
+    if (err || result.event !== 'success') return;
+    const url = result.info.secure_url;
+    const { error } = await window.c3dClient.from('partners').update({ logo_url: url }).eq('id', partnerId);
+    if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+    const p = allPartners.find(p => String(p.id) === String(partnerId));
+    if (p) p.logo_url = url;
+    renderPartnersList();
+    showToast('تم رفع لوجو الشريك ✓', 'success');
+  }).open();
+}
+
+async function saveBlogSettings() {
+  if (!window.c3dClient) return;
+  const nav = document.getElementById('blog-nav-visible')?.checked;
+  const sec = document.getElementById('blog-section-visible')?.checked;
+  await window.c3dClient.from('site_settings').upsert([
+    { key: 'blog_nav_visible',     value: String(nav !== false) },
+    { key: 'blog_section_visible', value: String(sec !== false) },
+  ], { onConflict: 'key' });
+  showToast('تم حفظ إعدادات المدونة ✓', 'success');
+}
+
+async function savePartnersSettings() {
+  if (!window.c3dClient) return;
+  const vis = document.getElementById('partners-section-visible')?.checked;
+  await window.c3dClient.from('site_settings').upsert(
+    [{ key: 'partners_section_visible', value: String(vis !== false) }],
+    { onConflict: 'key' }
+  );
+  showToast('تم الحفظ ✓', 'success');
+}
+
 </script>
 </body>
 </html>
