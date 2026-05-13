@@ -387,3 +387,65 @@ CREATE INDEX IF NOT EXISTS idx_partners_sort ON partners (sort_order);
 --   blog_section_visible    (true|false)
 --   partners_section_visible (true|false)
 -- ══════════════════════════════════════════════════
+
+-- ================================================================
+--  12) صور قسم "من نحن" (about_images)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.about_images (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slot       TEXT NOT NULL CHECK (slot IN ('main','small')),
+  image_url  TEXT NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+ALTER TABLE about_images ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "public_select_about" ON about_images FOR SELECT USING (true);
+CREATE POLICY "admin_all_about" ON about_images FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- ================================================================
+--  13) صور قسم الخدمات (services_images)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.services_images (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  service_key TEXT NOT NULL CHECK (service_key IN ('residential','commercial','architectural','finishing','consulting','vr')),
+  image_url   TEXT NOT NULL,
+  sort_order  INT NOT NULL DEFAULT 0,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+ALTER TABLE services_images ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "public_select_services_img" ON services_images FOR SELECT USING (true);
+CREATE POLICY "admin_all_services_img" ON services_images FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE INDEX IF NOT EXISTS idx_services_img_sort ON services_images (sort_order);
+
+-- ================================================================
+--  14) المجمعات (compounds)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.compounds (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name_ar    TEXT NOT NULL,
+  name_en    TEXT,
+  logo_url   TEXT,
+  active     BOOLEAN NOT NULL DEFAULT TRUE,
+  sort_order INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+ALTER TABLE compounds ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "public_select_compounds" ON compounds FOR SELECT USING (active = TRUE);
+CREATE POLICY "admin_all_compounds" ON compounds FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE INDEX IF NOT EXISTS idx_compounds_sort ON compounds (sort_order);
+
+-- ================================================================
+--  15) قبل وبعد (before_after)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.before_after (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title_ar    TEXT,
+  before_url  TEXT NOT NULL,
+  after_url   TEXT NOT NULL,
+  active      BOOLEAN NOT NULL DEFAULT TRUE,
+  sort_order  INT NOT NULL DEFAULT 0,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+ALTER TABLE before_after ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "public_select_ba" ON before_after FOR SELECT USING (active = TRUE);
+CREATE POLICY "admin_all_ba" ON before_after FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE INDEX IF NOT EXISTS idx_ba_sort ON before_after (sort_order);
