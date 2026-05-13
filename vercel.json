@@ -6,16 +6,26 @@
     {
       "source": "/admin/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
+        { "key": "X-Robots-Tag",            "value": "noindex, nofollow" },
+        { "key": "X-Frame-Options",          "value": "DENY" },
+        { "key": "X-Content-Type-Options",   "value": "nosniff" },
+        { "key": "Cache-Control",            "value": "no-store, no-cache, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma",                   "value": "no-cache" },
+        { "key": "Surrogate-Control",        "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        { "key": "Cache-Control",            "value": "no-store, no-cache, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma",                   "value": "no-cache" }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        { "key": "X-Content-Type-Options",   "value": "nosniff" },
+        { "key": "Referrer-Policy",          "value": "strict-origin-when-cross-origin" }
       ]
     }
   ],
