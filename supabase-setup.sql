@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS projects (
   featured             BOOLEAN   DEFAULT FALSE, -- مشروع مميز (يظهر أولاً)
   sort_order           INTEGER   DEFAULT 0,     -- ترتيب العرض (رقم أصغر = أعلى)
   status               TEXT      DEFAULT 'published'
-    CHECK (status IN ('published','draft')),    -- جȧلة النشر
+    CHECK (status IN ('published','draft')),    -- حالة النشر
 
   -- ─── توقيتات ───────────────────────────────────────────────
   created_at           TIMESTAMPTZ DEFAULT NOW(),
@@ -82,7 +82,7 @@ CREATE POLICY "public_select_published"
   ON projects FOR SELECT
   USING (status = 'published');
 
--- المسؤول (كل العمليات) — يتطلب تسجيل الدخول ظبر Supabase Auth
+-- المسؤول (كل العمليات) — يتطلب تسجيل الدخول عبر Supabase Auth
 CREATE POLICY "admin_all"
   ON projects FOR ALL
   TO authenticated
@@ -99,7 +99,7 @@ CREATE INDEX IF NOT EXISTS idx_projects_sort      ON projects (sort_order, creat
 
 -- ================================================================
 --  6) بيانات تجريبية للاختبار
---     يمكنك حذف هذا القسم بعد إضافة مشاريضك الحقيقية
+--     يمكنك حذف هذا القسم بعد إظافة مشاريعك الحقيقية
 -- ================================================================
 INSERT INTO projects
   (name_ar, name_en, category, style, location_ar, location_en,
@@ -143,7 +143,7 @@ VALUES
     'مطعم الجزيرة الفاخر', 'Al-Jazira Luxury Restaurant',
     'hospitality', 'luxury',
     'الجزيرة، القاهرة', 'Zamalek, Cairo',
-    'تصميم مطعم فاخر بإضاءة ساحرة وديكور استثنائي يمنح الضيوف تجربة لا تُنسى.',
+    'تصميم مطعم فاخر بإظاءة ساحرة وديكور استثنائي يمنح الضيوف تجربة لا تُنسى.',
     'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
     'تصميم مطعم فاخر - الزمالك القاهرة - Creative3Design',
     'تصميم مطعم فاخر بالزمالك القاهرة | Creative3Design',
@@ -165,7 +165,7 @@ VALUES
     'فيلا القاهرة الجديدة', 'New Cairo Villa',
     'villa', 'modern',
     'القاهرة الجديدة', 'New Cairo',
-    'فيلا مودرن فاخرة بمساحات مفتوحة وإضاءة طبيعية تُعظّم تجربة السكن.',
+    'فيلا مودرن فاخرة بمساحات مفتوحة وإظاءة طبيعية تُعظّم تجربة السكن.',
     'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
     'تصميم فيلا مودرن فاخرة - القاهرة الجديدة - Creative3Design',
     'تصميم فيلا مودرن فاخرة بالقاهرة الجديدة | Creative3Design',
@@ -348,7 +348,7 @@ ON CONFLICT (key) DO NOTHING;
 --  الخطوات التالية:
 --  1) أضف مستخدم Admin من: Supabase → Authentication → Users → Invite User
 --  2) ارفع مشاريعك من: /admin/bulk-upload.html
---  3) كل مشروع يمكن أن يضم عدداً غير محدود من الصور في project_images
+--  3) كل مشروع يمكن أن يظم عدداً غير محدود من الصور في project_images
 --  4) شغّل هذا الملف في Supabase SQL Editor لإنشاء الجداول الجديدة
 -- ================================================================
 
