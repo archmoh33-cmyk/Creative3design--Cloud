@@ -541,12 +541,14 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 /* ── TESTIMONIALS ── */
 .testimonials-section { background:var(--black); }
 .testi-wrap { position:relative; overflow:hidden; }
-.testi-track { display:flex; gap:1.5rem; transition:transform .4s ease; }
+.testi-track { display:flex; gap:1.5rem; transition:transform .45s cubic-bezier(.4,0,.2,1); }
 .testi-card {
   min-width:calc(50% - .75rem);
   background:var(--black-card); border:1px solid var(--gray-border);
-  padding:2rem; flex-shrink:0;
+  padding:2rem; flex-shrink:0; position:relative;
+  transition:border-color .3s;
 }
+.testi-card.active { border-color:rgba(184,151,106,.45); }
 .testi-stars { color:var(--gold); font-size:1.1rem; margin-bottom:1rem; letter-spacing:.1em; }
 .testi-card > p { color:var(--text-muted); line-height:1.8; margin-bottom:1.5rem; font-style:italic; }
 .testi-client { display:flex; align-items:center; gap:.8rem; }
@@ -558,32 +560,95 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 }
 .testi-client strong { display:block; font-size:.95rem; }
 .testi-client span { display:block; font-size:.8rem; color:var(--text-muted); margin-top:.15rem; }
-.testi-controls { display:flex; justify-content:center; gap:.8rem; margin-top:2rem; }
+.testi-controls { display:flex; justify-content:center; align-items:center; gap:.8rem; margin-top:2rem; }
 .testi-btn {
   width:44px; height:44px; border-radius:50%;
   border:1.5px solid var(--gray-border); color:var(--gold); font-size:1.5rem;
   display:flex; align-items:center; justify-content:center;
-  transition:all var(--transition);
+  transition:all var(--transition); cursor:pointer; background:transparent;
 }
 .testi-btn:hover { background:var(--gold); color:#fff; border-color:var(--gold); }
+/* dots */
+.testi-dots { display:flex; gap:.45rem; align-items:center; }
+.testi-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--gray-border); cursor:pointer;
+  transition:all .3s; border:none; padding:0;
+}
+.testi-dot.active { background:var(--gold); transform:scale(1.35); }
 
 /* ── PARTNERS ── */
 .partners-section { background:var(--black-charcoal); }
-.marquee-outer { overflow:hidden; border-top:1px solid var(--gray-border); border-bottom:1px solid var(--gray-border); }
+.marquee-outer {
+  overflow:hidden;
+  border-top:1px solid var(--gray-border); border-bottom:1px solid var(--gray-border);
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image:linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+.marquee-outer:hover .marquee-track { animation-play-state:paused; }
 .marquee-track {
-  display:flex; gap:3rem; align-items:center;
+  display:flex; gap:0; align-items:center;
   padding:1.5rem 0;
-  animation:marquee 28s linear infinite;
+  animation:marquee-infinite 32s linear infinite;
   white-space:nowrap; width:max-content;
+  will-change:transform;
+}
+.partner-logo-item {
+  display:inline-flex; align-items:center; padding:0 2.5rem;
+  border-right:1px solid var(--gray-border);
 }
 .partner-logo-text {
-  font-size:1rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--text-muted); transition:color var(--transition); padding:0 1rem;
+  font-size:.95rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--text-muted); transition:color var(--transition);
 }
 .partner-logo-text:hover { color:var(--gold); }
-@keyframes marquee {
+@keyframes marquee-infinite {
   from { transform:translateX(0); }
-  to { transform:translateX(-50%); }
+  to   { transform:translateX(-50%); }
+}
+
+/* ── PRICE REFERENCE — desktop compact bar ── */
+.price-ref-bar {
+  display:flex; gap:.6rem; align-items:stretch; flex-wrap:nowrap;
+  overflow-x:auto; scrollbar-width:none; padding-bottom:.2rem;
+}
+.price-ref-bar::-webkit-scrollbar { display:none; }
+.price-ref-pill {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  flex:1; min-width:90px; padding:.7rem .5rem;
+  background:rgba(184,151,106,.06);
+  border:1px solid rgba(184,151,106,.18);
+  border-radius:8px; cursor:pointer; text-decoration:none;
+  transition:all .25s; gap:.2rem;
+}
+.price-ref-pill:hover { background:rgba(184,151,106,.14); border-color:var(--gold); transform:translateY(-2px); }
+.price-ref-pill.recommended { border-color:rgba(184,151,106,.5); background:rgba(184,151,106,.1); }
+.price-ref-label { font-size:.72rem; color:var(--text-muted); }
+.price-ref-val { font-size:1rem; font-weight:900; color:var(--gold); font-family:'Cairo',sans-serif; line-height:1.1; }
+.price-ref-unit { font-size:.65rem; color:var(--text-muted); }
+
+/* ── PACKAGES — featured card glow ── */
+.pkg-preview-card--featured {
+  border-color:rgba(184,151,106,.5) !important;
+  background:linear-gradient(135deg,var(--black-card) 0%,rgba(184,151,106,.08) 100%) !important;
+  box-shadow:0 0 30px rgba(184,151,106,.1);
+}
+.pkg-preview-card--featured::after {
+  content:''; position:absolute; inset:0; border-radius:inherit;
+  box-shadow:inset 0 0 0 1.5px rgba(184,151,106,.35);
+  pointer-events:none;
+}
+.pkg-recommended-badge {
+  position:absolute; top:.9rem; right:.9rem;
+  background:linear-gradient(90deg,#b8976a,#d4af7a);
+  color:#fff; font-size:.62rem; font-weight:800;
+  padding:.22rem .75rem; border-radius:1rem; letter-spacing:.05em;
+  box-shadow:0 2px 10px rgba(184,151,106,.4);
+  animation:badge-pulse 2.5s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%,100% { box-shadow:0 2px 10px rgba(184,151,106,.35); }
+  50%      { box-shadow:0 2px 20px rgba(184,151,106,.65); }
 }
 
 /* ── BLOG ── */
@@ -973,80 +1038,21 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   .filter-btn              { padding: .28rem .65rem; font-size: .72rem; }
 
   /* ════════════════════════════════════════════
-     4) اللوجوهات — سلايدر أفقي متحرك
+     4) اللوجوهات — حجم الشارات على الموبايل فقط
   ════════════════════════════════════════════ */
-  .compounds-section       { overflow: hidden; }
   .compounds-section .section-cta { margin-top: 1.4rem; }
-
-  /* حاوية السلايدر */
-  .compounds-marquee-wrap {
-    overflow: hidden;
-    position: relative;
-    margin: 0 -1.1rem;
-    padding: .2rem 0;
-  }
-  .compounds-marquee-wrap::before,
-  .compounds-marquee-wrap::after {
-    content: '';
-    position: absolute; top: 0; bottom: 0;
-    width: 2.5rem; z-index: 2; pointer-events: none;
-  }
-  .compounds-marquee-wrap::before {
-    right: 0;
-    background: linear-gradient(to left, var(--black-charcoal), transparent);
-  }
-  .compounds-marquee-wrap::after {
-    left: 0;
-    background: linear-gradient(to right, var(--black-charcoal), transparent);
-  }
-  .compounds-marquee-track {
-    display: flex;
-    width: max-content;
-    animation: compoundsScroll 22s linear infinite;
-    gap: .8rem;
-    padding: 0 .8rem;
-  }
-  .compounds-marquee-track:hover { animation-play-state: paused; }
-  @keyframes compoundsScroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  /* الشارات داخل السلايدر */
-  .compounds-marquee-track .compound-badge {
-    flex: 0 0 78px;
-    width: 78px;
-    padding: .6rem .3rem;
-    border-radius: 8px;
-  }
-  .compounds-marquee-track .compound-logo-wrap { width: 52px; height: 52px; }
-  .compounds-marquee-track .compound-name      { font-size: .58rem; }
+  .compounds-marquee-track .compound-badge { width: 90px !important; margin-right: 1rem !important; }
+  .compounds-marquee-track .compound-logo-wrap { width: 56px !important; height: 56px !important; }
+  .compounds-marquee-track .compound-name { font-size: .6rem !important; }
 
   /* ════════════════════════════════════════════
      5) مرجع سريع للأسعار — أفقي مدمج
   ════════════════════════════════════════════ */
-  .price-ref-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: .45rem;
-    padding-bottom: .3rem;
-  }
-  .price-ref-grid::-webkit-scrollbar { display: none; }
-  .price-ref-grid > div {
-    flex: 0 0 68px;
-    min-width: 68px;
-    text-align: center;
-    background: rgba(184,151,106,.07);
-    border: 1px solid rgba(184,151,106,.22);
-    border-radius: 7px;
-    padding: .55rem .3rem;
-    scroll-snap-align: start;
-  }
-  .price-ref-grid > div > div:nth-child(1) { font-size: .6rem  !important; margin-bottom: .2rem !important; }
-  .price-ref-grid > div > div:nth-child(2) { font-size: .85rem !important; line-height: 1.2; }
-  .price-ref-grid > div > div:nth-child(3) { font-size: .58rem !important; }
+  .price-ref-bar { gap:.35rem; }
+  .price-ref-pill { min-width:72px; padding:.55rem .3rem; border-radius:7px; }
+  .price-ref-label { font-size:.6rem !important; }
+  .price-ref-val   { font-size:.85rem !important; }
+  .price-ref-unit  { font-size:.58rem !important; }
 
   /* حاوية القسم (ضغط padding) */
   #packages-preview .lazy-reveal[style] { padding: 1rem !important; margin-bottom: 1.2rem !important; }
@@ -1158,69 +1164,85 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 /* ══════════════════════════════════════════════════
    Compounds Marquee — سلايدر مستمر (كل الشاشات)
 ══════════════════════════════════════════════════ */
-.compounds-grid.marquee-hidden { display: none !important; }
+
+/* الحاوية الخارجية */
+.compounds-section { overflow: hidden; }
 
 .compounds-marquee-wrap {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: .5rem 0;
+  padding: .6rem 0;
+  direction: ltr;       /* ضروري لصفحات RTL — يضمن حركة صحيحة */
 }
+
 /* تلاشي الحواف */
 .compounds-marquee-wrap::before,
 .compounds-marquee-wrap::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  width: 6rem;
+  width: 5rem;
   z-index: 2;
   pointer-events: none;
 }
 .compounds-marquee-wrap::before {
   right: 0;
-  background: linear-gradient(to left, var(--black-charcoal, #1a1714), transparent);
+  background: linear-gradient(to left, var(--black-charcoal, #1c1a17), transparent);
 }
 .compounds-marquee-wrap::after {
   left: 0;
-  background: linear-gradient(to right, var(--black-charcoal, #1a1714), transparent);
+  background: linear-gradient(to right, var(--black-charcoal, #1c1a17), transparent);
 }
 
-/* Track — اتجاه LTR دائماً لضمان حركة صحيحة */
+/* شريط التحريك — LTR دائماً */
 .compounds-marquee-track {
-  display: flex !important;
-  width: max-content !important;
-  direction: ltr !important;
-  gap: 0 !important;
-  animation: compoundsScroll 40s linear infinite !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: max-content;
+  direction: ltr;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  animation: compoundsScroll 40s linear infinite;
   will-change: transform;
+  -webkit-animation: compoundsScroll 40s linear infinite;
 }
-.compounds-marquee-track:hover { animation-play-state: paused !important; }
+.compounds-marquee-track:hover {
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
 
-/* كل badge له margin يحل محل gap لضمان الاستمرارية */
+/* الشارات */
 .compounds-marquee-track .compound-badge {
-  flex: 0 0 auto !important;
-  width: 120px !important;
-  margin-right: 1.5rem !important;
-  padding: .8rem .5rem !important;
+  flex: 0 0 auto;
+  width: 120px;
+  margin-right: 1.2rem;
+  padding: .8rem .4rem;
   text-align: center;
   cursor: default;
+  border-radius: 10px;
 }
 .compounds-marquee-track .compound-logo-wrap {
-  width: 72px !important;
-  height: 72px !important;
-  margin: 0 auto .5rem !important;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto .45rem;
 }
 .compounds-marquee-track .compound-name {
-  font-size: .72rem !important;
+  font-size: .7rem;
   white-space: nowrap;
 }
 
-/* Keyframe — ينتقل بمقدار ثلث المسار (3 مجموعات مكررة) */
+/* Keyframe — 2 نسخ → ينتقل بمقدار نصف المسار */
 @keyframes compoundsScroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  100% { transform: translateX(-50%); }
 }
-
+@-webkit-keyframes compoundsScroll {
+  0%   { -webkit-transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); }
+}
 
 /* ══════════════════════════════════════════════════
    English / LTR — Direction & Alignment Overrides
@@ -1230,22 +1252,42 @@ html[dir="ltr"] body {
   text-align: left;
 }
 
+/* Flip inline padding for lists (RTL uses padding-right, LTR uses padding-left) */
 html[dir="ltr"] .article-body ul,
 html[dir="ltr"] .article-body ol {
   padding-right: 0;
   padding-left: 1.5rem;
 }
 
+/* Blog and service card text */
 html[dir="ltr"] .blog-card-body,
 html[dir="ltr"] .service-card-body { text-align: left; }
 
+/* Breadcrumb */
 html[dir="ltr"] .breadcrumb { text-align: left; }
+
+/* Form labels */
 html[dir="ltr"] .form-group label { text-align: left; }
+
+/* Footer */
 html[dir="ltr"] .footer-col { text-align: left; }
 html[dir="ltr"] .footer-links { padding-right: 0; }
+
+/* Nav links mobile — slide from left in LTR */
 html[dir="ltr"] .nav-links { right: auto; left: 0; border-right: none; border-left: 1px solid var(--gray-border); }
+
+/* Why-us card */
 html[dir="ltr"] .why-card { text-align: left; }
+
+/* Hero section */
 html[dir="ltr"] .hero-text { text-align: left; }
 html[dir="ltr"] .hero-btns { justify-content: flex-start; }
+
+/* Section headers */
+html[dir="ltr"] .section-header { text-align: center; }
+
+/* Ticker direction */
 html[dir="ltr"] .ticker-track { direction: ltr; }
+
+/* Stat items */
 html[dir="ltr"] .stat-item { text-align: center; }
