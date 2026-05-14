@@ -155,7 +155,7 @@ function initLazyImages() {
       entries.forEach(e => {
         if (e.isIntersecting) {
           const img = e.target;
-          img.src = img.dataset.src;
+          if (img.dataset.src) img.src = img.dataset.src;
           img.removeAttribute('data-src');
           obs.unobserve(img);
         }
@@ -286,38 +286,96 @@ function testiPrev() {
 }
 
 /* ── PORTFOLIO FILTER ── */
-const MAX_PORTFOLIO = 9;
+const MAX_PORTFOLIO = 10; // عدد الصور لكل تصنيف محدد
 
-function applyPortfolioFilter(cat, cards) {
-  let shown = 0;
-  cards.forEach(card => {
-    const matches = cat === 'all' || card.dataset.cat === cat;
-    const show = matches && shown < MAX_PORTFOLIO;
-    if (matches && shown < MAX_PORTFOLIO) shown++;
-    card.classList.toggle('hidden', !show);
-    if (show && !card.classList.contains('revealed')) {
-      card.classList.add('lazy-reveal');
-      setTimeout(() => card.classList.add('revealed'), 50);
-    }
-  });
+function applyPortfolioFilter(cat, cards, limit) {
+  const maxAll = limit || MAX_PORTFOLIO;              // حد الكل
+  const perCat = Math.ceil(maxAll / 5);               // عدد كروت لكل قسم في "الكل"
+  if (cat === 'all') {
+    // perCat صورة من كل فئة (10→2 لكل قسم، 18→4 لكل قسم)
+    const seen = {};
+    cards.forEach(card => {
+      const c = card.dataset.cat;
+      if (!seen[c]) seen[c] = 0;
+      const show = seen[c] < perCat;
+      if (show) seen[c]++;
+      card.classList.toggle('hidden', !show);
+      if (show && !card.classList.contains('revealed')) {
+        card.classList.add('lazy-reveal');
+        setTimeout(() => card.classList.add('revealed'), 50);
+      }
+    });
+  } else {
+    let shown = 0;
+    cards.forEach(card => {
+      const matches = card.dataset.cat === cat;
+      const show = matches && shown < maxAll;
+      if (matches && shown < maxAll) shown++;
+      card.classList.toggle('hidden', !show);
+      if (show && !card.classList.contains('revealed')) {
+        card.classList.add('lazy-reveal');
+        setTimeout(() => card.classList.add('revealed'), 50);
+      }
+    });
+  }
 }
 
 function initPortfolioFilter() {
-  const btns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.port-card');
+  const filterEl = document.getElementById('portfolioFilter');
+  if (!filterEl) return;
+  const btns = filterEl.querySelectorAll('.filter-btn');
   if (!btns.length) return;
 
-  // Apply initial cap on page load (default = "all")
-  applyPortfolioFilter('all', cards);
+  let staticCat   = 'all';
+  let staticLimit = 10; // الـ limit للكروت الثابتة (static fallback)
+
+  function applyStatic(cat, limit) {
+    staticCat   = cat;
+    staticLimit = limit;
+    const cards = document.querySelectorAll('#portfolioGrid .port-card');
+    applyPortfolioFilter(cat, cards, limit);
+    // زر شاهد المسيد للـ static
+    const wrap = document.getElementById('showMoreWrap');
+    const moreBtn = document.getElementById('portfolioShowMore');
+    if (wrap && moreBtn) {
+      const total = cat === 'all'
+        ? document.querySelectorAll('#portfolioGrid .port-card').length
+        : document.querySelectorAll('#portfolioGrid .port-card[data-cat="' + cat + '"]').length;
+      if (limit < 18 && total > limit) {
+        wrap.style.display = 'block';
+      } else {
+        wrap.style.display = 'none';
+      }
+    }
+  }
+
+  // تطبيق الفلتر الأولي بالكروت الموجودة حالياً في الـ grid
+  applyStatic('all', 10);
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      applyPortfolioFilter(btn.dataset.cat, cards);
+      applyStatic(btn.dataset.cat || 'all', 10);
     });
   });
+
+  // زر "شاهد المزيد" للـ static fallback
+  const showMoreBtn = document.getElementById('portfolioShowMore');
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      applyStatic(staticCat, 18);
+    });
+  }
 }
+
+// يُستدعى بعد تحميل كروت Supabase في الصفحة الرئيسية
+window.c3dReloadHomepageFilter = function() {
+  const activeBtn = document.querySelector('#portfolioFilter .filter-btn.active');
+  const activeCat = activeBtn ? (activeBtn.dataset.cat || 'all') : 'all';
+  const cards = document.querySelectorAll('#portfolioGrid .port-card');
+  applyPortfolioFilter(activeCat, cards);
+};
 
 /* ── VIDEO LIGHTBOX ── */
 let savedScrollY = 0;
@@ -441,7 +499,7 @@ function initMobileHeader() {
       <span></span><span></span><span></span>
     </button>
     <a href="${base}index.html" class="hero-mobile-logo">
-      Creative<span>3</span>D
+      Creative<span>3</span>Design
     </a>
     <button class="hero-lang-btn" id="heroLangToggle" onclick="toggleLang()">
       ${currentLang === 'ar' ? 'EN' : 'عربي'}
@@ -528,6 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCompoundsMarquee();
   initMobileHeader();
   initMobileDrawer();
+  initPortfolioFilter();
   videoSlideUpdate();
   testiUpdate();
   window.addEventListener('resize', () => { videoSlideUpdate(); testiUpdate(); }, { passive: true });
