@@ -1627,7 +1627,7 @@
 
   /* انتظر حتى يكون الـ client جاهزاً ثم حمّل */
   if (document.readyState === 'loading') {
-    document.addEventListenerner('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
       setTimeout(loadHomepagePortfolio, 100);
     });
   } else {
