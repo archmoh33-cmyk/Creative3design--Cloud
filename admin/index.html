@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… â€” Creative3Design</title>
+<title>ÃâÃËÃÂ­ÃÂ© ÃÂ§ÃâÃÂªÃÂ­ÃÆÃâ¦ Ã¢â¬â Creative3Design</title>
 <meta name="robots" content="noindex, nofollow" />
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
 <style>
-/* â”€â”€ Reset & Variables â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Reset & Variables Ã¢ââ¬Ã¢ââ¬ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --gold:#B8976A;--gold-light:#d4b48a;--gold-dim:rgba(184,151,106,.15);
@@ -29,7 +29,7 @@ img{max-width:100%;display:block}
 ::-webkit-scrollbar-track{background:var(--surface)}
 ::-webkit-scrollbar-thumb{background:rgba(184,151,106,.35);border-radius:3px}
 
-/* â”€â”€ Layout â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Layout Ã¢ââ¬Ã¢ââ¬ */
 .app{display:flex;flex-direction:column;min-height:100vh}
 .app-header{
   position:sticky;top:0;z-index:100;
@@ -51,7 +51,7 @@ img{max-width:100%;display:block}
 
 .app-body{display:flex;flex:1;overflow:hidden}
 
-/* â”€â”€ Sidebar â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Sidebar Ã¢ââ¬Ã¢ââ¬ */
 .sidebar{
   width:220px;flex-shrink:0;
   background:var(--surface);border-left:1px solid var(--border);
@@ -68,10 +68,10 @@ img{max-width:100%;display:block}
 .sidebar-link:hover,.sidebar-link.active{color:var(--gold);background:var(--gold-dim)}
 .sidebar-link.active svg{opacity:1}
 
-/* â”€â”€ Main Content â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Main Content Ã¢ââ¬Ã¢ââ¬ */
 .main{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem}
 
-/* â”€â”€ Stats Bar â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Stats Bar Ã¢ââ¬Ã¢ââ¬ */
 .stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem}
 .stat-card{
   background:var(--surface);border:1px solid var(--border);
@@ -82,7 +82,7 @@ img{max-width:100%;display:block}
 .stat-value{font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1}
 .stat-sub{font-size:.72rem;color:var(--text-dim)}
 
-/* â”€â”€ Toolbar â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Toolbar Ã¢ââ¬Ã¢ââ¬ */
 .toolbar{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
 .toolbar-title{font-size:1rem;font-weight:700;color:var(--text);flex-shrink:0}
 .spacer{flex:1}
@@ -105,7 +105,7 @@ img{max-width:100%;display:block}
 }
 .filter-select:focus{outline:none;border-color:var(--gold)}
 
-/* â”€â”€ Buttons â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Buttons Ã¢ââ¬Ã¢ââ¬ */
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.1rem;border-radius:var(--radius);font-size:.85rem;font-weight:700;transition:all var(--transition);cursor:pointer}
 .btn-primary{background:var(--gold);color:#fff}
 .btn-primary:hover{background:var(--gold-light)}
@@ -116,7 +116,7 @@ img{max-width:100%;display:block}
 .btn-sm{padding:.32rem .75rem;font-size:.78rem}
 .btn svg{width:14px;height:14px;flex-shrink:0}
 
-/* â”€â”€ Projects Grid â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Projects Grid Ã¢ââ¬Ã¢ââ¬ */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .project-card{
   background:var(--surface);border:1px solid var(--border2);
@@ -145,7 +145,7 @@ img{max-width:100%;display:block}
 .card-loc{font-size:.72rem;color:var(--text-dim);display:flex;align-items:center;gap:.25rem}
 .card-actions{display:flex;gap:.4rem;padding:.6rem 1rem;border-top:1px solid var(--border2)}
 
-/* â”€â”€ Loading / Empty â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Loading / Empty Ã¢ââ¬Ã¢ââ¬ */
 .skeleton-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
 .skeleton{background:linear-gradient(90deg,var(--surface2) 25%,var(--surface3) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -157,7 +157,7 @@ img{max-width:100%;display:block}
 .empty-state svg{opacity:.25;width:64px;height:64px}
 .empty-state p{font-size:.9rem}
 
-/* â”€â”€ Modal â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Modal Ã¢ââ¬Ã¢ââ¬ */
 .modal-backdrop{
   display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);
   z-index:500;backdrop-filter:blur(3px);
@@ -180,7 +180,7 @@ img{max-width:100%;display:block}
 .modal-body{padding:1.4rem;display:flex;flex-direction:column;gap:1.2rem;overflow-y:auto;max-height:78vh}
 .modal-footer{padding:1rem 1.4rem;border-top:1px solid var(--border2);display:flex;gap:.7rem;justify-content:flex-end}
 
-/* â”€â”€ Form â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Form Ã¢ââ¬Ã¢ââ¬ */
 .form-section{display:flex;flex-direction:column;gap:.9rem}
 .form-section-title{
   font-size:.72rem;font-weight:700;color:var(--gold);
@@ -259,7 +259,7 @@ img{max-width:100%;display:block}
 .toggle input:checked + .toggle-slider{background:var(--gold);border-color:var(--gold)}
 .toggle input:checked + .toggle-slider::before{transform:translateX(18px)}
 
-/* â”€â”€ Login Screen â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Login Screen Ã¢ââ¬Ã¢ââ¬ */
 #loginScreen{
   display:flex;align-items:center;justify-content:center;
   min-height:100vh;padding:1.5rem;
@@ -286,7 +286,7 @@ img{max-width:100%;display:block}
 }
 .login-error.show{display:block}
 
-/* â”€â”€ Toast â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Toast Ã¢ââ¬Ã¢ââ¬ */
 .toast-wrap{position:fixed;bottom:1.5rem;left:1.5rem;z-index:999;display:flex;flex-direction:column;gap:.5rem}
 .toast{
   display:flex;align-items:center;gap:.6rem;
@@ -300,7 +300,7 @@ img{max-width:100%;display:block}
 .toast.info{background:var(--surface);border:1px solid var(--border);color:var(--text)}
 @keyframes slideIn{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
 
-/* â”€â”€ Confirm Dialog â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Confirm Dialog Ã¢ââ¬Ã¢ââ¬ */
 .confirm-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:600;align-items:center;justify-content:center}
 .confirm-backdrop.open{display:flex}
 .confirm-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:360px;width:90%;text-align:center;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow)}
@@ -308,7 +308,7 @@ img{max-width:100%;display:block}
 .confirm-text{font-size:.85rem;color:var(--text-muted)}
 .confirm-actions{display:flex;gap:.6rem;justify-content:center}
 
-/* â”€â”€ Hero Manager â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Hero Manager Ã¢ââ¬Ã¢ââ¬ */
 .hero-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
 .hero-slide-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition)}
 .hero-slide-card:hover{border-color:var(--border)}
@@ -326,7 +326,7 @@ img{max-width:100%;display:block}
 .hero-slide-inactive .hero-slide-img{opacity:.4}
 .hero-sql-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-size:.75rem;color:#4caf7d;direction:ltr;text-align:left;overflow-x:auto;white-space:pre;margin-top:.8rem;font-family:monospace}
 
-/* â”€â”€ Media Panels (Settings / About / Services / Compounds / BA) â”€â”€ */
+/* Ã¢ââ¬Ã¢ââ¬ Media Panels (Settings / About / Services / Compounds / BA) Ã¢ââ¬Ã¢ââ¬ */
 .media-panel{display:flex;flex-direction:column;gap:1rem}
 .panel-section{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
 .panel-section-header{padding:.75rem 1.1rem;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.6rem}
@@ -383,9 +383,9 @@ img{max-width:100%;display:block}
 </head>
 <body>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     CONFIG ERROR OVERLAY â€” ÙŠØ¸Ù‡Ø± Ø¥Ø°Ø§ ÙƒØ§Ù†Øª Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø®Ø§Ø·Ø¦Ø©
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+     CONFIG ERROR OVERLAY Ã¢â¬â ÃÅ ÃÂ¸Ãâ¡ÃÂ± ÃÂ¥ÃÂ°ÃÂ§ ÃÆÃÂ§Ãâ ÃÂª ÃÂ§ÃâÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ®ÃÂ§ÃÂ·ÃÂ¦ÃÂ©
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <div id="configErrorOverlay" style="
   display:none; position:fixed; inset:0; z-index:9999;
   background:rgba(10,8,6,.97); align-items:center; justify-content:center;
@@ -396,12 +396,12 @@ img{max-width:100%;display:block}
     border-radius:14px; max-width:580px; width:100%;
     padding:2rem; box-shadow:0 8px 40px rgba(0,0,0,.7);
   ">
-    <div style="font-size:2rem; text-align:center; margin-bottom:.5rem">âš™ï¸</div>
+    <div style="font-size:2rem; text-align:center; margin-bottom:.5rem">Ã¢Å¡â¢Ã¯Â¸Â</div>
     <h2 style="color:#e05252; text-align:center; margin-bottom:.5rem; font-size:1.1rem">
-      Ø®Ø·Ø£ ÙÙŠ Ø¥Ø¹Ø¯Ø§Ø¯ Supabase
+      ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ Supabase
     </h2>
     <p style="color:#8a8278; text-align:center; font-size:.85rem; margin-bottom:1.5rem">
-      Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… ØªØ­ØªØ§Ø¬ Ø±Ø§Ø¨Ø· Supabase ØµØ­ÙŠØ­ Ù„Ù„Ø¹Ù…Ù„
+      ÃâÃËÃÂ­ÃÂ© ÃÂ§ÃâÃÂªÃÂ­ÃÆÃâ¦ ÃÂªÃÂ­ÃÂªÃÂ§ÃÂ¬ ÃÂ±ÃÂ§ÃÂ¨ÃÂ· Supabase ÃÂµÃÂ­ÃÅ ÃÂ­ ÃâÃâÃÂ¹Ãâ¦Ãâ
     </p>
 
     <div id="configErrorList" style="
@@ -410,26 +410,26 @@ img{max-width:100%;display:block}
       font-size:.83rem; color:#e8e4dc; line-height:2;
     "></div>
 
-    <!-- Ø§Ù„Ø®Ø·ÙˆØ§Øª Ø§Ù„ØµØ­ÙŠØ­Ø© -->
+    <!-- ÃÂ§ÃâÃÂ®ÃÂ·ÃËÃÂ§ÃÂª ÃÂ§ÃâÃÂµÃÂ­ÃÅ ÃÂ­ÃÂ© -->
     <div style="
       background:rgba(184,151,106,.07); border:1px solid rgba(184,151,106,.2);
       border-radius:8px; padding:1rem 1.2rem; margin-bottom:1.5rem;
     ">
       <p style="color:#B8976A; font-weight:700; font-size:.85rem; margin-bottom:.6rem">
-        ðŸ“ ÙƒÙŠÙ ØªØ¬Ø¯ Ø§Ù„Ø±Ø§Ø¨Ø· Ø§Ù„ØµØ­ÙŠØ­ØŸ
+        Ã°Å¸âÂ ÃÆÃÅ ÃÂ ÃÂªÃÂ¬ÃÂ¯ ÃÂ§ÃâÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂ§ÃâÃÂµÃÂ­ÃÅ ÃÂ­ÃÅ¸
       </p>
       <ol style="color:#8a8278; font-size:.82rem; line-height:2.2; padding-right:1.2rem">
-        <li>Ø§Ø°Ù‡Ø¨ Ø¥Ù„Ù‰ <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
-        <li>Ø§Ø®ØªØ± Ù…Ø´Ø±ÙˆØ¹Ùƒ Ø«Ù… Ø§Ø¸ØºØ· <strong style="color:#e8e4dc">Settings â† API</strong></li>
-        <li>Ø§Ù†Ø³Ø® <strong style="color:#B8976A">Project URL</strong> â€” Ø´ÙƒÙ„Ù‡:
+        <li>ÃÂ§ÃÂ°Ãâ¡ÃÂ¨ ÃÂ¥ÃâÃâ° <strong style="color:#e8e4dc">supabase.com/dashboard</strong></li>
+        <li>ÃÂ§ÃÂ®ÃÂªÃÂ± Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ÃÆ ÃÂ«Ãâ¦ ÃÂ§ÃÂ¸ÃÂºÃÂ· <strong style="color:#e8e4dc">Settings Ã¢â Â API</strong></li>
+        <li>ÃÂ§Ãâ ÃÂ³ÃÂ® <strong style="color:#B8976A">Project URL</strong> Ã¢â¬â ÃÂ´ÃÆÃâÃâ¡:
           <br/><code style="
             background:#1e1b17; color:#4caf7d; padding:.15rem .5rem;
             border-radius:4px; font-size:.78rem; display:inline-block; margin-top:.2rem;
           ">https://XXXXXXXXXXXX.supabase.co</code>
         </li>
-        <li>Ø§Ù†Ø³Ø® <strong style="color:#B8976A">anon public key</strong> (ÙŠØ¨Ø¯Ø£ Ø¨Ù€ <code style="color:#4caf7d">eyJ</code> Ø£Ùˆ <code style="color:#4caf7d">sb_publishable_</code>)</li>
-        <li>Ø§Ù„ØµÙ‚ Ø§Ù„Ù‚ÙŠÙ…ØªÙŠÙ† ÙÙŠ <strong style="color:#e8e4dc">js/config.js</strong></li>
-        <li>Ø£Ø¹Ø¯ ØªØ­Ù…ÙŠÙ„ Ù‡Ø°Ù‡ Ø§Ù„ØµÙØ­Ø©</li>
+        <li>ÃÂ§Ãâ ÃÂ³ÃÂ® <strong style="color:#B8976A">anon public key</strong> (ÃÅ ÃÂ¨ÃÂ¯ÃÂ£ ÃÂ¨Ãâ¬ <code style="color:#4caf7d">eyJ</code> ÃÂ£ÃË <code style="color:#4caf7d">sb_publishable_</code>)</li>
+        <li>ÃÂ§ÃâÃÂµÃâ ÃÂ§ÃâÃâÃÅ Ãâ¦ÃÂªÃÅ Ãâ  ÃÂÃÅ  <strong style="color:#e8e4dc">js/config.js</strong></li>
+        <li>ÃÂ£ÃÂ¹ÃÂ¯ ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ Ãâ¡ÃÂ°Ãâ¡ ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ©</li>
       </ol>
     </div>
 
@@ -437,57 +437,57 @@ img{max-width:100%;display:block}
       <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="
         background:#B8976A; color:#fff; padding:.55rem 1.2rem;
         border-radius:7px; font-size:.85rem; font-weight:700; text-decoration:none;
-      ">ÙØªØ­ Supabase Dashboard â†—</a>
+      ">ÃÂÃÂªÃÂ­ Supabase Dashboard Ã¢â â</a>
       <button onclick="location.reload()" style="
         background:transparent; border:1px solid rgba(255,255,255,.15);
         color:#8a8278; padding:.55rem 1.2rem; border-radius:7px;
         font-size:.85rem; font-weight:700; cursor:pointer;
         font-family:'Cairo',sans-serif;
-      ">Ø¥Ø¹Ø§Ø¯Ø© ØªØ­Ù…ÙŠÙ„ Ø§Ù„ØµÙØ­Ø©</button>
+      ">ÃÂ¥ÃÂ¹ÃÂ§ÃÂ¯ÃÂ© ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ©</button>
     </div>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
      LOGIN SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">Creative<span>3</span>Design</div>
-    <p class="login-subtitle">Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ù…Ø³Ø¤ÙˆÙ„</p>
+    <p class="login-subtitle">ÃâÃËÃÂ­ÃÂ© ÃÂªÃÂ­ÃÆÃâ¦ ÃÂ§ÃâÃâ¦ÃÂ³ÃÂ¤ÃËÃâ</p>
 
     <div class="form-section" style="gap:.7rem">
       <div class="field">
-        <label>Ø§Ù„Ø¨Ø²ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ</label>
+        <label>ÃÂ§ÃâÃÂ¨ÃÂ²ÃÅ ÃÂ¯ ÃÂ§ÃâÃÂ¥ÃâÃÆÃÂªÃÂ±ÃËÃâ ÃÅ </label>
         <input type="email" id="loginEmail" placeholder="admin@creative3design.com" autocomplete="email" />
       </div>
       <div class="field">
-        <label>ÙƒÙ…Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±</label>
-        <input type="password" id="loginPass" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password" />
+        <label>ÃÆÃâ¦Ãâ¦ÃÂ© ÃÂ§ÃâÃâ¦ÃÂ±ÃËÃÂ±</label>
+        <input type="password" id="loginPass" placeholder="Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢Ã¢â¬Â¢" autocomplete="current-password" />
       </div>
       <div id="loginError" class="login-error"></div>
-      <button class="login-btn" id="loginBtn" onclick="handleLogin()">Ø¯Ø®ÙˆÙ„</button>
+      <button class="login-btn" id="loginBtn" onclick="handleLogin()">ÃÂ¯ÃÂ®ÃËÃâ</button>
     </div>
     <p style="text-align:center;font-size:.75rem;color:var(--text-dim)">
-      Ù„Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠ: <a href="../index.html" style="color:var(--gold)">Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</a>
+      ÃâÃâÃËÃÂµÃËÃâ ÃÂ¥ÃâÃâ° ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹ ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ : <a href="../index.html" style="color:var(--gold)">ÃÂ§ÃâÃÂ¹ÃËÃÂ¯ÃÂ© ÃâÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</a>
     </p>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
      DASHBOARD APP
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <div class="app" id="appShell" style="display:none">
 
   <!-- Header -->
   <header class="app-header">
-    <div class="header-logo">Creative<span>3</span>D <span style="color:var(--text-dim);font-weight:400;font-size:.8rem">| Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…</span></div>
+    <div class="header-logo">Creative<span>3</span>D <span style="color:var(--text-dim);font-weight:400;font-size:.8rem">| ÃâÃËÃÂ­ÃÂ© ÃÂ§ÃâÃÂªÃÂ­ÃÆÃâ¦</span></div>
     <div class="header-spacer"></div>
-    <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ØªØ±ØªÙŠØ¨ Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹">ðŸ”€ ØªØ±ØªÙŠØ¨ Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹</a>
+    <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹">Ã°Å¸ââ¬ ÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹</a>
     <span class="header-user" id="headerUser"></span>
     <button class="header-logout btn btn-sm btn-outline" onclick="handleLogout()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-      Ø®Ø±ÙˆØ¬
+      ÃÂ®ÃÂ±ÃËÃÂ¬
     </button>
   </header>
 
@@ -495,106 +495,106 @@ img{max-width:100%;display:block}
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-section">Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</div>
+      <div class="sidebar-section">ÃÂ§ÃâÃâÃÂ§ÃÂ¦Ãâ¦ÃÂ©</div>
       <div class="sidebar-link active" onclick="showView('projects')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹
+        ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹
       </div>
       <div class="sidebar-link" onclick="window.open('../portfolio.html','_blank')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Ø¹Ø±Ø¶ Ø§Ù„Ù…ÙˆÙ‚Ø¹
+        ÃÂ¹ÃÂ±ÃÂ¶ ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹
       </div>
       <div class="sidebar-link" onclick="showView('hero')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Ø´Ø±Ø§Ø¦Ø­ Ø§Ù„Ù‡ÙŠØ±Ùˆ
+        ÃÂ´ÃÂ±ÃÂ§ÃÂ¦ÃÂ­ ÃÂ§ÃâÃâ¡ÃÅ ÃÂ±ÃË
       </div>
-      <div class="sidebar-section" style="margin-top:.5rem">Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</div>
+      <div class="sidebar-section" style="margin-top:.5rem">ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</div>
       <div class="sidebar-link" onclick="showView('settings',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 010-2.83l.06-.06A1.65 1.65 0 009 15.6a1.65 1.65 0 00-1.51-1H6a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-        Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ù…ÙˆÙ‚Ø¹
+        ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹
       </div>
       <div class="sidebar-link" onclick="showView('about',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ©
+        ÃÂ¹Ãâ  ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ©
       </div>
       <div class="sidebar-link" onclick="showView('services',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        ØµÙˆØ± Ø§Ù„Ø®Ø¯Ù…Ø§Øª
+        ÃÂµÃËÃÂ± ÃÂ§ÃâÃÂ®ÃÂ¯Ãâ¦ÃÂ§ÃÂª
       </div>
       <div class="sidebar-link" onclick="showView('compounds',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-        Ø§Ù„ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯Ø§Øª
+        ÃÂ§ÃâÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ÃÂ§ÃÂª
       </div>
       <div class="sidebar-link" onclick="showView('beforeafter',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
-        Ù‚Ø¨Ù„ ÙˆØ¨Ø¹Ø¯
+        ÃâÃÂ¨Ãâ ÃËÃÂ¨ÃÂ¹ÃÂ¯
       </div>
-      <div class="sidebar-section" style="margin-top:.5rem">Ø§Ù„ØªØ³ÙˆÙŠÙ‚</div>
+      <div class="sidebar-section" style="margin-top:.5rem">ÃÂ§ÃâÃÂªÃÂ³ÃËÃÅ Ãâ</div>
       <div class="sidebar-link" onclick="showView('payment',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Ø·Ø±Ù‚ Ø§Ù„Ø¯ÙØ¹
+        ÃÂ·ÃÂ±Ãâ ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹
       </div>
       <div class="sidebar-link" onclick="showView('video',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        Ù…ÙƒØªØ¨Ø© Ø§Ù„ÙÙŠØ¯ÙŠÙˆ
+        Ãâ¦ÃÆÃÂªÃÂ¨ÃÂ© ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË
       </div>
       <div class="sidebar-link" onclick="showView('fee',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        Ø­Ø³Ø§Ø¨ Ø§Ù„Ø£ØªØ¹Ø§Ø¨
+        ÃÂ­ÃÂ³ÃÂ§ÃÂ¨ ÃÂ§ÃâÃÂ£ÃÂªÃÂ¹ÃÂ§ÃÂ¨
       </div>
       <div class="sidebar-link" onclick="showView('partners',event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        Ø§Ù„Ø´Ø±ÙƒØ§Ø¡ ÙˆØ§Ù„Ù…Ø¯ÙˆÙ†Ø©
+        ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ ÃËÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ©
       </div>
-      <div class="sidebar-section" style="margin-top:.5rem">Ø§Ù„Ø­Ø³Ø§Ø¨</div>
+      <div class="sidebar-section" style="margin-top:.5rem">ÃÂ§ÃâÃÂ­ÃÂ³ÃÂ§ÃÂ¨</div>
       <div class="sidebar-link" onclick="handleLogout()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-        ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬
+        ÃÂªÃÂ³ÃÂ¬ÃÅ Ãâ ÃÂ§ÃâÃÂ®ÃÂ±ÃËÃÂ¬
       </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main" id="mainContent">
 
-      <!-- â•â•â•â• Projects View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Projects View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="projectsView" style="display:contents">
 
       <!-- Stats -->
       <div class="stats-bar" id="statsBar">
-        <div class="stat-card"><div class="stat-label">Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹</div><div class="stat-value" id="statTotal">â€”</div><div class="stat-sub">Ù…Ø´Ø±ÙˆØ¹ Ù…Ù†Ø´ÙˆØ±</div></div>
-        <div class="stat-card"><div class="stat-label">Ø³ÙƒÙ†ÙŠ</div><div class="stat-value" id="statRes">â€”</div></div>
-        <div class="stat-card"><div class="stat-label">ØªØ¬Ø§Ø±ÙŠ</div><div class="stat-value" id="statCom">â€”</div></div>
-        <div class="stat-card"><div class="stat-label">ÙÙŠÙ„Ø§Øª</div><div class="stat-value" id="statVil">â€”</div></div>
-        <div class="stat-card"><div class="stat-label">Ù…Ø³ÙˆÙ‘Ø¯Ø§Øª</div><div class="stat-value" id="statDraft">â€”</div></div>
+        <div class="stat-card"><div class="stat-label">ÃÂ¥ÃÂ¬Ãâ¦ÃÂ§ÃâÃÅ  ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹</div><div class="stat-value" id="statTotal">Ã¢â¬â</div><div class="stat-sub">Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ Ãâ¦Ãâ ÃÂ´ÃËÃÂ±</div></div>
+        <div class="stat-card"><div class="stat-label">ÃÂ³ÃÆÃâ ÃÅ </div><div class="stat-value" id="statRes">Ã¢â¬â</div></div>
+        <div class="stat-card"><div class="stat-label">ÃÂªÃÂ¬ÃÂ§ÃÂ±ÃÅ </div><div class="stat-value" id="statCom">Ã¢â¬â</div></div>
+        <div class="stat-card"><div class="stat-label">ÃÂÃÅ ÃâÃÂ§ÃÂª</div><div class="stat-value" id="statVil">Ã¢â¬â</div></div>
+        <div class="stat-card"><div class="stat-label">Ãâ¦ÃÂ³ÃËÃâÃÂ¯ÃÂ§ÃÂª</div><div class="stat-value" id="statDraft">Ã¢â¬â</div></div>
       </div>
 
       <!-- Toolbar -->
       <div class="toolbar">
-        <span class="toolbar-title">Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹</span>
+        <span class="toolbar-title">ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹</span>
         <div class="search-box">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="searchInput" placeholder="Ø§Ø¨Ø­Ø« Ø¹Ù† Ù…Ø´Ø±ÙˆØ¹..." oninput="filterProjects()" />
+          <input type="text" id="searchInput" placeholder="ÃÂ§ÃÂ¨ÃÂ­ÃÂ« ÃÂ¹Ãâ  Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹..." oninput="filterProjects()" />
         </div>
         <select class="filter-select" id="catFilter" onchange="filterProjects()">
-          <option value="">ÙƒÙ„ Ø§Ù„ØªØµÙ†ÙŠÙØ§Øª</option>
-          <option value="residential">Ø³ÙƒÙ†ÙŠ</option>
-          <option value="commercial">ØªØ¬Ø§Ø±ÙŠ</option>
-          <option value="villa">ÙÙŠÙ„Ø§Øª</option>
-          <option value="hospitality">Ø¶ÙŠØ§ÙØ©</option>
-          <option value="office">Ù…ÙƒØ§ØªØ¨</option>
+          <option value="">ÃÆÃâ ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂÃÂ§ÃÂª</option>
+          <option value="residential">ÃÂ³ÃÆÃâ ÃÅ </option>
+          <option value="commercial">ÃÂªÃÂ¬ÃÂ§ÃÂ±ÃÅ </option>
+          <option value="villa">ÃÂÃÅ ÃâÃÂ§ÃÂª</option>
+          <option value="hospitality">ÃÂ¶ÃÅ ÃÂ§ÃÂÃÂ©</option>
+          <option value="office">Ãâ¦ÃÆÃÂ§ÃÂªÃÂ¨</option>
         </select>
         <select class="filter-select" id="statusFilter" onchange="filterProjects()">
-          <option value="">ÙƒÙ„ Ø§Ù„Ø­Ø§Ù„Ø§Øª</option>
-          <option value="published">Ù…Ù†Ø´ÙˆØ±</option>
-          <option value="draft">Ù…Ø³ÙˆÙ‘Ø¯Ø©</option>
+          <option value="">ÃÆÃâ ÃÂ§ÃâÃÂ­ÃÂ§ÃâÃÂ§ÃÂª</option>
+          <option value="published">Ãâ¦Ãâ ÃÂ´ÃËÃÂ±</option>
+          <option value="draft">Ãâ¦ÃÂ³ÃËÃâÃÂ¯ÃÂ©</option>
         </select>
-        <button class="btn btn-outline" id="sortModeBtn" onclick="toggleSortMode()" title="Ø§Ø³Ø­Ø¨ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø§Øª Ù„Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ±ØªÙŠØ¨">
+        <button class="btn btn-outline" id="sortModeBtn" onclick="toggleSortMode()" title="ÃÂ§ÃÂ³ÃÂ­ÃÂ¨ ÃÂ§ÃâÃÂ¨ÃÂ·ÃÂ§ÃâÃÂ§ÃÂª ÃâÃÂ¥ÃÂ¹ÃÂ§ÃÂ¯ÃÂ© ÃÂ§ÃâÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          ØªØ±ØªÙŠØ¨
+          ÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨
         </button>
         <button class="btn btn-primary" onclick="openModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Ù…Ø´Ø±ÙˆØ¹ Ø¬Ø¯ÙŠØ¯
+          Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯
         </button>
       </div>
 
@@ -608,64 +608,64 @@ img{max-width:100%;display:block}
 
       </div><!-- /projectsView -->
 
-      <!-- â•â•â•â• Hero Manager View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Hero Manager View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="heroView" style="display:none;flex-direction:column;gap:1.5rem">
 
         <!-- Toolbar -->
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ–¼ï¸ Ø´Ø±Ø§Ø¦Ø­ Ø§Ù„Ù‡ÙŠØ±Ùˆ</span>
+          <span class="toolbar-title">Ã°Å¸âÂ¼Ã¯Â¸Â ÃÂ´ÃÂ±ÃÂ§ÃÂ¦ÃÂ­ ÃÂ§ÃâÃâ¡ÃÅ ÃÂ±ÃË</span>
           <div class="spacer"></div>
           <button class="btn btn-outline" onclick="loadHeroSlides()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            ØªØ­Ø¯ÙŠØ«
+            ÃÂªÃÂ­ÃÂ¯ÃÅ ÃÂ«
           </button>
           <button class="btn btn-outline" onclick="saveHeroOrder()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            Ø­ÙØ¸ Ø§Ù„ØªØ±ØªÙŠØ¨
+            ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨
           </button>
           <button class="btn btn-primary" onclick="addHeroSlide()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ø¥Ø¶Ø§ÙØ© Ø´Ø±ÙŠØ­Ø©
+            ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ©
           </button>
         </div>
 
         <!-- Info bar -->
         <div style="background:var(--gold-dim);border:1px solid rgba(184,151,106,.25);border-radius:var(--radius);padding:.7rem 1rem;font-size:.8rem;color:var(--text-muted)">
-          ðŸ’¡ Ø§Ù„Ø´Ø±Ø§Ø¦Ø­ Ø§Ù„Ù†Ø´Ø·Ø© ØªØ¸Ù‡Ø± ÙÙŠ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© Ø¨Ø§Ù„ØªØ±ØªÙŠØ¨ Ø§Ù„Ù…Ø­Ø¯Ø¯. ØºÙŠÙ‘Ø± Ø§Ù„Ø£Ø±Ù‚Ø§Ù… Ø«Ù… Ø§Ø¸ØºØ· <strong style="color:var(--gold)">Ø­ÙØ¸ Ø§Ù„ØªØ±ØªÙŠØ¨</strong>ØŒ Ø£Ùˆ Ø§Ø¶ØºØ· <strong style="color:var(--gold)">Ø­ÙØ¸</strong> Ø¹Ù„Ù‰ ÙƒÙ„ Ø´Ø±ÙŠØ­Ø© Ø¨Ø´ÙƒÙ„ Ù…Ù†ÙØ±Ø¯.
+          Ã°Å¸âÂ¡ ÃÂ§ÃâÃÂ´ÃÂ±ÃÂ§ÃÂ¦ÃÂ­ ÃÂ§ÃâÃâ ÃÂ´ÃÂ·ÃÂ© ÃÂªÃÂ¸Ãâ¡ÃÂ± ÃÂÃÅ  ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ© ÃÂ¨ÃÂ§ÃâÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨ ÃÂ§ÃâÃâ¦ÃÂ­ÃÂ¯ÃÂ¯. ÃÂºÃÅ ÃâÃÂ± ÃÂ§ÃâÃÂ£ÃÂ±ÃâÃÂ§Ãâ¦ ÃÂ«Ãâ¦ ÃÂ§ÃÂ¸ÃÂºÃÂ· <strong style="color:var(--gold)">ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨</strong>ÃÅ ÃÂ£ÃË ÃÂ§ÃÂ¶ÃÂºÃÂ· <strong style="color:var(--gold)">ÃÂ­ÃÂÃÂ¸</strong> ÃÂ¹ÃâÃâ° ÃÆÃâ ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© ÃÂ¨ÃÂ´ÃÆÃâ Ãâ¦Ãâ ÃÂÃÂ±ÃÂ¯.
         </div>
 
         <!-- Slides Grid -->
         <div class="hero-grid" id="heroGrid">
-          <div style="color:var(--text-muted);padding:2rem;text-align:center">Ø¬Ø§Ø±Ù Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
+          <div style="color:var(--text-muted);padding:2rem;text-align:center">ÃÂ¬ÃÂ§ÃÂ±ÃÂ ÃÂ§ÃâÃÂªÃÂ­Ãâ¦ÃÅ Ãâ...</div>
         </div>
 
       </div><!-- /heroView -->
 
-      <!-- â•â•â•â• Settings View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Settings View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="settingsView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">âš™ï¸ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ù…ÙˆÙ‚Ø¹</span>
+          <span class="toolbar-title">Ã¢Å¡â¢Ã¯Â¸Â ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="saveSettings()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            Ø­ÙØ¸ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª
+            ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª
           </button>
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ–¼ï¸ Ø´Ø¹Ø§Ø± Ø§Ù„Ù…ÙˆÙ‚Ø¹</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÂ¼Ã¯Â¸Â ÃÂ´ÃÂ¹ÃÂ§ÃÂ± ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹</span></div>
             <div class="panel-section-body">
               <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap">
                 <div id="logoPreviewWrap" style="width:160px;flex-shrink:0;border-radius:var(--radius);overflow:hidden;background:var(--surface2);aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.75rem">
-                  Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´Ø¹Ø§Ø±
+                  ÃâÃÂ§ ÃÅ ÃËÃÂ¬ÃÂ¯ ÃÂ´ÃÂ¹ÃÂ§ÃÂ±
                 </div>
                 <div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:.7rem">
                   <button class="hero-upload-btn" onclick="openLogoWidget()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-                    Ø±ÙØ¹ Ø´Ø¹Ø§Ø± Ø¬Ø¯ÙŠØ¯ Ø¹Ø¨Ø± Cloudinary
+                    ÃÂ±ÃÂÃÂ¹ ÃÂ´ÃÂ¹ÃÂ§ÃÂ± ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯ ÃÂ¹ÃÂ¨ÃÂ± Cloudinary
                   </button>
                   <div class="field">
-                    <label>Ø±Ø§Ø¨Ø· Ø§Ù„Ø´Ø¹Ø§Ø± Ø§Ù„Ø­Ø§Ù„ÙŠ</label>
+                    <label>ÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂ§ÃâÃÂ´ÃÂ¹ÃÂ§ÃÂ± ÃÂ§ÃâÃÂ­ÃÂ§ÃâÃÅ </label>
                     <input type="url" id="s-logo_url" placeholder="https://res.cloudinary.com/..." oninput="updateLogoPreview(this.value)" />
                   </div>
                 </div>
@@ -673,28 +673,28 @@ img{max-width:100%;display:block}
             </div>
           </div>
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ“ž Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„ØªÙˆØ§ØµÙ„</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÅ¾ Ãâ¦ÃÂ¹ÃâÃËÃâ¦ÃÂ§ÃÂª ÃÂ§ÃâÃÂªÃËÃÂ§ÃÂµÃâ</span></div>
             <div class="panel-section-body">
               <div class="form-row form-row-2">
-                <div class="field"><label>Ø±Ù‚Ù… ÙˆØ§ØªØ³Ø§Ø¨ (Ø¨Ø¯ÙˆÙ† +)</label><input type="text" id="s-whatsapp" placeholder="201019053288" /></div>
-                <div class="field"><label>Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ</label><input type="email" id="s-email" placeholder="info@creative3design.com" /></div>
+                <div class="field"><label>ÃÂ±ÃâÃâ¦ ÃËÃÂ§ÃÂªÃÂ³ÃÂ§ÃÂ¨ (ÃÂ¨ÃÂ¯ÃËÃâ  +)</label><input type="text" id="s-whatsapp" placeholder="201019053288" /></div>
+                <div class="field"><label>ÃÂ§ÃâÃÂ¨ÃÂ±ÃÅ ÃÂ¯ ÃÂ§ÃâÃÂ¥ÃâÃÆÃÂªÃÂ±ÃËÃâ ÃÅ </label><input type="email" id="s-email" placeholder="info@creative3design.com" /></div>
               </div>
               <div class="form-row form-row-2">
-                <div class="field"><label>Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ© (Ø¹Ø±Ø¨ÙŠ)</label><input type="text" id="s-name_ar" /></div>
-                <div class="field"><label>Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ© (Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ)</label><input type="text" id="s-name_en" /></div>
+                <div class="field"><label>ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ© (ÃÂ¹ÃÂ±ÃÂ¨ÃÅ )</label><input type="text" id="s-name_ar" /></div>
+                <div class="field"><label>ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ© (ÃÂ¥Ãâ ÃÂ¬ÃâÃÅ ÃÂ²ÃÅ )</label><input type="text" id="s-name_en" /></div>
               </div>
             </div>
           </div>
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ—ºï¸ Ø®Ø±ÙŠØ·Ø© Ø¬ÙˆØ¬Ù„</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÂºÃ¯Â¸Â ÃÂ®ÃÂ±ÃÅ ÃÂ·ÃÂ© ÃÂ¬ÃËÃÂ¬Ãâ</span></div>
             <div class="panel-section-body">
               <div class="field">
-                <label>Ø±Ø§Ø¨Ø· ØªØ¶Ù…ÙŠÙ† Ø®Ø±ÙŠØ·Ø© Ø¬ÙˆØ¬Ù„ (Google Maps Embed URL)</label>
+                <label>ÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂªÃÂ¶Ãâ¦ÃÅ Ãâ  ÃÂ®ÃÂ±ÃÅ ÃÂ·ÃÂ© ÃÂ¬ÃËÃÂ¬Ãâ (Google Maps Embed URL)</label>
                 <input type="url" id="s-google_maps_embed"
                   placeholder="https://www.google.com/maps/embed?pb=..."
                   style="direction:ltr;text-align:left" />
                 <small style="color:var(--text-dim);font-size:.78rem">
-                  Ù…Ù† Google Maps â†’ Ù…Ø´Ø§Ø±ÙƒØ© â†’ ØªØ¶Ù…ÙŠÙ† Ø®Ø±ÙŠØ·Ø© â†’ Ø§Ù†Ø³Ø® Ø§Ù„Ø±Ø§Ø¨Ø· src ÙÙ‚Ø·
+                  Ãâ¦Ãâ  Google Maps Ã¢â â Ãâ¦ÃÂ´ÃÂ§ÃÂ±ÃÆÃÂ© Ã¢â â ÃÂªÃÂ¶Ãâ¦ÃÅ Ãâ  ÃÂ®ÃÂ±ÃÅ ÃÂ·ÃÂ© Ã¢â â ÃÂ§Ãâ ÃÂ³ÃÂ® ÃÂ§ÃâÃÂ±ÃÂ§ÃÂ¨ÃÂ· src ÃÂÃâÃÂ·
                 </small>
               </div>
               <div id="mapsPreview" style="display:none;margin-top:.8rem;border-radius:var(--radius);overflow:hidden;height:220px">
@@ -705,49 +705,49 @@ img{max-width:100%;display:block}
         </div>
       </div><!-- /settingsView -->
 
-      <!-- â•â•â•â• About View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â About View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="aboutView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ  Ù‚Ø³Ù… Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ©</span>
+          <span class="toolbar-title">Ã°Å¸ÂÂ  ÃâÃÂ³Ãâ¦ ÃÂ¹Ãâ  ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ©</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="saveAboutImages()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            Ø­ÙØ¸ Ø§Ù„ØµÙˆØ±
+            ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂµÃËÃÂ±
           </button>
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ØµÙˆØ± Ù‚Ø³Ù… Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ©</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">ÃÂµÃËÃÂ± ÃâÃÂ³Ãâ¦ ÃÂ¹Ãâ  ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ©</span></div>
             <div class="panel-section-body">
               <div class="form-row form-row-2">
                 <div class="field">
-                  <label>Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© (ÙƒØ¨ÙŠØ±Ø©)</label>
+                  <label>ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ© (ÃÆÃÂ¨ÃÅ ÃÂ±ÃÂ©)</label>
                   <div id="about-main-wrap">
                     <div class="upload-slot" id="about-main-slot" onclick="openAboutWidget('main')">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                      <p>Ø§Ù†Ù‚Ø± Ù„Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</p>
+                      <p>ÃÂ§Ãâ ÃâÃÂ± ÃâÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</p>
                     </div>
                     <div class="img-preview-box" id="about-main-preview" style="display:none;aspect-ratio:4/3">
                       <img id="about-main-img" src="" alt="" style="height:100%;object-fit:cover" />
                       <div class="img-preview-overlay">
-                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('main')">ØªØºÙŠÙŠØ±</button>
-                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('main')">Ø­Ø°Ù</button>
+                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('main')">ÃÂªÃÂºÃÅ ÃÅ ÃÂ±</button>
+                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('main')">ÃÂ­ÃÂ°ÃÂ</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="field">
-                  <label>Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„ØµØºÙŠØ±Ø©</label>
+                  <label>ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂµÃÂºÃÅ ÃÂ±ÃÂ©</label>
                   <div id="about-small-wrap">
                     <div class="upload-slot" id="about-small-slot" onclick="openAboutWidget('small')">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                      <p>Ø§Ù†Ù‚Ø± Ù„Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„ØµØºÙŠØ±Ø©</p>
+                      <p>ÃÂ§Ãâ ÃâÃÂ± ÃâÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂµÃÂºÃÅ ÃÂ±ÃÂ©</p>
                     </div>
                     <div class="img-preview-box" id="about-small-preview" style="display:none;aspect-ratio:4/3">
                       <img id="about-small-img" src="" alt="" style="height:100%;object-fit:cover" />
                       <div class="img-preview-overlay">
-                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('small')">ØªØºÙŠÙŠØ±</button>
-                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('small')">Ø­Ø°Ù</button>
+                        <button class="btn btn-sm btn-outline" onclick="openAboutWidget('small')">ÃÂªÃÂºÃÅ ÃÅ ÃÂ±</button>
+                        <button class="btn btn-sm btn-danger" onclick="clearAboutSlot('small')">ÃÂ­ÃÂ°ÃÂ</button>
                       </div>
                     </div>
                   </div>
@@ -758,110 +758,110 @@ img{max-width:100%;display:block}
         </div>
       </div><!-- /aboutView -->
 
-      <!-- â•â•â•â• Services View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Services View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="servicesView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ”§ ØµÙˆØ± Ø§Ù„Ø®Ø¯Ù…Ø§Øª</span>
+          <span class="toolbar-title">Ã°Å¸âÂ§ ÃÂµÃËÃÂ± ÃÂ§ÃâÃÂ®ÃÂ¯Ãâ¦ÃÂ§ÃÂª</span>
           <div class="spacer"></div>
-          <button class="btn btn-outline" onclick="loadServicesImages()">â†º ØªØ­Ø¯ÙŠØ«</button>
+          <button class="btn btn-outline" onclick="loadServicesImages()">Ã¢â Âº ÃÂªÃÂ­ÃÂ¯ÃÅ ÃÂ«</button>
         </div>
         <div id="servicesGrid" class="services-admin-grid"></div>
       </div><!-- /servicesView -->
 
-      <!-- â•â•â•â• Compounds View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Compounds View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="compoundsView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ¢ Ø§Ù„ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯Ø§Øª ÙˆØ§Ù„Ø´Ø±ÙƒØ§Ø¡</span>
+          <span class="toolbar-title">Ã°Å¸ÂÂ¢ ÃÂ§ÃâÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ÃÂ§ÃÂª ÃËÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="addCompound()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ø¥Ø¶Ø§ÙØ© ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯
+            ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯
           </button>
         </div>
         <div id="compoundsGrid" class="compound-grid"></div>
       </div><!-- /compoundsView -->
 
-      <!-- â•â•â•â• Before/After View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Before/After View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="beforeafterView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ”„ Ù‚Ø¨Ù„ ÙˆØ¨Ø¹Ø¯</span>
+          <span class="toolbar-title">Ã°Å¸ââ ÃâÃÂ¨Ãâ ÃËÃÂ¨ÃÂ¹ÃÂ¯</span>
           <div class="spacer"></div>
           <button class="btn btn-primary" onclick="addBAItem()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ø¥Ø¶Ø§ÙØ© Ù…Ø¬Ù…ÙˆØ¹Ø©
+            ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© Ãâ¦ÃÂ¬Ãâ¦ÃËÃÂ¹ÃÂ©
           </button>
         </div>
         <div id="baGrid" class="ba-admin-grid"></div>
       </div><!-- /beforeafterView -->
 
-      <!-- â•â•â•â• Payment Methods View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Payment Methods View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="paymentView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ’³ Ø·Ø±Ù‚ Ø§Ù„Ø¯ÙØ¹</span>
+          <span class="toolbar-title">Ã°Å¸âÂ³ ÃÂ·ÃÂ±Ãâ ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹</span>
           <div class="spacer"></div>
           <button class="btn btn-primary btn-sm" onclick="addPaymentMethod()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ø¥Ø¶Ø§ÙØ© Ø·Ø±ÙŠÙ‚Ø©
+            ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ·ÃÂ±ÃÅ ÃâÃÂ©
           </button>
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">Ø·Ø±Ù‚ Ø§Ù„Ø¯ÙØ¹ Ø§Ù„Ù…ØªØ§Ø­Ø©</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">ÃÂ·ÃÂ±Ãâ ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹ ÃÂ§ÃâÃâ¦ÃÂªÃÂ§ÃÂ­ÃÂ©</span></div>
             <div class="panel-section-body">
               <div id="paymentList" style="display:flex;flex-direction:column;gap:1rem">
-                <div style="color:var(--text-muted);padding:2rem;text-align:center">â³ Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
+                <div style="color:var(--text-muted);padding:2rem;text-align:center">Ã¢ÂÂ³ ÃÂ¬ÃÂ§ÃÂ±ÃÅ  ÃÂ§ÃâÃÂªÃÂ­Ãâ¦ÃÅ Ãâ...</div>
               </div>
             </div>
           </div>
         </div>
       </div><!-- /paymentView -->
 
-      <!-- â•â•â•â• Video Library View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Video Library View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="videoView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸŽ¬ Ù…ÙƒØªØ¨Ø© Ø§Ù„ÙÙŠØ¯ÙŠÙˆ</span>
+          <span class="toolbar-title">Ã°Å¸Å½Â¬ Ãâ¦ÃÆÃÂªÃÂ¨ÃÂ© ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË</span>
           <div class="spacer"></div>
           <button class="btn btn-primary btn-sm" onclick="addVideoItem()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ø¥Ø¶Ø§ÙØ© ÙÙŠØ¯ÙŠÙˆ
+            ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂÃÅ ÃÂ¯ÃÅ ÃË
           </button>
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">Ø§Ù„ÙÙŠØ¯ÙŠÙˆÙ‡Ø§Øª Ø§Ù„Ù…Ø¶Ø§ÙØ©</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃËÃâ¡ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃÂ¶ÃÂ§ÃÂÃÂ©</span></div>
             <div class="panel-section-body">
               <div id="videoList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem">
-                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">â³ Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">Ã¢ÂÂ³ ÃÂ¬ÃÂ§ÃÂ±ÃÅ  ÃÂ§ÃâÃÂªÃÂ­Ãâ¦ÃÅ Ãâ...</div>
               </div>
             </div>
           </div>
         </div>
       </div><!-- /videoView -->
 
-      <!-- â•â•â•â• Fee Calculator View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Fee Calculator View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="feeView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ’° Ø­Ø³Ø§Ø¨ Ø§Ù„Ø£ØªØ¹Ø§Ø¨ â€” Ø§Ù„Ø¨Ø§Ù‚Ø§Øª ÙˆØ§Ù„Ù…Ø¹Ø§Ù…Ù„Ø§Øª</span>
+          <span class="toolbar-title">Ã°Å¸âÂ° ÃÂ­ÃÂ³ÃÂ§ÃÂ¨ ÃÂ§ÃâÃÂ£ÃÂªÃÂ¹ÃÂ§ÃÂ¨ Ã¢â¬â ÃÂ§ÃâÃÂ¨ÃÂ§ÃâÃÂ§ÃÂª ÃËÃÂ§ÃâÃâ¦ÃÂ¹ÃÂ§Ãâ¦ÃâÃÂ§ÃÂª</span>
           <div class="spacer"></div>
           <button class="btn btn-primary btn-sm" onclick="saveFeeSettings()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
-            Ø­ÙØ¸ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª
+            ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª
           </button>
         </div>
         <div class="media-panel">
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ“ ÙˆØ­Ø¯Ø© Ø§Ù„Ø­Ø³Ø§Ø¨</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÂ ÃËÃÂ­ÃÂ¯ÃÂ© ÃÂ§ÃâÃÂ­ÃÂ³ÃÂ§ÃÂ¨</span></div>
             <div class="panel-section-body">
               <div class="form-row form-row-2">
                 <div class="field">
-                  <label>ÙˆØ­Ø¯Ø© Ø§Ù„Ù‚ÙŠØ§Ø³</label>
+                  <label>ÃËÃÂ­ÃÂ¯ÃÂ© ÃÂ§ÃâÃâÃÅ ÃÂ§ÃÂ³</label>
                   <select id="fee-unit" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)">
-                    <option value="sqm">Ù…ØªØ± Ù…Ø±Ø¨Ø¹ (Ù…Â²)</option>
-                    <option value="sqft">Ù‚Ø¯Ù… Ù…Ø±Ø¨Ø¹ (ftÂ²)</option>
+                    <option value="sqm">Ãâ¦ÃÂªÃÂ± Ãâ¦ÃÂ±ÃÂ¨ÃÂ¹ (Ãâ¦ÃÂ²)</option>
+                    <option value="sqft">ÃâÃÂ¯Ãâ¦ Ãâ¦ÃÂ±ÃÂ¨ÃÂ¹ (ftÃÂ²)</option>
                   </select>
                 </div>
                 <div class="field">
-                  <label>Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ø¯Ù†Ù‰ Ù„Ù„Ù…Ø³Ø§Ø­Ø©</label>
+                  <label>ÃÂ§ÃâÃÂ­ÃÂ¯ ÃÂ§ÃâÃÂ£ÃÂ¯Ãâ Ãâ° ÃâÃâÃâ¦ÃÂ³ÃÂ§ÃÂ­ÃÂ©</label>
                   <input type="number" id="fee-min-area" placeholder="50" min="1" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" />
                 </div>
               </div>
@@ -869,30 +869,30 @@ img{max-width:100%;display:block}
           </div>
 
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ“¦ Ø§Ù„Ø¨Ø§Ù‚Ø§Øª ÙˆØ³Ø¹Ø± Ø§Ù„Ù…ØªØ±</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÂ¦ ÃÂ§ÃâÃÂ¨ÃÂ§ÃâÃÂ§ÃÂª ÃËÃÂ³ÃÂ¹ÃÂ± ÃÂ§ÃâÃâ¦ÃÂªÃÂ±</span></div>
             <div class="panel-section-body">
-              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">Ø­Ø¯Ù‘Ø¯ Ø³Ø¹Ø± Ø§Ù„Ù…ØªØ± Ø§Ù„Ù…Ø±Ø¨Ø¹ Ù„ÙƒÙ„ Ø¨Ø§Ù‚Ø© â€” ÙŠÙØ³ØªØ®Ø¯Ù… Ù„Ø­Ø³Ø§Ø¨ ØªÙ‚Ø¯ÙŠØ±Ø§Øª Ø§Ù„Ø£ØªØ¹Ø§Ø¨ Ù„Ù„Ø¹Ù…Ù„Ø§Ø¡</p>
+              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">ÃÂ­ÃÂ¯ÃâÃÂ¯ ÃÂ³ÃÂ¹ÃÂ± ÃÂ§ÃâÃâ¦ÃÂªÃÂ± ÃÂ§ÃâÃâ¦ÃÂ±ÃÂ¨ÃÂ¹ ÃâÃÆÃâ ÃÂ¨ÃÂ§ÃâÃÂ© Ã¢â¬â ÃÅ ÃÂÃÂ³ÃÂªÃÂ®ÃÂ¯Ãâ¦ ÃâÃÂ­ÃÂ³ÃÂ§ÃÂ¨ ÃÂªÃâÃÂ¯ÃÅ ÃÂ±ÃÂ§ÃÂª ÃÂ§ÃâÃÂ£ÃÂªÃÂ¹ÃÂ§ÃÂ¨ ÃâÃâÃÂ¹Ãâ¦ÃâÃÂ§ÃÂ¡</p>
               <div id="feePackagesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem"></div>
               <div style="margin-top:1rem">
                 <button class="btn btn-sm" style="border:1px dashed var(--gray-border);color:var(--text-muted);background:transparent" onclick="addFeePackage()">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                  Ø¥Ø¶Ø§ÙØ© Ø¨Ø§Ù‚Ø©
+                  ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ¨ÃÂ§ÃâÃÂ©
                 </button>
               </div>
             </div>
           </div>
 
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ§® ØªØ¬Ø±Ø¨Ø© Ø§Ù„Ø­Ø§Ø³Ø¨Ø©</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸Â§Â® ÃÂªÃÂ¬ÃÂ±ÃÂ¨ÃÂ© ÃÂ§ÃâÃÂ­ÃÂ§ÃÂ³ÃÂ¨ÃÂ©</span></div>
             <div class="panel-section-body">
               <div class="form-row form-row-2">
                 <div class="field">
-                  <label>Ø§Ù„Ù…Ø³Ø§Ø­Ø© (Ù„Ù„ØªØ¬Ø±Ø¨Ø©)</label>
+                  <label>ÃÂ§ÃâÃâ¦ÃÂ³ÃÂ§ÃÂ­ÃÂ© (ÃâÃâÃÂªÃÂ¬ÃÂ±ÃÂ¨ÃÂ©)</label>
                   <input type="number" id="fee-test-area" placeholder="150" min="1" oninput="calcFeePreview()" style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" />
                 </div>
               </div>
               <div id="feePreviewResult" style="margin-top:.8rem;padding:.8rem;background:var(--black-hover);border-radius:var(--radius);display:none">
-                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.5rem">Ø§Ù„ØªÙ‚Ø¯ÙŠØ±Ø§Øª Ø­Ø³Ø¨ Ø§Ù„Ø¨Ø§Ù‚Ø©:</p>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.5rem">ÃÂ§ÃâÃÂªÃâÃÂ¯ÃÅ ÃÂ±ÃÂ§ÃÂª ÃÂ­ÃÂ³ÃÂ¨ ÃÂ§ÃâÃÂ¨ÃÂ§ÃâÃÂ©:</p>
                 <div id="feePreviewRows" style="display:flex;flex-direction:column;gap:.35rem"></div>
               </div>
             </div>
@@ -900,22 +900,22 @@ img{max-width:100%;display:block}
         </div>
       </div><!-- /feeView -->
 
-      <!-- â•â•â•â• Partners & Blog View â•â•â•â• -->
+      <!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â Partners & Blog View Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
       <div id="partnersView" style="display:none;flex-direction:column;gap:1.5rem">
         <div class="toolbar">
-          <span class="toolbar-title">ðŸ¤ Ø§Ù„Ø´Ø±ÙƒØ§Ø¡ ÙˆØ§Ù„Ù…Ø¯ÙˆÙ†Ø©</span>
+          <span class="toolbar-title">Ã°Å¸Â¤Â ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ ÃËÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ©</span>
         </div>
         <div class="media-panel">
 
           <!-- Blog Toggle -->
           <div class="panel-section">
-            <div class="panel-section-header"><span class="panel-section-title">ðŸ“ Ø§Ù„Ù…Ø¯ÙˆÙ†Ø©</span></div>
+            <div class="panel-section-header"><span class="panel-section-title">Ã°Å¸âÂ ÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ©</span></div>
             <div class="panel-section-body">
               <div style="display:flex;flex-direction:column;gap:1rem">
                 <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.6rem .8rem;background:var(--black-hover);border-radius:var(--radius)">
                   <div>
-                    <p style="font-size:.85rem;font-weight:600;margin:0">Ø¥Ø¸Ù‡Ø§Ø± Ø±Ø§Ø¨Ø· Ø§Ù„Ù…Ø¯ÙˆÙ†Ø© ÙÙŠ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</p>
-                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">ÙŠÙØ¸Ù‡Ø± Ø£Ùˆ ÙŠÙØ®ÙÙŠ Ø²Ø± "Ø§Ù„Ù…Ø¯ÙˆÙ†Ø©" ÙÙŠ Ø´Ø±ÙŠØ· Ø§Ù„ØªÙ†Ù‚Ù„</p>
+                    <p style="font-size:.85rem;font-weight:600;margin:0">ÃÂ¥ÃÂ¸Ãâ¡ÃÂ§ÃÂ± ÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ© ÃÂÃÅ  ÃÂ§ÃâÃâÃÂ§ÃÂ¦Ãâ¦ÃÂ©</p>
+                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">ÃÅ ÃÂÃÂ¸Ãâ¡ÃÂ± ÃÂ£ÃË ÃÅ ÃÂÃÂ®ÃÂÃÅ  ÃÂ²ÃÂ± "ÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ©" ÃÂÃÅ  ÃÂ´ÃÂ±ÃÅ ÃÂ· ÃÂ§ÃâÃÂªÃâ ÃâÃâ</p>
                   </div>
                   <label class="toggle">
                     <input type="checkbox" id="blog-nav-visible" onchange="saveBlogSettings()" />
@@ -924,8 +924,8 @@ img{max-width:100%;display:block}
                 </div>
                 <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.6rem .8rem;background:var(--black-hover);border-radius:var(--radius)">
                   <div>
-                    <p style="font-size:.85rem;font-weight:600;margin:0">Ø¥Ø¸Ù‡Ø§Ø± Ù‚Ø³Ù… Ø§Ù„Ù…Ø¯ÙˆÙ†Ø© ÙÙŠ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</p>
-                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">ÙŠÙØ¸Ù‡Ø± Ø£Ùˆ ÙŠÙØ®ÙÙŠ Ø¹Ø±Ø¶ Ø¢Ø®Ø± Ø§Ù„Ù…Ù‚Ø§Ù„Ø§Øª ÙÙŠ Ø§Ù„Ù‡ÙˆÙ…</p>
+                    <p style="font-size:.85rem;font-weight:600;margin:0">ÃÂ¥ÃÂ¸Ãâ¡ÃÂ§ÃÂ± ÃâÃÂ³Ãâ¦ ÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ© ÃÂÃÅ  ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</p>
+                    <p style="font-size:.75rem;color:var(--text-muted);margin:.2rem 0 0">ÃÅ ÃÂÃÂ¸Ãâ¡ÃÂ± ÃÂ£ÃË ÃÅ ÃÂÃÂ®ÃÂÃÅ  ÃÂ¹ÃÂ±ÃÂ¶ ÃÂ¢ÃÂ®ÃÂ± ÃÂ§ÃâÃâ¦ÃâÃÂ§ÃâÃÂ§ÃÂª ÃÂÃÅ  ÃÂ§ÃâÃâ¡ÃËÃâ¦</p>
                   </div>
                   <label class="toggle">
                     <input type="checkbox" id="blog-section-visible" onchange="saveBlogSettings()" />
@@ -939,23 +939,23 @@ img{max-width:100%;display:block}
           <!-- Partners -->
           <div class="panel-section">
             <div class="panel-section-header">
-              <span class="panel-section-title">ðŸ¤ Ø§Ù„Ø´Ø±ÙƒØ§Ø¡ ÙˆØ§Ù„Ø¹Ù…Ù„Ø§Ø¡</span>
+              <span class="panel-section-title">Ã°Å¸Â¤Â ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ ÃËÃÂ§ÃâÃÂ¹Ãâ¦ÃâÃÂ§ÃÂ¡</span>
               <button class="btn btn-primary btn-sm" onclick="addPartnerItem()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Ø¥Ø¶Ø§ÙØ© Ø´Ø±ÙŠÙƒ
+                ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ´ÃÂ±ÃÅ ÃÆ
               </button>
             </div>
             <div class="panel-section-body">
-              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">Ø´Ø¹Ø§Ø±Ø§Øª Ø§Ù„Ø´Ø±ÙƒØ§Øª ÙˆØ§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø§Ù„Ù…Ù…ÙŠØ²ÙŠÙ† â€” ØªØ¸Ù‡Ø± ÙÙŠ Ù‚Ø³Ù… "Ø´Ø±ÙƒØ§Ø¤Ù†Ø§" Ø¨Ø§Ù„Ù…ÙˆÙ‚Ø¹</p>
+              <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem">ÃÂ´ÃÂ¹ÃÂ§ÃÂ±ÃÂ§ÃÂª ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂª ÃËÃÂ§ÃâÃÂ¹Ãâ¦ÃâÃÂ§ÃÂ¡ ÃÂ§ÃâÃâ¦Ãâ¦ÃÅ ÃÂ²ÃÅ Ãâ  Ã¢â¬â ÃÂªÃÂ¸Ãâ¡ÃÂ± ÃÂÃÅ  ÃâÃÂ³Ãâ¦ "ÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¤Ãâ ÃÂ§" ÃÂ¨ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹</p>
               <div class="toggle-row" style="justify-content:space-between;align-items:center;padding:.5rem .8rem;background:var(--black-hover);border-radius:var(--radius);margin-bottom:1rem">
-                <span style="font-size:.82rem">Ø¥Ø¸Ù‡Ø§Ø± Ù‚Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ§Ø¡ ÙÙŠ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</span>
+                <span style="font-size:.82rem">ÃÂ¥ÃÂ¸Ãâ¡ÃÂ§ÃÂ± ÃâÃÂ³Ãâ¦ ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ ÃÂÃÅ  ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</span>
                 <label class="toggle">
                   <input type="checkbox" id="partners-section-visible" onchange="savePartnersSettings()" />
                   <span class="toggle-slider"></span>
                 </label>
               </div>
               <div id="partnersList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem">
-                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">â³ Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">Ã¢ÂÂ³ ÃÂ¬ÃÂ§ÃÂ±ÃÅ  ÃÂ§ÃâÃÂªÃÂ­Ãâ¦ÃÅ Ãâ...</div>
               </div>
             </div>
           </div>
@@ -967,164 +967,164 @@ img{max-width:100%;display:block}
   </div><!-- app-body -->
 </div><!-- appShell -->
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     PROJECT MODAL â€” Add / Edit
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+     PROJECT MODAL Ã¢â¬â Add / Edit
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <div class="modal-backdrop" id="projectModal" onclick="onBackdropClick(event)">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title" id="modalTitle">Ù…Ø´Ø±ÙˆØ¹ Ø¬Ø¯ÙŠØ¯</span>
-      <button class="modal-close" onclick="closeModal()">âœ•</button>
+      <span class="modal-title" id="modalTitle">Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯</span>
+      <button class="modal-close" onclick="closeModal()">Ã¢Åâ¢</button>
     </div>
 
     <div class="modal-body">
 
-      <!-- â”€â”€â”€ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ§Øª â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃÂ£ÃÂ³ÃÂ§ÃÂ³ÃÅ ÃÂ§ÃÂª Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">Ø£Ø³Ø§Ø³ÙŠØ§Øª Ø§Ù„Ù…Ø´Ø±ÙˆØ¹</div>
+        <div class="form-section-title">ÃÂ£ÃÂ³ÃÂ§ÃÂ³ÃÅ ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹</div>
         <div class="form-row form-row-2">
           <div class="field" id="field-name_ar">
-            <label>Ø§Ø³Ù… Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ (Ø¹Ø±Ø¨ÙŠ) <span class="req">*</span></label>
-            <input type="text" id="f-name_ar" placeholder="Ø´Ù‚Ø© Ø§Ù„ØªØ¬Ù…Ø¹ Ø§Ù„Ø®Ø§Ù…Ø³ Ø§Ù„ÙØ§Ø®Ø±Ø©" oninput="autoSEO()" />
-            <span class="field-error">Ù‡Ø°Ø§ Ø§Ù„Ø­Ù‚Ù„ Ù…Ø·Ù„ÙˆØ¨</span>
+            <label>ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ (ÃÂ¹ÃÂ±ÃÂ¨ÃÅ ) <span class="req">*</span></label>
+            <input type="text" id="f-name_ar" placeholder="ÃÂ´ÃâÃÂ© ÃÂ§ÃâÃÂªÃÂ¬Ãâ¦ÃÂ¹ ÃÂ§ÃâÃÂ®ÃÂ§Ãâ¦ÃÂ³ ÃÂ§ÃâÃÂÃÂ§ÃÂ®ÃÂ±ÃÂ©" oninput="autoSEO()" />
+            <span class="field-error">Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃÂ­ÃâÃâ Ãâ¦ÃÂ·ÃâÃËÃÂ¨</span>
           </div>
           <div class="field">
-            <label>Ø§Ø³Ù… Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ (Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ)</label>
+            <label>ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ (ÃÂ¥Ãâ ÃÂ¬ÃâÃÅ ÃÂ²ÃÅ )</label>
             <input type="text" id="f-name_en" placeholder="New Cairo Luxury Apartment" />
           </div>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ Ø§Ù„ØªØµÙ†ÙŠÙ ÙˆØ§Ù„Ø·Ø±Ø§Ø² â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂ ÃËÃÂ§ÃâÃÂ·ÃÂ±ÃÂ§ÃÂ² Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">Ø§Ù„ØªØµÙ†ÙŠÙ ÙˆØ§Ù„Ø·Ø±Ø§Ø²</div>
+        <div class="form-section-title">ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂ ÃËÃÂ§ÃâÃÂ·ÃÂ±ÃÂ§ÃÂ²</div>
         <div class="form-row form-row-2">
           <div class="field" id="field-category">
-            <label>Ø§Ù„ØªØµÙ†ÙŠÙ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ <span class="req">*</span></label>
+            <label>ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂ ÃÂ§ÃâÃÂ£ÃÂ³ÃÂ§ÃÂ³ÃÅ  <span class="req">*</span></label>
             <select id="f-category" onchange="autoSEO()">
-              <option value="">â€” Ø§Ø®ØªØ± Ø§Ù„ØªØµÙ†ÙŠÙ â€”</option>
-              <option value="residential">ðŸ  Ø³ÙƒÙ†ÙŠ</option>
-              <option value="commercial">ðŸ¢ ØªØ¬Ø§Ø±ÙŠ</option>
-              <option value="villa">ðŸ¡ ÙÙŠÙ„Ø§Øª</option>
-              <option value="hospitality">ðŸ½ï¸ Ø¶ÙŠØ§ÙØ©</option>
-              <option value="office">ðŸ’¼ Ù…ÙƒØ§ØªØ¨</option>
+              <option value="">Ã¢â¬â ÃÂ§ÃÂ®ÃÂªÃÂ± ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂ Ã¢â¬â</option>
+              <option value="residential">Ã°Å¸ÂÂ  ÃÂ³ÃÆÃâ ÃÅ </option>
+              <option value="commercial">Ã°Å¸ÂÂ¢ ÃÂªÃÂ¬ÃÂ§ÃÂ±ÃÅ </option>
+              <option value="villa">Ã°Å¸ÂÂ¡ ÃÂÃÅ ÃâÃÂ§ÃÂª</option>
+              <option value="hospitality">Ã°Å¸ÂÂ½Ã¯Â¸Â ÃÂ¶ÃÅ ÃÂ§ÃÂÃÂ©</option>
+              <option value="office">Ã°Å¸âÂ¼ Ãâ¦ÃÆÃÂ§ÃÂªÃÂ¨</option>
             </select>
-            <span class="field-error">Ø§Ù„ØªØµÙ†ÙŠÙ Ù…Ø·Ù„ÙˆØ¨</span>
+            <span class="field-error">ÃÂ§ÃâÃÂªÃÂµÃâ ÃÅ ÃÂ Ãâ¦ÃÂ·ÃâÃËÃÂ¨</span>
           </div>
           <div class="field" id="field-style">
-            <label>Ø§Ù„Ø·Ø±Ø§Ø² Ø§Ù„Ù…Ø¹Ù…Ø§Ø±ÙŠ <span class="req">*</span></label>
+            <label>ÃÂ§ÃâÃÂ·ÃÂ±ÃÂ§ÃÂ² ÃÂ§ÃâÃâ¦ÃÂ¹Ãâ¦ÃÂ§ÃÂ±ÃÅ  <span class="req">*</span></label>
             <select id="f-style" onchange="autoSEO()">
-              <option value="">â€” Ø§Ø®ØªØ± Ø§Ù„Ø·Ø±Ø§Ø² â€”</option>
-              <option value="modern">âœ¨ Ù…ÙˆØ¯Ø±Ù†</option>
-              <option value="classic">ðŸ›ï¸ ÙƒÙ„Ø§Ø³ÙŠÙƒ</option>
-              <option value="contemporary">ðŸŽ¨ Ù…Ø¹Ø§ØµØ±</option>
-              <option value="neoclassic">ðŸ‘‘ Ù†ÙŠÙˆÙƒÙ„Ø§Ø³ÙŠÙƒ</option>
-              <option value="minimal">â¬œ Ù…ÙŠÙ†ÙŠÙ…Ø§Ù„</option>
-              <option value="luxury">ðŸ’Ž ÙØ§Ø®Ø±</option>
+              <option value="">Ã¢â¬â ÃÂ§ÃÂ®ÃÂªÃÂ± ÃÂ§ÃâÃÂ·ÃÂ±ÃÂ§ÃÂ² Ã¢â¬â</option>
+              <option value="modern">Ã¢ÅÂ¨ Ãâ¦ÃËÃÂ¯ÃÂ±Ãâ </option>
+              <option value="classic">Ã°Å¸ÂâºÃ¯Â¸Â ÃÆÃâÃÂ§ÃÂ³ÃÅ ÃÆ</option>
+              <option value="contemporary">Ã°Å¸Å½Â¨ Ãâ¦ÃÂ¹ÃÂ§ÃÂµÃÂ±</option>
+              <option value="neoclassic">Ã°Å¸ââ Ãâ ÃÅ ÃËÃÆÃâÃÂ§ÃÂ³ÃÅ ÃÆ</option>
+              <option value="minimal">Ã¢Â¬Å Ãâ¦ÃÅ Ãâ ÃÅ Ãâ¦ÃÂ§Ãâ</option>
+              <option value="luxury">Ã°Å¸âÅ½ ÃÂÃÂ§ÃÂ®ÃÂ±</option>
             </select>
-            <span class="field-error">Ø§Ù„Ø·Ø±Ø§Ø² Ù…Ø·Ù„ÙˆØ¨</span>
+            <span class="field-error">ÃÂ§ÃâÃÂ·ÃÂ±ÃÂ§ÃÂ² Ãâ¦ÃÂ·ÃâÃËÃÂ¨</span>
           </div>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø¬ØºØ±Ø§ÙÙŠ â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹ ÃÂ§ÃâÃÂ¬ÃÂºÃÂ±ÃÂ§ÃÂÃÅ  Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø¬ØºØ±Ø§ÙÙŠ</div>
+        <div class="form-section-title">ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹ ÃÂ§ÃâÃÂ¬ÃÂºÃÂ±ÃÂ§ÃÂÃÅ </div>
         <div class="form-row form-row-2">
           <div class="field">
-            <label>Ø§Ù„Ù…ÙˆÙ‚Ø¹ (Ø¹Ø±Ø¨ÙŠ)</label>
-            <input type="text" id="f-location_ar" placeholder="Ø§Ù„ØªØ¬Ù…Ø¹ Ø§Ù„Ø®Ø§Ù…Ø³ØŒ Ø§Ù„Ù‚Ø§Ù‡Ø±Ø©" oninput="autoSEO()" />
+            <label>ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹ (ÃÂ¹ÃÂ±ÃÂ¨ÃÅ )</label>
+            <input type="text" id="f-location_ar" placeholder="ÃÂ§ÃâÃÂªÃÂ¬Ãâ¦ÃÂ¹ ÃÂ§ÃâÃÂ®ÃÂ§Ãâ¦ÃÂ³ÃÅ ÃÂ§ÃâÃâÃÂ§Ãâ¡ÃÂ±ÃÂ©" oninput="autoSEO()" />
           </div>
           <div class="field">
-            <label>Ø§Ù„Ù…ÙˆÙ‚Ø¹ (Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ)</label>
+            <label>ÃÂ§ÃâÃâ¦ÃËÃâÃÂ¹ (ÃÂ¥Ãâ ÃÂ¬ÃâÃÅ ÃÂ²ÃÅ )</label>
             <input type="text" id="f-location_en" placeholder="New Cairo, Cairo" />
           </div>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ Ø§Ù„ÙˆØµÙ â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃËÃÂµÃÂ Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">Ø§Ù„ÙˆØµÙ</div>
+        <div class="form-section-title">ÃÂ§ÃâÃËÃÂµÃÂ</div>
         <div class="form-row">
           <div class="field">
-            <label>ÙˆØµÙ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ (Ø¹Ø±Ø¨ÙŠ)</label>
-            <textarea id="f-description_ar" rows="3" placeholder="ÙˆØµÙ ØªÙØµÙŠÙ„ÙŠ Ù„Ù„Ù…Ø´Ø±ÙˆØ¹ ÙŠØ¨Ø±Ø² Ø£Ø¨Ø±Ø² Ø¹Ù†Ø§ØµØ±Ù‡ ÙˆØ·Ø±Ø§Ø²Ù‡ ÙˆÙ…Ø§ ÙŠÙ…ÙŠØ²Ù‡..."></textarea>
+            <label>ÃËÃÂµÃÂ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ (ÃÂ¹ÃÂ±ÃÂ¨ÃÅ )</label>
+            <textarea id="f-description_ar" rows="3" placeholder="ÃËÃÂµÃÂ ÃÂªÃÂÃÂµÃÅ ÃâÃÅ  ÃâÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÅ ÃÂ¨ÃÂ±ÃÂ² ÃÂ£ÃÂ¨ÃÂ±ÃÂ² ÃÂ¹Ãâ ÃÂ§ÃÂµÃÂ±Ãâ¡ ÃËÃÂ·ÃÂ±ÃÂ§ÃÂ²Ãâ¡ ÃËÃâ¦ÃÂ§ ÃÅ Ãâ¦ÃÅ ÃÂ²Ãâ¡..."></textarea>
           </div>
           <div class="field">
-            <label>ÙˆØµÙ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ (Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ)</label>
+            <label>ÃËÃÂµÃÂ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ (ÃÂ¥Ãâ ÃÂ¬ÃâÃÅ ÃÂ²ÃÅ )</label>
             <textarea id="f-description_en" rows="3" placeholder="Detailed project description highlighting key elements..."></textarea>
           </div>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ Ø§Ù„ØµÙˆØ±Ø© â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">ØµÙˆØ±Ø© Ø§Ù„Ù…Ø´Ø±ÙˆØ¹</div>
+        <div class="form-section-title">ÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹</div>
         <div id="imageUploadArea" class="image-upload-area" onclick="openCloudinaryWidget()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p>Ø§Ø¶ØºØ· Ù„Ø±ÙØ¹ ØµÙˆØ±Ø© Ù…Ù† Ø¬Ù‡Ø§Ø²Ùƒ</p>
-          <p><span>Cloudinary CDN</span> â€” JPG / PNG / WebP â€” Ø­Ø¯ Ø£Ù‚ØµÙ‰ 5MB</p>
+          <p>ÃÂ§ÃÂ¶ÃÂºÃÂ· ÃâÃÂ±ÃÂÃÂ¹ ÃÂµÃËÃÂ±ÃÂ© Ãâ¦Ãâ  ÃÂ¬Ãâ¡ÃÂ§ÃÂ²ÃÆ</p>
+          <p><span>Cloudinary CDN</span> Ã¢â¬â JPG / PNG / WebP Ã¢â¬â ÃÂ­ÃÂ¯ ÃÂ£ÃâÃÂµÃâ° 5MB</p>
         </div>
         <div id="imagePreviewWrap" style="display:none" class="image-preview-wrap">
-          <img id="imagePreviewImg" src="" alt="Ù…Ø¹Ø§ÙŠÙ†Ø© Ø§Ù„ØµÙˆØ±Ø©" />
-          <button class="image-preview-remove" onclick="removeImage()" title="Ø¥Ø²Ø§Ù„Ø© Ø§Ù„ØµÙˆØ±Ø©">âœ•</button>
+          <img id="imagePreviewImg" src="" alt="Ãâ¦ÃÂ¹ÃÂ§ÃÅ Ãâ ÃÂ© ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©" />
+          <button class="image-preview-remove" onclick="removeImage()" title="ÃÂ¥ÃÂ²ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©">Ã¢Åâ¢</button>
         </div>
         <div class="field" style="margin-top:.5rem">
-          <label>Alt Text Ù„Ù„ØµÙˆØ±Ø© (SEO)
-            <button class="seo-auto-btn" onclick="generateAlt()">âš¡ ØªÙˆÙ„ÙŠØ¯ ØªÙ„Ù‚Ø§Ø¦ÙŠ</button>
+          <label>Alt Text ÃâÃâÃÂµÃËÃÂ±ÃÂ© (SEO)
+            <button class="seo-auto-btn" onclick="generateAlt()">Ã¢Å¡Â¡ ÃÂªÃËÃâÃÅ ÃÂ¯ ÃÂªÃâÃâÃÂ§ÃÂ¦ÃÅ </button>
           </label>
-          <input type="text" id="f-image_alt_ar" placeholder="ØªØµÙ…ÙŠÙ… Ø´Ù‚Ø© Ù…ÙˆØ¯Ø±Ù† ÙØ§Ø®Ø±Ø© - Ø§Ù„ØªØ¬Ù…Ø¹ Ø§Ù„Ø®Ø§Ù…Ø³ - Creative3Design" />
-          <span class="field-hint">Ù‡Ø°Ø§ Ø§Ù„Ù†Øµ ÙŠØ¸Ù‡Ø± ÙÙŠ Google Image Search ÙˆÙŠØ¹Ø²Ù‘Ø² SEO</span>
+          <input type="text" id="f-image_alt_ar" placeholder="ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ´ÃâÃÂ© Ãâ¦ÃËÃÂ¯ÃÂ±Ãâ  ÃÂÃÂ§ÃÂ®ÃÂ±ÃÂ© - ÃÂ§ÃâÃÂªÃÂ¬Ãâ¦ÃÂ¹ ÃÂ§ÃâÃÂ®ÃÂ§Ãâ¦ÃÂ³ - Creative3Design" />
+          <span class="field-hint">Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃâ ÃÂµ ÃÅ ÃÂ¸Ãâ¡ÃÂ± ÃÂÃÅ  Google Image Search ÃËÃÅ ÃÂ¹ÃÂ²ÃâÃÂ² SEO</span>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ SEO â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ SEO Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
         <div class="form-section-title">
-          SEO â€” Ù…Ø­Ø±ÙƒØ§Øª Ø§Ù„Ø¨Ø­Ø«
-          <button class="seo-auto-btn" style="margin-right:.5rem" onclick="autoSEO(true)">âš¡ ØªÙˆÙ„ÙŠØ¯ ØªÙ„Ù‚Ø§Ø¦ÙŠ</button>
+          SEO Ã¢â¬â Ãâ¦ÃÂ­ÃÂ±ÃÆÃÂ§ÃÂª ÃÂ§ÃâÃÂ¨ÃÂ­ÃÂ«
+          <button class="seo-auto-btn" style="margin-right:.5rem" onclick="autoSEO(true)">Ã¢Å¡Â¡ ÃÂªÃËÃâÃÅ ÃÂ¯ ÃÂªÃâÃâÃÂ§ÃÂ¦ÃÅ </button>
         </div>
         <div class="form-row">
           <div class="field">
-            <label>Ø¶Ù†ÙˆØ§Ù† SEO (Title)</label>
-            <input type="text" id="f-seo_title" placeholder="ØªØµÙ…ÙŠÙ… Ø´Ù‚Ø© Ù…ÙˆØ¯Ø±Ù† ÙØ§Ø®Ø±Ø© Ø¨Ø§Ù„ØªØ¬Ù…Ø¹ Ø§Ù„Ø®Ø§Ù…Ø³ | Creative3Design" />
-            <span class="field-hint" id="seoTitleCount">0 Ø­Ø±Ù â€” Ø§Ù„Ù…Ø«Ø§Ù„ÙŠ: 50-60 Ø­Ø±Ù</span>
+            <label>ÃÂ¶Ãâ ÃËÃÂ§Ãâ  SEO (Title)</label>
+            <input type="text" id="f-seo_title" placeholder="ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ´ÃâÃÂ© Ãâ¦ÃËÃÂ¯ÃÂ±Ãâ  ÃÂÃÂ§ÃÂ®ÃÂ±ÃÂ© ÃÂ¨ÃÂ§ÃâÃÂªÃÂ¬Ãâ¦ÃÂ¹ ÃÂ§ÃâÃÂ®ÃÂ§Ãâ¦ÃÂ³ | Creative3Design" />
+            <span class="field-hint" id="seoTitleCount">0 ÃÂ­ÃÂ±ÃÂ Ã¢â¬â ÃÂ§ÃâÃâ¦ÃÂ«ÃÂ§ÃâÃÅ : 50-60 ÃÂ­ÃÂ±ÃÂ</span>
           </div>
           <div class="field">
-            <label>ÙˆØµÙ SEO (Meta Description)</label>
-            <textarea id="f-seo_description" rows="2" placeholder="ÙˆØµÙ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ù„Ù…Ø­Ø±ÙƒØ§Øª Ø§Ù„Ø¨Ø­Ø« (150-160 Ø­Ø±Ù)..." oninput="updateSEOCount()"></textarea>
-            <span class="field-hint" id="seoDescCount">0 Ø­Ø±Ù â€” Ø§Ù„Ù…Ø«Ø§Ù…ÙŠ: 150-160 Ø­Ø±Ù</span>
+            <label>ÃËÃÂµÃÂ SEO (Meta Description)</label>
+            <textarea id="f-seo_description" rows="2" placeholder="ÃËÃÂµÃÂ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃâÃâ¦ÃÂ­ÃÂ±ÃÆÃÂ§ÃÂª ÃÂ§ÃâÃÂ¨ÃÂ­ÃÂ« (150-160 ÃÂ­ÃÂ±ÃÂ)..." oninput="updateSEOCount()"></textarea>
+            <span class="field-hint" id="seoDescCount">0 ÃÂ­ÃÂ±ÃÂ Ã¢â¬â ÃÂ§ÃâÃâ¦ÃÂ«ÃÂ§Ãâ¦ÃÅ : 150-160 ÃÂ­ÃÂ±ÃÂ</span>
           </div>
           <div class="field">
-            <label>Ø§Ù„ÙƒÙ„Ù…Ø§Øª Ø§Ù„Ù…ÙØªØ§Ø­ÙŠØ© (Keywords)</label>
-            <input type="text" id="f-seo_keywords" placeholder="ØªØµÙ…ÙŠÙ… Ø¯Ø§Ø®Ù…ÙŠ, Ø´Ù‚Ø© Ù…ÙˆØ¯Ø±Ù†, Ø§Ù„ØªØ¬Ù…Ø¹ Ø§Ù„Ø®Ø§Ù…Ø³, Creative3Design" />
-            <span class="field-hint">Ù…ÙØµÙˆÙ„Ø© Ø¨ÙØ§ØµÙ„Ø©</span>
+            <label>ÃÂ§ÃâÃÆÃâÃâ¦ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃÂÃÂªÃÂ§ÃÂ­ÃÅ ÃÂ© (Keywords)</label>
+            <input type="text" id="f-seo_keywords" placeholder="ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ¯ÃÂ§ÃÂ®Ãâ¦ÃÅ , ÃÂ´ÃâÃÂ© Ãâ¦ÃËÃÂ¯ÃÂ±Ãâ , ÃÂ§ÃâÃÂªÃÂ¬Ãâ¦ÃÂ¹ ÃÂ§ÃâÃÂ®ÃÂ§Ãâ¦ÃÂ³, Creative3Design" />
+            <span class="field-hint">Ãâ¦ÃÂÃÂµÃËÃâÃÂ© ÃÂ¨ÃÂÃÂ§ÃÂµÃâÃÂ©</span>
           </div>
         </div>
       </div>
 
-      <!-- â”€â”€â”€ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ø¹Ø±Ø¶ â”€â”€â”€ -->
+      <!-- Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃÂ¹ÃÂ±ÃÂ¶ Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ -->
       <div class="form-section">
-        <div class="form-section-title">Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ø¹Ø±Ø¶</div>
+        <div class="form-section-title">ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃÂ¹ÃÂ±ÃÂ¶</div>
         <div class="form-row form-row-3">
           <div class="field">
-            <label>ØªØ±ØªÙŠØ¨ Ø§Ù„Ø¹Ø±Ø¶</label>
+            <label>ÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨ ÃÂ§ÃâÃÂ¹ÃÂ±ÃÂ¶</label>
             <input type="number" id="f-sort_order" value="0" min="0" max="999" />
-            <span class="field-hint">Ø±ÙŠÙ… Ø£ØµØºØ± = ÙŠØ¸Ù‡Ø± Ø£ÙˆÙ„Ø§Ù‹</span>
+            <span class="field-hint">ÃÂ±ÃÅ Ãâ¦ ÃÂ£ÃÂµÃÂºÃÂ± = ÃÅ ÃÂ¸Ãâ¡ÃÂ± ÃÂ£ÃËÃâÃÂ§Ãâ¹</span>
           </div>
           <div class="field" style="justify-content:center">
-            <label>â­ Ù…Ù…Ø«Ù‘Ù„ Ø§Ù„Ù‚Ø³Ù… ÙÙŠ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</label>
+            <label>Ã¢Â­Â Ãâ¦Ãâ¦ÃÂ«ÃâÃâ ÃÂ§ÃâÃâÃÂ³Ãâ¦ ÃÂÃÅ  ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</label>
             <div class="toggle-row" style="margin-top:.3rem">
               <label class="toggle"><input type="checkbox" id="f-featured" /><span class="toggle-slider"></span></label>
-              <span class="toggle-label">ÙŠØ¸Ù‡Ø± ÙÙŠ "Ø§Ù„ÙƒÙ„" Ø¨Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</span>
+              <span class="toggle-label">ÃÅ ÃÂ¸Ãâ¡ÃÂ± ÃÂÃÅ  "ÃÂ§ÃâÃÆÃâ" ÃÂ¨ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ© ÃÂ§ÃâÃÂ±ÃÂ¦ÃÅ ÃÂ³ÃÅ ÃÂ©</span>
             </div>
-            <p style="font-size:.72rem;color:var(--text-muted);margin-top:.4rem;line-height:1.4">ÙØ¹Ù‘Ù„ Ù‡Ø°Ø§ Ø§Ù„Ø®ÙŠØ§Ø± Ù„ÙŠÙ…Ø«Ù‘Ù„ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ù‚Ø³Ù…Ù‡ ÙÙŠ Ù‚Ø³Ù… "Ù…Ø´Ø§Ø±ÙŠØ¹ Ù†ÙØ®Ø± Ø¨Ù‡Ø§" â€” ÙŠÙØ¹Ø±Ø¶ Ø£ÙˆÙ„ 2 Ù…Ù…ÙŠÙ‘Ø² Ù…Ù† ÙƒÙ„ Ù‚Ø³Ù…</p>
+            <p style="font-size:.72rem;color:var(--text-muted);margin-top:.4rem;line-height:1.4">ÃÂÃÂ¹ÃâÃâ Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃÂ®ÃÅ ÃÂ§ÃÂ± ÃâÃÅ Ãâ¦ÃÂ«ÃâÃâ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃâÃÂ³Ãâ¦Ãâ¡ ÃÂÃÅ  ÃâÃÂ³Ãâ¦ "Ãâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹ Ãâ ÃÂÃÂ®ÃÂ± ÃÂ¨Ãâ¡ÃÂ§" Ã¢â¬â ÃÅ ÃÂÃÂ¹ÃÂ±ÃÂ¶ ÃÂ£ÃËÃâ 2 Ãâ¦Ãâ¦ÃÅ ÃâÃÂ² Ãâ¦Ãâ  ÃÆÃâ ÃâÃÂ³Ãâ¦</p>
           </div>
           <div class="field">
-            <label>Ø­Ø§Ù„Ø© Ø§Ù„Ù†Ø´Ø±</label>
+            <label>ÃÂ­ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃâ ÃÂ´ÃÂ±</label>
             <select id="f-status">
-              <option value="published">âœ… Ù…Ù†Ø´ÙˆØ±</option>
-              <option value="draft">ðŸ“ Ù…Ø³ÙˆÙ‘Ø¯Ø©</option>
+              <option value="published">Ã¢Åâ¦ Ãâ¦Ãâ ÃÂ´ÃËÃÂ±</option>
+              <option value="draft">Ã°Å¸âÂ Ãâ¦ÃÂ³ÃËÃâÃÂ¯ÃÂ©</option>
             </select>
           </div>
         </div>
@@ -1133,35 +1133,35 @@ img{max-width:100%;display:block}
     </div><!-- modal-body -->
 
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal()">Ø¥Ù„ØºØ§Ø¡</button>
+      <button class="btn btn-outline" onclick="closeModal()">ÃÂ¥ÃâÃÂºÃÂ§ÃÂ¡</button>
       <button class="btn btn-primary" id="saveBtn" onclick="saveProject()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-        <span id="saveBtnText">Ø­ÙØ¸ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹</span>
+        <span id="saveBtnText">ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹</span>
       </button>
     </div>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
      CONFIRM DIALOG
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <div class="confirm-backdrop" id="confirmDialog">
   <div class="confirm-card">
-    <div class="confirm-title" id="confirmTitle">ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø°Ù</div>
-    <div class="confirm-text" id="confirmText">Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹.</div>
+    <div class="confirm-title" id="confirmTitle">ÃÂªÃÂ£ÃÆÃÅ ÃÂ¯ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ</div>
+    <div class="confirm-text" id="confirmText">Ãâ¡Ãâ ÃÂ£Ãâ ÃÂª Ãâ¦ÃÂªÃÂ£ÃÆÃÂ¯ Ãâ¦Ãâ  ÃÂ­ÃÂ°ÃÂ Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ÃÅ¸ ÃâÃÂ§ ÃÅ Ãâ¦ÃÆÃâ  ÃÂ§ÃâÃÂªÃÂ±ÃÂ§ÃÂ¬ÃÂ¹.</div>
     <div class="confirm-actions">
-      <button class="btn btn-outline" onclick="closeConfirm()">Ø¥Ù„ØºØ§Ø¡</button>
-      <button class="btn btn-danger" id="confirmOkBtn">Ø­Ø°Ù</button>
+      <button class="btn btn-outline" onclick="closeConfirm()">ÃÂ¥ÃâÃÂºÃÂ§ÃÂ¡</button>
+      <button class="btn btn-danger" id="confirmOkBtn">ÃÂ­ÃÂ°ÃÂ</button>
     </div>
   </div>
 </div>
 
-<!-- â”€â”€ Toasts â”€â”€ -->
+<!-- Ã¢ââ¬Ã¢ââ¬ Toasts Ã¢ââ¬Ã¢ââ¬ -->
 <div class="toast-wrap" id="toastWrap"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
      SCRIPTS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.69.0/dist/umd/supabase.min.js"></script>
 <script src="../js/config.js"></script>
 <script src="../js/supabase-client.js"></script>
@@ -1170,9 +1170,9 @@ img{max-width:100%;display:block}
 <script>
 'use strict';
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    STATE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let allProjects   = [];
 let editingId     = null;    // null = new, uuid = edit
 let formImageUrl  = '';
@@ -1180,12 +1180,12 @@ let formCloudId   = '';
 let confirmCb     = null;
 let cloudWidget   = null;
 
-const CATEGORY_AR = { residential:'Ø³ÙƒÙ†ÙŠ', commercial:'ØªØ¬Ø§Ø±ÙŠ', villa:'ÙÙŠÙ„Ø§Øª', hospitality:'Ø¶ÙŠØ§ÙØ©', office:'Ù…ÙƒØ§ØªØ¨' };
-const STYLE_AR    = { modern:'Ù…ÙˆØ¯Ø±Ù†', classic:'ÙƒÙ„Ø§Ø³ÙŠÙƒ', contemporary:'Ù…Ø¹Ø§ØµØ±', neoclassic:'Ù†ÙŠÙˆÙƒÙ„Ø§Ø³ÙŠÙƒ', minimal:'Ù…ÙŠÙ†ÙŠÙ…Ø§Ù„', luxury:'ÙØ§Ø®Ø±' };
+const CATEGORY_AR = { residential:'ÃÂ³ÃÆÃâ ÃÅ ', commercial:'ÃÂªÃÂ¬ÃÂ§ÃÂ±ÃÅ ', villa:'ÃÂÃÅ ÃâÃÂ§ÃÂª', hospitality:'ÃÂ¶ÃÅ ÃÂ§ÃÂÃÂ©', office:'Ãâ¦ÃÆÃÂ§ÃÂªÃÂ¨' };
+const STYLE_AR    = { modern:'Ãâ¦ÃËÃÂ¯ÃÂ±Ãâ ', classic:'ÃÆÃâÃÂ§ÃÂ³ÃÅ ÃÆ', contemporary:'Ãâ¦ÃÂ¹ÃÂ§ÃÂµÃÂ±', neoclassic:'Ãâ ÃÅ ÃËÃÆÃâÃÂ§ÃÂ³ÃÅ ÃÆ', minimal:'Ãâ¦ÃÅ Ãâ ÃÅ Ãâ¦ÃÂ§Ãâ', luxury:'ÃÂÃÂ§ÃÂ®ÃÂ±' };
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    SITE SETTINGS MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let settingsLoaded = false;
 let logoWidget = null;
 
@@ -1195,12 +1195,12 @@ function updateLogoPreview(url) {
   if (url) {
     wrap.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:contain;padding:.5rem" onerror="this.style.display='none'" />`;
   } else {
-    wrap.innerHTML = 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´Ø¹Ø§Ø±';
+    wrap.innerHTML = 'ÃâÃÂ§ ÃÅ ÃËÃÂ¬ÃÂ¯ ÃÂ´ÃÂ¹ÃÂ§ÃÂ±';
   }
 }
 
 function openLogoWidget() {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   if (!logoWidget) {
     logoWidget = cloudinary.createUploadWidget({
       cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
@@ -1213,7 +1213,7 @@ function openLogoWidget() {
         const input = document.getElementById('s-logo_url');
         if (input) { input.value = url; }
         updateLogoPreview(url);
-        showToast('ØªÙ… Ø±ÙØ¹ Ø§Ù„Ø´Ø¹Ø§Ø± Ø¨Ù†Ø¬Ø§Ø­ âœ“', 'success');
+        showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂ´ÃÂ¹ÃÂ§ÃÂ± ÃÂ¨Ãâ ÃÂ¬ÃÂ§ÃÂ­ Ã¢Åâ', 'success');
       }
     });
   }
@@ -1240,8 +1240,8 @@ async function saveSettings() {
   const keys = ['logo_url','whatsapp','email','name_ar','name_en','google_maps_embed'];
   const upserts = keys.map(k => ({ key: k, value: (document.getElementById('s-' + k) || {}).value || '' }));
   const { error } = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
-  showToast('ØªÙ… Ø­ÙØ¸ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª âœ“', 'success');
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª Ã¢Åâ', 'success');
 }
 
 function updateMapsPreview(url) {
@@ -1262,28 +1262,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mapsInput) mapsInput.addEventListener('input', () => updateMapsPreview(mapsInput.value));
 });
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    ABOUT IMAGES MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let aboutLoaded = false;
 let aboutData = { main: null, small: null };
 let aboutWidgets = {};
 
 function openAboutWidget(slot) {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   if (!aboutWidgets[slot]) {
     aboutWidgets[slot] = cloudinary.createUploadWidget({
       cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
       folder: 'creative3design/about', maxFiles: 1,
       sources: ['local','url','camera'],
       cropping: true, croppingAspectRatio: 4/3,
-  2   clientAllowedFormats: ['jpg','jpeg','png','webp']
+  clientAllowedFormats: ['jpg','jpeg','png','webp']
     }, (err, result) => {
       if (!err && result.event === 'success') {
         const info = result.info;
         aboutData[slot] = { image_url: info.secure_url, cloudinary_id: info.public_id };
         setAboutPreview(slot, info.secure_url);
-        showToast('ØªÙ… Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© âœ“', 'success');
+        showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© Ã¢Åâ', 'success');
       }
     });
   }
@@ -1324,13 +1324,13 @@ async function saveAboutImages() {
     slot, image_url: d ? (d.image_url || '') : '', cloudinary_id: d ? (d.cloudinary_id || '') : ''
   }));
   const { error } = await window.c3dClient.from('about_images').upsert(updates, { onConflict: 'slot' });
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
-  showToast('ØªÙ… Ø­ÙØ¸ ØµÙˆØ± Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ© âœ“', 'success');
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂµÃËÃÂ± ÃÂ¹Ãâ  ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ© Ã¢Åâ', 'success');
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    SERVICES IMAGES MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let servicesLoaded = false;
 let allServices = [];
 let serviceWidgets = {};
@@ -1351,8 +1351,8 @@ function renderServicesGrid() {
     <div class="service-admin-card" data-skey="${escHtml(s.service_key)}">
       <div class="service-img-area" onclick="openServiceWidget('${escHtml(s.service_key)}')">
         ${s.image_url
-          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.name_ar)}" /><div class="img-preview-overlay"><button class="btn btn-sm btn-outline" onclick="event.stopPropagation();openServiceWidget('${escHtml(s.service_key)}')">ØªØºÙŠÙŠØ±</button></div>`
-          : `<div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text-dim)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="font-size:.75rem">Ø§Ù†Ù‚Ø± Ù„Ø±ÙØ¹ ØµÙˆØ±Ø©</span></div>`}
+          ? `<img src="${escHtml(s.image_url)}" alt="${escHtml(s.name_ar)}" /><div class="img-preview-overlay"><button class="btn btn-sm btn-outline" onclick="event.stopPropagation();openServiceWidget('${escHtml(s.service_key)}')">ÃÂªÃÂºÃÅ ÃÅ ÃÂ±</button></div>`
+          : `<div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text-dim)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="font-size:.75rem">ÃÂ§Ãâ ÃâÃÂ± ÃâÃÂ±ÃÂÃÂ¹ ÃÂµÃËÃÂ±ÃÂ©</span></div>`}
       </div>
       <div class="service-card-body">${escHtml(s.name_ar)}</div>
     </div>
@@ -1360,7 +1360,7 @@ function renderServicesGrid() {
 }
 
 function openServiceWidget(serviceKey) {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   if (!serviceWidgets[serviceKey]) {
     serviceWidgets[serviceKey] = cloudinary.createUploadWidget({
       cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
@@ -1376,18 +1376,18 @@ function openServiceWidget(serviceKey) {
         const { error } = await window.c3dClient.from('services_images')
           .update({ image_url: info.secure_url, cloudinary_id: info.public_id })
           .eq('service_key', serviceKey);
-        if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+        if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
         renderServicesGrid();
-        showToast('ØªÙ… Ø­ÙØ¸ ØµÙˆØ±Ø© Ø§Ù„Ø®Ø¯Ù…Ø© âœ“', 'success');
+        showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂ®ÃÂ¯Ãâ¦ÃÂ© Ã¢Åâ', 'success');
       }
     });
   }
   serviceWidgets[serviceKey].open();
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    COMPOUNDS MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let compoundsLoaded = false;
 let allCompounds = [];
 let compoundWidgets = {};
@@ -1404,7 +1404,7 @@ function renderCompoundsGrid() {
   const grid = document.getElementById('compoundsGrid');
   if (!grid) return;
   if (!allCompounds.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><p>Ù„Ø§ ØªÙˆØ¬Ø¯ ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯Ø§Øª Ø¨Ø¹Ø¯</p></div>`;
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><p>ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ÃÂ§ÃÂª ÃÂ¨ÃÂ¹ÃÂ¯</p></div>`;
     return;
   }
   grid.innerHTML = allCompounds.map(c => `
@@ -1412,19 +1412,19 @@ function renderCompoundsGrid() {
       <div class="compound-logo-area" onclick="openCompoundWidget('${c.id}')">
         ${c.logo_url
           ? `<img src="${escHtml(c.logo_url)}" alt="${escHtml(c.name_ar)}" />`
-          : `<div class="compound-logo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>Ø±ÙØ¹ Ø§Ù„Ù„ÙˆØ¬Ùˆ</span></div>`}
+          : `<div class="compound-logo-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃâÃËÃÂ¬ÃË</span></div>`}
       </div>
       <div class="compound-card-body">
-        <input type="text" value="${escHtml(c.name_ar)}" placeholder="Ø§Ø³Ù… Ø§Ù„ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateCompoundName('${c.id}',this.value)" />
+        <input type="text" value="${escHtml(c.name_ar)}" placeholder="ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateCompoundName('${c.id}',this.value)" />
         <div class="toggle-row" style="margin-top:.2rem">
           <label class="toggle"><input type="checkbox" ${c.active ? 'checked' : ''} onchange="toggleCompound('${c.id}',this.checked)" /><span class="toggle-slider"></span></label>
-          <span class="toggle-label" style="font-size:.78rem">${c.active ? 'Ø¸Ø§Ù‡Ø±' : 'Ù…Ø®ÙÙŠ'}</span>
+          <span class="toggle-label" style="font-size:.78rem">${c.active ? 'ÃÂ¸ÃÂ§Ãâ¡ÃÂ±' : 'Ãâ¦ÃÂ®ÃÂÃÅ '}</span>
         </div>
       </div>
       <div class="compound-card-actions">
         <button class="btn btn-sm btn-outline" style="flex:1" onclick="openCompoundWidget('${c.id}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-          Ø±ÙØ¹ Ù„ÙˆØ¬Ùˆ
+          ÃÂ±ÃÂÃÂ¹ ÃâÃËÃÂ¬ÃË
         </button>
         <button class="btn btn-sm btn-danger" onclick="confirmDeleteCompound('${c.id}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
@@ -1435,7 +1435,7 @@ function renderCompoundsGrid() {
 }
 
 function openCompoundWidget(cid) {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   if (!compoundWidgets[cid]) {
     compoundWidgets[cid] = cloudinary.createUploadWidget({
       cloudName: 'dwh2y3lvz', uploadPreset: 'creative3design',
@@ -1447,11 +1447,11 @@ function openCompoundWidget(cid) {
         const { secure_url, public_id } = result.info;
         const { error } = await window.c3dClient.from('compounds')
           .update({ logo_url: secure_url, cloudinary_id: public_id }).eq('id', cid);
-        if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+        if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
         const c = allCompounds.find(x => x.id === cid);
         if (c) c.logo_url = secure_url;
         renderCompoundsGrid();
-        showToast('ØªÙ… Ø±ÙØ¹ Ø§Ù„Ù„ÙˆØ¬Ùˆ âœ“', 'success');
+        showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃâÃËÃÂ¬ÃË Ã¢Åâ', 'success');
       }
     });
   }
@@ -1471,33 +1471,33 @@ async function toggleCompound(cid, active) {
   const card = document.querySelector(`[data-cid="${cid}"]`);
   if (card) card.classList.toggle('hero-slide-inactive', !active);
   const lbl = card && card.querySelector('.toggle-label');
-  if (lbl) lbl.textContent = active ? 'Ø¸Ø§Ù‡Ø±' : 'Ù…Ø®ÙÙŠ';
+  if (lbl) lbl.textContent = active ? 'ÃÂ¸ÃÂ§Ãâ¡ÃÂ±' : 'Ãâ¦ÃÂ®ÃÂÃÅ ';
 }
 
 async function addCompound() {
   if (!window.c3dClient) return;
   const max = allCompounds.reduce((m, c) => Math.max(m, c.sort_order || 0), -1);
   const { data, error } = await window.c3dClient.from('compounds')
-    .insert({ name_ar: 'ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯ Ø¬Ø¯ÙŠØ¯', sort_order: max + 1, active: true }).select().single();
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+    .insert({ name_ar: 'ÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯', sort_order: max + 1, active: true }).select().single();
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allCompounds.push(data);
   renderCompoundsGrid();
-  showToast('ØªÙ… Ø¥Ø¶Ø§ÙØ© Ø§Ù„ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯ â€” Ø§Ø±ÙØ¹ Ø§Ù„Ù„ÙˆØ¬Ùˆ ÙˆØ¹Ø¯Ù‘Ù„ Ø§Ù„Ø§Ø³Ù…', 'info');
+  showToast('ÃÂªÃâ¦ ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ§ÃâÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ Ã¢â¬â ÃÂ§ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃâÃËÃÂ¬ÃË ÃËÃÂ¹ÃÂ¯ÃâÃâ ÃÂ§ÃâÃÂ§ÃÂ³Ãâ¦', 'info');
 }
 
 function confirmDeleteCompound(cid) {
-  showConfirm('Ø­Ø°Ù Ø§Ù„ÙƒÙ…Ø¨Ø§ÙˆÙ†Ø¯ØŸ', 'Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§ Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡.', async () => {
+  showConfirm('ÃÂ­ÃÂ°ÃÂ ÃÂ§ÃâÃÆÃâ¦ÃÂ¨ÃÂ§ÃËÃâ ÃÂ¯ÃÅ¸', 'ÃâÃÂ§ ÃÅ Ãâ¦ÃÆÃâ  ÃÂ§ÃâÃÂªÃÂ±ÃÂ§ÃÂ¬ÃÂ¹ ÃÂ¹Ãâ  Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃÂ¥ÃÂ¬ÃÂ±ÃÂ§ÃÂ¡.', async () => {
     await window.c3dClient.from('compounds').delete().eq('id', cid);
     allCompounds = allCompounds.filter(x => x.id !== cid);
     delete compoundWidgets[cid];
     renderCompoundsGrid();
-    showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù', 'success');
+    showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ', 'success');
   });
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    BEFORE / AFTER MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let baLoaded = false;
 let allBAItems = [];
 let baWidgets = {};
@@ -1514,32 +1514,32 @@ function renderBAGrid() {
   const grid = document.getElementById('baGrid');
   if (!grid) return;
   if (!allBAItems.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg><p>Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…Ø¬Ù…ÙˆØ¹Ø§Øª Ù‚Ø¨Ù„/Ø¨Ø¹Ø¯ Ø¨Ø¹Ø¯</p></div>`;
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg><p>ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ Ãâ¦ÃÂ¬Ãâ¦ÃËÃÂ¹ÃÂ§ÃÂª ÃâÃÂ¨Ãâ/ÃÂ¨ÃÂ¹ÃÂ¯ ÃÂ¨ÃÂ¹ÃÂ¯</p></div>`;
     return;
   }
   grid.innerHTML = allBAItems.map(item => `
     <div class="ba-card ${item.active ? '' : 'hero-slide-inactive'}" data-baid="${item.id}">
       <div class="ba-card-imgs">
         <div class="ba-img-slot" onclick="openBAWidget('${item.id}','before')">
-          ${item.before_url ? `<img src="${escHtml(item.before_url)}" alt="Ù‚Ø¨Ù„" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Ù‚Ø¨Ù„</span></div>`}
-          <div class="ba-slot-label">Ù‚Ø¨Ù„</div>
+          ${item.before_url ? `<img src="${escHtml(item.before_url)}" alt="ÃâÃÂ¨Ãâ" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>ÃâÃÂ¨Ãâ</span></div>`}
+          <div class="ba-slot-label">ÃâÃÂ¨Ãâ</div>
         </div>
         <div class="ba-img-slot" onclick="openBAWidget('${item.id}','after')">
-          ${item.after_url ? `<img src="${escHtml(item.after_url)}" alt="Ø¨Ø¹Ø¯" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Ø¨Ø¹Ø¯</span></div>`}
-          <div class="ba-slot-label">Ø¨Ø¹Ø¯</div>
+          ${item.after_url ? `<img src="${escHtml(item.after_url)}" alt="ÃÂ¨ÃÂ¹ÃÂ¯" />` : `<div class="ba-slot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>ÃÂ¨ÃÂ¹ÃÂ¯</span></div>`}
+          <div class="ba-slot-label">ÃÂ¨ÃÂ¹ÃÂ¯</div>
         </div>
       </div>
       <div class="ba-card-body">
-        <input type="text" value="${escHtml(item.title_ar || '')}" placeholder="Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ù…Ø´Ø±ÙˆØ¹" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateBATitle('${item.id}',this.value)" />
+        <input type="text" value="${escHtml(item.title_ar || '')}" placeholder="ÃÂ¹Ãâ ÃËÃÂ§Ãâ  ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹" style="background:var(--surface3);border:1px solid var(--border2);border-radius:var(--radius);padding:.35rem .6rem;color:var(--text);font-size:.83rem;font-family:'Cairo',sans-serif;width:100%" onchange="updateBATitle('${item.id}',this.value)" />
         <div class="toggle-row">
      .    <label class="toggle"><input type="checkbox" ${item.active ? 'checked' : ''} onchange="toggleBA('${item.id}',this.checked)" /><span class="toggle-slider"></span></label>
-          <span class="toggle-label" style="font-size:.78rem">${item.active ? 'Ø¸Ø§Ù‡Ø±' : 'Ù…Ø®ÙÙŠ'}</span>
+          <span class="toggle-label" style="font-size:.78rem">${item.active ? 'ÃÂ¸ÃÂ§Ãâ¡ÃÂ±' : 'Ãâ¦ÃÂ®ÃÂÃÅ '}</span>
         </div>
       </div>
       <div class="ba-card-actions">
         <button class="btn btn-sm btn-danger" onclick="confirmDeleteBA('${item.id}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
-          Ø­Ø°Ù
+          ÃÂ­ÃÂ°ÃÂ
         </button>
       </div>
     </div>
@@ -1547,7 +1547,7 @@ function renderBAGrid() {
 }
 
 function openBAWidget(itemId, type) {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   const key = itemId + '_' + type;
   if (!baWidgets[key]) {
     baWidgets[key] = cloudinary.createUploadWidget({
@@ -1563,11 +1563,11 @@ function openBAWidget(itemId, type) {
         const cidField  = type + '_cid';
         const { error } = await window.c3dClient.from('before_after')
           .update({ [urlField]: secure_url, [cidField]: public_id }).eq('id', itemId);
-        if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+        if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
         const item = allBAItems.find(x => x.id === itemId);
         if (item) { item[urlField] = secure_url; item[cidField] = public_id; }
         renderBAGrid();
-        showToast('ØªÙ… Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© âœ“', 'success');
+        showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© Ã¢Åâ', 'success');
       }
     });
   }
@@ -1587,7 +1587,7 @@ async function toggleBA(itemId, active) {
   const card = document.querySelector(`[data-baid="${itemId}"]`);
   if (card) card.classList.toggle('hero-slide-inactive', !active);
   const lbl = card && card.querySelector('.toggle-label');
-  if (lbl) lbl.textContent = active ? 'Ø¸Ø§Ù‡Ø±' : 'Ù…Ø®ÙÙŠ';
+  if (lbl) lbl.textContent = active ? 'ÃÂ¸ÃÂ§Ãâ¡ÃÂ±' : 'Ãâ¦ÃÂ®ÃÂÃÅ ';
 }
 
 async function addBAItem() {
@@ -1595,27 +1595,27 @@ async function addBAItem() {
   const max = allBAItems.reduce((m, x) => Math.max(m, x.sort_order || 0), -1);
   const { data, error } = await window.c3dClient.from('before_after')
     .insert({ title_ar: '', sort_order: max + 1, active: true }).select().single();
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allBAItems.push(data);
   renderBAGrid();
-  showToast('Ø£Ø¶Ù Ø§Ù„ØµÙˆØ± Ù„Ù„Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©', 'info');
+  showToast('ÃÂ£ÃÂ¶ÃÂ ÃÂ§ÃâÃÂµÃËÃÂ± ÃâÃâÃâ¦ÃÂ¬Ãâ¦ÃËÃÂ¹ÃÂ© ÃÂ§ÃâÃÂ¬ÃÂ¯ÃÅ ÃÂ¯ÃÂ©', 'info');
 }
 
 function confirmDeleteBA(itemId) {
-  showConfirm('Ø­Ø°Ù Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø©ØŸ', 'Ø³ÙŠÙØ­Ø°Ù Ø³Ø¦Ù„ Ù‚Ø¨Ù„/Ø¨Ø¹Ø¯ Ù‡Ø°Ø§ Ù†Ù‡Ø§Ø¦ÙŠØ§Ù‹.', async () => {
+  showConfirm('ÃÂ­ÃÂ°ÃÂ ÃÂ§ÃâÃâ¦ÃÂ¬Ãâ¦ÃËÃÂ¹ÃÂ©ÃÅ¸', 'ÃÂ³ÃÅ ÃÂÃÂ­ÃÂ°ÃÂ ÃÂ³ÃÂ¦Ãâ ÃâÃÂ¨Ãâ/ÃÂ¨ÃÂ¹ÃÂ¯ Ãâ¡ÃÂ°ÃÂ§ Ãâ Ãâ¡ÃÂ§ÃÂ¦ÃÅ ÃÂ§Ãâ¹.', async () => {
     await window.c3dClient.from('before_after').delete().eq('id', itemId);
     allBAItems = allBAItems.filter(x => x.id !== itemId);
     renderBAGrid();
-    showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù', 'success');
+    showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ', 'success');
   });
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    AUTH
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 async function initAuth() {
 
-  /* â”€â”€ ÙØ­Øµ Ø£Ø®Ø·Ø§Ø¡ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯ Ø£ÙˆÙ„Ø§Ù‹ â”€â”€ */
+  /* Ã¢ââ¬Ã¢ââ¬ ÃÂÃÂ­ÃÂµ ÃÂ£ÃÂ®ÃÂ·ÃÂ§ÃÂ¡ ÃÂ§ÃâÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ ÃÂ£ÃËÃâÃÂ§Ãâ¹ Ã¢ââ¬Ã¢ââ¬ */
   const errors = window.C3D_CONFIG_ERRORS || [];
   if (!window.c3dClient || errors.length) {
     const overlay = document.getElementById('configErrorOverlay');
@@ -1625,15 +1625,15 @@ async function initAuth() {
         `<div style="margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.05)">${
           e.replace(/\n/g,'<br/>')
         }</div>`
-      ).join('') || '<div>âš ï¸ Ù„Ù… ÙŠØªÙ… ØªÙ‡ÙŠØ¦Ø© Supabase Client â€” Ø±Ø§Ø¬Ø¹ js/config.js</div>';
+      ).join('') || '<div>Ã¢Å¡Â Ã¯Â¸Â ÃâÃâ¦ ÃÅ ÃÂªÃâ¦ ÃÂªÃâ¡ÃÅ ÃÂ¦ÃÂ© Supabase Client Ã¢â¬â ÃÂ±ÃÂ§ÃÂ¬ÃÂ¹ js/config.js</div>';
       overlay.style.display = 'flex';
     }
-    // Ø¹Ø±Ø¶ Ø±Ø³Ø§Ù„Ø© ÙÙŠ ØµÙ†Ø¯ÙˆÙ‚ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø£ÙŠØ¶Ø§Ù‹
-    showLoginError('âš ï¸ Ø±Ø§Ø¬Ø¹ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Supabase ÙÙŠ js/config.js â€” Ø§Ù†Ø¸Ø± Ø§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø£Ø¹Ù„Ø§Ù‡');
+    // ÃÂ¹ÃÂ±ÃÂ¶ ÃÂ±ÃÂ³ÃÂ§ÃâÃÂ© ÃÂÃÅ  ÃÂµÃâ ÃÂ¯ÃËÃâ ÃÂªÃÂ³ÃÂ¬ÃÅ Ãâ ÃÂ§ÃâÃÂ¯ÃÂ®ÃËÃâ ÃÂ£ÃÅ ÃÂ¶ÃÂ§Ãâ¹
+    showLoginError('Ã¢Å¡Â Ã¯Â¸Â ÃÂ±ÃÂ§ÃÂ¬ÃÂ¹ ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª Supabase ÃÂÃÅ  js/config.js Ã¢â¬â ÃÂ§Ãâ ÃÂ¸ÃÂ± ÃÂ§ÃâÃÂªÃÂ¹ÃâÃÅ Ãâ¦ÃÂ§ÃÂª ÃÂ£ÃÂ¹ÃâÃÂ§Ãâ¡');
     return;
   }
 
-  /* â”€â”€ Ø§Ù„Ø§Ø³ØªÙ…Ø§Ø¹ Ù„ØªØºÙŠÙŠØ±Ø§Øª Auth (ÙŠØ´Ù…Ù„ INITIAL_SESSION Ø¹Ù†Ø¯ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ØµÙØ­Ø©) â”€â”€ */
+  /* Ã¢ââ¬Ã¢ââ¬ ÃÂ§ÃâÃÂ§ÃÂ³ÃÂªÃâ¦ÃÂ§ÃÂ¹ ÃâÃÂªÃÂºÃÅ ÃÅ ÃÂ±ÃÂ§ÃÂª Auth (ÃÅ ÃÂ´Ãâ¦Ãâ INITIAL_SESSION ÃÂ¹Ãâ ÃÂ¯ ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ§ÃâÃÂµÃÂÃÂ­ÃÂ©) Ã¢ââ¬Ã¢ââ¬ */
   window.c3dClient.auth.onAuthStateChange((event, session) => {
     if ((event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session) {
       onLogin(session.user);
@@ -1641,7 +1641,7 @@ async function initAuth() {
     if (event === 'SIGNED_OUT') onLogout();
   });
 
-  /* â”€â”€ ÙØ­Øµ Ø§Ø­ØªÙŠØ§Ø·ÙŠ Ù„Ù„Ø¬Ù„Ø³Ø© ÙÙŠ Ø­Ø§Ù„Ø© Ø¹Ø¯Ù… Ø¥Ø·Ù„Ø§Ù‚ INITIAL_SESSION â”€â”€ */
+  /* Ã¢ââ¬Ã¢ââ¬ ÃÂÃÂ­ÃÂµ ÃÂ§ÃÂ­ÃÂªÃÅ ÃÂ§ÃÂ·ÃÅ  ÃâÃâÃÂ¬ÃâÃÂ³ÃÂ© ÃÂÃÅ  ÃÂ­ÃÂ§ÃâÃÂ© ÃÂ¹ÃÂ¯Ãâ¦ ÃÂ¥ÃÂ·ÃâÃÂ§Ãâ INITIAL_SESSION Ã¢ââ¬Ã¢ââ¬ */
   const { data: { session } } = await window.c3dClient.auth.getSession();
   if (session) {
     onLogin(session.user);
@@ -1654,39 +1654,39 @@ async function handleLogin() {
   const btn   = document.getElementById('loginBtn');
   const err   = document.getElementById('loginError');
 
-  if (!email || !pass) { showLoginError('Ø£Ø¯Ø®Ù„ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ÙˆÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±'); return; }
-  if (!window.c3dClient) { showLoginError('Supabase ØºÙŠØ± Ù…ÙÙ‡ÙŠÙ‘Ø£ â€” Ø±Ø§Ø¬Ø¹ js/config.js'); return; }
+  if (!email || !pass) { showLoginError('ÃÂ£ÃÂ¯ÃÂ®Ãâ ÃÂ§ÃâÃÂ¨ÃÂ±ÃÅ ÃÂ¯ ÃÂ§ÃâÃÂ¥ÃâÃÆÃÂªÃÂ±ÃËÃâ ÃÅ  ÃËÃÆÃâÃâ¦ÃÂ© ÃÂ§ÃâÃâ¦ÃÂ±ÃËÃÂ±'); return; }
+  if (!window.c3dClient) { showLoginError('Supabase ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂÃâ¡ÃÅ ÃâÃÂ£ Ã¢â¬â ÃÂ±ÃÂ§ÃÂ¬ÃÂ¹ js/config.js'); return; }
 
   btn.disabled = true;
-  btn.textContent = 'Ø¬Ø§Ø±Ù Ø§Ù„Ø¯Ø®ÙˆÙ„...';
+  btn.textContent = 'ÃÂ¬ÃÂ§ÃÂ±ÃÂ ÃÂ§ÃâÃÂ¯ÃÂ®ÃËÃâ...';
   err.classList.remove('show');
 
   let result;
   try {
     result = await window.c3dClient.auth.signInWithPassword({ email, password: pass });
   } catch (e) {
-    showLoginError('Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ù€ Supabase â€” ØªØ­Ù‚Ù‚ Ù…Ù† ØµØ­Ø© Project URL ÙÙŠ js/config.js');
-    btn.disabled = false; btn.textContent = 'Ø¯Ø®ÙˆÙ„'; return;
+    showLoginError('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂ§ÃâÃÂ§ÃÂªÃÂµÃÂ§Ãâ ÃÂ¨Ãâ¬ Supabase Ã¢â¬â ÃÂªÃÂ­ÃâÃâ Ãâ¦Ãâ  ÃÂµÃÂ­ÃÂ© Project URL ÃÂÃÅ  js/config.js');
+    btn.disabled = false; btn.textContent = 'ÃÂ¯ÃÂ®ÃËÃâ'; return;
   }
 
   const { error, data } = result;
   if (error) {
     const msg =
-      error.message.includes('Invalid login credentials') ? 'بريد إلكتروني أو كلمة مرور خاطئة' :
-      error.message.includes('Email not confirmed')       ? 'البريد الإلكتروني غير مُفَعَّل — تحقق من صندوق الوارد' :
-      error.message.includes('Failed to fetch')           ? 'تعذَّر الاتصال بـ Supabase — تأكد من صحة Project URL' :
-      error.message.includes('NetworkError')              ? 'خطأ في الشبكة — تحقق من الاتصال بالإنترنت' :
+      error.message.includes('Invalid login credentials') ? 'Ø¨Ø±ÙØ¯ Ø¥ÙÙØªØ±ÙÙÙ Ø£Ù ÙÙÙØ© ÙØ±ÙØ± Ø®Ø§Ø·Ø¦Ø©' :
+      error.message.includes('Email not confirmed')       ? 'Ø§ÙØ¨Ø±ÙØ¯ Ø§ÙØ¥ÙÙØªØ±ÙÙÙ ØºÙØ± ÙÙÙÙØ¹ÙÙÙ â ØªØ­ÙÙ ÙÙ ØµÙØ¯ÙÙ Ø§ÙÙØ§Ø±Ø¯' :
+      error.message.includes('Failed to fetch')           ? 'ØªØ¹Ø°ÙÙØ± Ø§ÙØ§ØªØµØ§Ù Ø¨Ù Supabase â ØªØ£ÙØ¯ ÙÙ ØµØ­Ø© Project URL' :
+      error.message.includes('NetworkError')              ? 'Ø®Ø·Ø£ ÙÙ Ø§ÙØ´Ø¨ÙØ© â ØªØ­ÙÙ ÙÙ Ø§ÙØ§ØªØµØ§Ù Ø¨Ø§ÙØ¥ÙØªØ±ÙØª' :
       error.message;
     showLoginError(msg);
     btn.disabled = false;
-    btn.textContent = 'دخول';
+    btn.textContent = 'Ø¯Ø®ÙÙ';
   } else if (data?.session) {
-    /* ── fallback مباشر في حالة عدم إطلاق onAuthStateChange ── */
+    /* ââ fallback ÙØ¨Ø§Ø´Ø± ÙÙ Ø­Ø§ÙØ© Ø¹Ø¯Ù Ø¥Ø·ÙØ§Ù onAuthStateChange ââ */
     onLogin(data.session.user);
   } else {
-    showLoginError('تعذَّر الحصول على الجلسة — أعد المحاولة');
+    showLoginError('ØªØ¹Ø°ÙÙØ± Ø§ÙØ­ØµÙÙ Ø¹ÙÙ Ø§ÙØ¬ÙØ³Ø© â Ø£Ø¹Ø¯ Ø§ÙÙØ­Ø§ÙÙØ©');
     btn.disabled = false;
-    btn.textContent = 'دخول';
+    btn.textContent = 'Ø¯Ø®ÙÙ';
   }
 }
 function handleLogout() {
@@ -1718,9 +1718,9 @@ document.getElementById('loginPass').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleLogin();
 });
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    LOAD & RENDER PROJECTS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 async function loadProjects() {
   if (!window.c3dClient) return;
 
@@ -1730,7 +1730,7 @@ async function loadProjects() {
     .order('sort_order', { ascending: true })
     .order('created_at', { ascending: false });
 
-  if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ù…Ø´Ø§Ø±ÙŠØ¹: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹: ' + error.message, 'error'); return; }
 
   allProjects = data || [];
   updateStats();
@@ -1743,8 +1743,8 @@ function renderProjects(projects) {
     grid.innerHTML = `
       <div class="empty-state" style="grid-column:1/-1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <p>Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…Ø´Ø§Ø±ÙŠØ¹ Ø¨Ø¹Ø¯</p>
-        <button class="btn btn-primary btn-sm" onclick="openModal()">Ø£Ø¶Ù Ù…Ø´Ø±ÙˆØ¹Ø§Ù‹ Ø§Ù„Ø¢Ù†</button>
+        <p>ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ Ãâ¦ÃÂ´ÃÂ§ÃÂ±ÃÅ ÃÂ¹ ÃÂ¨ÃÂ¹ÃÂ¯</p>
+        <button class="btn btn-primary btn-sm" onclick="openModal()">ÃÂ£ÃÂ¶ÃÂ Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ÃÂ§Ãâ¹ ÃÂ§ÃâÃÂ¢Ãâ </button>
       </div>`;
     return;
   }
@@ -1754,26 +1754,26 @@ function renderProjects(projects) {
       <div class="card-img-wrap">
         ${p.image_url
           ? `<img src="${p.image_url}" alt="${escHtml(p.image_alt_ar || p.name_ar)}" loading="lazy" />`
-          : `<div class="card-no-img">Ù„Ø§ ØªÙˆØ¬Ø¯ ØµÙˆØ±Ø©</div>`}
+          : `<div class="card-no-img">ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÂµÃËÃÂ±ÃÂ©</div>`}
         <span class="card-badge">${CATEGORY_AR[p.category] || p.category}</span>
-        ${p.status === 'draft' ? '<span class="card-status-draft">Ù…Ø³ÙˆÙ‘Ø¯Ø©</span>' : ''}
+        ${p.status === 'draft' ? '<span class="card-status-draft">Ãâ¦ÃÂ³ÃËÃâÃÂ¯ÃÂ©</span>' : ''}
       </div>
       <div class="card-body">
         <div class="card-name">${escHtml(p.name_ar)}</div>
         <div class="card-meta">
           <span class="card-tag">${STYLE_AR[p.style] || p.style}</span>
-          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">â­ Ù…Ù…ÙŠÙ‘Ø²</span>' : ''}
+          ${p.featured ? '<span class="card-tag" style="background:rgba(76,175,125,.12);color:#4caf7d;border-color:rgba(76,175,125,.25)">Ã¢Â­Â Ãâ¦Ãâ¦ÃÅ ÃâÃÂ²</span>' : ''}
         </div>
         ${p.location_ar ? `<div class="card-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${escHtml(p.location_ar)}</div>` : ''}
       </div>
       <div class="card-actions">
         <button class="btn btn-outline btn-sm" onclick="openModal('${p.id}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          ØªØ¹Ø¯ÙŠÙ„
+          ÃÂªÃÂ¹ÃÂ¯ÃÅ Ãâ
         </button>
         <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}','${escHtml(p.name_ar)}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-          Ø­Ø°Ù
+          ÃÂ­ÃÂ°ÃÂ
         </button>
       </div>
     </div>`).join('');
@@ -1805,9 +1805,9 @@ function updateStats() {
   document.getElementById('statDraft').textContent = allProjects.filter(p => p.status === 'draft').length;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   MODAL â€” Open / Close
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+   MODAL Ã¢â¬â Open / Close
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function openModal(projectId = null) {
   editingId = projectId;
   resetForm();
@@ -1815,12 +1815,12 @@ function openModal(projectId = null) {
   if (projectId) {
     const p = allProjects.find(x => x.id === projectId);
     if (!p) return;
-    document.getElementById('modalTitle').textContent = 'ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹';
-    document.getElementById('saveBtnText').textContent = 'Ø­ÙØ¸ Ø§Ù„ØªØ¹Ø¯ÙŠÙ„Ø§Øª';
+    document.getElementById('modalTitle').textContent = 'ÃÂªÃÂ¹ÃÂ¯ÃÅ Ãâ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹';
+    document.getElementById('saveBtnText').textContent = 'ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂªÃÂ¹ÃÂ¯ÃÅ ÃâÃÂ§ÃÂª';
     populateForm(p);
   } else {
-    document.getElementById('modalTitle').textContent = 'Ù…Ø´Ø±ÙˆØ¹ Ø¬Ø¯ÙŠØ¯';
-    document.getElementById('saveBtnText').textContent = 'Ø­ÙØ¸ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹';
+    document.getElementById('modalTitle').textContent = 'Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯';
+    document.getElementById('saveBtnText').textContent = 'ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹';
   }
   document.getElementById('projectModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1877,16 +1877,16 @@ function populateForm(p) {
   updateSEOCount();
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    SAVE PROJECT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 async function saveProject() {
   clearErrors();
   if (!validateForm()) return;
 
   const btn = document.getElementById('saveBtn');
   btn.disabled = true;
-  document.getElementById('saveBtnText').textContent = 'Ø¬Ø§Ø±Ù Ø§Ù„Ø­ÙØ¸...';
+  document.getElementById('saveBtnText').textContent = 'ÃÂ¬ÃÂ§ÃÂ±ÃÂ ÃÂ§ÃâÃÂ­ÃÂÃÂ¸...';
 
   const payload = {
     name_ar:              document.getElementById('f-name_ar').value.trim(),
@@ -1916,14 +1916,14 @@ async function saveProject() {
   }
 
   btn.disabled = false;
-  document.getElementById('saveBtnText').textContent = editingId ? 'Ø­ÙØ¸ Ø§Ù„ØªØ¹Ø¯ÙŠÙ„Ø§Øª' : 'Ø­ÙØ¸ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹';
+  document.getElementById('saveBtnText').textContent = editingId ? 'ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂªÃÂ¹ÃÂ¯ÃÅ ÃâÃÂ§ÃÂª' : 'ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹';
 
   if (error) {
-    showToast('Ø­Ø¯Ø« Ø®Ø·Ø£: ' + error.message, 'error');
+    showToast('ÃÂ­ÃÂ¯ÃÂ« ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error');
     return;
   }
 
-  showToast(editingId ? 'âœ… ØªÙ… ØªØ­Ø¯ÙŠØ« Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ø¨Ù†Ø¬Ø§Ø­' : 'âœ… ØªÙ… Ø¥Ø¶h§ÙØ© Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ø¨Ù†Ø¬Ø§Ø­', 'success');
+  showToast(editingId ? 'Ã¢Åâ¦ ÃÂªÃâ¦ ÃÂªÃÂ­ÃÂ¯ÃÅ ÃÂ« ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÂ¨Ãâ ÃÂ¬ÃÂ§ÃÂ­' : 'Ã¢Åâ¦ ÃÂªÃâ¦ ÃÂ¥ÃÂ¶hÂ§ÃÂÃÂ© ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ÃÂ¨Ãâ ÃÂ¬ÃÂ§ÃÂ­', 'success');
   closeModal();
   loadProjects();
 }
@@ -1946,16 +1946,16 @@ function clearErrors() {
   document.querySelectorAll('.field.has-error').forEach(el => el.classList.remove('has-error'));
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    DELETE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function confirmDelete(id, name) {
-  document.getElementById('confirmText').textContent = `Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù "${name}"ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹.`;
+  document.getElementById('confirmText').textContent = `Ãâ¡Ãâ ÃÂ£Ãâ ÃÂª Ãâ¦ÃÂªÃÂ£ÃÆÃÂ¯ Ãâ¦Ãâ  ÃÂ­ÃÂ°ÃÂ "${name}"ÃÅ¸ ÃâÃÂ§ ÃÅ Ãâ¦ÃÆÃâ  ÃÂ§ÃâÃÂªÃÂ±ÃÂ§ÃÂ¬ÃÂ¹.`;
   document.getElementById('confirmDialog').classList.add('open');
   confirmCb = async () => {
     const { error } = await window.c3dClient.from('projects').delete().eq('id', id);
-    if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ø­Ø°Ù: ' + error.message, 'error'); return; }
-    showToast('ðŸ—‘ï¸ ØªÙ… Ø­Ø°Ù Ø§Ù„Ù…Ø´Ø±ÙˆØ¹', 'info');
+    if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ: ' + error.message, 'error'); return; }
+    showToast('Ã°Å¸ââÃ¯Â¸Â ÃÂªÃâ¦ ÃÂ­ÃÂ°ÃÂ ÃÂ§ÃâÃâ¦ÃÂ´ÃÂ±ÃËÃÂ¹', 'info');
     closeConfirm();
     loadProjects();
   };
@@ -1967,17 +1967,17 @@ function closeConfirm() {
   confirmCb = null;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    CLOUDINARY WIDGET
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function initCloudinaryWidget() {
   const cfg = window.C3D_CONFIG?.cloudinary;
   if (!cfg?.cloudName || cfg.cloudName.includes('YOUR_')) {
-    console.warn('[C3D] Cloudinary ØºÙŠØ± Ù…ÙÙ‡ÙŠÙ‘Ø£');
+    console.warn('[C3D] Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂÃâ¡ÃÅ ÃâÃÂ£');
     return;
   }
   if (typeof cloudinary === 'undefined') {
-    console.error('[C3D] Cloudinary Widget JS ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„');
+    console.error('[C3D] Cloudinary Widget JS ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ');
     return;
   }
 
@@ -2002,12 +2002,12 @@ function initCloudinaryWidget() {
       }
     }
   }, (error, result) => {
-    if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø©: ' + error.message, 'error'); return; }
+    if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©: ' + error.message, 'error'); return; }
     if (result.event === 'success') {
       formImageUrl = result.info.secure_url;
       formCloudId  = result.info.public_id;
       showImagePreview(formImageUrl);
-      showToast('âœ… ØªÙ… Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© Ø¨Ù†Ø¬Ø§Ø­', 'success');
+      showToast('Ã¢Åâ¦ ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ© ÃÂ¨Ãâ ÃÂ¬ÃÂ§ÃÂ­', 'success');
       generateAlt(); // auto alt text after upload
     }
   });
@@ -2015,7 +2015,7 @@ function initCloudinaryWidget() {
 
 function openCloudinaryWidget() {
   if (!cloudWidget) {
-    showToast('âš ï¸ Cloudinary ØºÙŠØ± Ù…ÙÙ‡ÙŠÙ‘Ø£ â€” Ø¹Ø¨Ù‘Ø¦ js/config.js Ø£ÙˆÙ„Ø§Ù‹', 'error');
+    showToast('Ã¢Å¡Â Ã¯Â¸Â Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂÃâ¡ÃÅ ÃâÃÂ£ Ã¢â¬â ÃÂ¹ÃÂ¨ÃâÃÂ¦ js/config.js ÃÂ£ÃËÃâÃÂ§Ãâ¹', 'error');
     return;
   }
   cloudWidget.open();
@@ -2033,17 +2033,17 @@ function removeImage(silent = false) {
   document.getElementById('imageUploadArea').style.display  = 'flex';
   document.getElementById('imagePreviewWrap').style.display = 'none';
   document.getElementById('imagePreviewImg').src = '';
-  if (!silent) showToast('ØªÙ…Øª Ø¥Ø²Ø§Ù„Ø© Ø§Ù„ØµÙˆØ±Ø©', 'info');
+  if (!silent) showToast('ÃÂªÃâ¦ÃÂª ÃÂ¥ÃÂ²ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©', 'info');
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    SEO AUTO-GENERATION
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function autoSEO(force = false) {
   const name    = document.getElementById('f-name_ar').value.trim();
   const catVal  = document.getElementById('f-category').value;
   const styleVal= document.getElementById('f-style').value;
-  const loc     = document.getElementById('f-location_ar').value.trim() || 'Ø§Ù„Ù‚Ø§Ù‡Ø±Ø©';
+  const loc     = document.getElementById('f-location_ar').value.trim() || 'ÃÂ§ÃâÃâÃÂ§Ãâ¡ÃÂ±ÃÂ©';
   const catAr   = CATEGORY_AR[catVal]  || '';
   const styleAr = STYLE_AR[styleVal]   || '';
 
@@ -2054,40 +2054,40 @@ function autoSEO(force = false) {
   const kwEl    = document.getElementById('f-seo_keywords');
 
   if (force || !titleEl.value) {
-    titleEl.value = `${name} - Ø·Ø±Ø§Ø² ${styleAr} - ${loc} | Creative3Design`;
+    titleEl.value = `${name} - ÃÂ·ÃÂ±ÃÂ§ÃÂ² ${styleAr} - ${loc} | Creative3Design`;
   }
   if (force || !descEl.value) {
-    descEl.value = `Ù…Ø´Ø±ÙˆØ¹ ${catAr} Ø¨Ø·Ø±Ø§Ø² ${styleAr} ÙÙŠ ${loc}. ØªØµÙ…ÙŠÙ… Ø§Ø­ØªØ±Ø§ÙÙŠ Ù…Ù† Creative3Design â€” Ù…ÙƒØªØ¨ ØªØµÙ…ÙŠÙ… Ø¯Ø§Ø®Ù„ÙŠ Ù…Ø¹ØªÙ…Ø¯ Ù…Ù†Ø° 2003.`;
+    descEl.value = `Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹ ${catAr} ÃÂ¨ÃÂ·ÃÂ±ÃÂ§ÃÂ² ${styleAr} ÃÂÃÅ  ${loc}. ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ§ÃÂ­ÃÂªÃÂ±ÃÂ§ÃÂÃÅ  Ãâ¦Ãâ  Creative3Design Ã¢â¬â Ãâ¦ÃÆÃÂªÃÂ¨ ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ¯ÃÂ§ÃÂ®ÃâÃÅ  Ãâ¦ÃÂ¹ÃÂªÃâ¦ÃÂ¯ Ãâ¦Ãâ ÃÂ° 2003.`;
   }
   if (force || !kwEl.value) {
-    kwEl.value = `ØªØµÙ…ÙŠÙ… Ø¯Ø§Ø®Ù„ÙŠ, ${catAr}, ${styleAr}, ${loc}, Creative3Design, Ù…ÙƒØªØ¨ ØªØµÙ…ÙŠÙ… Ø§Ù„Ù‚Ø§Ù‡Ø±Ø©`;
+    kwEl.value = `ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ¯ÃÂ§ÃÂ®ÃâÃÅ , ${catAr}, ${styleAr}, ${loc}, Creative3Design, Ãâ¦ÃÆÃÂªÃÂ¨ ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ÃÂ§ÃâÃâÃÂ§Ãâ¡ÃÂ±ÃÂ©`;
   }
   updateSEOCount();
 }
 
 function generateAlt() {
-  const name    = document.getElementById('f-name_ar').value.trim() || 'Ù…Ø´Ø±ÙˆØ¹';
+  const name    = document.getElementById('f-name_ar').value.trim() || 'Ãâ¦ÃÂ´ÃÂ±ÃËÃÂ¹';
   const catVal  = document.getElementById('f-category').value;
   const styleVal= document.getElementById('f-style').value;
-  const loc     = document.getElementById('f-location_ar').value.trim() || 'Ø§Ù„Ù‚Ø§Ù‡Ø±Ø©';
+  const loc     = document.getElementById('f-location_ar').value.trim() || 'ÃÂ§ÃâÃâÃÂ§Ãâ¡ÃÂ±ÃÂ©';
   const catAr   = CATEGORY_AR[catVal]  || '';
   const styleAr = STYLE_AR[styleVal]   || '';
   document.getElementById('f-image_alt_ar').value =
-    `ØªØµÙ…ÙŠÙ… ${catAr} ${styleAr} - ${name} - ${loc} - Creative3Design`;
+    `ÃÂªÃÂµÃâ¦ÃÅ Ãâ¦ ${catAr} ${styleAr} - ${name} - ${loc} - Creative3Design`;
 }
 
 function updateSEOCount() {
   const titleLen = document.getElementById('f-seo_title').value.length;
   const descLen  = document.getElementById('f-seo_description').value.length;
-  document.getElementById('seoTitleCount').textContent = `${titleLen} Ø­Ø±Ù â€” Ø§Ù„Ù…Ø«Ø§Ù„ÙŠ: 50-60 Ø­Ø±Ù`;
-  document.getElementById('seoDescCount').textContent  = `${descLen} Ø­Ø±Ù â€” Ø§Ù„Ù…Ø«Ø§Ù„ÙŠ: 150-160 Ø­Ø±Ù`;
+  document.getElementById('seoTitleCount').textContent = `${titleLen} ÃÂ­ÃÂ±ÃÂ Ã¢â¬â ÃÂ§ÃâÃâ¦ÃÂ«ÃÂ§ÃâÃÅ : 50-60 ÃÂ­ÃÂ±ÃÂ`;
+  document.getElementById('seoDescCount').textContent  = `${descLen} ÃÂ­ÃÂ±ÃÂ Ã¢â¬â ÃÂ§ÃâÃâ¦ÃÂ«ÃÂ§ÃâÃÅ : 150-160 ÃÂ­ÃÂ±ÃÂ`;
 }
 document.getElementById('f-seo_title').addEventListener('input', updateSEOCount);
 
-/* â•â•â•â•â•â•
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    UTILITIES
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -2112,9 +2112,9 @@ function showToast(msg, type = 'success') {
   }, 3500);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    VIEW ROUTER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 function showView(v, ev) {
   const e = ev || event;
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
@@ -2151,9 +2151,9 @@ function showView(v, ev) {
   if (v === 'partners'    && !partnersLoaded)       loadPartnersView();
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    HERO SLIDES MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let allHeroSlides    = [];
 let heroUploadWidgets = {};
 
@@ -2163,7 +2163,7 @@ async function loadHeroSlides() {
     .from('hero_slides')
     .select('*')
     .order('sort_order', { ascending: true });
-  if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ ØªØ­Ù…ÙŠÙ„ Ø´Ø±Ø§Ø¦Ø­ Ø§Ù„Ù‡ÙŠØ±Ùˆ: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ´ÃÂ±ÃÂ§ÃÂ¦ÃÂ­ ÃÂ§ÃâÃâ¡ÃÅ ÃÂ±ÃË: ' + error.message, 'error'); return; }
   allHeroSlides = data || [];
   renderHeroSlides();
 }
@@ -2173,8 +2173,8 @@ function renderHeroSlides() {
   if (!grid) return;
   if (!allHeroSlides.length) {
     grid.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
-      <p style="margin-bottom:1rem">Ù„Ø§ ØªÙˆØ¬Ø¯ Ø´Ø±Ø§Ø¦Ø­ Ø¨Ø¹Ø¯</p>
-      <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">Ø¥Ø¶Ø§ÙØ© Ø£ÙˆÙ„ Ø´Ø±ÙŠØ­Ø©</button>
+      <p style="margin-bottom:1rem">ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÂ´ÃÂ±ÃÂ§ÃÂ¦ÃÂ­ ÃÂ¨ÃÂ¹ÃÂ¯</p>
+      <button class="btn btn-primary btn-sm" onclick="addHeroSlide()">ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ£ÃËÃâ ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ©</button>
     </div>`;
     return;
   }
@@ -2182,35 +2182,35 @@ function renderHeroSlides() {
     <div class="hero-slide-card ${s.active ? '' : 'hero-slide-inactive'}" data-slide-id="${s.id}">
       <div class="hero-slide-img">
         ${s.image_url
-          ? `<img src="${escHtml(s.image_url)}" alt="Ø´Ø±ÙŠØ­Ø© ${i+1}" loading="lazy" />`
+          ? `<img src="${escHtml(s.image_url)}" alt="ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© ${i+1}" loading="lazy" />`
           : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:.5rem;color:var(--text-muted)">
                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-               <span style="font-size:.75rem">Ù„Ø§ ØªÙˆØ¬Ø¯ ØµÙˆØ±Ø©</span>
+               <span style="font-size:.75rem">ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÂµÃËÃÂ±ÃÂ©</span>
              </div>`}
-        <span style="position:absolute;top:.5rem;right:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:.2rem .5rem;border-radius:4px">Ø´Ø±ÙŠØ­Ø© ${i+1}</span>
+        <span style="position:absolute;top:.5rem;right:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:.2rem .5rem;border-radius:4px">ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© ${i+1}</span>
       </div>
       <div class="hero-slide-body">
         <div class="field">
-          <label>Ø¶Ù†ÙˆØ§Ù† Ø§Ù„Ø´Ø±ÙŠØ­Ø© (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)</label>
-          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar||'')}" placeholder="Ù†Øµ ÙÙˆÙ‚ Ø§Ù„ØµÙˆØ±Ø©..." style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.5rem .75rem;border-radius:var(--radius)" />
+          <label>ÃÂ¶Ãâ ÃËÃÂ§Ãâ  ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© (ÃÂ§ÃÂ®ÃÂªÃÅ ÃÂ§ÃÂ±ÃÅ )</label>
+          <input type="text" id="hero-title-${s.id}" value="${escHtml(s.title_ar||'')}" placeholder="Ãâ ÃÂµ ÃÂÃËÃâ ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©..." style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.5rem .75rem;border-radius:var(--radius)" />
         </div>
         <div style="display:flex;align-items:center;gap:.75rem;margin-top:.4rem">
-          <label style="font-size:.78rem;color:var(--text-muted)">ØªØ±ØªÙŠØ¨:</label>
+          <label style="font-size:.78rem;color:var(--text-muted)">ÃÂªÃÂ±ÃÂªÃÅ ÃÂ¨:</label>
           <input type="number" id="hero-order-${s.id}" value="${s.sort_order??i}" min="0" max="99" style="width:60px;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.35rem .5rem;border-radius:var(--radius);text-align:center" />
           <label class="toggle" style="margin-right:auto">
             <input type="checkbox" id="hero-active-${s.id}" ${s.active?'checked':''} onchange="toggleHeroActive('${s.id}',this.checked)" />
             <span class="toggle-slider"></span>
           </label>
-          <span id="hero-active-lbl-${s.id}" style="font-size:.75rem;color:var(--text-muted)">${s.active?'Ù†Ø´Ø·Ø©':'Ù…Ø®ÙÙŠØ©'}</span>
+          <span id="hero-active-lbl-${s.id}" style="font-size:.75rem;color:var(--text-muted)">${s.active?'Ãâ ÃÂ´ÃÂ·ÃÂ©':'Ãâ¦ÃÂ®ÃÂÃÅ ÃÂ©'}</span>
         </div>
         <button class="hero-upload-btn" style="margin-top:.6rem" onclick="openHeroWidget('${s.id}')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          ${s.image_url ? 'ØªØºÙŠÙŠØ± Ø§Ù„ØµÙˆØ±Ø©' : 'Ø±ÙØ¹ ØµÙˆØ±Ø©'}
+          ${s.image_url ? 'ÃÂªÃÂºÃÅ ÃÅ ÃÂ± ÃÂ§ÃâÃÂµÃËÃÂ±ÃÂ©' : 'ÃÂ±ÃÂÃÂ¹ ÃÂµÃËÃÂ±ÃÂ©'}
         </button>
       </div>
       <div style="display:flex;gap:.5rem;padding:.6rem;border-top:1px solid var(--gray-border)">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">Ø­ÙØ¸</button>
-        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}')">Ø­Ø°Ù</button>
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="saveHeroSlide('${s.id}')">ÃÂ­ÃÂÃÂ¸</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteHeroSlide('${s.id}')">ÃÂ­ÃÂ°ÃÂ</button>
       </div>
     </div>`).join('');
 }
@@ -2221,10 +2221,10 @@ async function addHeroSlide() {
     .from('hero_slides')
     .insert({ sort_order: allHeroSlides.length, active: true })
     .select().single();
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allHeroSlides.push(data);
   renderHeroSlides();
-  showToast('ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ø´Ø±ÙŠØ­Ø© Ø¬Ø¯ÙŠØ¯Ø© â€” Ø§Ø±ÙØ¹ ØµÙˆØ±Ø© ÙˆØ­ÙØ¸', 'info');
+  showToast('ÃÂªÃâ¦ÃÂª ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯ÃÂ© Ã¢â¬â ÃÂ§ÃÂ±ÃÂÃÂ¹ ÃÂµÃËÃÂ±ÃÂ© ÃËÃÂ­ÃÂÃÂ¸', 'info');
 }
 
 async function saveHeroSlide(slideId) {
@@ -2237,10 +2237,10 @@ async function saveHeroSlide(slideId) {
     .from('hero_slides')
     .update({ title_ar, sort_order })
     .eq('id', slideId);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   const slide = allHeroSlides.find(s => s.id === slideId);
   if (slide) { slide.title_ar = title_ar; slide.sort_order = sort_order; }
-  showToast('ØªÙ… Ø­ÙØ¸ Ø§Ù„Ø´Ø±ÙŠØ­Ø© âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© Ã¢Åâ', 'success');
 }
 
 async function saveHeroOrder() {
@@ -2251,7 +2251,7 @@ async function saveHeroOrder() {
     return window.c3dClient.from('hero_slides').update({ sort_order }).eq('id', s.id);
   });
   await Promise.all(updates);
-  showToast('ØªÙ… Ø­ÙØ¸ Ø§Ù„ØªØ±ØªÙŠÙˆ âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂ§ÃâÃÂªÃÂ±ÃÂªÃÅ ÃË Ã¢Åâ', 'success');
   await loadHeroSlides();
 }
 
@@ -2259,23 +2259,23 @@ async function toggleHeroActive(slideId, active) {
   if (!window.c3dClient) return;
   const { error } = await window.c3dClient
     .from('hero_slides').update({ active }).eq('id', slideId);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   const lbl = document.getElementById('hero-active-lbl-' + slideId);
-  if (lbl) lbl.textContent = active ? 'Ù†Ø´Ø·Ø©' : 'Ù…Ø®ÙÙŠØ©';
+  if (lbl) lbl.textContent = active ? 'Ãâ ÃÂ´ÃÂ·ÃÂ©' : 'Ãâ¦ÃÂ®ÃÂÃÅ ÃÂ©';
   const slide = allHeroSlides.find(s => s.id === slideId);
   if (slide) slide.active = active;
 }
 
 async function confirmDeleteHeroSlide(slideId) {
   const slide = allHeroSlides.find(s => s.id === slideId);
-  const label = slide?.title_ar || ('Ø´Ø±ÙŠØ­Ø© ' + (allHeroSlides.indexOf(slide)+1));
-  if (!confirm(`Ø­Ø°Ù "${label}"ØŸ`)) return;
+  const label = slide?.title_ar || ('ÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© ' + (allHeroSlides.indexOf(slide)+1));
+  if (!confirm(`ÃÂ­ÃÂ°ÃÂ "${label}"ÃÅ¸`)) return;
   if (!window.c3dClient) return;
   const { error } = await window.c3dClient.from('hero_slides').delete().eq('id', slideId);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allHeroSlides = allHeroSlides.filter(s => s.id !== slideId);
   renderHeroSlides();
-  showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ Ã¢Åâ', 'success');
 }
 
 function getHeroWidget(slideId) {
@@ -2289,7 +2289,7 @@ function getHeroWidget(slideId) {
     clientAllowedFormats: ['jpg','jpeg','png','webp'],
     transformation: [{ width: 1920, crop: 'limit', quality: 'auto:good' }]
   }, async (err, result) => {
-    if (err) { showToast('Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ø±ÙØ¹', 'error'); return; }
+    if (err) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂ§ÃâÃÂ±ÃÂÃÂ¹', 'error'); return; }
     if (result.event !== 'success') return;
     const url = result.info.secure_url;
     const cid = result.info.public_id;
@@ -2297,11 +2297,11 @@ function getHeroWidget(slideId) {
       .from('hero_slides')
       .update({ image_url: url, cloudinary_public_id: cid })
       .eq('id', slideId);
-    if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+    if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
     const slide = allHeroSlides.find(s => s.id === slideId);
     if (slide) slide.image_url = url;
     renderHeroSlides();
-    showToast('ØªÙ… Ø±ÙØ¹ ØµÙˆØ±Ø© Ø§Ù„Ø´Ø±ÙŠØ­Ø© âœ“', 'success');
+    showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃÂµÃËÃÂ±ÃÂ© ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÂ­ÃÂ© Ã¢Åâ', 'success');
   });
   heroUploadWidgets[slideId] = widget;
   return widget;
@@ -2310,12 +2310,12 @@ function getHeroWidget(slideId) {
 function openHeroWidget(slideId) {
   const w = getHeroWidget(slideId);
   if (w) w.open();
-  else showToast('Cloudinary ØºÙŠØ± Ù…ØªØ§Ø­', 'error');
+  else showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂªÃÂ§ÃÂ­', 'error');
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    PAYMENT METHODS MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let paymentLoaded = false;
 
 async function loadPaymentMethods() {
@@ -2325,7 +2325,7 @@ async function loadPaymentMethods() {
     .from('payment_methods')
     .select('*')
     .order('sort_order', { ascending: true });
-  if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ ØªØ­Ù…ÙŠÙ„ Ø·Ø±Ù‚ Ø§Ù„Ø¯ÙØ¹: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ·ÃÂ±Ãâ ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹: ' + error.message, 'error'); return; }
   renderPaymentList(data || []);
 }
 
@@ -2334,13 +2334,13 @@ function renderPaymentList(items) {
   if (!container) return;
   if (!items.length) {
     container.innerHTML = `<div style="color:var(--text-muted);padding:2rem;text-align:center">
-      Ù„Ø§ ØªÙˆØ¬Ø¯ Ø·Ø±Ù‚ Ø¯ÙØ¹ â€” Ø§Ø¶ØºØ· "Ø¥Ø¶Ø§ÙØ© Ø·Ø±ÙŠÙ‚Ø© Ø¯ÙØ¹" Ø£Ø¹Ù„Ø§Ù‡
+      ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÂ·ÃÂ±Ãâ ÃÂ¯ÃÂÃÂ¹ Ã¢â¬â ÃÂ§ÃÂ¶ÃÂºÃÂ· "ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ·ÃÂ±ÃÅ ÃâÃÂ© ÃÂ¯ÃÂÃÂ¹" ÃÂ£ÃÂ¹ÃâÃÂ§Ãâ¡
     </div>`;
     return;
   }
   container.innerHTML = items.map(item => `
     <div style="display:flex;gap:1rem;align-items:center;padding:.75rem 1rem;background:var(--black-hover);border-radius:var(--radius);border:1px solid var(--gray-border)">
-      ${item.icon_url ? `<img src="${escHtml(item.icon_url)}" style="width:40px;height:40px;object-fit:contain;border-radius:4px" />` : `<div style="width:40px;height:40px;background:var(--surface2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">${escHtml(item.icon_emoji||'ðŸ’³')}</div>`}
+      ${item.icon_url ? `<img src="${escHtml(item.icon_url)}" style="width:40px;height:40px;object-fit:contain;border-radius:4px" />` : `<div style="width:40px;height:40px;background:var(--surface2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">${escHtml(item.icon_emoji||'Ã°Å¸âÂ³')}</div>`}
       <div style="flex:1">
         <p style="font-weight:600;font-size:.88rem;margin:0">${escHtml(item.name_ar||'')}</p>
         <p style="font-size:.75rem;color:var(--text-muted);margin:.15rem 0 0">${escHtml(item.description||'')}</p>
@@ -2357,16 +2357,16 @@ function renderPaymentList(items) {
 
 async function addPaymentMethod() {
   if (!window.c3dClient) return;
-  const name = prompt('Ø§Ø³Ù… Ø·Ø±ÙŠÙ‚Ø© Ø§Ù„Ø¯ÙØ¹ (Ù…Ø«Ø§Ù„: ÙÙŠØ²Ø§ØŒ ÙƒØ§Ø´ØŒ ÙÙˆØ±ÙŠ):');
+  const name = prompt('ÃÂ§ÃÂ³Ãâ¦ ÃÂ·ÃÂ±ÃÅ ÃâÃÂ© ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹ (Ãâ¦ÃÂ«ÃÂ§Ãâ: ÃÂÃÅ ÃÂ²ÃÂ§ÃÅ ÃÆÃÂ§ÃÂ´ÃÅ ÃÂÃËÃÂ±ÃÅ ):');
   if (!name) return;
-  const desc = prompt('ÙˆØµÙ Ù…Ø®ØªØµØ± (Ø§Ø®ØªÙŠØ§Ø±ÙŠ):') || '';
-  const emoji = prompt('Ø±Ù…Ø² ØªØ¹Ø¨ÙŠØ±ÙŠ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ, Ù…ØªØ«Ø§Ù„: ðŸ’³):') || 'ðŸ’³';
+  const desc = prompt('ÃËÃÂµÃÂ Ãâ¦ÃÂ®ÃÂªÃÂµÃÂ± (ÃÂ§ÃÂ®ÃÂªÃÅ ÃÂ§ÃÂ±ÃÅ ):') || '';
+  const emoji = prompt('ÃÂ±Ãâ¦ÃÂ² ÃÂªÃÂ¹ÃÂ¨ÃÅ ÃÂ±ÃÅ  (ÃÂ§ÃÂ®ÃÂªÃÅ ÃÂ§ÃÂ±ÃÅ , Ãâ¦ÃÂªÃÂ«ÃÂ§Ãâ: Ã°Å¸âÂ³):') || 'Ã°Å¸âÂ³';
   const { data, error } = await window.c3dClient
     .from('payment_methods')
     .insert({ name_ar: name, description: desc, icon_emoji: emoji, active: true, sort_order: 0 })
     .select();
-  if (error) { showToast('Ø®Ø·Ú#: ' + error.message, 'error'); return; }
-  showToast('ØªÙ…Øª Ø§Ù„Ø¥Ø¦ÙØ© âœ“', 'success');
+  if (error) { showToast('ÃÂ®ÃÂ·Ã#: ' + error.message, 'error'); return; }
+  showToast('ÃÂªÃâ¦ÃÂª ÃÂ§ÃâÃÂ¥ÃÂ¦ÃÂÃÂ© Ã¢Åâ', 'success');
   await loadPaymentMethods();
 }
 
@@ -2376,17 +2376,17 @@ async function togglePayment(id, active) {
 }
 
 async function deletePaymentMethod(id) {
-  if (!confirm('Ø­Ø°Ù Ø·Ø±ÙŠÙ‚Ø© Ø§Ù„Ø¯ÙØ¹ Ù‡Ø°Ù‡ØŸ')) return;
+  if (!confirm('ÃÂ­ÃÂ°ÃÂ ÃÂ·ÃÂ±ÃÅ ÃâÃÂ© ÃÂ§ÃâÃÂ¯ÃÂÃÂ¹ Ãâ¡ÃÂ°Ãâ¡ÃÅ¸')) return;
   if (!window.c3dClient) return;
   const { error } = await window.c3dClient.from('payment_methods').delete().eq('id', id);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
-  showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù âœ“', 'success');
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ Ã¢Åâ', 'success');
   await loadPaymentMethods();
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    VIDEO LIBRARY MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let videoLoaded = false;
 let allVideos   = [];
 
@@ -2398,7 +2398,7 @@ async function loadVideoLibrary() {
     .select('*')
     .order('sort_order', { ascending: true })
     .order('created_at',  { ascending: false });
-  if (error) { showToast('Ø®Ø·Ø£ ÙÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙÙŠØ¯ÙŠÙˆÙ‡Ø§Øª: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£ ÃÂÃÅ  ÃÂªÃÂ­Ãâ¦ÃÅ Ãâ ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃËÃâ¡ÃÂ§ÃÂª: ' + error.message, 'error'); return; }
   allVideos = data || [];
   renderVideoList();
 }
@@ -2409,7 +2409,7 @@ function renderVideoList() {
   if (!allVideos.length) {
     container.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48" style="margin-bottom:.75rem;opacity:.4"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-      <p>Ù„Ø§ ØªÙˆØ¬Ø¯ ÙÙŠØ¯ÙŠÙˆÙ‡Ø§Øª â€” Ø§Ø¶ØºØ· "Ø¥Ø¶h§ÙØ© ÙÙŠØ¯ÙŠÙˆ"</p>
+      <p>ÃâÃÂ§ ÃÂªÃËÃÂ¬ÃÂ¯ ÃÂÃÅ ÃÂ¯ÃÅ ÃËÃâ¡ÃÂ§ÃÂª Ã¢â¬â ÃÂ§ÃÂ¶ÃÂºÃÂ· "ÃÂ¥ÃÂ¶hÂ§ÃÂÃÂ© ÃÂÃÅ ÃÂ¯ÃÅ ÃË"</p>
     </div>`;
     return;
   }
@@ -2424,17 +2424,17 @@ function renderVideoList() {
             <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="color:#fff;margin-right:-2px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           </div>
         </div>
-        ${v.active === false ? `<div style="position:absolute;top:.4rem;left:.4rem;background:rgba(0,0,0,.7);color:#fff;font-size:.68rem;padding:.2rem .45rem;border-radius:3px">Ù…Ø®ÙÙŠ</div>` : ''}
+        ${v.active === false ? `<div style="position:absolute;top:.4rem;left:.4rem;background:rgba(0,0,0,.7);color:#fff;font-size:.68rem;padding:.2rem .45rem;border-radius:3px">Ãâ¦ÃÂ®ÃÂÃÅ </div>` : ''}
       </div>
       <div style="padding:.75rem">
-        <p style="font-weight:600;font-size:.85rem;margin:0 0 .2rem">${escHtml(v.title_ar||'ÙÙŠØ¯ÙŠÙˆ Ø¨Ø¯ÙˆÙ† Ø¹Ù†ÙˆØ§Ù†')}</p>
+        <p style="font-weight:600;font-size:.85rem;margin:0 0 .2rem">${escHtml(v.title_ar||'ÃÂÃÅ ÃÂ¯ÃÅ ÃË ÃÂ¨ÃÂ¯ÃËÃâ  ÃÂ¹Ãâ ÃËÃÂ§Ãâ ')}</p>
         <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 .6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(v.url||'')}</p>
         <div style="display:flex;gap:.5rem;align-items:center">
           <label class="toggle">
             <input type="checkbox" ${v.active!==false?'checked':''} onchange="toggleVideo('${v.id}',this.checked)" />
             <span class="toggle-slider"></span>
           </label>
-          <button class="btn btn-sm btn-outline" style="margin-right:auto" onclick="editVideoItem('${v.id}')">ØªØ¹Ø¯ÙŠÙ„</button>
+          <button class="btn btn-sm btn-outline" style="margin-right:auto" onclick="editVideoItem('${v.id}')">ÃÂªÃÂ¹ÃÂ¯ÃÅ Ãâ</button>
           <button class="btn btn-sm btn-danger" onclick="deleteVideoItem('${v.id}')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
           </button>
@@ -2461,34 +2461,34 @@ function previewVideo(url) {
 }
 
 async function addVideoItem() {
-  const url = prompt('Ø±Ø§Ø¨Ø· Ø§Ù„ÙÙŠØ¯ÙŠÙˆ (YouTube Ø£Ùˆ Vimeo):');
+  const url = prompt('ÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË (YouTube ÃÂ£ÃË Vimeo):');
   if (!url) return;
-  const title = prompt('Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ÙÙŠØ¯ÙŠÙˆ (Ø¹Ø±Ø¨ÙŠ):') || 'ÙÙŠØ¯ÙŠÙˆ Ø¬Ø¯ÙŠØ¯';
+  const title = prompt('ÃÂ¹Ãâ ÃËÃÂ§Ãâ  ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË (ÃÂ¹ÃÂ±ÃÂ¨ÃÅ ):') || 'ÃÂÃÅ ÃÂ¯ÃÅ ÃË ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯';
   if (!window.c3dClient) return;
   const { data, error } = await window.c3dClient
     .from('video_library')
     .insert({ url, title_ar: title, active: true, sort_order: allVideos.length })
     .select().single();
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allVideos.push(data);
   renderVideoList();
-  showToast('ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ø§Ù„ÙÙŠØ¯ÙŠÙˆ âœ“', 'success');
+  showToast('ÃÂªÃâ¦ÃÂª ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË Ã¢Åâ', 'success');
 }
 
 async function editVideoItem(id) {
   const video = allVideos.find(v => String(v.id) === String(id));
   if (!video) return;
-  const url   = prompt('Ø±Ø§Ø¨Ø· Ø§Ù„ÙÙŠØ¯ÙŠÙˆ:', video.url || '');
+  const url   = prompt('ÃÂ±ÃÂ§ÃÂ¨ÃÂ· ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃË:', video.url || '');
   if (url === null) return;
-  const title = prompt('Ø§Ù„Ø¹Ù†ÙˆØ§Ù†:', video.title_ar || '') || '';
+  const title = prompt('ÃÂ§ÃâÃÂ¹Ãâ ÃËÃÂ§Ãâ :', video.title_ar || '') || '';
   const { error } = await window.c3dClient
     .from('video_library')
     .update({ url, title_ar: title })
     .eq('id', id);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   video.url = url; video.title_ar = title;
   renderVideoList();
-  showToast('ØªÙ… Ø§Ù„ØªØ¹Ø¯ÙŠÙ„ âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂªÃÂ¹ÃÂ¯ÃÅ Ãâ Ã¢Åâ', 'success');
 }
 
 async function toggleVideo(id, active) {
@@ -2499,25 +2499,25 @@ async function toggleVideo(id, active) {
 }
 
 async function deleteVideoItem(id) {
-  if (!confirm('Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„ÙÙŠØ¯ÙŠÙˆØŸ')) return;
+  if (!confirm('ÃÂ­ÃÂ°ÃÂ Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃÂÃÅ ÃÂ¯ÃÅ ÃËÃÅ¸')) return;
   if (!window.c3dClient) return;
   const { error } = await window.c3dClient.from('video_library').delete().eq('id', id);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allVideos = allVideos.filter(v => String(v.id) !== String(id));
   renderVideoList();
-  showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ Ã¢Åâ', 'success');
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    FEE CALCULATOR MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let feeLoaded   = false;
 let feePackages = [];
 
 const DEFAULT_FEE_PACKAGES = [
-  { name: 'Ø¨Ø§Ù‚Ø© Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©',    key: 'basic',    price: 350,  color: '#6B7280' },
-  { name: 'Ø¨Ø§Ù‚Ø© Ø§Ù„Ù…ØªÙ…ÙŠØ²Ø©',    key: 'premium',  price: 600,  color: '#B8976A' },
-  { name: 'Ø¨Ø§Ù‚Ø© Ø§Ù„Ø¬Ø§Ø®Ø±Ø©',     key: 'luxury',   price: 900,  color: '#EFB547' },
+  { name: 'ÃÂ¨ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃÂ£ÃÂ³ÃÂ§ÃÂ³ÃÅ ÃÂ©',    key: 'basic',    price: 350,  color: '#6B7280' },
+  { name: 'ÃÂ¨ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃâ¦ÃÂªÃâ¦ÃÅ ÃÂ²ÃÂ©',    key: 'premium',  price: 600,  color: '#B8976A' },
+  { name: 'ÃÂ¨ÃÂ§ÃâÃÂ© ÃÂ§ÃâÃÂ¬ÃÂ§ÃÂ®ÃÂ±ÃÂ©',     key: 'luxury',   price: 900,  color: '#EFB547' },
 ];
 
 async function loadFeeSettings() {
@@ -2556,7 +2556,7 @@ function renderFeePackages() {
     <div style="background:var(--black-hover);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;gap:.75rem">
       <div style="display:flex;gap:.5rem;align-items:center">
         <div style="width:10px;height:10px;border-radius:50%;background:${escHtml(pkg.color||'#B8976A')};flex-shrink:0"></div>
-        <input type="text" value="${escHtml(pkg.name||'')}" placeholder="Ø§Ø³Ù… Ø§Ù„Ø¨Ø§Ù‚Ø©"
+        <input type="text" value="${escHtml(pkg.name||'')}" placeholder="ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃÂ¨ÃÂ§ÃâÃÂ©"
           onchange="feePackages[${i}].name=this.value"
           style="flex:1;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.35rem .6rem;border-radius:4px" />
         <button onclick="removeFeePackage(${i})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:.2rem">
@@ -2564,7 +2564,7 @@ function renderFeePackages() {
         </button>
       </div>
       <div class="field">
-        <label style="font-size:.76rem">Ø§Ù„Ø³Ø¹Ø± Ù„ÙƒÙ„ Ù…Â² (Ø¨Ø§Ù„Ø¬Ù†ÙŠÙ‡)</label>
+        <label style="font-size:.76rem">ÃÂ§ÃâÃÂ³ÃÂ¹ÃÂ± ÃâÃÆÃâ Ãâ¦ÃÂ² (ÃÂ¨ÃÂ§ÃâÃÂ¬Ãâ ÃÅ Ãâ¡)</label>
         <input type="number" value="${pkg.price||0}" min="0" step="10"
           onchange="feePackages[${i}].price=parseFloat(this.value)||0"
           style="width:100%;background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.45rem .7rem;border-radius:var(--radius)" />
@@ -2573,7 +2573,7 @@ function renderFeePackages() {
 }
 
 function addFeePackage() {
-  feePackages.push({ name: 'Ø¨Ø§Ù‚Ø© Ø¬Ø¯ÙŠØ¯Ø©', key: 'pkg_' + Date.now(), price: 500, color: '#B8976A' });
+  feePackages.push({ name: 'ÃÂ¨ÃÂ§ÃâÃÂ© ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯ÃÂ©', key: 'pkg_' + Date.now(), price: 500, color: '#B8976A' });
   renderFeePackages();
 }
 
@@ -2585,15 +2585,15 @@ function removeFeePackage(index) {
 async function saveFeeSettings() {
   const unit    = document.getElementById('fee-unit')?.value || 'sqm';
   const minArea = parseInt(document.getElementById('fee-min-area')?.value) || 0;
-  if (!window.c3dClient) { showToast('Supabase ØºÙŠØ± Ù…ØªØµÙ„', 'error'); return; }
+  if (!window.c3dClient) { showToast('Supabase ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂªÃÂµÃâ', 'error'); return; }
   const upserts = [
     { key: 'fee_packages',  value: JSON.stringify(feePackages) },
     { key: 'fee_unit',      value: unit },
     { key: 'fee_min_area',  value: String(minArea) },
   ];
   const { error } = await window.c3dClient.from('site_settings').upsert(upserts, { onConflict: 'key' });
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
-  showToast('ØªÙ… Ø­ÙØ¸ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ø£ØªØ¹Ø§Ø¨ âœ“', 'success');
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃÂ£ÃÂªÃÂ¹ÃÂ§ÃÂ¨ Ã¢Åâ', 'success');
 }
 
 function calcFeePreview() {
@@ -2606,14 +2606,14 @@ function calcFeePreview() {
     const total = (area * (pkg.price||0)).toLocaleString('ar-EG');
     return `<div style="display:flex;justify-content:space-between;font-size:.83rem;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,.06)">
       <span style="color:var(--text-secondary)">${escHtml(pkg.name)}</span>
-      <strong style="color:var(--gold)">${total} Ø¬Ù†ÙŠÙ‡</strong>
+      <strong style="color:var(--gold)">${total} ÃÂ¬Ãâ ÃÅ Ãâ¡</strong>
     </div>`;
   }).join('');
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
    PARTNERS & BLOG MANAGER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 let partnersLoaded = false;
 let allPartners    = [];
 let partnerWidget  = null;
@@ -2642,10 +2642,10 @@ async function loadPartnersView() {
     .from('partners')
     .select('*')
     .order('sort_order', { ascending: true })
-    .catch(() => ({ data: null, error: { message: 'Ø¬Ø¯ÙˆÙ„ partners ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯ â€” Ø£Ù†Ø´Ø¦Ù‡ Ù…Ù† SQL Editor' } }));
+    .catch(() => ({ data: null, error: { message: 'ÃÂ¬ÃÂ¯ÃËÃâ partners ÃÂºÃÅ ÃÂ± Ãâ¦ÃËÃÂ¬ÃËÃÂ¯ Ã¢â¬â ÃÂ£Ãâ ÃÂ´ÃÂ¦Ãâ¡ Ãâ¦Ãâ  SQL Editor' } }));
 
   if (error) {
-    document.getElementById('partnersList').innerHTML = `<div style="color:var(--text-muted);padding:1.5rem;text-align:center;grid-column:1/-1;font-size:.82rem">âš ï¸ ${error.message}</div>`;
+    document.getElementById('partnersList').innerHTML = `<div style="color:var(--text-muted);padding:1.5rem;text-align:center;grid-column:1/-1;font-size:.82rem">Ã¢Å¡Â Ã¯Â¸Â ${error.message}</div>`;
     return;
   }
   allPartners = partnersData || [];
@@ -2656,7 +2656,7 @@ function renderPartnersList() {
   const container = document.getElementById('partnersList');
   if (!container) return;
   if (!allPartners.length) {
-    container.innerHTML = `<div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1;font-size:.82rem">Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´Ø±ÙƒØ§Ø¡ â€” Ø§Ø¸ØºØ· "Ø¥Ø¶Ø§ÙØ© Ø´Ø±ÙŠÙƒ"</div>`;
+    container.innerHTML = `<div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1;font-size:.82rem">ÃâÃÂ§ ÃÅ ÃËÃÂ¬ÃÂ¯ ÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ Ã¢â¬â ÃÂ§ÃÂ¸ÃÂºÃÂ· "ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ´ÃÂ±ÃÅ ÃÆ"</div>`;
     return;
   }
   container.innerHTML = allPartners.map(p => `
@@ -2667,11 +2667,11 @@ function renderPartnersList() {
           : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="32" height="32" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`}
       </div>
       <div style="padding:.6rem;display:flex;flex-direction:column;gap:.4rem">
-        <input type="text" value="${escHtml(p.name_ar||'')}" placeholder="Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙŠÙƒ"
+        <input type="text" value="${escHtml(p.name_ar||'')}" placeholder="ÃÂ§ÃÂ³Ãâ¦ ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÆ"
           onchange="updatePartnerName('${p.id}',this.value)"
           style="background:var(--black-card);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.8rem;padding:.35rem .55rem;border-radius:4px;width:100%" />
         <div style="display:flex;gap:.4rem">
-          <button class="btn btn-sm btn-outline" style="flex:1;font-size:.72rem" onclick="openPartnerWidget('${p.id}')">Ø±ÙØ¹ Ù„ÙˆØ¬Ùˆ</button>
+          <button class="btn btn-sm btn-outline" style="flex:1;font-size:.72rem" onclick="openPartnerWidget('${p.id}')">ÃÂ±ÃÂÃÂ¹ ÃâÃËÃÂ¬ÃË</button>
           <button class="btn btn-sm btn-danger" onclick="deletePartner('${p.id}')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
           </button>
@@ -2684,12 +2684,12 @@ async function addPartnerItem() {
   if (!window.c3dClient) return;
   const { data, error } = await window.c3dClient
     .from('partners')
-    .insert({ name_ar: 'Ø´Ø±ÙŠÙƒ Ø¬Ø¯ÙŠØ¯', active: true, sort_order: allPartners.length })
+    .insert({ name_ar: 'ÃÂ´ÃÂ±ÃÅ ÃÆ ÃÂ¬ÃÂ¯ÃÅ ÃÂ¯', active: true, sort_order: allPartners.length })
     .select().single();
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allPartners.push(data);
   renderPartnersList();
-  showToast('ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ø´Ø±ÙŠÙƒ â€” Ø§Ø±ÙØ¹ Ø§Ù„Ù„ÙˆØ¬Ùˆ ÙˆØ¹Ø¯Ù‘Ù„ Ø§Ù„Ø§Ø³Ù…', 'info');
+  showToast('ÃÂªÃâ¦ÃÂª ÃÂ¥ÃÂ¶ÃÂ§ÃÂÃÂ© ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÆ Ã¢â¬â ÃÂ§ÃÂ±ÃÂÃÂ¹ ÃÂ§ÃâÃâÃËÃÂ¬ÃË ÃËÃÂ¹ÃÂ¯ÃâÃâ ÃÂ§ÃâÃÂ§ÃÂ³Ãâ¦', 'info');
 }
 
 async function updatePartnerName(id, name) {
@@ -2698,17 +2698,17 @@ async function updatePartnerName(id, name) {
 }
 
 async function deletePartner(id) {
-  if (!confirm('Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ø´Ø±ÙŠÙƒØŸ')) return;
+  if (!confirm('ÃÂ­ÃÂ°ÃÂ Ãâ¡ÃÂ°ÃÂ§ ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÆÃÅ¸')) return;
   if (!window.c3dClient) return;
   const { error } = await window.c3dClient.from('partners').delete().eq('id', id);
-  if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+  if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
   allPartners = allPartners.filter(p => String(p.id) !== String(id));
   renderPartnersList();
-  showToast('ØªÙ… Ø§Ù„Ø­Ø°Ù âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂ°ÃÂ Ã¢Åâ', 'success');
 }
 
 function openPartnerWidget(partnerId) {
-  if (!window.cloudinary) { showToast('Cloudinary ØºÙŠØ± Ù…Ø­Ù…Ù‘Ù„', 'error'); return; }
+  if (!window.cloudinary) { showToast('Cloudinary ÃÂºÃÅ ÃÂ± Ãâ¦ÃÂ­Ãâ¦ÃâÃâ', 'error'); return; }
   const cfg = window.C3D_CONFIG?.cloudinary;
   cloudinary.createUploadWidget({
     cloudName: cfg?.cloudName || 'dwh2y3lvz',
@@ -2720,11 +2720,11 @@ function openPartnerWidget(partnerId) {
     if (err || result.event !== 'success') return;
     const url = result.info.secure_url;
     const { error } = await window.c3dClient.from('partners').update({ logo_url: url }).eq('id', partnerId);
-    if (error) { showToast('Ø®Ø·Ø£: ' + error.message, 'error'); return; }
+    if (error) { showToast('ÃÂ®ÃÂ·ÃÂ£: ' + error.message, 'error'); return; }
     const p = allPartners.find(p => String(p.id) === String(partnerId));
     if (p) p.logo_url = url;
     renderPartnersList();
-    showToast('ØªÙ… Ø±ÙØ¹ Ù„ÙˆØ¬Ùˆ Ø§Ù„Ø´Ø±ÙŠÙƒ âœ“', 'success');
+    showToast('ÃÂªÃâ¦ ÃÂ±ÃÂÃÂ¹ ÃâÃËÃÂ¬ÃË ÃÂ§ÃâÃÂ´ÃÂ±ÃÅ ÃÆ Ã¢Åâ', 'success');
   }).open();
 }
 
@@ -2736,7 +2736,7 @@ async function saveBlogSettings() {
     { key: 'blog_nav_visible',     value: String(nav !== false) },
     { key: 'blog_section_visible', value: String(sec !== false) },
   ], { onConflict: 'key' });
-  showToast('ØªÙ… Ø­ÙØ¸ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ù…Ø¯ÙˆÙ†Ø© âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ­ÃÂÃÂ¸ ÃÂ¥ÃÂ¹ÃÂ¯ÃÂ§ÃÂ¯ÃÂ§ÃÂª ÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ© Ã¢Åâ', 'success');
 }
 
 async function savePartnersSettings() {
@@ -2746,7 +2746,7 @@ async function savePartnersSettings() {
     [{ key: 'partners_section_visible', value: String(vis !== false) }],
     { onConflict: 'key' }
   );
-  showToast('ØªÙ… Ø§Ù„Ø­ÙØ¸ âœ“', 'success');
+  showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂÃÂ¸ Ã¢Åâ', 'success');
 }
 
 </script>
