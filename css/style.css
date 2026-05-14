@@ -585,7 +585,8 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
   mask-image:linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
-.marquee-outer:hover .marquee-track { animation-play-state:paused; }
+.marquee-outer:hover .marquee-track { animation-play-state:paused;   direction:ltr; unicode-bidi:embed;
+}
 .marquee-track {
   display:flex; gap:0; align-items:center;
   padding:1.5rem 0;
