@@ -1719,7 +1719,7 @@
         /* Target the Nth service image */
         var allServiceImgs = document.querySelectorAll('.services-section .service-card-img, .services-section .lazy-img');
         if (allServiceImgs[idx]) {
-          allServiceImgs[idx].src = url;
+          allServiceImgs[idx].removeAttribute("loading"); allServiceImgs[idx].src = url;
           allServiceImgs[idx].setAttribute('data-src', url);
         }
       });
