@@ -546,7 +546,19 @@ img{max-width:100%;display:block}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         ÃÂ§ÃâÃÂ´ÃÂ±ÃÆÃÂ§ÃÂ¡ ÃËÃÂ§ÃâÃâ¦ÃÂ¯ÃËÃâ ÃÂ©
       </div>
-      <div class="sidebar-section" style="margin-top:.5rem">ÃÂ§ÃâÃÂ­ÃÂ³ÃÂ§ÃÂ¨</div>
+            <div class="sidebar-link" onclick="showView('testimonials',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        آراء العملاء
+      </div>
+      <div class="sidebar-link" onclick="showView('blog',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        المدونة
+      </div>
+      <div class="sidebar-link" onclick="showView('packages',event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        باقات الأسعار
+      </div>
+<div class="sidebar-section" style="margin-top:.5rem">ÃÂ§ÃâÃÂ­ÃÂ³ÃÂ§ÃÂ¨</div>
       <div class="sidebar-link" onclick="handleLogout()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
         ÃÂªÃÂ³ÃÂ¬ÃÅ Ãâ ÃÂ§ÃâÃÂ®ÃÂ±ÃËÃÂ¬
@@ -962,6 +974,72 @@ img{max-width:100%;display:block}
 
         </div>
       </div><!-- /partnersView -->
+
+      <!-- ══════════════ TESTIMONIALS VIEW ══════════════ -->
+      <div id="testimonialsView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">💬 آراء العملاء</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="addTestimonial()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة رأي
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">آراء العملاء المضافة</span></div>
+            <div class="panel-section-body">
+              <div id="testimonialsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /testimonialsView -->
+
+      <!-- ══════════════ BLOG VIEW ══════════════ -->
+      <div id="blogView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">📝 المدونة</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="addBlogPost()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة مقال
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">مقالات المدونة</span></div>
+            <div class="panel-section-body">
+              <div id="blogList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /blogView -->
+
+      <!-- ══════════════ PACKAGES VIEW ══════════════ -->
+      <div id="packagesView" style="display:none;flex-direction:column;gap:1.5rem">
+        <div class="toolbar">
+          <span class="toolbar-title">📦 باقات الأسعار</span>
+          <div class="spacer"></div>
+          <button class="btn btn-primary btn-sm" onclick="addPackage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة باقة
+          </button>
+        </div>
+        <div class="media-panel">
+          <div class="panel-section">
+            <div class="panel-section-header"><span class="panel-section-title">الباقات المتاحة</span></div>
+            <div class="panel-section-body">
+              <div id="packagesList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem">
+                <div style="color:var(--text-muted);padding:2rem;text-align:center;grid-column:1/-1">⏳ جاري التحميل...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /packagesView -->
 
     </main>
   </div><!-- app-body -->
@@ -2131,6 +2209,9 @@ function showView(v, ev) {
     video:       { id:'videoView',       display:'flex' },
     fee:         { id:'feeView',         display:'flex' },
     partners:    { id:'partnersView',    display:'flex' },
+    testimonials: { id:'testimonialsView', display:'flex' },
+    blog:         { id:'blogView',         display:'flex' },
+    packages:     { id:'packagesView',     display:'flex' },
   };
   Object.values(viewMap).forEach(({ id }) => {
     const el = document.getElementById(id);
@@ -2149,6 +2230,9 @@ function showView(v, ev) {
   if (v === 'video'       && !videoLoaded)          loadVideoLibrary();
   if (v === 'fee'         && !feeLoaded)            loadFeeSettings();
   if (v === 'partners'    && !partnersLoaded)       loadPartnersView();
+  if (v === 'testimonials' && !testimonialsLoaded) loadTestimonials();
+  if (v === 'blog'         && !blogLoaded)         loadBlogView();
+  if (v === 'packages'     && !packagesLoaded)     loadPackages();
 }
 
 /* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
@@ -2749,6 +2833,228 @@ async function savePartnersSettings() {
   showToast('ÃÂªÃâ¦ ÃÂ§ÃâÃÂ­ÃÂÃÂ¸ Ã¢Åâ', 'success');
 }
 
+
+/* ══════════════════════════════════════════════════
+   TESTIMONIALS MANAGER
+══════════════════════════════════════════════════ */
+let allTestimonials = [];
+let testimonialsLoaded = false;
+
+async function loadTestimonials() {
+  if (!window.c3dClient) return;
+  testimonialsLoaded = true;
+  const { data, error } = await window.c3dClient
+    .from('testimonials').select('*').order('sort_order', { ascending: true });
+  if (error) { showToast('خطأ في تحميل آراء العملاء: ' + error.message, 'error'); return; }
+  allTestimonials = data || [];
+  renderTestimonialsList();
+}
+
+function renderTestimonialsList() {
+  const el = document.getElementById('testimonialsList');
+  if (!el) return;
+  if (!allTestimonials.length) {
+    el.innerHTML = '<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1"><p style="margin-bottom:1rem">لا توجد آراء عملاء بعد</p><button class="btn btn-primary btn-sm" onclick="addTestimonial()">إضافة أول رأي</button></div>';
+    return;
+  }
+  el.innerHTML = allTestimonials.map(function(t) { return '<div style="background:var(--black-card);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem">'
+    + '<div style="display:flex;align-items:center;gap:.75rem">'
+    + (t.avatar_url ? '<img src="' + escHtml(t.avatar_url) + '" style="width:48px;height:48px;border-radius:50%;object-fit:cover">' : '<div style="width:48px;height:48px;border-radius:50%;background:var(--black-hover);display:flex;align-items:center;justify-content:center;font-size:1.2rem">👤</div>')
+    + '<div style="flex:1"><input type="text" value="' + escHtml(t.name_ar||'') + '" id="tname-' + t.id + '" placeholder="اسم العميل" style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.9rem;padding:.3rem 0;outline:none" />'
+    + '<input type="text" value="' + escHtml(t.role_ar||'') + '" id="trole-' + t.id + '" placeholder="المنصب / الموقع" style="width:100%;background:transparent;border:none;color:var(--text-muted);font-family:inherit;font-size:.78rem;padding:.25rem 0;outline:none;margin-top:.25rem" /></div>'
+    + '<select id="trating-' + t.id + '" style="background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.8rem;padding:.3rem .5rem;border-radius:var(--radius)">'
+    + [5,4,3,2,1].map(function(n){ return '<option value="' + n + '"' + (t.rating==n?' selected':'') + '>' + '★'.repeat(n) + '</option>'; }).join('')
+    + '</select></div>'
+    + '<textarea id="ttext-' + t.id + '" placeholder="نص الرأي..." rows="3" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.6rem .75rem;border-radius:var(--radius);resize:vertical;outline:none">' + escHtml(t.text_ar||'') + '</textarea>'
+    + '<div style="display:flex;gap:.6rem;align-items:center">'
+    + '<label style="font-size:.78rem;color:var(--text-muted)">ترتيب:</label>'
+    + '<input type="number" id="torder-' + t.id + '" value="' + (t.sort_order||0) + '" min="0" style="width:60px;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.3rem .5rem;border-radius:var(--radius);text-align:center" />'
+    + '<label class="toggle" style="margin-right:auto"><input type="checkbox" id="tactive-' + t.id + '"' + (t.active?' checked':'') + ' /><span class="toggle-slider"></span></label>'
+    + '<span style="font-size:.75rem;color:var(--text-muted)">' + (t.active?'نشط':'مخفي') + '</span>'
+    + '<button class="btn btn-sm btn-primary" onclick="saveTestimonial('' + t.id + '')">حفظ</button>'
+    + '<button class="btn btn-sm" style="border:1px solid rgba(220,80,80,.4);color:#e05252;background:transparent" onclick="deleteTestimonial('' + t.id + '')">حذف</button>'
+    + '</div></div>';
+  }).join('');
+}
+
+async function addTestimonial() {
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient.from('testimonials')
+    .insert([{ name_ar: 'عميل جديد', text_ar: 'رأي العميل...', rating: 5, sort_order: allTestimonials.length }])
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allTestimonials.push(data); renderTestimonialsList(); showToast('تمت الإضافة ✓', 'success');
+}
+
+async function saveTestimonial(id) {
+  if (!window.c3dClient) return;
+  const updates = {
+    name_ar: document.getElementById('tname-'+id)?.value||'',
+    role_ar: document.getElementById('trole-'+id)?.value||'',
+    text_ar: document.getElementById('ttext-'+id)?.value||'',
+    rating: parseInt(document.getElementById('trating-'+id)?.value)||5,
+    sort_order: parseInt(document.getElementById('torder-'+id)?.value)||0,
+    active: document.getElementById('tactive-'+id)?.checked??true,
+  };
+  const { error } = await window.c3dClient.from('testimonials').update(updates).eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const i = allTestimonials.findIndex(function(t){ return t.id===id; });
+  if (i>-1) allTestimonials[i] = Object.assign({}, allTestimonials[i], updates);
+  showToast('تم الحفظ ✓', 'success');
+}
+
+async function deleteTestimonial(id) {
+  if (!confirm('حذف هذا الرأي؟')) return;
+  const { error } = await window.c3dClient.from('testimonials').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allTestimonials = allTestimonials.filter(function(t){ return t.id!==id; });
+  renderTestimonialsList(); showToast('تم الحذف ✓', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   BLOG POSTS MANAGER
+══════════════════════════════════════════════════ */
+let allBlogPosts = [];
+let blogLoaded = false;
+
+async function loadBlogView() {
+  if (!window.c3dClient) return;
+  blogLoaded = true;
+  const { data, error } = await window.c3dClient
+    .from('blog_posts').select('*').order('sort_order', { ascending: true });
+  if (error) { showToast('خطأ في تحميل المدونة: ' + error.message, 'error'); return; }
+  allBlogPosts = data || [];
+  renderBlogPostsList();
+}
+
+function renderBlogPostsList() {
+  const el = document.getElementById('blogList');
+  if (!el) return;
+  if (!allBlogPosts.length) {
+    el.innerHTML = '<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1"><p style="margin-bottom:1rem">لا توجد مقالات بعد</p><button class="btn btn-primary btn-sm" onclick="addBlogPost()">إضافة أول مقال</button></div>';
+    return;
+  }
+  el.innerHTML = allBlogPosts.map(function(p) { return '<div style="background:var(--black-card);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem">'
+    + (p.cover_url ? '<img src="' + escHtml(p.cover_url) + '" style="width:100%;height:140px;object-fit:cover;border-radius:6px">' : '')
+    + '<div class="field"><label>عنوان المقال</label><input type="text" id="btitle-' + p.id + '" value="' + escHtml(p.title_ar||'') + '" placeholder="عنوان المقال..." style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" /></div>'
+    + '<div class="field"><label>مقتطف</label><textarea id="bexcerpt-' + p.id + '" rows="2" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.55rem .75rem;border-radius:var(--radius);resize:vertical">' + escHtml(p.excerpt_ar||'') + '</textarea></div>'
+    + '<div class="field"><label>التصنيف</label><select id="bcat-' + p.id + '" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.5rem .75rem;border-radius:var(--radius)"><option value="general"' + (p.category==='general'?' selected':'') + '>عام</option><option value="design"' + (p.category==='design'?' selected':'') + '>تصميم</option><option value="project"' + (p.category==='project'?' selected':'') + '>مشروع</option><option value="tips"' + (p.category==='tips'?' selected':'') + '>نصائح</option></select></div>'
+    + '<div style="display:flex;gap:.6rem;align-items:center"><label style="font-size:.78rem;color:var(--text-muted)">ترتيب:</label><input type="number" id="border-' + p.id + '" value="' + (p.sort_order||0) + '" min="0" style="width:60px;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.3rem .5rem;border-radius:var(--radius);text-align:center" />'
+    + '<label class="toggle" style="margin-right:auto"><input type="checkbox" id="bpub-' + p.id + '"' + (p.published?' checked':'') + ' /><span class="toggle-slider"></span></label>'
+    + '<span style="font-size:.75rem;color:var(--text-muted)">' + (p.published?'منشور':'مسودة') + '</span>'
+    + '<button class="btn btn-sm btn-primary" onclick="saveBlogPost('' + p.id + '')">حفظ</button>'
+    + '<button class="btn btn-sm" style="border:1px solid rgba(220,80,80,.4);color:#e05252;background:transparent" onclick="deleteBlogPost('' + p.id + '')">حذف</button></div></div>';
+  }).join('');
+}
+
+async function addBlogPost() {
+  if (!window.c3dClient) return;
+  const slug = 'post-' + Date.now();
+  const { data, error } = await window.c3dClient.from('blog_posts')
+    .insert([{ title_ar: 'مقال جديد', slug, category: 'general', published: false, sort_order: allBlogPosts.length }])
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allBlogPosts.push(data); renderBlogPostsList(); showToast('تمت الإضافة ✓', 'success');
+}
+
+async function saveBlogPost(id) {
+  if (!window.c3dClient) return;
+  const updates = {
+    title_ar: document.getElementById('btitle-'+id)?.value||'',
+    excerpt_ar: document.getElementById('bexcerpt-'+id)?.value||'',
+    category: document.getElementById('bcat-'+id)?.value||'general',
+    sort_order: parseInt(document.getElementById('border-'+id)?.value)||0,
+    published: document.getElementById('bpub-'+id)?.checked??false,
+    updated_at: new Date().toISOString(),
+  };
+  const { error } = await window.c3dClient.from('blog_posts').update(updates).eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const i = allBlogPosts.findIndex(function(p){ return p.id===id; });
+  if (i>-1) allBlogPosts[i] = Object.assign({}, allBlogPosts[i], updates);
+  showToast('تم الحفظ ✓', 'success');
+}
+
+async function deleteBlogPost(id) {
+  if (!confirm('حذف هذا المقال؟')) return;
+  const { error } = await window.c3dClient.from('blog_posts').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allBlogPosts = allBlogPosts.filter(function(p){ return p.id!==id; });
+  renderBlogPostsList(); showToast('تم الحذف ✓', 'success');
+}
+
+/* ══════════════════════════════════════════════════
+   PACKAGES MANAGER
+══════════════════════════════════════════════════ */
+let allPackages = [];
+let packagesLoaded = false;
+
+async function loadPackages() {
+  if (!window.c3dClient) return;
+  packagesLoaded = true;
+  const { data, error } = await window.c3dClient
+    .from('packages').select('*').order('sort_order', { ascending: true });
+  if (error) { showToast('خطأ في تحميل الباقات: ' + error.message, 'error'); return; }
+  allPackages = data || [];
+  renderPackagesList();
+}
+
+function renderPackagesList() {
+  const el = document.getElementById('packagesList');
+  if (!el) return;
+  if (!allPackages.length) {
+    el.innerHTML = '<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1"><p style="margin-bottom:1rem">لا توجد باقات بعد</p><button class="btn btn-primary btn-sm" onclick="addPackage()">إضافة أول باقة</button></div>';
+    return;
+  }
+  el.innerHTML = allPackages.map(function(pkg) { return '<div style="background:var(--black-card);border:1px solid ' + (pkg.highlighted?'var(--gold)':'var(--gray-border)') + ';border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem' + (pkg.highlighted?';box-shadow:0 0 0 1px rgba(184,151,106,.3)':'') + '">'
+    + '<div class="field"><label>اسم الباقة</label><input type="text" id="pkgname-' + pkg.id + '" value="' + escHtml(pkg.name_ar||'') + '" placeholder="باقة الاقتصادي..." style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" /></div>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><div class="field"><label>السعر من</label><input type="number" id="pkgpricefrom-' + pkg.id + '" value="' + (pkg.price_from||'') + '" min="0" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" /></div>'
+    + '<div class="field"><label>السعر إلى</label><input type="number" id="pkgpriceto-' + pkg.id + '" value="' + (pkg.price_to||'') + '" min="0" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" /></div></div>'
+    + '<div class="field"><label>الوصف</label><textarea id="pkgdesc-' + pkg.id + '" rows="2" style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.55rem .75rem;border-radius:var(--radius);resize:vertical">' + escHtml(pkg.description_ar||'') + '</textarea></div>'
+    + '<div class="field"><label>شارة</label><input type="text" id="pkgbadge-' + pkg.id + '" value="' + escHtml(pkg.badge_ar||'') + '" placeholder="الأكثر طلباً..." style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.45rem .75rem;border-radius:var(--radius)" /></div>'
+    + '<div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap"><label style="font-size:.78rem;color:var(--text-muted)">ترتيب:</label><input type="number" id="pkgorder-' + pkg.id + '" value="' + (pkg.sort_order||0) + '" min="0" style="width:60px;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.82rem;padding:.3rem .5rem;border-radius:var(--radius);text-align:center" />'
+    + '<label style="font-size:.78rem;color:var(--text-muted);margin-right:.5rem">مميز:</label><label class="toggle"><input type="checkbox" id="pkghigh-' + pkg.id + '"' + (pkg.highlighted?' checked':'') + ' /><span class="toggle-slider"></span></label>'
+    + '<label class="toggle" style="margin-right:auto"><input type="checkbox" id="pkgactive-' + pkg.id + '"' + (pkg.active?' checked':'') + ' /><span class="toggle-slider"></span></label>'
+    + '<span style="font-size:.75rem;color:var(--text-muted)">' + (pkg.active?'نشط':'مخفي') + '</span>'
+    + '<button class="btn btn-sm btn-primary" onclick="savePackage('' + pkg.id + '')">حفظ</button>'
+    + '<button class="btn btn-sm" style="border:1px solid rgba(220,80,80,.4);color:#e05252;background:transparent" onclick="deletePackage('' + pkg.id + '')">حذف</button></div></div>';
+  }).join('');
+}
+
+async function addPackage() {
+  if (!window.c3dClient) return;
+  const { data, error } = await window.c3dClient.from('packages')
+    .insert([{ name_ar: 'باقة جديدة', active: true, highlighted: false, sort_order: allPackages.length }])
+    .select().single();
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allPackages.push(data); renderPackagesList(); showToast('تمت الإضافة ✓', 'success');
+}
+
+async function savePackage(id) {
+  if (!window.c3dClient) return;
+  const updates = {
+    name_ar: document.getElementById('pkgname-'+id)?.value||'',
+    price_from: parseFloat(document.getElementById('pkgpricefrom-'+id)?.value)||null,
+    price_to: parseFloat(document.getElementById('pkgpriceto-'+id)?.value)||null,
+    description_ar: document.getElementById('pkgdesc-'+id)?.value||'',
+    badge_ar: document.getElementById('pkgbadge-'+id)?.value||'',
+    sort_order: parseInt(document.getElementById('pkgorder-'+id)?.value)||0,
+    highlighted: document.getElementById('pkghigh-'+id)?.checked??false,
+    active: document.getElementById('pkgactive-'+id)?.checked??true,
+  };
+  const { error } = await window.c3dClient.from('packages').update(updates).eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  const i = allPackages.findIndex(function(p){ return p.id===id; });
+  if (i>-1) allPackages[i] = Object.assign({}, allPackages[i], updates);
+  showToast('تم الحفظ ✓', 'success');
+}
+
+async function deletePackage(id) {
+  if (!confirm('حذف هذه الباقة؟')) return;
+  const { error } = await window.c3dClient.from('packages').delete().eq('id', id);
+  if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
+  allPackages = allPackages.filter(function(p){ return p.id!==id; });
+  renderPackagesList(); showToast('تم الحذف ✓', 'success');
+}
 </script>
 </body>
 </html>
