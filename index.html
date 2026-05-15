@@ -1842,6 +1842,53 @@ function switchBA(idx) {
     }
   }
 
+
+  /* ── تحميل مكتبة الفيديو ── */
+  function loadVideoLibrary() {
+    if (!window.c3dClient) return;
+    window.c3dClient
+      .from('video_library')
+      .select('*')
+      .eq('active', true)
+      .order('sort_order', { ascending: true })
+      .order('created_at',  { ascending: false })
+      .then(function(res) {
+        if (res.error || !res.data || !res.data.length) return;
+        var track = document.getElementById('videoTrack');
+        if (!track) return;
+
+        function extractYTId(url) {
+          if (!url) return null;
+          var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+          return m ? m[1] : null;
+        }
+
+        var cards = res.data.map(function(v) {
+          var ytId   = extractYTId(v.url || '');
+          var thumb  = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : '';
+          var titleAr = (v.title_ar || 'فيديو').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+          var clickFn = ytId
+            ? "openYT('" + ytId + "')"
+            : "window.open('" + (v.url||'') + "','_blank')";
+          return '<div class="video-card lazy-reveal">'
+            + '<button class="video-thumb-btn" onclick="' + clickFn + '" aria-label="تشغيل ' + titleAr + '">'
+            + (thumb
+                ? '<img src="' + thumb + '" alt="' + titleAr + ' - Creative3Design" style="width:100%;height:100%;object-fit:cover"/>'
+                : '<div style="width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>')
+            + '<div class="play-btn-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg></div>'
+            + '</button>'
+            + '<h4>' + titleAr + '</h4>'
+            + '</div>';
+        });
+
+        track.innerHTML = cards.join('');
+        if (typeof videoSlideUpdate === 'function') {
+          window.videoIdx = 0;
+          videoSlideUpdate();
+        }
+      });
+  }
+
   function waitForClient(attempts) {
     if (window.c3dClient) {
       loadHeroImages();
@@ -1849,10 +1896,10 @@ function switchBA(idx) {
       loadServicesSection();
       loadCompoundsSection();
       loadBASection();
+      loadVideoLibrary();
     } else if (attempts > 0) {
       setTimeout(function() { waitForClient(attempts - 1); }, 350);
     } else {
-      /* Supabase غير متاح — أظهر المحتوى الثابت */
       showStaticHeroFallback();
     }
   }
@@ -1867,80 +1914,16 @@ function switchBA(idx) {
 </script>
 
 <!-- ══════════════════════════════════════════════════════════════
-     Testimonials carousel — prev/next/dots/autoplay
+     VIDEO LIGHTBOX OVERLAY
 ════════════════════════════════════════════════════════════════ -->
-<script>
-(function() {
-  var track   = document.getElementById('testiTrack');
-  var dotsEl  = document.getElementById('testiDots');
-  if (!track) return;
-
-  var cards   = track.querySelectorAll('.testi-card');
-  var total   = cards.length;
-  /* desktop shows 2 at a time, mobile 1 */
-  function perView() { return window.innerWidth >= 768 ? 2 : 1; }
-  var maxIdx  = function() { return Math.max(0, total - perView()); };
-  var idx     = 0;
-  var timer   = null;
-
-  /* build dots */
-  function buildDots() {
-    dotsEl.innerHTML = '';
-    var steps = maxIdx() + 1;
-    for (var i = 0; i < steps; i++) {
-      var btn = document.createElement('button');
-      btn.className = 'testi-dot' + (i === 0 ? ' active' : '');
-      btn.setAttribute('aria-label', 'الشريحة ' + (i+1));
-      btn.dataset.i = i;
-      btn.addEventListener('click', function() { goTo(parseInt(this.dataset.i)); });
-      dotsEl.appendChild(btn);
-    }
-  }
-
-  function goTo(n) {
-    idx = Math.max(0, Math.min(n, maxIdx()));
-    var pv = perView();
-    var gap = parseFloat(getComputedStyle(track).gap) || 24;
-    var cardW = track.parentElement.offsetWidth;
-    if (pv === 2) cardW = (cardW - gap) / 2;
-    track.style.transform = 'translateX(' + (idx * (cardW + gap)) + 'px)';
-
-    /* active card highlight */
-    cards.forEach(function(c, i) {
-      c.classList.toggle('active', i === idx || (pv === 2 && i === idx + 1));
-    });
-    /* dots */
-    var dots = dotsEl.querySelectorAll('.testi-dot');
-    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-    resetTimer();
-  }
-
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(function() { goTo(idx >= maxIdx() ? 0 : idx + 1); }, 5000);
-  }
-
-  window.testiNext = function() { goTo(idx >= maxIdx() ? 0 : idx + 1); };
-  window.testiPrev = function() { goTo(idx <= 0 ? maxIdx() : idx - 1); };
-
-  /* touch/swipe */
-  var startX = 0;
-  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) dx > 0 ? window.testiPrev() : window.testiNext();
-  }, {passive:true});
-
-  /* pause on hover */
-  track.closest('.testi-wrap').addEventListener('mouseenter', function() { clearInterval(timer); });
-  track.closest('.testi-wrap').addEventListener('mouseleave', function() { resetTimer(); });
-
-  window.addEventListener('resize', function() { buildDots(); goTo(0); });
-
-  buildDots();
-  goTo(0);
-})();
-</script>
+<div id="videoLightbox" class="video-lightbox" onclick="closeLightbox(event)" role="dialog" aria-modal="true" aria-label="مشغّل الفيديو">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="إغلاق الفيديو">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="lightbox-inner">
+    <iframe id="ytFrame" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="فيديو Creative3Design"></iframe>
+  </div>
+</div>
 
 </body>
 </html>
