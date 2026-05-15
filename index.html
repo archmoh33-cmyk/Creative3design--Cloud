@@ -1864,12 +1864,12 @@ function switchBA(idx) {
         }
 
         var cards = res.data.map(function(v) {
-          var ytId   = extractYTId(v.url || '');
+          var ytId   = extractYTId(v.video_url || '');
           var thumb  = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : '';
           var titleAr = (v.title_ar || 'فيديو').replace(/</g,'&lt;').replace(/>/g,'&gt;');
           var clickFn = ytId
             ? "openYT('" + ytId + "')"
-            : "window.open('" + (v.url||'') + "','_blank')";
+            : "window.open('" + (v.video_url||'') + "','_blank')";
           return '<div class="video-card lazy-reveal">'
             + '<button class="video-thumb-btn" onclick="' + clickFn + '" aria-label="تشغيل ' + titleAr + '">'
             + (thumb
