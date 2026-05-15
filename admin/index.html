@@ -2507,10 +2507,10 @@ function renderVideoList() {
     return;
   }
   container.innerHTML = allVideos.map(v => {
-    const thumbUrl = getVideoThumbnail(v.url || '');
+    const thumbUrl = getVideoThumbnail(v.video_url || '');
     return `
     <div style="background:var(--black-hover);border:1px solid var(--gray-border);border-radius:var(--radius);overflow:hidden">
-      <div style="aspect-ratio:16/9;background:#000;position:relative;cursor:pointer" onclick="previewVideo('${escHtml(v.url||'')}')">
+      <div style="aspect-ratio:16/9;background:#000;position:relative;cursor:pointer" onclick="previewVideo('${escHtml(v.video_url||'')}')">
         ${thumbUrl ? `<img src="${thumbUrl}" style="width:100%;height:100%;object-fit:cover;opacity:.85" />` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>`}
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
           <div style="width:44px;height:44px;background:rgba(184,151,106,.85);border-radius:50%;display:flex;align-items:center;justify-content:center">
@@ -2521,7 +2521,7 @@ function renderVideoList() {
       </div>
       <div style="padding:.75rem">
         <p style="font-weight:600;font-size:.85rem;margin:0 0 .2rem">${escHtml(v.title_ar||'فيديو بدون عنوان')}</p>
-        <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 .6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(v.url||'')}</p>
+        <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 .6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(v.video_url||'')}</p>
         <div style="display:flex;gap:.5rem;align-items:center">
           <label class="toggle">
             <input type="checkbox" ${v.active!==false?'checked':''} onchange="toggleVideo('${v.id}',this.checked)" />
@@ -2560,7 +2560,7 @@ async function addVideoItem() {
   if (!window.c3dClient) return;
   const { data, error } = await window.c3dClient
     .from('video_library')
-    .insert({ url, title_ar: title, active: true, sort_order: allVideos.length })
+    .insert({ video_url: url, title_ar: title, active: true, sort_order: allVideos.length })
     .select().single();
   if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
   allVideos.push(data);
@@ -2571,15 +2571,15 @@ async function addVideoItem() {
 async function editVideoItem(id) {
   const video = allVideos.find(v => String(v.id) === String(id));
   if (!video) return;
-  const url   = prompt('رابط الفيديو:', video.url || '');
+  const url   = prompt('رابط الفيديو:', video.video_url || '');
   if (url === null) return;
   const title = prompt('العنوان:', video.title_ar || '') || '';
   const { error } = await window.c3dClient
     .from('video_library')
-    .update({ url, title_ar: title })
+    .update({ video_url: url, title_ar: title })
     .eq('id', id);
   if (error) { showToast('خطأ: ' + error.message, 'error'); return; }
-  video.url = url; video.title_ar = title;
+  video.video_url = url; video.title_ar = title;
   renderVideoList();
   showToast('تم التعديل ✓', 'success');
 }
