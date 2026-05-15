@@ -580,6 +580,7 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 /* ── PARTNERS ── */
 .partners-section { background:var(--black-charcoal); }
 .marquee-outer {
+  direction:ltr; unicode-bidi:embed;
   overflow:hidden;
   border-top:1px solid var(--gray-border); border-bottom:1px solid var(--gray-border);
   -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
