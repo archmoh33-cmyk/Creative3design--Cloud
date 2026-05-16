@@ -2959,7 +2959,7 @@ async function loadBlogView() {
 }
 
 function renderBlogPostsList() {
-  const el = document.getElementById('blogList');
+  const el = document.getElementById('blogPostsList');
   if (!el) return;
   if (!allBlogPosts.length) {
     el.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
@@ -3206,4 +3206,4 @@ async function deletePackage(id) {
 </script>
 </body>
 </html>
-  
+   
