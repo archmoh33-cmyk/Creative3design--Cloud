@@ -3079,7 +3079,7 @@ async function uploadBlogCover(event, id) {
   fd.append('upload_preset', 'creative3design');
   fd.append('folder', 'blog_covers');
   try {
-    const res = await fetch('https://api.cloudinary.com/v1_1/dashed-cloud/image/upload', { method:'POST', body: fd });
+    const res = await fetch('https://api.cloudinary.com/v1_1/dwh2y3lvz/image/upload', { method:'POST', body: fd });
     const data = await res.json();
     if (data.secure_url) {
       document.getElementById('bcover-'+id).value = data.secure_url;
