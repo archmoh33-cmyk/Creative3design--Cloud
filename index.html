@@ -92,13 +92,10 @@
   #packages-preview [style*="grid-template-columns:repeat(5"] { grid-template-columns:repeat(3,1fr) !important; }
 }
 
-    .price-ref-tabs-wrap{margin-top:2.5rem;}
-    .price-ref-heading{font-size:1rem;font-weight:700;color:var(--platinum);margin-bottom:1rem;text-align:center;}
-    .prt-tabs{display:flex;justify-content:center;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap;}
-    .prt-tab{background:transparent;border:1px solid var(--gray-border);color:var(--text-muted);padding:.45rem 1rem;border-radius:2rem;font-size:.78rem;cursor:pointer;transition:all .2s;font-family:'Cairo',sans-serif;white-space:nowrap;}
-    .prt-tab:hover{border-color:var(--gold);color:var(--gold);}
-    .prt-tab.active{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:700;}
-    .prt-note{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:.8rem;}
+    
+    
+            .prt-tab:hover{border-color:var(--gold);color:var(--gold);}
+        .prt-note{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:.8rem;}
     @media(max-width:500px){.prt-tab{font-size:.72rem;padding:.38rem .75rem;}}
   </style>
 </head>
@@ -918,119 +915,37 @@
 
     <!-- Mini price reference — compact pill bar -->
     <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.2rem 1.5rem;margin-bot      <!-- مرجع سريع للأسعار — مايو 2026 — مع تبويبات -->
-      <div class="price-ref-tabs-wrap">
-
-        <!-- عنوان -->
-        <h3 class="price-ref-heading" data-ar="مرجع سريع للأسعار — مايو 2026" data-en="Quick Price Reference — May 2026">مرجع سريع للأسعار — مايو 2026</h3>
-
-        <!-- أزرار التبويب -->
-        <div class="prt-tabs" role="tablist">
-          <button class="prt-tab active" onclick="switchPriceTab(this,'fin')" role="tab" aria-selected="true">
-            🏗️ <span data-ar="التشطيب" data-en="Finishing">التشطيب</span>
-          </button>
-          <button class="prt-tab" onclick="switchPriceTab(this,'des')" role="tab" aria-selected="false">
-            ✏️ <span data-ar="التصميم الداخلي" data-en="Interior Design">التصميم الداخلي</span>
-          </button>
-          <button class="prt-tab" onclick="switchPriceTab(this,'arc')" role="tab" aria-selected="false">
-            🏛️ <span data-ar="المعماري" data-en="Architecture">المعماري</span>
-          </button>
-        </div>
-
-        <!-- لوحة التشطيب -->
-        <div class="prt-panel" id="prt-fin">
-          <div class="price-ref-row">
-            <a href="packages.html#calculator" class="price-ref-pill" data-pkg="standard">
-              <span class="price-ref-label" data-ar="ستاندرد" data-en="Standard">ستاندرد</span>
-              <span class="price-ref-val">5,500</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#calculator" class="price-ref-pill" data-pkg="premium">
-              <span class="price-ref-label" data-ar="بريميم" data-en="Premium">بريميم</span>
-              <span class="price-ref-val">7,000</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#calculator" class="price-ref-pill" data-pkg="luxury">
-              <span class="price-ref-label" data-ar="لاكشري" data-en="Luxury">لاكشري</span>
-              <span class="price-ref-val">9,500</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#calculator" class="price-ref-pill" data-pkg="superlux">
-              <span class="price-ref-label" data-ar="سوبر لاكشري" data-en="Super Luxury">سوبر لاكشري</span>
-              <span class="price-ref-val">12,500</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#calculator" class="price-ref-pill" data-pkg="ultravip">
-              <span class="price-ref-label">Ultra VIP</span>
-              <span class="price-ref-val">17,000+</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-          </div>
-          <p class="prt-note" data-ar="أسعار تشطيب كاملة — تختلف حسب المساحة والمواد" data-en="Full finishing prices — vary by area and materials">أسعار تشطيب كاملة — تختلف حسب المساحة والمواد</p>
-        </div>
-
-        <!-- لوحة التصميم الداخلي -->
-        <div class="prt-panel" id="prt-des" style="display:none;">
-          <div class="price-ref-row">
-            <a href="packages.html#design-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="شقق" data-en="Apartments">شقق</span>
-              <span class="price-ref-val">90</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#design-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="فيلل" data-en="Villas">فيلل</span>
-              <span class="price-ref-val">120</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#design-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="مكاتب" data-en="Offices">مكاتب</span>
-              <span class="price-ref-val">110</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#design-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="مطاعم" data-en="Restaurants">مطاعم</span>
-              <span class="price-ref-val">150</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#design-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="فنادق" data-en="Hotels">فنادق</span>
-              <span class="price-ref-val">180</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-          </div>
-          <p class="prt-note" data-ar="رسوم التصميم فقط — حد أدنى 8,000 ج.م للمشروع" data-en="Design fees only — minimum 8,000 EGP per project">رسوم التصميم فقط — حد أدنى 8,000 ج.م للمشروع</p>
-        </div>
-
-        <!-- لوحة التصميم المعماري -->
-        <div class="prt-panel" id="prt-arc" style="display:none;">
-          <div class="price-ref-row">
-            <a href="packages.html#arch-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="فيلل" data-en="Villas">فيلل</span>
-              <span class="price-ref-val">200</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#arch-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="عمارات" data-en="Buildings">عمارات</span>
-              <span class="price-ref-val">160</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#arch-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="تجاري" data-en="Commercial">تجاري</span>
-              <span class="price-ref-val">180</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#arch-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="فنادق" data-en="Hotels">فنادق</span>
-              <span class="price-ref-val">280</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-            <a href="packages.html#arch-calculator" class="price-ref-pill">
-              <span class="price-ref-label" data-ar="مستشفيات" data-en="Hospitals">مستشفيات</span>
-              <span class="price-ref-val">280</span>
-              <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
-            </a>
-          </div>
-          <p class="prt-note" data-ar="رسوم التصميم المعماري — حد أدنى 12,000 ج.م للمشروع" data-en="Architectural design fees — minimum 12,000 EGP per project">رسوم التصميم المعماري — حد أدنى 12,000 ج.م للمشروع</p>
-        </div>
+      <!-- Mini price reference — compact pill bar -->
+    <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.2rem 1.5rem;margin-bottom:2rem;">
+      <p style="font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.85rem;text-align:center;letter-spacing:.04em;" data-ar="مرجع سريع للأسعار — مايو 2026" data-en="Quick Price Reference — May 2026">مرجع سريع للأسعار — مايو 2026</p>
+      <div class="price-ref-bar">
+        <a href="packages.html#calculator" class="price-ref-pill" data-tier="standard">
+          <span class="price-ref-label" data-ar="ستاندرد" data-en="Standard">ستاندرد</span>
+          <span class="price-ref-val">5,500</span>
+          <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
+        </a>
+        <a href="packages.html#calculator" class="price-ref-pill" data-tier="premium">
+          <span class="price-ref-label" data-ar="بريميم" data-en="Premium">بريميم</span>
+          <span class="price-ref-val">7,000</span>
+          <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
+        </a>
+        <a href="packages.html#calculator" class="price-ref-pill recommended" data-tier="luxury">
+          <span class="price-ref-label" data-ar="لاكشري" data-en="Luxury">لاكشري</span>
+          <span class="price-ref-val">9,500</span>
+          <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
+        </a>
+        <a href="packages.html#calculator" class="price-ref-pill" data-tier="super">
+          <span class="price-ref-label" data-ar="سوبر لاكشري" data-en="Super Luxury">سوبر</span>
+          <span class="price-ref-val">12,500</span>
+          <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
+        </a>
+        <a href="packages.html#calculator" class="price-ref-pill" data-tier="ultra">
+          <span class="price-ref-label">Ultra VIP</span>
+          <span class="price-ref-val">17,000+</span>
+          <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
+        </a>
+      </div>
+    </div>
 
       </div>ction-cta lazy-reveal">
       <a href="packages.html" class="btn-gold btn-lg" data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost">احسب تكلفة مشروعك الآن</a>
