@@ -1910,6 +1910,43 @@ function switchBA(idx) {
     waitForClient(25);
   }
 
+  /* ── Partners marquee — seamless RAF-based, zero fractional-pixel gap ── */
+  (function initPartnersMarquee() {
+    function start() {
+      var track = document.getElementById('partnersTrack');
+      if (!track) return;
+      var items = track.querySelectorAll('.partner-logo-item');
+      var setCount = Math.floor(items.length / 2);
+      if (!setCount) return;
+      var setWidth = 0;
+      for (var i = 0; i < setCount; i++) {
+        setWidth += items[i].getBoundingClientRect().width;
+      }
+      setWidth = Math.round(setWidth);
+      track.style.animation = 'none';
+      track.style.webkitAnimation = 'none';
+      track.style.willChange = 'transform';
+      var x = 0, speed = 0.6, paused = false;
+      var outer = track.parentElement;
+      if (outer) {
+        outer.addEventListener('mouseenter', function() { paused = true; });
+        outer.addEventListener('mouseleave', function() { paused = false; });
+      }
+      function tick() {
+        if (!paused) {
+          x -= speed;
+          if (x <= -setWidth) x += setWidth;
+          track.style.transform = 'translateX(' + x + 'px)';
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else { start(); }
+  })();
+
 })();
 </script>
 
