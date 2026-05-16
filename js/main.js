@@ -321,6 +321,7 @@ function applyPortfolioFilter(cat, cards, limit) {
 }
 
 function initPortfolioFilter() {
+  if (window.C3D_PORTFOLIO_PAGE) return;
   const filterEl = document.getElementById('portfolioFilter');
   if (!filterEl) return;
   const btns = filterEl.querySelectorAll('.filter-btn');
