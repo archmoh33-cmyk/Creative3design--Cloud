@@ -636,18 +636,18 @@ function updateDesCalc() {
 }
 
 const archTypeData = {
-  villa_arch:     { ratePerM2: 200, supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
-  apt_building:   { ratePerM2: 160, supPct: 0.20, label: 'عمارة سكنية',         minFee: 15000 },
-  commercial_bld: { ratePerM2: 180, supPct: 0.22, label: 'مبنى تجاري',          minFee: 15000 },
-  hotel_arch:     { ratePerM2: 280, supPct: 0.28, label: 'فندق / منتجع',        minFee: 30000 },
-  mall:           { ratePerM2: 220, supPct: 0.25, label: 'مول / كمبوند',        minFee: 40000 },
-  factory:        { ratePerM2: 120, supPct: 0.18, label: 'مصنع / مستودع',       minFee: 12000 },
-  admin:          { ratePerM2: 190, supPct: 0.22, label: 'مبنى إداري',          minFee: 15000 },
-  school_arch:    { ratePerM2: 160, supPct: 0.20, label: 'مدرسة / جامعة',       minFee: 18000 },
-  hospital:       { ratePerM2: 280, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 35000 },
-  mixed:          { ratePerM2: 210, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 25000 },
+  villa_arch:     { ratePerM2: 34, supPct: 0.25, label: 'فيلا سكنية',          minFee: 2000 },
+  apt_building:   { ratePerM2: 27.5, supPct: 0.20, label: 'عمارة سكنية',         minFee: 2500 },
+  commercial_bld: { ratePerM2: 31, supPct: 0.22, label: 'مبنى تجاري',          minFee: 2500 },
+  hotel_arch:     { ratePerM2: 48, supPct: 0.28, label: 'فندق / منتجع',        minFee: 5000 },
+  mall:           { ratePerM2: 38, supPct: 0.25, label: 'مول / كمبوند',        minFee: 7000 },
+  factory:        { ratePerM2: 21, supPct: 0.18, label: 'مصنع / مستودع',       minFee: 2000 },
+  admin:          { ratePerM2: 33, supPct: 0.22, label: 'مبنى إداري',          minFee: 2500 },
+  school_arch:    { ratePerM2: 27.5, supPct: 0.20, label: 'مدرسة / جامعة',       minFee: 3000 },
+  hospital:       { ratePerM2: 48, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 6000 },
+  mixed:          { ratePerM2: 36, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 4000 },
 };
-const archLevelMul = { basic: 0.55, standard: 0.85, premium: 1.15, full: 1.50 };
+const archLevelMul = { basic: 0.65, standard: 1.00, premium: 1.35, full: 1.75 };
 let archSelType  = 'villa_arch';
 let archSelLevel = 'standard';
 
