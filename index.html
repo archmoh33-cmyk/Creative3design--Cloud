@@ -197,39 +197,13 @@
       </div>
     </div>
     <!-- Slide 4 -->
-    <div class="hero-slide" data-hero-idx="3" style="display:none">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="hero-tag" data-ar="تصميم داخلي سكني" data-en="Residential Interior Design">تصميم داخلي سكني</p>
-        <h2 data-ar="مشاريع سكنية تعكس شخصيتك" data-en="Residential Projects That Reflect You">مشاريع سكنية تعكس شخصيتك</h2>
-        <p class="hero-sub" data-ar="فلل، شقق، دوبلكس — كل مشروع بصمة فريدة تجمع الأناقة والراحة" data-en="Villas, apartments, duplexes — every project a unique signature of elegance and comfort">فلل، شقق، دوبلكس — كل مشروع بصمة فريدة تجمع الأناقة والراحة</p>
-        <div class="hero-btns">
-          <a href="services.html#interior-residential" class="btn-gold" data-ar="اكتشف الخدمة السكنية" data-en="Explore Residential Service">اكتشف الخدمة السكنية</a>
-          <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-outline-gold" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 5 -->
-    <div class="hero-slide" data-hero-idx="4" style="display:none">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="hero-tag" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior Design">تصميم داخلي تجاري</p>
-        <h2 data-ar="مساحات تجارية تبني علامتك التجارية" data-en="Commercial Spaces That Build Your Brand">مساحات تجارية تبني علامتك التجارية</h2>
-        <p class="hero-sub" data-ar="مكاتب، محلات، مطاعم، فنادق — بيئات عمل إلهامية تعكس احترافيتك" data-en="Offices, stores, restaurants, hotels — inspiring workspaces that reflect your professionalism">مكاتب، محلات، مطاعم، فنادق — بيئات عمل إلهامية تعكس احترافيتك</p>
-        <div class="hero-btns">
-          <a href="services.html#interior-commercial" class="btn-gold" data-ar="اكتشف الخدمة التجارية" data-en="Explore Commercial Service">اكتشف الخدمة التجارية</a>
-          <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-outline-gold" data-ar="احصل على عرض سعر" data-en="Get a Quote">احصل على عرض سعر</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Slide Dots -->
+    <!-- Slide Dots -->
   <div class="hero-dots" id="heroDots">
     <button class="hero-dot active" onclick="goToSlide(0)"></button>
     <button class="hero-dot" onclick="goToSlide(1)"></button>
     <button class="hero-dot" onclick="goToSlide(2)"></button>
-    <button class="hero-dot" onclick="goToSlide(3)"></button>
-    <button class="hero-dot" onclick="goToSlide(4)"></button>
+    
+    
   </div>
   <!-- Stats Bar -->
   <div class="hero-stats">
@@ -1656,7 +1630,7 @@ function switchBA(idx) {
       .select('image_url, title_ar')
       .eq('active', true)
       .order('sort_order', { ascending: true })
-      .limit(10)
+      .limit(3)
       .then(function(res) {
         if (!res.error && res.data && res.data.length > 0) {
           applyHeroImages(res.data);
