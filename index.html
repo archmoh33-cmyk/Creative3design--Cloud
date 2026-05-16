@@ -1911,40 +1911,49 @@ function switchBA(idx) {
   }
 
   /* ── Partners marquee — seamless RAF-based, zero fractional-pixel gap ── */
+  /* ── Partners marquee — CSS-based, exact integer pixel, zero gap ── */
   (function initPartnersMarquee() {
     function start() {
       var track = document.getElementById('partnersTrack');
       if (!track) return;
+
       var items = track.querySelectorAll('.partner-logo-item');
       var setCount = Math.floor(items.length / 2);
       if (!setCount) return;
+
       var setWidth = 0;
       for (var i = 0; i < setCount; i++) {
         setWidth += items[i].getBoundingClientRect().width;
       }
       setWidth = Math.round(setWidth);
-      track.style.animation = 'none';
-      track.style.webkitAnimation = 'none';
-      track.style.willChange = 'transform';
-      var x = 0, speed = 0.6, paused = false;
+      if (!setWidth) return;
+
+      var style = document.createElement('style');
+      style.textContent =
+        '@keyframes marquee-px{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}' +
+        '@-webkit-keyframes marquee-px{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}';
+      document.head.appendChild(style);
+
+      track.style.cssText += ';animation:marquee-px 32s linear infinite;-webkit-animation:marquee-px 32s linear infinite;';
+
       var outer = track.parentElement;
       if (outer) {
-        outer.addEventListener('mouseenter', function() { paused = true; });
-        outer.addEventListener('mouseleave', function() { paused = false; });
+        outer.addEventListener('mouseenter', function() {
+          track.style.animationPlayState = 'paused';
+          track.style.webkitAnimationPlayState = 'paused';
+        });
+        outer.addEventListener('mouseleave', function() {
+          track.style.animationPlayState = 'running';
+          track.style.webkitAnimationPlayState = 'running';
+        });
       }
-      function tick() {
-        if (!paused) {
-          x -= speed;
-          if (x <= -setWidth) x += setWidth;
-          track.style.transform = 'translateX(' + x + 'px)';
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
     }
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', start);
-    } else { start(); }
+    } else {
+      start();
+    }
   })();
 
 })();
