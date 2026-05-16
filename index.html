@@ -1195,42 +1195,6 @@
   </div>
 </section>
 
-<!-- PARTNERS SECTION -->
-<section class="partners-section section-padding" id="partners">
-  <div class="container">
-    <div class="section-header lazy-reveal">
-      <p class="section-tag" data-ar="شركاؤنا" data-en="Our Partners">شركاؤنا</p>
-      <h2 data-ar="نعمل مع الأفضل" data-en="We Work With the Best">نعمل مع الأفضل</h2>
-    </div>
-  </div>
-  <div class="marquee-outer">
-    <div class="marquee-track" id="partnersTrack">
-      <!-- set A -->
-      <span class="partner-logo-item"><span class="partner-logo-text">Porcelanosa</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Bosch</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Siemens</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Grohe</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Villeroy &amp; Boch</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Legrand</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Duravit</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Hansgrohe</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Schneider Electric</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Ceramiche Refin</span></span>
-      <!-- set B (clone — seamless loop) -->
-      <span class="partner-logo-item"><span class="partner-logo-text">Porcelanosa</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Bosch</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Siemens</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Grohe</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Villeroy &amp; Boch</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Legrand</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Duravit</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Hansgrohe</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Schneider Electric</span></span>
-      <span class="partner-logo-item"><span class="partner-logo-text">Ceramiche Refin</span></span>
-    </div>
-  </div>
-</section>
-
 <!-- BLOG PREVIEW SECTION -->
 <section class="blog-section section-padding" id="blog">
   <div class="container">
@@ -1912,46 +1876,7 @@ function switchBA(idx) {
 
   /* ── Partners marquee — seamless RAF-based, zero fractional-pixel gap ── */
   /* ── Partners marquee — CSS-based, exact integer pixel, zero gap ── */
-  /* ── Partners marquee — seamless CSS, exact float px, no rounding ── */
-  (function initPartnersMarquee() {
-    function applyMarquee() {
-      var track = document.getElementById('partnersTrack');
-      if (!track) return;
-      var items = track.querySelectorAll('.partner-logo-item');
-      var setCount = Math.floor(items.length / 2);
-      if (!setCount) return;
 
-      // Exact float width — NO Math.round() to avoid sub-pixel gap
-      var setWidth = 0;
-      for (var i = 0; i < setCount; i++) {
-        setWidth += items[i].getBoundingClientRect().width;
-      }
-      if (!setWidth) return;
-
-      // Remove previous injected style if any
-      var prev = document.getElementById('__mq_style__');
-      if (prev) prev.parentNode.removeChild(prev);
-
-      // Inject exact-pixel keyframe (float, not rounded integer)
-      var st = document.createElement('style');
-      st.id = '__mq_style__';
-      st.textContent =
-        '@keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}' +
-        '@-webkit-keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}';
-      document.head.appendChild(st);
-
-      // Direct assignment — NOT cssText+= (avoids stale style conflicts)
-      track.style.animation = 'mqs 30s linear infinite';
-      track.style.webkitAnimation = 'mqs 30s linear infinite';
-    }
-
-    // Single call after fonts load — no restart, no gap
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(applyMarquee);
-    } else {
-      window.addEventListener('load', applyMarquee);
-    }
-  })();
 
 })();
 </script>
@@ -1970,4 +1895,4 @@ function switchBA(idx) {
 
 </body>
 </html>
-  
+    
