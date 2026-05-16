@@ -72,7 +72,11 @@
     /* Package cards grid */
     .pkg-cards { display:grid; grid-template-columns:repeat(5,1fr); gap:.8rem; margin-top:2rem; }
     @media(max-width:1000px){ .pkg-cards { grid-template-columns:repeat(3,1fr); } }
-    @media(max-width:640px){ .pkg-cards { grid-template-columns:1fr 1fr; } }
+    @media(max-width:640px){
+  .pkg-cards{display:flex !important;flex-wrap:nowrap !important;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:.75rem;padding:.4rem 1.2rem 1.4rem;scrollbar-width:none;margin-left:-1rem;margin-right:-1rem;}
+  .pkg-cards::-webkit-scrollbar{display:none;}
+  .pkg-cards .pkg-c{flex:0 0 80vw;max-width:290px;scroll-snap-align:center;}
+}
 
     .pkg-c {
       border:2px solid var(--gray-border); padding:1.2rem 1rem; text-align:center;
@@ -157,7 +161,6 @@
 
     /* ── Mobile overrides ── */
     @media(max-width:640px){
-      .pkg-cards { grid-template-columns:1fr !important; }
       #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
       .arch-result-grid { grid-template-columns:repeat(2,1fr) !important; }
     }
@@ -165,6 +168,19 @@
       #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
       .arch-result-grid { grid-template-columns:1fr !important; }
     }
+  
+    .pkg-type-bar{display:none;align-items:center;justify-content:space-between;background:rgba(184,151,106,.07);border:1px solid rgba(184,151,106,.22);border-radius:.7rem;padding:.55rem 1rem;margin-bottom:.7rem;font-size:.78rem;color:var(--platinum,#ccc);gap:.5rem;}
+    .pkg-type-bar strong{color:var(--gold,#b8976a);}
+    .pkg-type-count{font-size:.72rem;color:var(--text-muted,#888);white-space:nowrap;}
+    @media(max-width:640px){.pkg-type-bar{display:flex;}}
+    .pkg-swipe-hint{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:.76rem;color:var(--gold,#b8976a);margin-top:.5rem;animation:pkgSwipe 1.8s ease-in-out infinite;pointer-events:none;}
+    @keyframes pkgSwipe{0%,100%{transform:translateX(0);opacity:.75;}50%{transform:translateX(-7px);opacity:1;}}
+    @media(max-width:640px){.pkg-swipe-hint{display:flex;}}
+    .pkg-dots{display:none;justify-content:center;align-items:center;gap:.4rem;margin-top:.65rem;}
+    .pkg-dots .dot{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;background-color:rgba(184,151,106,.3);transition:all .22s;}
+    .pkg-dots .dot.active{background-color:var(--gold,#b8976a);width:22px;border-radius:4px;}
+    @media(max-width:640px){.pkg-dots{display:flex;}}
+    @media(max-width:700px){.calc-tabs{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap !important;gap:.45rem;padding-bottom:.5rem;}.calc-tabs::-webkit-scrollbar{display:none;}.calc-tab{flex-shrink:0;font-size:.75rem;padding:.55rem .85rem;white-space:nowrap;}}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"حاسبة تكلفة التشطيب والتصميم 2026","url":"https://creative3design.com/packages.html","description":"احسب تكلفة مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP","provider":{"@type":"Organization","name":"Creative3Design","telephone":"+201019053288"}}
