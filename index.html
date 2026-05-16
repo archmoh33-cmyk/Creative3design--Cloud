@@ -66,6 +66,157 @@
   </script>
 
 <style>
+/* =============================================
+   MODERN PAGE LOADER — شاشة التحميل العصرية
+   ============================================= */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #080808;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), visibility 0.7s;
+}
+#page-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+/* Logo mark */
+.loader-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  animation: loaderBrandIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.loader-logo-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.loader-logo-text span {
+  color: #b8976a;
+}
+.loader-tagline {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(184,151,106,0.7);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+/* Animated ring */
+.loader-ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  animation: loaderBrandIn 0.9s 0.15s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.loader-ring svg {
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+}
+.loader-ring .track {
+  fill: none;
+  stroke: rgba(184,151,106,0.12);
+  stroke-width: 3;
+}
+.loader-ring .fill {
+  fill: none;
+  stroke: #b8976a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 188;
+  stroke-dashoffset: 188;
+  animation: loaderRingFill 2s 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+/* Gold corner accents */
+.loader-corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.loader-corners::before,
+.loader-corners::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(184,151,106,0.3);
+  border-style: solid;
+}
+.loader-corners::before {
+  top: 12%;
+  right: 8%;
+  border-width: 1px 1px 0 0;
+  animation: cornerPulse 2s ease-in-out infinite;
+}
+.loader-corners::after {
+  bottom: 12%;
+  left: 8%;
+  border-width: 0 0 1px 1px;
+  animation: cornerPulse 2s 1s ease-in-out infinite;
+}
+/* Dot progress bar */
+.loader-dots {
+  display: flex;
+  gap: 8px;
+  animation: loaderBrandIn 1s 0.25s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.loader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(184,151,106,0.3);
+}
+.loader-dot:nth-child(1) { animation: dotPulse 1.2s 0.0s ease-in-out infinite; }
+.loader-dot:nth-child(2) { animation: dotPulse 1.2s 0.2s ease-in-out infinite; }
+.loader-dot:nth-child(3) { animation: dotPulse 1.2s 0.4s ease-in-out infinite; }
+.loader-dot:nth-child(4) { animation: dotPulse 1.2s 0.6s ease-in-out infinite; }
+.loader-dot:nth-child(5) { animation: dotPulse 1.2s 0.8s ease-in-out infinite; }
+
+/* Scanning line */
+.loader-scan {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b8976a, transparent);
+  animation: scanLine 2.5s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes loaderBrandIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes loaderRingFill {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes dotPulse {
+  0%, 100% { background: rgba(184,151,106,0.25); transform: scale(1); }
+  50%       { background: #b8976a; transform: scale(1.5); }
+}
+@keyframes cornerPulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.8; }
+}
+@keyframes scanLine {
+  0%   { transform: translateY(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+/* hide body scroll during loading */
+body.loading { overflow: hidden; }
+
 /* Packages preview cards on homepage */
 .pkg-preview-card {
   display:flex; flex-direction:column;
@@ -91,15 +242,61 @@
   #packages-preview .lazy-reveal[style*="grid-template-columns:repeat(3"] { grid-template-columns:1fr !important; }
   #packages-preview [style*="grid-template-columns:repeat(5"] { grid-template-columns:repeat(3,1fr) !important; }
 }
-
-    
-    
-            .prt-tab:hover{border-color:var(--gold);color:var(--gold);}
-        .prt-note{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:.8rem;}
-    @media(max-width:500px){.prt-tab{font-size:.72rem;padding:.38rem .75rem;}}
-  </style>
+</style>
 </head>
-<body class="page-has-hero">
+<body class="page-has-hero loading">
+
+<!-- ===== PAGE LOADER ===== -->
+<div id="page-loader" role="status" aria-label="جاري التحميل…">
+  <div class="loader-scan"></div>
+  <div class="loader-corners"></div>
+
+  <div class="loader-brand">
+    <div class="loader-logo-text">Creative<span>3</span>Design</div>
+    <div class="loader-tagline">Interior &amp; Architecture</div>
+  </div>
+
+  <div class="loader-ring">
+    <svg viewBox="0 0 72 72">
+      <circle class="track" cx="36" cy="36" r="30"/>
+      <circle class="fill"  cx="36" cy="36" r="30"/>
+    </svg>
+  </div>
+
+  <div class="loader-dots">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var MIN_SHOW = 2000; // الحد الأدنى لعرض الـ Loader بالـ ms
+  var start = Date.now();
+  function hideLoader(){
+    var elapsed = Date.now() - start;
+    var delay   = Math.max(0, MIN_SHOW - elapsed);
+    setTimeout(function(){
+      var loader = document.getElementById('page-loader');
+      if(loader){ loader.classList.add('fade-out'); }
+      document.body.classList.remove('loading');
+      setTimeout(function(){
+        if(loader){ loader.remove(); }
+      }, 750);
+    }, delay);
+  }
+  if(document.readyState === 'complete'){
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+    // Safety fallback بعد 5 ثواني
+    setTimeout(hideLoader, 5000);
+  }
+})();
+</script>
 
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -196,14 +393,12 @@
         </div>
       </div>
     </div>
-    <!-- Slide 4 -->
-    <!-- Slide Dots -->
+  </div>
+  <!-- Slide Dots -->
   <div class="hero-dots" id="heroDots">
     <button class="hero-dot active" onclick="goToSlide(0)"></button>
     <button class="hero-dot" onclick="goToSlide(1)"></button>
     <button class="hero-dot" onclick="goToSlide(2)"></button>
-    
-    
   </div>
   <!-- Stats Bar -->
   <div class="hero-stats">
@@ -888,8 +1083,6 @@
     </div>
 
     <!-- Mini price reference — compact pill bar -->
-    <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.2rem 1.5rem;margin-bot      <!-- مرجع سريع للأسعار — مايو 2026 — مع تبويبات -->
-      <!-- Mini price reference — compact pill bar -->
     <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.2rem 1.5rem;margin-bottom:2rem;">
       <p style="font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.85rem;text-align:center;letter-spacing:.04em;" data-ar="مرجع سريع للأسعار — مايو 2026" data-en="Quick Price Reference — May 2026">مرجع سريع للأسعار — مايو 2026</p>
       <div class="price-ref-bar">
@@ -900,17 +1093,17 @@
         </a>
         <a href="packages.html#calculator" class="price-ref-pill" data-tier="premium">
           <span class="price-ref-label" data-ar="بريميم" data-en="Premium">بريميم</span>
-          <span class="price-ref-val">7,000</span>
+          <span class="price-ref-val">6,000</span>
           <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
         </a>
         <a href="packages.html#calculator" class="price-ref-pill recommended" data-tier="luxury">
           <span class="price-ref-label" data-ar="لاكشري" data-en="Luxury">لاكشري</span>
-          <span class="price-ref-val">9,500</span>
+          <span class="price-ref-val">10,750</span>
           <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
         </a>
         <a href="packages.html#calculator" class="price-ref-pill" data-tier="super">
           <span class="price-ref-label" data-ar="سوبر لاكشري" data-en="Super Luxury">سوبر</span>
-          <span class="price-ref-val">12,500</span>
+          <span class="price-ref-val">14,250</span>
           <span class="price-ref-unit" data-ar="ج.م/م²" data-en="EGP/m²">ج.م/م²</span>
         </a>
         <a href="packages.html#calculator" class="price-ref-pill" data-tier="ultra">
@@ -921,7 +1114,7 @@
       </div>
     </div>
 
-      </div>ction-cta lazy-reveal">
+    <div class="section-cta lazy-reveal">
       <a href="packages.html" class="btn-gold btn-lg" data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost">احسب تكلفة مشروعك الآن</a>
       <a href="packages.html?tab=arch#calculator" class="btn-outline-gold btn-lg" data-ar="حاسبة التصميم المعماري" data-en="Architectural Design Calculator" style="margin-right:1rem;">🏛️ حاسبة التصميم المعماري</a>
     </div>
@@ -1826,89 +2019,53 @@ function switchBA(idx) {
     waitForClient(25);
   }
 
-  /* ── Partners marquee — seamless RAF-based, zero fractional-pixel gap ── */
-  /* ── Partners marquee — CSS-based, exact integer pixel, zero gap ── */
-
 
 })();
 
-(function _blogLegacy_removed() { return; // removed
-  var FALLBACK = [
-    { title_ar:'أكثر 7 أخطاء في التصميم الداخلي 2026 وكيف تتجنبها', excerpt_ar:'اكتشف الأخطاء التي يقع فيها أصحاب المنازل وكيف يتجنبها متخصصو Creative3Design.', cover_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', slug:'blog/akhtaa-tasmeem-dakheli-2026.html' },
-    { title_ar:'كيف تختار شركة تشطيب موثوقة في مصر 2026 — 9 معايير', excerpt_ar:'المعايير الÂ9 التي تضمن لك شركة تشطيب موثوقة.', cover_url:'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', slug:'blog/ikhtiyar-sharikat-tashtib-2026.html' },
-    { title_ar:'التصميم المعماري للفيلات في مصر 2026', excerpt_ar:'دليل شامل يكشف مراحل التصميم المعماري للفيلات والتكاليف الفعلية في مصر 2026.', cover_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', slug:'blog/tasmeem-memari-villa-2026.html' }
-  ];
-  function renderBlog(posts) {
-    var grid = document.getElementById('blogGrid');
-    if (!grid) return;
-    var isAr = document.documentElement.lang !== 'en';
-    if (!posts || !posts.length) posts = FALLBACK;
-    grid.innerHTML = posts.slice(0,3).map(function(p) {
-      var img = p.cover_url || FALLBACK[0].cover_url;
-      var href = p.slug || '#';
-      var title = p.title_ar || '';
-      var excerpt = p.excerpt_ar || '';
-      return '<article class="blog-card lazy-reveal" style="border-top:2px solid var(--gold);">'
-        + '<a href="' + href + '"><img data-src="' + img + '" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="' + title.replace(/"/g,'') + '" class="lazy-img" loading="lazy"/></a>'
-        + '<div class="blog-card-body"><span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>'
-        + '<h3><a href="' + href + '">' + title + '</a></h3><p>' + excerpt + '</p>'
-        + '<a href="' + href + '" class="blog-read-more">اقرأ المزيد ←</a></div></article>';
-    }).join('');
-    if (window.lazyObserver) grid.querySelectorAll('img.lazy-img[data-src]').forEach(function(i){window.lazyObserver.observe(i);});
-    else grid.querySelectorAll('img.lazy-img[data-src]').forEach(function(i){i.src=i.dataset.src;});
-  }
-  function tryLoad() {
-    var c = window.supabaseClient || window.c3dClient;
-    if (!c) { renderBlog(FALLBACK); return; }
-    c.from('blog_posts').select('title_ar,excerpt_ar,cover_url,slug,sort_order')
-      .eq('published',true).order('sort_order',{ascending:true}).limit(3)
-      .then(function(r){renderBlog(r.data&&r.data.length?r.data:FALLBACK);}).catch(function(){renderBlog(FALLBACK);});
-  }
-  var a=0, t=setInterval(function(){if(window.supabaseClient||window.c3dClient||++a>15){clearInterval(t);tryLoad();}},200);
-})();
-</script>
-
-<script>
-/* ── Blog Section — guaranteed after Supabase ready ── */
-window.addEventListener('load', function() {
+/* ── Blog Posts — window.load ensures Supabase client is ready ── */
+window.addEventListener('load', function () {
   function loadBlog(retries) {
     var client = window.c3dClient;
     if (!client) {
-      if (retries > 0) { setTimeout(function(){ loadBlog(retries-1); }, 400); }
+      if (retries > 0) { setTimeout(function () { loadBlog(retries - 1); }, 400); }
       return;
     }
+    var FALLBACK = [
+      { title_ar: 'أكثر 7 أخطاء في التصميم الداخلي 2026 وكيف تتجنبها', excerpt_ar: 'اكتشف الأخطاء التي يقع فيها أصحاب المنازل وكيف يتجنبها متخصصو Creative3Design.', cover_url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', slug: 'blog/akhtaa-tasmeem-dakheli-2026.html' },
+      { title_ar: 'كيف تختار شركة تشطيب موثوقة في مصر 2026 — 9 معايير', excerpt_ar: 'المعايير الـ9 التي تضمن لك شركة تشطيب موثوقة وتجنّبك الأخطاء المكلفة.', cover_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', slug: 'blog/ikhtiyar-sharikat-tashtib-2026.html' },
+      { title_ar: 'التصميم المعماري للفيلات في مصر 2026 — المراحل والتكاليف', excerpt_ar: 'دليل شامل يكشف مراحل التصميم المعماري للفيلات والتكاليف الفعلية في مصر 2026.', cover_url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', slug: 'blog/tasmeem-memari-villa-2026.html' }
+    ];
     client.from('blog_posts')
       .select('title_ar,excerpt_ar,cover_url,slug,sort_order')
       .eq('published', true)
       .order('sort_order', { ascending: true })
       .limit(3)
-      .then(function(r) {
+      .then(function (r) {
         var grid = document.getElementById('blogGrid');
         if (!grid) return;
+        var posts = (r.data && r.data.length) ? r.data : FALLBACK;
         var isAr = document.documentElement.lang !== 'en';
-        var posts = (r.data && r.data.length) ? r.data : null;
-        if (!posts) return; // keep existing content if empty
-        grid.innerHTML = posts.map(function(p) {
-          var img = p.cover_url || '';
-          if (!img) return '';
+        grid.innerHTML = posts.slice(0, 3).map(function (p) {
+          var img = p.cover_url || FALLBACK[0].cover_url;
           var href = p.slug || '#';
           var title = p.title_ar || '';
           var excerpt = p.excerpt_ar || '';
-          return '<article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold)">'
-            + '<a href="' + href + '"><img src="' + img + '" alt="' + title.replace(/"/g,'') + '" loading="lazy" style="width:100%;height:200px;object-fit:cover;border-radius:6px 6px 0 0"></a>'
+          return '<article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold);">'
+            + '<a href="' + href + '"><img src="' + img + '" alt="' + title.replace(/"/g, '') + '" loading="lazy" style="width:100%;height:200px;object-fit:cover;"/></a>'
             + '<div class="blog-card-body">'
-            + '<span class="blog-tag" style="background:var(--gold);color:#000;padding:.2rem .6rem;border-radius:4px;font-size:.75rem">جديد 2026</span>'
+            + '<span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>'
             + '<h3><a href="' + href + '">' + title + '</a></h3>'
             + '<p>' + excerpt + '</p>'
             + '<a href="' + href + '" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>'
             + '</div></article>';
-        }).filter(Boolean).join('');
+        }).join('');
       })
-      .catch(function() {});
+      .catch(function () {});
   }
-  loadBlog(10);
+  loadBlog(15);
 });
 </script>
+
 <!-- ══════════════════════════════════════════════════════════════
      VIDEO LIGHTBOX OVERLAY
 ════════════════════════════════════════════════════════════════ -->
@@ -1923,4 +2080,3 @@ window.addEventListener('load', function() {
 
 </body>
 </html>
-    
