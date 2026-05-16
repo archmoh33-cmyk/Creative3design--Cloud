@@ -1912,41 +1912,46 @@ function switchBA(idx) {
 
   /* ── Partners marquee — seamless RAF-based, zero fractional-pixel gap ── */
   /* ── Partners marquee — CSS-based, exact integer pixel, zero gap ── */
+  /* ── Partners marquee — seamless CSS, exact float px, no rounding ── */
   (function initPartnersMarquee() {
-    function start() {
+    function applyMarquee() {
       var track = document.getElementById('partnersTrack');
       if (!track) return;
-
       var items = track.querySelectorAll('.partner-logo-item');
       var setCount = Math.floor(items.length / 2);
       if (!setCount) return;
 
+      // Exact float width — NO Math.round() to avoid sub-pixel gap
       var setWidth = 0;
       for (var i = 0; i < setCount; i++) {
         setWidth += items[i].getBoundingClientRect().width;
       }
-      setWidth = Math.round(setWidth);
       if (!setWidth) return;
 
-      var style = document.createElement('style');
-      style.textContent =
-        '@keyframes marquee-px{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}' +
-        '@-webkit-keyframes marquee-px{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}';
-      document.head.appendChild(style);
+      // Remove previous injected style if any
+      var prev = document.getElementById('__mq_style__');
+      if (prev) prev.parentNode.removeChild(prev);
 
-      track.style.cssText += ';animation:marquee-px 32s linear infinite;-webkit-animation:marquee-px 32s linear infinite;';
+      // Inject exact-pixel keyframe (float, not rounded integer)
+      var st = document.createElement('style');
+      st.id = '__mq_style__';
+      st.textContent =
+        '@keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}' +
+        '@-webkit-keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}';
+      document.head.appendChild(st);
 
-      var outer = track.parentElement;
-      if (outer) {
-        outer.addEventListener('mouseenter', function() {
-          track.style.animationPlayState = 'paused';
-          track.style.webkitAnimationPlayState = 'paused';
-        });
-        outer.addEventListener('mouseleave', function() {
-          track.style.animationPlayState = 'running';
-          track.style.webkitAnimationPlayState = 'running';
-        });
+      // Direct assignment — NOT cssText+= (avoids stale style conflicts)
+      track.style.animation = 'mqs 30s linear infinite';
+      track.style.webkitAnimation = 'mqs 30s linear infinite';
+    }
+
+    function start() {
+      applyMarquee();
+      // Re-measure after fonts load — crucial for correct widths
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(applyMarquee);
       }
+      window.addEventListener('load', applyMarquee);
     }
 
     if (document.readyState === 'loading') {
