@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="html-root">
 <head>
+  <!-- Cache busting — forces fresh load on mobile -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <script>
+    // If no version param → redirect with ?v=4 to bypass mobile cache
+    (function(){
+      if(location.search.indexOf('v=')===-1){
+        location.replace(location.pathname+'?v=4'+(location.hash||''));
+      }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حاسبة تكلفة التشطيب والتصميم المعماري 2026 | Creative3Design — القاهرة</title>
