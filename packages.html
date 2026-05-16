@@ -264,7 +264,11 @@
           <div class="slider-minmax"><span>40 م²</span><span>1,000 م²</span></div>
         </div>
         <h3 style="margin-bottom:1rem;font-size:1rem;" data-ar="اختر باقة التشطيب" data-en="Choose Finishing Package">اختر باقة التشطيب</h3>
-        <div class="pkg-cards" id="fin-pkg-cards">
+        <div class="pkg-type-bar" id="pkgTypeBar">
+        <span>🏗️ <strong>باقات التشطيب</strong> — 5 باقات</span>
+        <span class="pkg-type-count">اسحب للتصفح ←</span>
+      </div>
+      <div class="pkg-cards" id="fin-pkg-cards">
           <div class="pkg-c" onclick="selectPkg(this,'standard')" data-pkg="standard">
             <div class="pkg-icon">🔨</div>
             <div class="pkg-c-name">ستاندرد</div>
@@ -307,6 +311,17 @@
             <span class="pkg-c-total" id="fin-total-ultravip">—</span>
             <ul class="pkg-c-features"><li>حسب الطلب كلياً</li><li>مواد نادرة</li><li>ضمان 5 سنوات</li></ul>
           </div>
+        </div>
+        <!-- Mobile swipe hint & dots -->
+        <div class="pkg-swipe-hint" id="pkgSwipeHint">
+          <span>→</span><span>اسحب للتنقل بين الباقات</span><span>←</span>
+        </div>
+        <div class="pkg-dots" id="pkgDots">
+          <button class="dot active" onclick="scrollToPkg(0)" aria-label="ستاندرد"></button>
+          <button class="dot" onclick="scrollToPkg(1)" aria-label="بريميم"></button>
+          <button class="dot" onclick="scrollToPkg(2)" aria-label="لاكشري"></button>
+          <button class="dot" onclick="scrollToPkg(3)" aria-label="سوبر لاكشري"></button>
+          <button class="dot" onclick="scrollToPkg(4)" aria-label="Ultra VIP"></button>
         </div>
         <div class="calc-result">
           <div>
@@ -651,6 +666,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const btt = document.getElementById('backToTop');
   if (btt) window.addEventListener('scroll', () => { btt.classList.toggle('visible', window.scrollY > 400); });
 });
+
+  // ── Mobile package carousel — dots & swipe hint ──────────────────
+  function initPkgMobile() {
+    if (window.innerWidth > 640) return;
+    const cards  = document.getElementById('fin-pkg-cards');
+    const dots   = document.getElementById('pkgDots');
+    const hint   = document.getElementById('pkgSwipeHint');
+    const typeBar= document.getElementById('pkgTypeBar');
+    if (!cards || !dots) return;
+
+    const pkgNames = ['ستاندرد','بريميم','لاكشري','سوبر لاكشري','Ultra VIP'];
+    let hintGone = false;
+    let lastIdx  = -1;
+
+    cards.addEventListener('scroll', function() {
+      // Dismiss swipe hint after first real scroll
+      if (!hintGone && cards.scrollLeft > 20 && hint) {
+        hint.style.opacity = '0';
+        hint.style.transition = 'opacity .35s';
+        setTimeout(() => { hint.style.display = 'none'; }, 380);
+        hintGone = true;
+      }
+      // Update active dot + type bar label
+      const cardEls = cards.querySelectorAll('.pkg-c');
+      if (!cardEls.length) return;
+      const cardW = cardEls[0].offsetWidth + 12; // card + gap
+      const idx = Math.min(Math.round(cards.scrollLeft / cardW), cardEls.length - 1);
+      if (idx === lastIdx) return;
+      lastIdx = idx;
+      dots.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===idx));
+      if (typeBar) {
+        typeBar.querySelector('strong').textContent = 'باقات التشطيب — ' + pkgNames[idx];
+      }
+    }, {passive:true});
+  }
+
+  function scrollToPkg(idx) {
+    const cards = document.getElementById('fin-pkg-cards');
+    if (!cards) return;
+    const card = cards.querySelectorAll('.pkg-c')[idx];
+    if (card) card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  }
+
+  document.addEventListener('DOMContentLoaded', initPkgMobile);
+  window.addEventListener('resize', initPkgMobile);
+  // ─────────────────────────────────────────────────────────────────
 </script>
 
 <!-- FLOATING BUTTONS -->
