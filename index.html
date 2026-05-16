@@ -1922,6 +1922,47 @@ function switchBA(idx) {
 })();
 </script>
 
+<script>
+/* ── Blog Section — guaranteed after Supabase ready ── */
+window.addEventListener('load', function() {
+  function loadBlog(retries) {
+    var client = window.c3dClient;
+    if (!client) {
+      if (retries > 0) { setTimeout(function(){ loadBlog(retries-1); }, 400); }
+      return;
+    }
+    client.from('blog_posts')
+      .select('title_ar,title_en,excerpt_ar,excerpt_en,cover_url,slug,sort_order')
+      .eq('published', true)
+      .order('sort_order', { ascending: true })
+      .limit(3)
+      .then(function(r) {
+        var grid = document.getElementById('blogGrid');
+        if (!grid) return;
+        var isAr = document.documentElement.lang !== 'en';
+        var posts = (r.data && r.data.length) ? r.data : null;
+        if (!posts) return; // keep existing content if empty
+        grid.innerHTML = posts.map(function(p) {
+          var img = p.cover_url || '';
+          if (!img) return '';
+          var href = p.slug || '#';
+          var title = (isAr ? p.title_ar : (p.title_en || p.title_ar)) || '';
+          var excerpt = (isAr ? p.excerpt_ar : (p.excerpt_en || p.excerpt_ar)) || '';
+          return '<article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold)">'
+            + '<a href="' + href + '"><img src="' + img + '" alt="' + title.replace(/"/g,'') + '" loading="lazy" style="width:100%;height:200px;object-fit:cover;border-radius:6px 6px 0 0"></a>'
+            + '<div class="blog-card-body">'
+            + '<span class="blog-tag" style="background:var(--gold);color:#000;padding:.2rem .6rem;border-radius:4px;font-size:.75rem">جديد 2026</span>'
+            + '<h3><a href="' + href + '">' + title + '</a></h3>'
+            + '<p>' + excerpt + '</p>'
+            + '<a href="' + href + '" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>'
+            + '</div></article>';
+        }).filter(Boolean).join('');
+      })
+      .catch(function() {});
+  }
+  loadBlog(10);
+});
+</script>
 <!-- ══════════════════════════════════════════════════════════════
      VIDEO LIGHTBOX OVERLAY
 ════════════════════════════════════════════════════════════════ -->
