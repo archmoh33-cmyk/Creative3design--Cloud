@@ -1864,8 +1864,8 @@ function switchBA(idx) {
     grid.innerHTML = posts.slice(0,3).map(function(p) {
       var img = p.cover_url || FALLBACK[0].cover_url;
       var href = p.slug || '#';
-      var title = (isAr ? p.title_ar : (p.title_en || p.title_ar)) || '';
-      var excerpt = (isAr ? p.excerpt_ar : (p.excerpt_en || p.excerpt_ar)) || '';
+      var title = p.title_ar || '';
+      var excerpt = p.excerpt_ar || '';
       return '<article class="blog-card lazy-reveal" style="border-top:2px solid var(--gold);">'
         + '<a href="' + href + '"><img data-src="' + img + '" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="' + title.replace(/"/g,'') + '" class="lazy-img" loading="lazy"/></a>'
         + '<div class="blog-card-body"><span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>'
@@ -1878,7 +1878,7 @@ function switchBA(idx) {
   function tryLoad() {
     var c = window.supabaseClient || window.c3dClient;
     if (!c) { renderBlog(FALLBACK); return; }
-    c.from('blog_posts').select('title_ar,title_en,excerpt_ar,excerpt_en,cover_url,slug,sort_order')
+    c.from('blog_posts').select('title_ar,excerpt_ar,cover_url,slug,sort_order')
       .eq('published',true).order('sort_order',{ascending:true}).limit(3)
       .then(function(r){renderBlog(r.data&&r.data.length?r.data:FALLBACK);}).catch(function(){renderBlog(FALLBACK);});
   }
