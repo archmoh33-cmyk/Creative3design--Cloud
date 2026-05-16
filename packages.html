@@ -9,7 +9,7 @@
     // If no version param → redirect with ?v=4 to bypass mobile cache
     (function(){
       if(location.search.indexOf('v=')===-1){
-        location.replace(location.pathname+'?v=4'+(location.hash||''));
+        var _sep=location.search?'&':'?'; location.replace(location.pathname+(location.search||'')+_sep+'v=5'+(location.hash||''));
       }
     })();
   </script>
@@ -740,6 +740,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('DOMContentLoaded', initPkgMobile);
   window.addEventListener('resize', initPkgMobile);
   // ─────────────────────────────────────────────────────────────────
+
+  // Auto-switch calculator tab from URL param (?tab=design or ?tab=arch)
+  (function(){
+    var _tab = new URLSearchParams(location.search).get('tab');
+    if(_tab === 'design' || _tab === 'arch'){
+      if(typeof switchCalc === 'function'){
+        switchCalc(_tab);
+      }
+      var el = document.getElementById('calculator');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  })();
 </script>
 
 <!-- FLOATING BUTTONS -->
