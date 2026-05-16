@@ -1945,19 +1945,11 @@ function switchBA(idx) {
       track.style.webkitAnimation = 'mqs 30s linear infinite';
     }
 
-    function start() {
-      applyMarquee();
-      // Re-measure after fonts load — crucial for correct widths
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(applyMarquee);
-      }
-      window.addEventListener('load', applyMarquee);
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
+    // Single call after fonts load — no restart, no gap
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(applyMarquee);
     } else {
-      start();
+      window.addEventListener('load', applyMarquee);
     }
   })();
 
@@ -1978,3 +1970,4 @@ function switchBA(idx) {
 
 </body>
 </html>
+  
