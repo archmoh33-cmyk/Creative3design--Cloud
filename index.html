@@ -1831,11 +1831,46 @@ function switchBA(idx) {
       loadCompoundsSection();
       loadBASection();
       loadVideoLibrary();
+      loadBlogSection();
     } else if (attempts > 0) {
       setTimeout(function() { waitForClient(attempts - 1); }, 350);
     } else {
       showStaticHeroFallback();
     }
+  }
+
+  /* ── Blog Posts — يُستدعى من waitForClient ── */
+  function loadBlogSection() {
+    var FB = [
+      { title_ar:'أكثر 7 أخطاء في التصميم الداخلي 2026', excerpt_ar:'اكتشف الأخطاء وكيف يتجنبها متخصصو Creative3Design.', cover_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', slug:'blog/akhtaa-tasmeem-dakheli-2026.html' },
+      { title_ar:'كيف تختار شركة تشطيب موثوقة 2026', excerpt_ar:'المعايير التي تضمن شركة تشطيب موثوقة.', cover_url:'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', slug:'blog/ikhtiyar-sharikat-tashtib-2026.html' },
+      { title_ar:'التصميم المعماري للفيلات 2026', excerpt_ar:'دليل شامل لمراحل التصميم والتكاليف.', cover_url:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', slug:'blog/tasmeem-memari-villa-2026.html' }
+    ];
+    function renderBlog(posts) {
+      var grid = document.getElementById('blogGrid');
+      if (!grid) return;
+      var isAr = document.documentElement.lang !== 'en';
+      if (!posts || !posts.length) posts = FB;
+      grid.innerHTML = posts.slice(0,3).map(function(p) {
+        var img = p.cover_url || FB[0].cover_url;
+        var href = p.slug || '#';
+        var title = (isAr ? p.title_ar : (p.title_en || p.title_ar)) || '';
+        var excerpt = (isAr ? p.excerpt_ar : (p.excerpt_en || p.excerpt_ar)) || '';
+        return '<article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold);">'
+          + '<a href="' + href + '"><img src="' + img + '" alt="' + title.replace(/"/g,'') + '" loading="lazy" style="width:100%;height:200px;object-fit:cover;"/></a>'
+          + '<div class="blog-card-body">'
+          + '<span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>'
+          + '<h3><a href="' + href + '">' + title + '</a></h3>'
+          + '<p>' + excerpt + '</p>'
+          + '<a href="' + href + '" class="blog-read-more">اقرأ المزيد ←</a>'
+          + '</div></article>';
+      }).join('');
+    }
+    window.c3dClient.from('blog_posts')
+      .select('title_ar,title_en,excerpt_ar,excerpt_en,cover_url,slug,sort_order')
+      .eq('published',true).order('sort_order',{ascending:true}).limit(3)
+      .then(function(r){ renderBlog(r.data&&r.data.length?r.data:FB); })
+      .catch(function(){ renderBlog(FB); });
   }
 
   if (document.readyState === 'loading') {
@@ -1850,8 +1885,8 @@ function switchBA(idx) {
 
 })();
 
-/* ── Blog Posts — dynamic loader from Supabase ── */
-(function loadBlogPosts() {
+/* loadBlogSection() is now inside waitForClient() above */
+(function _blogLegacy_removed() { return; // removed
   var FALLBACK = [
     { title_ar:'أكثر 7 أخطاء في التصميم الداخلي 2026 وكيف تتجنبها', excerpt_ar:'اكتشف الأخطاء التي يقع فيها أصحاب المنازل وكيف يتجنبها متخصصو Creative3Design.', cover_url:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80', slug:'blog/akhtaa-tasmeem-dakheli-2026.html' },
     { title_ar:'كيف تختار شركة تشطيب موثوقة في مصر 2026 — 9 معايير', excerpt_ar:'المعايير الÂ9 التي تضمن لك شركة تشطيب موثوقة.', cover_url:'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', slug:'blog/ikhtiyar-sharikat-tashtib-2026.html' },
