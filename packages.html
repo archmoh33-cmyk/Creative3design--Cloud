@@ -357,7 +357,7 @@
             <div class="result-range" id="fin-result-range">اختر مساحة وباقة</div>
             <div class="result-note">* التقديرات بناءً على منتصف النطاق السعري. تختلف حسب المواصفات والخامات النهائية.</div>
           </div>
-          <a href="https://wa.me/201019053288?text=أريد استفسار عن تكلفة التشطيب" target="_blank" rel="noopener"
+          <a id="fin-wa-btn" href="https://wa.me/201019053288?text=أريد استفسار عن تكلفة التشطيب" target="_blank" rel="noopener"
              style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">
             احجز استشارة مجانية
           </a>
@@ -416,7 +416,7 @@
             <div class="result-range" id="des-result-range">اختر نوع المشروع والمساحة</div>
             <div class="result-note">* تشمل: المخططات + اللوحات التنفيذية + متابعة التنفيذ حسب الباقة.</div>
           </div>
-          <a href="https://wa.me/201019053288?text=أريد استفسار عن رسوم التصميم الداخلي" target="_blank" rel="noopener"
+          <a id="des-wa-btn" href="https://wa.me/201019053288?text=أريد استفسار عن رسوم التصميم الداخلي" target="_blank" rel="noopener"
              style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">استشارة مجانية</a>
         </div>
       </div>
@@ -474,7 +474,7 @@
             <div class="result-range" id="arch-result-summary">اختر نوع المبنى والمساحة</div>
             <div class="result-note">* تقدير مبدئي — يتحدد العرض النهائي بعد دراسة المشروع.</div>
           </div>
-          <a href="https://wa.me/201019053288?text=أريد عرض سعر للتصميم المعماري" target="_blank" rel="noopener"
+          <a id="arch-wa-btn" href="https://wa.me/201019053288?text=أريد عرض سعر للتصميم المعماري" target="_blank" rel="noopener"
              style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">طلب عرض سعر</a>
         </div>
       </div>
@@ -569,14 +569,16 @@ function switchCalc(panel) {
 }
 
 const finRates = { standard: 6000, premium: 8000, luxury: 10750, superlux: 14250, ultravip: 17000 };
-let finProjMul = 1.0;
-let finSelPkg  = null;
+let finProjMul  = 1.0;
+let finProjType = 'apartment';
+let finSelPkg   = null;
 const projTypeMul = { apartment: 1.0, villa: 1.15, office: 1.1, retail: 1.05, restaurant: 1.2 };
 
 function selectProjType(btn, type) {
   document.querySelectorAll('.proj-types .proj-type').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  finProjMul = projTypeMul[type] || 1.0;
+  finProjMul  = projTypeMul[type] || 1.0;
+  finProjType = type;
   updateFinCalc();
 }
 
@@ -588,6 +590,26 @@ function selectPkg(card, pkg) {
 }
 
 function fmt(n) { return Math.round(n).toLocaleString('ar-EG'); }
+
+// ── WhatsApp dynamic message helpers ──────────────────────────────────────
+const WA_NUM = '201019053288';
+function buildWaUrl(msg) {
+  return 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(msg);
+}
+const finPkgLabel  = { standard:'ستاندرد', premium:'بريميم', luxury:'لاكشري', superlux:'سوبر لاكشري', ultravip:'Ultra VIP' };
+const finProjLabel = { apartment:'شقة سكنية', villa:'فيلا', office:'مكتب', retail:'محل تجاري', restaurant:'مطعم / كافيه' };
+const desTypeLabel = {
+  apartment_des:'شقة سكنية', villa_des:'فيلا', office_des:'مكتب',
+  restaurant_des:'مطعم / كافيه', retail_des:'محل / معرض',
+  hotel_des:'فندق / منتجع', gym_des:'جيم / سبا', clinic_des:'عيادة / مركز طبي'
+};
+const archTypeLabel = {
+  villa_arch:'فيلا سكنية', apt_building:'عمارة سكنية', commercial_bld:'مبنى تجاري',
+  hotel_arch:'فندق / منتجع', mall:'مول / كمبوند', factory:'مصنع / مستودع',
+  admin:'مبنى إداري', school_arch:'مدرسة / جامعة', hospital:'مستشفى / مركز طبي', mixed:'متعدد الاستخدام'
+};
+const archLevelLabel = { basic:'أساسي (2D فقط)', standard:'ستاندرد (2D+3D)', premium:'بريميم (+إشراف)', full:'شامل كامل' };
+// ──────────────────────────────────────────────────────────────────────────
 
 function updateFinCalc() {
   const area = parseInt(document.getElementById('fin-area').value);
@@ -602,6 +624,14 @@ function updateFinCalc() {
   if (finSelPkg) {
     const total = area * finRates[finSelPkg] * finProjMul;
     document.getElementById('fin-result-range').textContent = fmt(total) + ' — ' + fmt(total * 1.15) + ' ج.م';
+    const msg = 'مرحباً،\nأريد استفسار عن تكلفة التشطيب\n\n' +
+      '📌 نوع المشروع: ' + (finProjLabel[finProjType] || finProjType) + '\n' +
+      '📦 الباقة المختارة: ' + (finPkgLabel[finSelPkg] || finSelPkg) + '\n' +
+      '📐 المساحة: ' + area.toLocaleString('ar-EG') + ' م²\n' +
+      '💰 التقدير المبدئي: ' + fmt(total) + ' — ' + fmt(total * 1.15) + ' ج.م\n\n' +
+      'أرجو التواصل لمعرفة تفاصيل العرض.';
+    const btn = document.getElementById('fin-wa-btn');
+    if (btn) btn.href = buildWaUrl(msg);
   }
 }
 
@@ -633,6 +663,15 @@ function updateDesCalc() {
   document.getElementById('des-standard').textContent = fmt(standard) + ' ج.م';
   document.getElementById('des-luxury').textContent   = fmt(luxury) + ' ج.م';
   document.getElementById('des-result-range').textContent = fmt(basic) + ' — ' + fmt(luxury) + ' ج.م';
+  // Dynamic WhatsApp link
+  const msg = 'مرحباً،\nأريد استفسار عن رسوم التصميم الداخلي\n\n' +
+    '📌 نوع المشروع: ' + (desTypeLabel[desSelType] || desSelType) + '\n' +
+    '📐 المساحة: ' + area.toLocaleString('ar-EG') + ' م²\n' +
+    '💰 نطاق الرسوم: ' + fmt(basic) + ' — ' + fmt(luxury) + ' ج.م\n' +
+    '   (أساسي: ' + fmt(basic) + ' | شامل: ' + fmt(standard) + ' | فاخر: ' + fmt(luxury) + ')\n\n' +
+    'أرجو التواصل لمعرفة تفاصيل العرض.';
+  const btn = document.getElementById('des-wa-btn');
+  if (btn) btn.href = buildWaUrl(msg);
 }
 
 const archTypeData = {
@@ -685,6 +724,19 @@ function updateArchCalc() {
   document.getElementById('arch-sup-fee').textContent      = supFee > 0 ? fmt(supFee) + ' ج.م' : '—';
   document.getElementById('arch-grand-total').textContent  = fmt(grandTotal) + ' ج.م';
   document.getElementById('arch-result-summary').textContent = d.label + ' · ' + fmt(grandTotal) + ' ج.م إجمالي';
+  // Dynamic WhatsApp link
+  const msg = 'مرحباً،\nأريد عرض سعر للتصميم المعماري\n\n' +
+    '🏗️ نوع المبنى: ' + (archTypeLabel[archSelType] || archSelType) + '\n' +
+    '📐 مساحة الدور: ' + area.toLocaleString('ar-EG') + ' م²\n' +
+    '🏢 عدد الأدوار: ' + floors + '\n' +
+    '📊 المساحة الإجمالية: ' + fmt(totalArea) + ' م²\n' +
+    '✨ مستوى التصميم: ' + (archLevelLabel[archSelLevel] || archSelLevel) + '\n' +
+    '💰 رسوم التصميم: ' + fmt(rawDesign) + ' ج.م' +
+    (supFee > 0 ? '\n🔍 رسوم الإشراف: ' + fmt(supFee) + ' ج.م' : '') + '\n' +
+    '💎 الإجمالي المتوقع: ' + fmt(grandTotal) + ' ج.م\n\n' +
+    'أرجو التواصل لمعرفة تفاصيل العرض.';
+  const btn = document.getElementById('arch-wa-btn');
+  if (btn) btn.href = buildWaUrl(msg);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
