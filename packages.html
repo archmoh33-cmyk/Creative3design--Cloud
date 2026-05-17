@@ -458,15 +458,20 @@
           <button class="proj-type" onclick="selectArchLevel(this,'premium')">✨ بريميم (+إشراف)</button>
           <button class="proj-type" onclick="selectArchLevel(this,'full')">🏆 شامل كامل</button>
         </div>
-        <div class="arch-result-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+        <div class="arch-result-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem;">
           <div class="design-result-card"><div class="drc-label">المساحة الإجمالية</div><div class="drc-value" id="arch-total-area">—</div><div class="drc-sub">م² إجمالي</div></div>
           <div class="design-result-card"><div class="drc-label">رسوم التصميم</div><div class="drc-value" id="arch-design-fee">—</div><div class="drc-sub">ج.م (بدون إشراف)</div></div>
           <div class="design-result-card"><div class="drc-label">رسوم الإشراف</div><div class="drc-value" id="arch-sup-fee">—</div><div class="drc-sub">ج.م (حسب الباقة)</div></div>
           <div class="design-result-card highlight"><div class="drc-label">الإجمالي المتوقع</div><div class="drc-value" id="arch-grand-total">—</div><div class="drc-sub">ج.م كامل</div></div>
         </div>
+        <!-- Bulk discount bar -->
+        <div id="arch-discount-bar" style="display:none;text-align:center;margin:.6rem 0 1rem;padding:.7rem 1.4rem;background:rgba(184,151,106,.13);border:1px solid var(--gold);border-radius:4px;">
+          <span style="color:var(--gold);font-weight:700;font-size:.92rem;">🎉 خصم <span id="arch-discount-pct"></span>% على المشاريع الكبيرة — وفّرت <span id="arch-discount-amt"></span> ج.م</span>
+        </div>
         <p style="color:var(--text-muted);font-size:.78rem;text-align:center;margin-bottom:1.5rem;">
           * الأسعار تشمل: المخططات المعمارية · اللوحات التنفيذية · الموديل ثلاثي الأبعاد · تصاريح البناء (حسب الباقة).<br>
-          الحد الأدنى للرسوم يُطبّق على المشاريع الصغيرة. الأسعار مايو 2026.
+          الحد الأدنى للرسوم يُطبّق على المشاريع الصغيرة. الأسعار مايو 2026.<br>
+          <strong style="color:var(--gold);">خصم 20% للمساحات الإجمالية &gt; 900 م² · خصم 30% للمساحات الإجمالية &gt; 1500 م²</strong>
         </p>
         <div class="calc-result">
           <div>
@@ -717,6 +722,23 @@ function updateArchCalc() {
   const lMul = archLevelMul[archSelLevel];
   const totalArea = area * floors;
   let rawDesign = Math.max(d.ratePerM2 * totalArea * lMul, d.minFee);
+
+  // ── خصم المساحات الكبيرة ──
+  let discountPct = 0;
+  if (totalArea > 1500)     discountPct = 30;
+  else if (totalArea > 900) discountPct = 20;
+  const discountAmt = discountPct > 0 ? Math.round(rawDesign * discountPct / 100) : 0;
+  if (discountPct > 0) rawDesign = Math.round(rawDesign * (1 - discountPct / 100));
+  const discBar = document.getElementById('arch-discount-bar');
+  if (discBar) {
+    if (discountPct > 0) {
+      document.getElementById('arch-discount-pct').textContent = discountPct;
+      document.getElementById('arch-discount-amt').textContent = fmt(discountAmt);
+      discBar.style.display = 'block';
+    } else {
+      discBar.style.display = 'none';
+    }
+  }
   const supFee = (archSelLevel === 'premium' || archSelLevel === 'full') ? rawDesign * d.supPct : 0;
   const grandTotal = rawDesign + supFee;
   document.getElementById('arch-total-area').textContent   = fmt(totalArea) + ' م²';
@@ -730,6 +752,7 @@ function updateArchCalc() {
     '📐 مساحة الدور: ' + area.toLocaleString('ar-EG') + ' م²\n' +
     '🏢 عدد الأدوار: ' + floors + '\n' +
     '📊 المساحة الإجمالية: ' + fmt(totalArea) + ' م²\n' +
+    (discountPct > 0 ? '🎉 خصم مشاريع كبيرة: ' + discountPct + '% (وفّرت ' + fmt(discountAmt) + ' ج.م)\n' : '') +
     '✨ مستوى التصميم: ' + (archLevelLabel[archSelLevel] || archSelLevel) + '\n' +
     '💰 رسوم التصميم: ' + fmt(rawDesign) + ' ج.م' +
     (supFee > 0 ? '\n🔍 رسوم الإشراف: ' + fmt(supFee) + ' ج.م' : '') + '\n' +
