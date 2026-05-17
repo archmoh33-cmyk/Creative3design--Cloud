@@ -471,7 +471,7 @@
         <p style="color:var(--text-muted);font-size:.78rem;text-align:center;margin-bottom:1.5rem;">
           * الأسعار تشمل: المخططات المعمارية · اللوحات التنفيذية · الموديل ثلاثي الأبعاد · تصاريح البناء (حسب الباقة).<br>
           الحد الأدنى للرسوم يُطبّق على المشاريع الصغيرة. الأسعار مايو 2026.<br>
-          <strong style="color:var(--gold);">خصم 20% للمساحات الإجمالية &gt; 900 م² · خصم 30% للمساحات الإجمالية &gt; 1500 م²</strong>
+          <strong style="color:var(--gold);">خصم 10% للمساحات حتى 900 م² · خصم 30% من 901 إلى 1500 م² · خصم 40% للمساحات أكثر من 1500 م²</strong>
         </p>
         <div class="calc-result">
           <div>
@@ -725,8 +725,9 @@ function updateArchCalc() {
 
   // ── خصم المساحات الكبيرة ──
   let discountPct = 0;
-  if (totalArea > 1500)     discountPct = 30;
-  else if (totalArea > 900) discountPct = 20;
+  if (totalArea > 1500)     discountPct = 40;
+  else if (totalArea > 900) discountPct = 30;
+  else                      discountPct = 10;
   const discountAmt = discountPct > 0 ? Math.round(rawDesign * discountPct / 100) : 0;
   if (discountPct > 0) rawDesign = Math.round(rawDesign * (1 - discountPct / 100));
   const discBar = document.getElementById('arch-discount-bar');
