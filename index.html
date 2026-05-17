@@ -1492,6 +1492,11 @@ function switchBA(idx) {
         var showMoreWrap = document.getElementById('showMoreWrap');
         grid.innerHTML = html;
         if (showMoreWrap) grid.appendChild(showMoreWrap);
+        // تحميل الصور مباشرة (بدون lazy — الـ portfolio في مجال الرؤية)
+        grid.querySelectorAll('img.lazy-img[data-src]').forEach(function(img){
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        });
         bindFilter(grid, filterEl);
         if (typeof lazyLoad === 'function') lazyLoad();
       }).catch(function(){});
