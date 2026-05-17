@@ -1441,13 +1441,25 @@ function switchBA(idx) {
 
     grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);font-size:.85rem;">جارٍ تحميل المشاريع…</div>';
 
-    window.c3dFetchProjects({ limit: 300 }).then(function(res) {
+    /* جلب كل الفئات + interior-res بشكل منفصل لضمان ظهورها */
+    Promise.all([
+      window.c3dFetchProjects({ limit: 300 }),
+      window.c3dFetchProjects({ category: 'interior-res', limit: 8 })
+    ]).then(function(results) {
+      var res    = results[0];
+      var resInt = results[1];
       if (res.error || !res.data || !res.data.length) {
         grid.innerHTML = ''; // fallback للكروت الثابتة
         return;
       }
+      var mainData = res.data;
+      /* إضافة interior-res إن لم تكن موجودة في النتيجة الرئيسية */
+      var hasIntRes = mainData.some(function(p){ return p.category === 'interior-res'; });
+      if (!hasIntRes && resInt.data && resInt.data.length) {
+        mainData = mainData.concat(resInt.data);
+      }
 
-      allProjects = res.data;
+      allProjects = mainData;
 
       /* إعادة تسجيل listeners الأزرار (clone لإزالة القديمة) */
       var filterEl = document.getElementById('portfolioFilter');
