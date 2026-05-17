@@ -1451,7 +1451,7 @@ function switchBA(idx) {
     var img    = p.image_url || BLANK_GIF;
     var alt    = p.image_alt_ar || (nameAr + ' — Creative3Design');
     return '<div class="port-card lazy-reveal" data-cat="' + cat + '">' +
-      '<img data-src="' + img + '" src="' + BLANK_GIF + '" alt="' + alt + '" class="lazy-img" loading="lazy" />' +
+      '<img src="' + img + '" alt="' + alt + '" class="lazy-img" loading="eager" />' +
       '<div class="port-overlay">' +
         '<span class="port-cat" data-ar="' + lbl.ar + '" data-en="' + lbl.en + '">' + lbl.ar + '</span>' +
         '<h4 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h4>' +
