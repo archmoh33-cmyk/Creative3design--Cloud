@@ -670,9 +670,9 @@ function updateDesCalc() {
   const standard = Math.max(area * base, 15000);
   const luxury   = Math.max(area * base * 1.6, 25000);
   // Original (pre-discount) prices × 1.3
-  const basicOrig    = Math.round(basic    * 10 / 7);
-  const standardOrig = Math.round(standard * 10 / 7);
-  const luxuryOrig   = Math.round(luxury   * 10 / 7);
+  const basicOrig    = Math.round(basic    * 1.3);
+  const standardOrig = Math.round(standard * 1.3);
+  const luxuryOrig   = Math.round(luxury   * 1.3);
   const desSaved     = standardOrig - standard;
   document.getElementById('des-basic-orig').textContent    = fmt(basicOrig)    + ' ج.م';
   document.getElementById('des-standard-orig').textContent = fmt(standardOrig) + ' ج.م';
