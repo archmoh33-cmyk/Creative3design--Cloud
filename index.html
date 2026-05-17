@@ -574,8 +574,8 @@ body.loading { overflow: hidden; }
       <p class="section-desc" data-ar="أكثر من 1100 مشروع منجز في مصر والخليج — كل واحد يحكي قصة تميز" data-en="Over 1100 completed projects in Egypt and the Gulf — each one tells a story of excellence">أكثر من 1100 مشروع منجز في مصر والخليج — كل واحد يحكي قصة تميز</p>
     </div>
     <div class="portfolio-filter lazy-reveal" id="portfolioFilter">
-      <button class="filter-btn" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
-      <button class="filter-btn active" data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
+      <button class="filter-btn active" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
+      <button class="filter-btn" data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
       <button class="filter-btn"        data-cat="interior-com" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</button>
       <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارات"      data-en="Villas & Buildings">فيلات وعمارات</button>
       <button class="filter-btn"        data-cat="hospitality"  data-ar="فنادق"              data-en="Hotels">فنادق</button>
@@ -1403,13 +1403,8 @@ function switchBA(idx) {
         btn.parentNode.replaceChild(fresh, btn);
       });
 
-      /* العرض الأولي: تصميم داخلي سكني — 4 كروت */
-      applyView('interior-res', 4);
-
-      /* تفعيل زر الفلتر الصحيح */
-      filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
-      var intResBtn = filterEl.querySelector('[data-cat="interior-res"]');
-      if (intResBtn) intResBtn.classList.add('active');
+      /* العرض الأولي: الكل */
+      applyView('all', LIMIT_INITIAL);
 
       /* ربط أزرار الفلتر */
       filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
