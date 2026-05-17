@@ -418,7 +418,7 @@
         <div class="calc-result" style="margin-top:1.5rem;">
           <div>
             <div class="result-label">رسوم التصميم الداخلي للمشروع</div>
-            <div class="result-range" id="des-result-range">اختر نوع المشروع والمساحة</div>
+            <div class="result-range" id="des-result-range">تتراوح من — إلى —</div>
             <div class="result-note">* تشمل: المخططات + اللوحات التنفيذية.</div>
           </div>
           <a id="des-wa-btn" href="https://wa.me/201019053288?text=أريد استفسار عن رسوم التصميم الداخلي" target="_blank" rel="noopener"
@@ -681,7 +681,7 @@ function updateDesCalc() {
   document.getElementById('des-basic').textContent    = fmt(basic) + ' ج.م';
   document.getElementById('des-standard').textContent = fmt(standard) + ' ج.م';
   document.getElementById('des-luxury').textContent   = fmt(luxury) + ' ج.م';
-  document.getElementById('des-result-range').textContent = fmt(basic) + ' — ' + fmt(luxury) + ' ج.م';
+  document.getElementById('des-result-range').textContent = 'تتراوح من ' + fmt(basic) + ' إلى ' + fmt(luxury) + ' ج.م';
   // Dynamic WhatsApp link
   const msg = 'مرحباً،\nأريد استفسار عن رسوم التصميم الداخلي\n\n' +
     '📌 نوع المشروع: ' + (desTypeLabel[desSelType] || desSelType) + '\n' +
