@@ -1432,12 +1432,34 @@ function switchBA(idx) {
     updateShowMoreBtn();
   }
 
-  /* ── فلترة البطاقات الثابتة مباشرة (بدون Supabase) ── */
-  function loadHomepagePortfolio() {
-    var grid     = document.getElementById('portfolioGrid');
-    var filterEl = document.getElementById('portfolioFilter');
-    if (!grid || !filterEl) return;
+  /* ── تصنيفات عربية/إنجليزية ── */
+  var CAT_LABELS = {
+    'interior-res': { ar: 'تصميم داخلي سكني',  en: 'Residential Interior', link: 'portfolio.html?cat=interior-res' },
+    'interior-com': { ar: 'تصميم داخلي تجاري', en: 'Commercial Interior',  link: 'portfolio.html?cat=interior-com' },
+    'villa':        { ar: 'فيلات وعمارات',      en: 'Villas & Buildings',   link: 'portfolio.html?cat=villa'         },
+    'hospitality':  { ar: 'فنادق وضيافة',       en: 'Hotels & Hospitality', link: 'portfolio.html?cat=hospitality'   },
+    'commercial':   { ar: 'تجاري وإداري',       en: 'Commercial & Admin',   link: 'portfolio.html?cat=commercial'    }
+  };
 
+  var BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
+  function buildCard(p) {
+    var cat   = p.category || 'villa';
+    var lbl   = CAT_LABELS[cat] || { ar: cat, en: cat, link: 'portfolio.html' };
+    var nameAr = p.name_ar  || '';
+    var nameEn = p.name_en  || nameAr;
+    var img    = p.image_url || BLANK_GIF;
+    var alt    = p.image_alt_ar || (nameAr + ' — Creative3Design');
+    return '<div class="port-card lazy-reveal" data-cat="' + cat + '">' +
+      '<img data-src="' + img + '" src="' + BLANK_GIF + '" alt="' + alt + '" class="lazy-img" loading="lazy" />' +
+      '<div class="port-overlay">' +
+        '<span class="port-cat" data-ar="' + lbl.ar + '" data-en="' + lbl.en + '">' + lbl.ar + '</span>' +
+        '<h4 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h4>' +
+        '<a href="' + lbl.link + '" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>' +
+      '</div></div>';
+  }
+
+  function bindFilter(grid, filterEl) {
     filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var cat = btn.dataset.cat || 'all';
@@ -1448,8 +1470,34 @@ function switchBA(idx) {
         });
       });
     });
+  }
 
+  function loadHomepagePortfolio() {
+    var grid     = document.getElementById('portfolioGrid');
+    var filterEl = document.getElementById('portfolioFilter');
+    if (!grid || !filterEl) return;
+
+    bindFilter(grid, filterEl);
     if (typeof lazyLoad === 'function') lazyLoad();
+
+    function tryFetch(attempt) {
+      if (!window.c3dFetchProjects || !window.c3dClient) {
+        if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
+        return;
+      }
+      window.c3dFetchProjects({ featured: true, limit: 50 }).then(function(res) {
+        var data = res && res.data;
+        if (!data || !data.length) return;
+        var html = data.map(buildCard).join('');
+        var showMoreWrap = document.getElementById('showMoreWrap');
+        grid.innerHTML = html;
+        if (showMoreWrap) grid.appendChild(showMoreWrap);
+        bindFilter(grid, filterEl);
+        if (typeof lazyLoad === 'function') lazyLoad();
+      }).catch(function(){});
+    }
+
+    tryFetch(0);
   }
 
   if (document.readyState === 'loading') {
