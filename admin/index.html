@@ -577,6 +577,8 @@ img{max-width:100%;display:block}
         <div class="stat-card"><div class="stat-label">سكني</div><div class="stat-value" id="statRes">—</div></div>
         <div class="stat-card"><div class="stat-label">تجاري</div><div class="stat-value" id="statCom">—</div></div>
         <div class="stat-card"><div class="stat-label">فيلات</div><div class="stat-value" id="statVil">—</div></div>
+        <div class="stat-card"><div class="stat-label">داخلي سكني</div><div class="stat-value" id="statIntRes">—</div></div>
+        <div class="stat-card"><div class="stat-label">داخلي تجاري</div><div class="stat-value" id="statIntCom">—</div></div>
         <div class="stat-card"><div class="stat-label">مسوّدات</div><div class="stat-value" id="statDraft">—</div></div>
       </div>
 
@@ -594,6 +596,8 @@ img{max-width:100%;display:block}
           <option value="villa">فيلات</option>
           <option value="hospitality">ضيافة</option>
           <option value="office">مكاتب</option>
+          <option value="interior-res">🛋️ داخلي سكني</option>
+          <option value="interior-com">🏪 داخلي تجاري</option>
         </select>
         <select class="filter-select" id="statusFilter" onchange="filterProjects()">
           <option value="">كل الحالات</option>
@@ -1094,6 +1098,8 @@ img{max-width:100%;display:block}
               <option value="villa">🏡 فيلات</option>
               <option value="hospitality">🍽️ ضيافة</option>
               <option value="office">💼 مكاتب</option>
+              <option value="interior-res">🛋️ تصميم داخلي سكني</option>
+              <option value="interior-com">🏪 تصميم داخلي تجاري</option>
             </select>
             <span class="field-error">التصنيف مطلوب</span>
           </div>
@@ -1266,7 +1272,7 @@ let formCloudId   = '';
 let confirmCb     = null;
 let cloudWidget   = null;
 
-const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب' };
+const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب', 'interior-res':'داخلي سكني', 'interior-com':'داخلي تجاري' };
 const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
 
 /* ══════════════════════════════════════════════════
@@ -1858,6 +1864,10 @@ function renderProjects(projects) {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           تعديل
         </button>
+        ${p.image_url ? `<button class="btn btn-outline btn-sm" onclick="downloadProjectImages('${p.id}','${escHtml(p.name_ar)}')" title="تحميل صور المشروع">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          صور
+        </button>` : ''}
         <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}','${escHtml(p.name_ar)}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
           حذف
@@ -1883,13 +1893,137 @@ function filterProjects() {
   renderProjects(filtered);
 }
 
+/* ── Download Project Images ── */
+async function downloadProjectImages(projectId, projectName) {
+  showToast('جاري تحميل صور المشروع...', 'info');
+  try {
+    const { data: images, error } = await sb
+      .from('project_images')
+      .select('image_url, sort_order')
+      .eq('project_id', projectId)
+      .order('sort_order');
+    if (error) throw error;
+    const urls = images && images.length > 0
+      ? images.map(i => i.image_url)
+      : (allProjects.find(p => p.id === projectId)?.image_url ? [allProjects.find(p => p.id === projectId).image_url] : []);
+    if (!urls.length) { showToast('لا توجد صور لهذا المشروع', 'error'); return; }
+    // Open gallery lightbox
+    openImageGallery(projectName, urls);
+  } catch(e) {
+    showToast('خطأ: ' + e.message, 'error');
+  }
+}
+
+function openImageGallery(title, urls) {
+  // Remove existing gallery if any
+  document.getElementById('imgGalleryOverlay')?.remove();
+  let current = 0;
+  const ov = document.createElement('div');
+  ov.id = 'imgGalleryOverlay';
+  ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1rem';
+  ov.innerHTML = `
+    <div style="width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;gap:.5rem">
+      <span style="color:var(--gold);font-weight:700;font-size:1rem">${escHtml(title)}</span>
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <span id="galCounter" style="color:var(--text-muted);font-size:.85rem">1 / ${urls.length}</span>
+        <button id="galDownloadBtn" onclick="downloadSingleImage('','${escHtml(title)}',0)" style="padding:.38rem .9rem;background:var(--gold);color:#111;border:none;border-radius:6px;font-family:Cairo,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;display:flex;align-items:center;gap:.3rem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          حفظ الصورة
+        </button>
+        <button onclick="downloadAllImages()" style="padding:.38rem .9rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;font-family:Cairo,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer">
+          تحميل الكل
+        </button>
+        <button onclick="document.getElementById('imgGalleryOverlay').remove()" style="padding:.38rem .7rem;background:var(--surface2);color:var(--text-muted);border:1px solid var(--border);border-radius:6px;font-size:1rem;cursor:pointer">✕</button>
+      </div>
+    </div>
+    <div style="position:relative;max-width:900px;width:100%;flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+      <button id="galPrev" onclick="galNav(-1)" style="position:absolute;left:0;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:2rem;padding:.3rem .7rem;cursor:pointer;border-radius:4px">‹</button>
+      <img id="galImg" src="${urls[0]}" style="max-height:70vh;max-width:100%;object-fit:contain;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.6)" />
+      <button id="galNext" onclick="galNav(1)" style="position:absolute;right:0;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:2rem;padding:.3rem .7rem;cursor:pointer;border-radius:4px">›</button>
+    </div>
+    <div id="galThumbs" style="display:flex;gap:.4rem;overflow-x:auto;max-width:900px;padding:.3rem 0">
+      ${urls.map((u,i) => `<img src="${u}" onclick="galGoTo(${i})" style="width:64px;height:48px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${i===0?'var(--gold)':'transparent'};opacity:${i===0?'1':'.55'};transition:.15s" />`).join('')}
+    </div>`;
+  document.body.appendChild(ov);
+  // Store gallery data
+  window._galUrls = urls;
+  window._galTitle = title;
+  window._galCurrent = 0;
+  // Update download button
+  updateGalDownloadBtn();
+  // Close on backdrop click
+  ov.addEventListener('click', e => { if(e.target === ov) ov.remove(); });
+  document.addEventListener('keydown', galKeyHandler);
+}
+
+function galKeyHandler(e) {
+  if (!document.getElementById('imgGalleryOverlay')) { document.removeEventListener('keydown', galKeyHandler); return; }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') galNav(e.key === 'ArrowLeft' ? -1 : 1);
+  if (e.key === 'Escape') { document.getElementById('imgGalleryOverlay')?.remove(); document.removeEventListener('keydown', galKeyHandler); }
+}
+
+function galNav(dir) {
+  const urls = window._galUrls;
+  window._galCurrent = (window._galCurrent + dir + urls.length) % urls.length;
+  galGoTo(window._galCurrent);
+}
+
+function galGoTo(idx) {
+  const urls = window._galUrls;
+  window._galCurrent = idx;
+  document.getElementById('galImg').src = urls[idx];
+  document.getElementById('galCounter').textContent = `${idx+1} / ${urls.length}`;
+  document.querySelectorAll('#galThumbs img').forEach((t,i) => {
+    t.style.border = i===idx ? '2px solid var(--gold)' : '2px solid transparent';
+    t.style.opacity = i===idx ? '1' : '.55';
+  });
+  updateGalDownloadBtn();
+}
+
+function updateGalDownloadBtn() {
+  const btn = document.getElementById('galDownloadBtn');
+  if (!btn) return;
+  btn.onclick = () => downloadSingleImage(window._galUrls[window._galCurrent], window._galTitle, window._galCurrent);
+}
+
+async function downloadSingleImage(url, name, idx) {
+  const src = url || window._galUrls[window._galCurrent];
+  const fname = `${name.replace(/[^a-zA-Z0-9؀-ۿ]/g,'_')}_${idx+1}.jpg`;
+  try {
+    const res = await fetch(src);
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fname;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast('✅ تم حفظ الصورة', 'success');
+  } catch(e) {
+    window.open(src, '_blank');
+    showToast('فُتحت الصورة في تبويب جديد — اضغط كليك يمين → حفظ', 'info');
+  }
+}
+
+async function downloadAllImages() {
+  const urls = window._galUrls;
+  const name = window._galTitle;
+  showToast(`جاري تحميل ${urls.length} صورة...`, 'info');
+  for (let i = 0; i < urls.length; i++) {
+    await downloadSingleImage(urls[i], name, i);
+    await new Promise(r => setTimeout(r, 400));
+  }
+  showToast('✅ تم تحميل جميع الصور', 'success');
+}
+
 function updateStats() {
   const published = allProjects.filter(p => p.status === 'published');
-  document.getElementById('statTotal').textContent = published.length;
-  document.getElementById('statRes').textContent   = published.filter(p => p.category === 'residential').length;
-  document.getElementById('statCom').textContent   = published.filter(p => p.category === 'commercial').length;
-  document.getElementById('statVil').textContent   = published.filter(p => p.category === 'villa').length;
-  document.getElementById('statDraft').textContent = allProjects.filter(p => p.status === 'draft').length;
+  document.getElementById('statTotal').textContent    = published.length;
+  document.getElementById('statRes').textContent      = published.filter(p => p.category === 'residential').length;
+  document.getElementById('statCom').textContent      = published.filter(p => p.category === 'commercial').length;
+  document.getElementById('statVil').textContent      = published.filter(p => p.category === 'villa').length;
+  document.getElementById('statIntRes').textContent   = published.filter(p => p.category === 'interior-res').length;
+  document.getElementById('statIntCom').textContent   = published.filter(p => p.category === 'interior-com').length;
+  document.getElementById('statDraft').textContent    = allProjects.filter(p => p.status === 'draft').length;
 }
 
 /* ══════════════════════════════════════════════════
@@ -2959,7 +3093,7 @@ async function loadBlogView() {
 }
 
 function renderBlogPostsList() {
-  const el = document.getElementById('blogPostsList');
+  const el = document.getElementById('blogList');
   if (!el) return;
   if (!allBlogPosts.length) {
     el.innerHTML = `<div style="color:var(--text-muted);padding:3rem;text-align:center;grid-column:1/-1">
@@ -2970,6 +3104,8 @@ function renderBlogPostsList() {
   }
   el.innerHTML = allBlogPosts.map(p => `
     <div style="background:var(--black-card);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem">
+
+      <!-- Cover image preview + URL input -->
       <div class="field">
         <label>صورة الغلاف</label>
         <div id="bcover-preview-${p.id}" style="margin-bottom:.5rem">
@@ -2977,13 +3113,14 @@ function renderBlogPostsList() {
         </div>
         <div style="display:flex;gap:.5rem;align-items:center">
           <input type="text" id="bcover-${p.id}" value="${escHtml(p.cover_url||'')}" placeholder="رابط الصورة (URL)..." style="flex:1;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.8rem;padding:.45rem .65rem;border-radius:var(--radius)" oninput="previewBlogCover('${p.id}')" />
-          <label style="cursor:pointer;background:var(--gold);color:#000;font-size:.78rem;font-weight:600;padding:.45rem .8rem;border-radius:var(--radius);white-space:nowrap">
+          <label style="cursor:pointer;background:var(--gold);color:#000;font-size:.78rem;font-weight:600;padding:.45rem .8rem;border-radius:var(--radius);white-space:nowrap" title="رفع صورة من جهازك">
             📁 رفع
             <input type="file" accept="image/*" style="display:none" onchange="uploadBlogCover(event,'${p.id}')" />
           </label>
         </div>
-        <p style="font-size:.72rem;color:var(--text-muted);margin-top:.3rem">ضع رابط صورة أو ارفع من جهازك (800×500 px موصى به)</p>
+        <p style="font-size:.72rem;color:var(--text-muted);margin-top:.3rem">ضع رابط صورة أو ارفع من جهازك (يُوصى بـ 800×500 px)</p>
       </div>
+
       <div class="field">
         <label>عنوان المقال</label>
         <input type="text" id="btitle-${p.id}" value="${escHtml(p.title_ar||'')}" placeholder="عنوان المقال..." style="width:100%;background:var(--black-hover);border:1px solid var(--gray-border);color:var(--text-primary);font-family:inherit;font-size:.85rem;padding:.55rem .75rem;border-radius:var(--radius)" />
@@ -3052,24 +3189,19 @@ async function saveBlogPost(id) {
   showToast('تم الحفظ ✓', 'success');
 }
 
-async function deleteBlogPost(id) {
-  if (!confirm('حذف هذا المقال؟')) return;
-  const { error } = await window.c3dClient.from('blog_posts').delete().eq('id', id);
-  if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
-  allBlogPosts = allBlogPosts.filter(p => p.id !== id);
-  renderBlogPostsList();
-  showToast('تم الحذف ✓', 'success');
-}
-
+// Preview cover image as user types URL
 function previewBlogCover(id) {
   const url = document.getElementById('bcover-'+id)?.value || '';
   const preview = document.getElementById('bcover-preview-'+id);
   if (!preview) return;
-  preview.innerHTML = url
-    ? `<img src="${url}" style="width:100%;height:150px;object-fit:cover;border-radius:6px;border:1px solid var(--gray-border)" onerror="this.style.display='none'">`
-    : `<div style="width:100%;height:80px;display:flex;align-items:center;justify-content:center;background:var(--black-hover);border:1px dashed var(--gray-border);border-radius:6px;color:var(--text-muted);font-size:.8rem">لا توجد صورة</div>`;
+  if (url) {
+    preview.innerHTML = `<img src="${escHtml(url)}" style="width:100%;height:150px;object-fit:cover;border-radius:6px;border:1px solid var(--gray-border)" onerror="this.style.display='none'">`;
+  } else {
+    preview.innerHTML = `<div style="width:100%;height:80px;display:flex;align-items:center;justify-content:center;background:var(--black-hover);border:1px dashed var(--gray-border);border-radius:6px;color:var(--text-muted);font-size:.8rem">لا توجد صورة</div>`;
+  }
 }
 
+// Upload blog cover image to Cloudinary then auto-save to Supabase
 async function uploadBlogCover(event, id) {
   const file = event.target.files[0];
   if (!file) return;
@@ -3084,11 +3216,37 @@ async function uploadBlogCover(event, id) {
     if (data.secure_url) {
       document.getElementById('bcover-'+id).value = data.secure_url;
       previewBlogCover(id);
-      showToast('تم رفع الصورة ✓', 'success');
+      showToast('تم الرفع، جاري الحفظ...', 'info');
+      // Auto-save cover_url to Supabase immediately
+      if (window.c3dClient) {
+        const { error } = await window.c3dClient.from('blog_posts')
+          .update({ cover_url: data.secure_url, updated_at: new Date().toISOString() })
+          .eq('id', id);
+        if (error) {
+          showToast('رُفعت الصورة لكن فشل الحفظ: ' + error.message, 'error');
+        } else {
+          const i = allBlogPosts.findIndex(p => p.id === id);
+          if (i > -1) allBlogPosts[i].cover_url = data.secure_url;
+          showToast('تم رفع الصورة وحفظها ✓', 'success');
+        }
+      } else {
+        showToast('تم رفع الصورة — اضغط حفظ لتأكيد التغييرات', 'success');
+      }
     } else {
-      showToast('فشل الرفع: ' + (data.error?.message||'خطأ'), 'error');
+      showToast('فشل الرفع: ' + (data.error?.message || 'خطأ غير معروف'), 'error');
     }
-  } catch(e) { showToast('خطأ في الرفع: ' + e.message, 'error'); }
+  } catch(e) {
+    showToast('خطأ في الرفع: ' + e.message, 'error');
+  }
+}
+
+async function deleteBlogPost(id) {
+  if (!confirm('حذف هذا المقال؟')) return;
+  const { error } = await window.c3dClient.from('blog_posts').delete().eq('id', id);
+  if (error) { showToast('خطأ في الحذف: ' + error.message, 'error'); return; }
+  allBlogPosts = allBlogPosts.filter(p => p.id !== id);
+  renderBlogPostsList();
+  showToast('تم الحذف ✓', 'success');
 }
 
 /* ══════════════════════════════════════════════════
@@ -3206,4 +3364,3 @@ async function deletePackage(id) {
 </script>
 </body>
 </html>
-   
