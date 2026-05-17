@@ -193,6 +193,8 @@
     .pkg-dots .dot.active{background-color:var(--gold,#b8976a);width:22px;border-radius:4px;}
     @media(max-width:640px){.pkg-dots{display:flex;}}
     @media(max-width:700px){.calc-tabs{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap !important;gap:.45rem;padding-bottom:.5rem;}.calc-tabs::-webkit-scrollbar{display:none;}.calc-tab{flex-shrink:0;font-size:.75rem;padding:.55rem .85rem;white-space:nowrap;}}
+    .drc-original { font-size:.8rem; color:var(--text-muted); text-decoration:line-through; margin-bottom:.18rem; line-height:1.2; }
+    .drc-badge { display:inline-block; background:var(--gold); color:#111; font-size:.7rem; font-weight:700; padding:.1rem .45rem; border-radius:2rem; margin-bottom:.2rem; }
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"حاسبة تكلفة التشطيب والتصميم 2026","url":"https://creative3design.com/packages.html","description":"احسب تكلفة مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP","provider":{"@type":"Organization","name":"Creative3Design","telephone":"+201019053288"}}
@@ -406,9 +408,12 @@
           <div class="slider-minmax"><span>50 م²</span><span>2,000 م²</span></div>
         </div>
         <div class="design-result-grid">
-          <div class="design-result-card"><div class="drc-label">باقة أساسية</div><div class="drc-value" id="des-basic">—</div><div class="drc-sub">مخططات 2D فقط</div></div>
-          <div class="design-result-card highlight"><div class="drc-label">باقة شاملة ⭐</div><div class="drc-value" id="des-standard">—</div><div class="drc-sub">2D + 3D</div></div>
-          <div class="design-result-card"><div class="drc-label">باقة فاخرة</div><div class="drc-value" id="des-luxury">—</div><div class="drc-sub">2D + 3D + فيديو</div></div>
+          <div class="design-result-card"><div class="drc-label">باقة أساسية</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-basic-orig">—</div><div class="drc-value" id="des-basic">—</div><div class="drc-sub">مخططات 2D فقط</div></div>
+          <div class="design-result-card highlight"><div class="drc-label">باقة شاملة ⭐</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-standard-orig">—</div><div class="drc-value" id="des-standard">—</div><div class="drc-sub">2D + 3D</div></div>
+          <div class="design-result-card"><div class="drc-label">باقة فاخرة</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-luxury-orig">—</div><div class="drc-value" id="des-luxury">—</div><div class="drc-sub">2D + 3D + فيديو</div></div>
+        </div>
+                <div style="text-align:center;margin:.8rem 0 1rem;padding:.7rem 1.4rem;background:rgba(184,151,106,.13);border:1px solid var(--gold);border-radius:4px;">
+          <span style="color:var(--gold);font-weight:700;font-size:.92rem;">🎉 خصم 30% مطبَّق — وفّرت <span id="des-discount-amt">—</span> ج.م على الباقة الشاملة</span>
         </div>
         <div class="calc-result" style="margin-top:1.5rem;">
           <div>
@@ -664,6 +669,15 @@ function updateDesCalc() {
   const basic    = Math.max(area * base * 0.55, 8000);
   const standard = Math.max(area * base, 15000);
   const luxury   = Math.max(area * base * 1.6, 25000);
+  // Original (pre-discount) prices × 1.3
+  const basicOrig    = Math.round(basic    * 10 / 7);
+  const standardOrig = Math.round(standard * 10 / 7);
+  const luxuryOrig   = Math.round(luxury   * 10 / 7);
+  const desSaved     = standardOrig - standard;
+  document.getElementById('des-basic-orig').textContent    = fmt(basicOrig)    + ' ج.م';
+  document.getElementById('des-standard-orig').textContent = fmt(standardOrig) + ' ج.م';
+  document.getElementById('des-luxury-orig').textContent   = fmt(luxuryOrig)   + ' ج.م';
+  document.getElementById('des-discount-amt').textContent  = fmt(desSaved);
   document.getElementById('des-basic').textContent    = fmt(basic) + ' ج.م';
   document.getElementById('des-standard').textContent = fmt(standard) + ' ج.م';
   document.getElementById('des-luxury').textContent   = fmt(luxury) + ' ج.م';
@@ -673,6 +687,7 @@ function updateDesCalc() {
     '📌 نوع المشروع: ' + (desTypeLabel[desSelType] || desSelType) + '\n' +
     '📐 المساحة: ' + area.toLocaleString('ar-EG') + ' م²\n' +
     '💰 نطاق الرسوم: ' + fmt(basic) + ' — ' + fmt(luxury) + ' ج.م\n' +
+    '🎉 خصم 30% مطبَّق — السعر قبل الخصم: ' + fmt(standardOrig) + ' ج.م (توفير: ' + fmt(desSaved) + ' ج.م)\n' +
     '   (أساسي: ' + fmt(basic) + ' | شامل: ' + fmt(standard) + ' | فاخر: ' + fmt(luxury) + ')\n\n' +
     'أرجو التواصل لمعرفة تفاصيل العرض.';
   const btn = document.getElementById('des-wa-btn');
