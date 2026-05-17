@@ -1289,8 +1289,8 @@ function switchBA(idx) {
     'commercial':   'تجاري وإداري'
   };
 
-  var LIMIT_INITIAL = 10;  // عدد المشاريع الأولية
-  var LIMIT_MORE    = 18;  // عدد المشاريع بعد "شاهد المزيد"
+  var LIMIT_INITIAL = 12;  // عدد المشاريع الأولية
+  var LIMIT_MORE    = 20;  // عدد المشاريع بعد "شاهد المزيد"
 
   var allProjects   = [];  // كل المشاريع المحمّلة من Supabase
   var currentCat    = 'all';
@@ -1315,9 +1315,13 @@ function switchBA(idx) {
   /* ── اختيار الـ pool حسب الفئة والحد ──
      "الكل":  المميّزون أولاً (featured) ثم الأحدث — بالتوزيع per-category
      قسم:     فلترة بالقسم مع الحد المطلوب */
+  /* التوزيع المخصص للعرض الأولي (الكل): 4+2+2+2+2 = 12 */
+  var CAT_QUOTA = { 'interior-res':4, 'interior-com':2, 'villa':2, 'hospitality':2, 'commercial':2 };
+
   function getPool(cat, limit) {
     if (cat === 'all') {
-      var perCat = Math.ceil(limit / CATS.length); // 10→2، 18→4
+      var quota = (limit === LIMIT_INITIAL) ? CAT_QUOTA : null;
+      var perCat = quota ? null : Math.ceil(limit / CATS.length);
       var featured   = {};
       var unfeatured = {};
       CATS.forEach(function(c){ featured[c]=[]; unfeatured[c]=[]; });
@@ -1329,7 +1333,8 @@ function switchBA(idx) {
       });
       var result = [];
       CATS.forEach(function(c) {
-        featured[c].concat(unfeatured[c]).slice(0, perCat).forEach(function(p){ result.push(p); });
+        var n = quota ? (quota[c] || 0) : perCat;
+        featured[c].concat(unfeatured[c]).slice(0, n).forEach(function(p){ result.push(p); });
       });
       return result.slice(0, limit);
     } else {
