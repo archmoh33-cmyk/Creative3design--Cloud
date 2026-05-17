@@ -1497,6 +1497,10 @@ function switchBA(idx) {
           img.src = img.dataset.src;
           img.removeAttribute('data-src');
         });
+        // إظهار الكروت فوراً (تجاوز lazy-reveal animation)
+        grid.querySelectorAll('.port-card.lazy-reveal').forEach(function(card){
+          card.classList.add('revealed');
+        });
         bindFilter(grid, filterEl);
         if (typeof lazyLoad === 'function') lazyLoad();
       }).catch(function(){});
