@@ -1480,6 +1480,19 @@ function switchBA(idx) {
     bindFilter(grid, filterEl);
     if (typeof lazyLoad === 'function') lazyLoad();
 
+    // ترتيب الفئات المطلوب في الصفحة الرئيسية
+    var CAT_ORDER = ['interior-res','interior-com','villa','hospitality','commercial'];
+
+    function sortByCategory(data) {
+      return data.slice().sort(function(a, b) {
+        var ai = CAT_ORDER.indexOf(a.category);
+        var bi = CAT_ORDER.indexOf(b.category);
+        if (ai < 0) ai = 99;
+        if (bi < 0) bi = 99;
+        return ai - bi;
+      });
+    }
+
     function tryFetch(attempt) {
       if (!window.c3dFetchProjects || !window.c3dClient) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
@@ -1488,16 +1501,29 @@ function switchBA(idx) {
       window.c3dFetchProjects({ featured: true, limit: 50 }).then(function(res) {
         var data = res && res.data;
         if (!data || !data.length) return;
+
+        // ترتيب حسب الفئة ثم اختيار أول 12
+        data = sortByCategory(data).slice(0, 12);
+
+        // حذف الفئات غير الموجودة من أزرار الفلتر
+        var presentCats = {};
+        data.forEach(function(p){ presentCats[p.category] = true; });
+        filterEl.querySelectorAll('.filter-btn[data-cat]').forEach(function(btn){
+          var cat = btn.dataset.cat;
+          if (cat && cat !== 'all') btn.style.display = presentCats[cat] ? '' : 'none';
+        });
+
         var html = data.map(buildCard).join('');
         var showMoreWrap = document.getElementById('showMoreWrap');
         grid.innerHTML = html;
         if (showMoreWrap) grid.appendChild(showMoreWrap);
-        // تحميل الصور مباشرة (بدون lazy — الـ portfolio في مجال الرؤية)
+
+        // تحميل الصور فوراً
         grid.querySelectorAll('img.lazy-img[data-src]').forEach(function(img){
           img.src = img.dataset.src;
           img.removeAttribute('data-src');
         });
-        // إظهار الكروت فوراً (تجاوز lazy-reveal animation)
+        // إظهار الكروت (تجاوز lazy-reveal)
         grid.querySelectorAll('.port-card.lazy-reveal').forEach(function(card){
           card.classList.add('revealed');
         });
