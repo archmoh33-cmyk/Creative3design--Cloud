@@ -1439,8 +1439,7 @@ function switchBA(idx) {
     var grid = document.getElementById('portfolioGrid');
     if (!grid) return;
 
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);font-size:.85rem;">جارٍ تحميل المشاريع…</div>';
-
+    /* لا نمسح الـ grid — البطاقات الثابتة تبقى ظاهرة أثناء التحميل */
     /* جلب كل الفئات + interior-res بشكل منفصل لضمان ظهورها */
     Promise.all([
       window.c3dFetchProjects({ limit: 300 }),
@@ -1449,8 +1448,7 @@ function switchBA(idx) {
       var res    = results[0];
       var resInt = results[1];
       if (res.error || !res.data || !res.data.length) {
-        grid.innerHTML = ''; // fallback للكروت الثابتة
-        return;
+        return; // نبقى على البطاقات الثابتة
       }
       var mainData = res.data;
       /* إضافة interior-res إن لم تكن موجودة في النتيجة الرئيسية */
