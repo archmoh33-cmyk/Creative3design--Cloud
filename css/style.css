@@ -1161,8 +1161,8 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 
 }
 
-/* ── Portfolio: إظهار 6 مشاريع فقط في الصفحة الرئيسية ── */
-#portfolioGrid .port-card:nth-child(n+7) { display: none !important; }
+/* ── Portfolio: إظهار 10 مشاريع في الصفحة الرئيسية ── */
+#portfolioGrid .port-card:nth-child(n+11) { display: none !important; }
 
 /* ══════════════════════════════════════════════════
    Compounds Marquee — سلايدر مستمر (كل الشاشات)
