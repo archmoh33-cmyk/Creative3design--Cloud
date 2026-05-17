@@ -287,17 +287,20 @@ function testiPrev() {
 
 /* ── PORTFOLIO FILTER ── */
 const MAX_PORTFOLIO = 10; // عدد الصور لكل تصنيف محدد
+// كوتا مخصصة لكل فئة في وضع "الكل" بالصفحة الرئيسية
+const CAT_QUOTA_HOME = {'interior-res':4,'interior-com':2,'villa':2,'hospitality':2,'commercial':2};
 
 function applyPortfolioFilter(cat, cards, limit) {
   const maxAll = limit || MAX_PORTFOLIO;              // حد الكل
   const perCat = Math.ceil(maxAll / 5);               // عدد كروت لكل قسم في "الكل"
   if (cat === 'all') {
-    // perCat صورة من كل فئة (10→2 لكل قسم، 18→4 لكل قسم)
+    // استخدام الكوتا المخصصة إن وُجدت، وإلا perCat
     const seen = {};
     cards.forEach(card => {
       const c = card.dataset.cat;
       if (!seen[c]) seen[c] = 0;
-      const show = seen[c] < perCat;
+      const quota = CAT_QUOTA_HOME[c] !== undefined ? CAT_QUOTA_HOME[c] : perCat;
+      const show = seen[c] < quota;
       if (show) seen[c]++;
       card.classList.toggle('hidden', !show);
       if (show && !card.classList.contains('revealed')) {
