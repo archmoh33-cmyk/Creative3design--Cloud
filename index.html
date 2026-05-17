@@ -1432,73 +1432,30 @@ function switchBA(idx) {
     updateShowMoreBtn();
   }
 
-  /* ── Main Loader ── */
+  /* ── فلترة البطاقات الثابتة مباشرة (بدون Supabase) ── */
   function loadHomepagePortfolio() {
-    if (!window.c3dClient || window.C3D_STATIC_MODE) return;
+    var grid     = document.getElementById('portfolioGrid');
+    var filterEl = document.getElementById('portfolioFilter');
+    if (!grid || !filterEl) return;
 
-    var grid = document.getElementById('portfolioGrid');
-    if (!grid) return;
-
-    /* لا نمسح الـ grid — البطاقات الثابتة تبقى ظاهرة أثناء التحميل */
-    /* جلب كل الفئات + interior-res بشكل منفصل لضمان ظهورها */
-    Promise.all([
-      window.c3dFetchProjects({ limit: 300 }),
-      window.c3dFetchProjects({ category: 'interior-res', limit: 8 })
-    ]).then(function(results) {
-      var res    = results[0];
-      var resInt = results[1];
-      if (res.error || !res.data || !res.data.length) {
-        return; // نبقى على البطاقات الثابتة
-      }
-      var mainData = res.data;
-      /* إضافة interior-res إن لم تكن موجودة في النتيجة الرئيسية */
-      var hasIntRes = mainData.some(function(p){ return p.category === 'interior-res'; });
-      if (!hasIntRes && resInt.data && resInt.data.length) {
-        mainData = mainData.concat(resInt.data);
-      }
-
-      allProjects = mainData;
-
-      /* إعادة تسجيل listeners الأزرار (clone لإزالة القديمة) */
-      var filterEl = document.getElementById('portfolioFilter');
-      if (!filterEl) return;
-      filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
-        var fresh = btn.cloneNode(true);
-        btn.parentNode.replaceChild(fresh, btn);
-      });
-
-      /* العرض الأولي: الكل */
-      applyView('all', LIMIT_INITIAL);
-
-      /* ربط أزرار الفلتر */
-      filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
-          btn.classList.add('active');
-          applyView(btn.dataset.cat || 'all', LIMIT_INITIAL);
+    filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cat = btn.dataset.cat || 'all';
+        filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        grid.querySelectorAll('.port-card').forEach(function(card) {
+          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
         });
       });
-
-      /* ربط زر "شاهد المزيد" */
-      var moreBtn = document.getElementById('portfolioShowMore');
-      if (moreBtn) {
-        // إزالة أي listener قديم
-        var freshMore = moreBtn.cloneNode(true);
-        moreBtn.parentNode.replaceChild(freshMore, moreBtn);
-        document.getElementById('portfolioShowMore').addEventListener('click', function() {
-          applyView(currentCat, LIMIT_MORE);
-        });
-      }
     });
+
+    if (typeof lazyLoad === 'function') lazyLoad();
   }
 
-  /* انتظر حتى يكون الـ client جاهزاً ثم حمّل */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(loadHomepagePortfolio, 100);
-    });
+    document.addEventListener('DOMContentLoaded', loadHomepagePortfolio);
   } else {
-    setTimeout(loadHomepagePortfolio, 100);
+    loadHomepagePortfolio();
   }
 
 })();
