@@ -574,399 +574,51 @@ body.loading { overflow: hidden; }
       <p class="section-desc" data-ar="أكثر من 1100 مشروع منجز في مصر والخليج — كل واحد يحكي قصة تميز" data-en="Over 1100 completed projects in Egypt and the Gulf — each one tells a story of excellence">أكثر من 1100 مشروع منجز في مصر والخليج — كل واحد يحكي قصة تميز</p>
     </div>
     <div class="portfolio-filter lazy-reveal" id="portfolioFilter">
-      <button class="filter-btn active" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
-      <button class="filter-btn"        data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
+      <button class="filter-btn" data-cat="all"          data-ar="الكل"               data-en="All">الكل</button>
+      <button class="filter-btn active" data-cat="interior-res" data-ar="تصميم داخلي سكني"  data-en="Residential Interior">تصميم داخلي سكني</button>
       <button class="filter-btn"        data-cat="interior-com" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</button>
       <button class="filter-btn"        data-cat="villa"        data-ar="فيلات وعمارات"      data-en="Villas & Buildings">فيلات وعمارات</button>
       <button class="filter-btn"        data-cat="hospitality"  data-ar="فنادق"              data-en="Hotels">فنادق</button>
       <button class="filter-btn"        data-cat="commercial"   data-ar="تجاري وإداري"       data-en="Commercial & Admin">تجاري وإداري</button>
     </div>
     <div class="portfolio-grid" id="portfolioGrid">
-      <!-- ═══ الكارت الأول من كل فئة (بترتيب الأزرار) — يظهر في "الكل" ═══ -->
+      <!-- ═══ 4 مشاريع تصميم داخلي سكني — صور حقيقية من Cloudinary ═══ -->
 
-      <!-- 1. تصميم داخلي سكني -->
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي غرفة معيشة سكنية فاخرة" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039468/creative3design/portfolio/utp0z9lb4nohzu3domh0.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن فيلا بكمبوند ماونتن فيو — Creative3Design" class="lazy-img" loading="lazy" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="فيلا الشيخ زايد الداخلية" data-en="Sheikh Zayed Villa Interior">فيلا الشيخ زايد الداخلية</h4>
+          <h4 data-ar="رسيبشن فيلا ماونتن فيو" data-en="Mountain View Villa Reception">رسيبشن فيلا ماونتن فيو</h4>
           <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- 2. تصميم داخلي تجاري -->
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي مكتب تجاري راقٍ" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مكتب مدينة نصر الداخلي" data-en="Nasr City Office Interior">مكتب مدينة نصر الداخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- 3. فيلات وعمارات -->
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم فيلا فاخرة بحديقة خارجية واجهة عصرية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا القاهرة الجديدة" data-en="New Cairo Villa">فيلا القاهرة الجديدة</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- 4. فنادق -->
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم فندق فاخر — لوبي وأجنحة راقية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="فندق النيل الكبير" data-en="Grand Nile Hotel">فندق النيل الكبير</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- 5. تجاري وإداري -->
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مطعم راقٍ بإضاءة مميزة وديكور فاخر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="مطعم الجزيرة الفاخر" data-en="Al-Gezira Premium Restaurant">مطعم الجزيرة الفاخر</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
 
-      <!-- ═══ الكروت الإضافية (تظهر عند الفلترة فقط) ═══ -->
+      <div class="port-card lazy-reveal" data-cat="interior-res">
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039530/creative3design/portfolio/sc7csy5tnpntuqwv9phl.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن الترا مودرن بفيلا بفرلي هيلز — Creative3Design" class="lazy-img" loading="lazy" />
+        <div class="port-overlay">
+          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
+          <h4 data-ar="فيلا بيفرلي هيلز الترا مودرن" data-en="Beverly Hills Ultra Modern Villa">فيلا بيفرلي هيلز الترا مودرن</h4>
+          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
+        </div>
+      </div>
 
-      <!-- interior-res إضافي -->
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي شقة فاخرة بتشطيب عصري" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039369/creative3design/portfolio/wcc9kjzoi0juxin99p7t.webp" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="لوبي فيلا ليك فيو — Creative3Design" class="lazy-img" loading="lazy" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة القاهرة الجديدة الداخلية" data-en="New Cairo Apartment Interior">شقة القاهرة الجديدة الداخلية</h4>
+          <h4 data-ar="لوبي فيلا ليك فيو" data-en="Lake View Villa Lobby">لوبي فيلا ليك فيو</h4>
           <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
+
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي لغرفة معيشة عصرية فاخرة" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039431/creative3design/portfolio/uaiiheytrohx3wabdvrs.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم بفيلا مدينتي — Creative3Design" class="lazy-img" loading="lazy" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="فيلا المعادي الفاخرة" data-en="Maadi Luxury Villa">فيلا المعادي الفاخرة</h4>
+          <h4 data-ar="غرفة نوم فيلا مدينتي" data-en="Madinaty Villa Bedroom">غرفة نوم فيلا مدينتي</h4>
           <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم غرفة نوم رئيسية فاخرة بألوان محايدة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة التجمع الخامس" data-en="Fifth Settlement Apartment">شقة التجمع الخامس</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطبخ مودرن فاخر أوبن سبيس — شقة بالمهندسين" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة المهندسين الراقية" data-en="Mohandessin Luxury Apartment">شقة المهندسين الراقية</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم كلاسيكي راقٍ لشقة بمصر الجديدة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة مصر الجديدة الكلاسيكية" data-en="Heliopolis Classic Apartment">شقة مصر الجديدة الكلاسيكية</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم فاخرة بألوان هادئة وإضاءة دافئة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة الدقي الفاخرة" data-en="Dokki Luxury Apartment">شقة الدقي الفاخرة</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="صالة معيشة مودرن بألوان محايدة وأثاث فاخر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة الرحاب المودرن" data-en="Al-Rehab Modern Apartment">شقة الرحاب المودرن</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي غرفة جلوس فاخرة بإضاءة مميزة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="شقة بالم هيلز الداخلية" data-en="Palm Hills Interior Apartment">شقة بالم هيلز الداخلية</h4>
-          <a href="portfolio.html?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- interior-com إضافي -->
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي مطعم فاخر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مطعم الجزيرة الداخلي" data-en="Al-Gezira Restaurant Interior">مطعم الجزيرة الداخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فضاء عمل مفتوح بتصميم داخلي تجاري عصري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مقر شركة سمارت — داخلي" data-en="Smart Corp Interior">مقر شركة سمارت — داخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1541971875076-8f970d573be4?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="استقبال مكتبي راقٍ بتصميم حديث" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="استقبال شركة الرياض — داخلي" data-en="Riyadh Firm Reception">استقبال شركة الرياض — داخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي مطعم فاخر بإضاءة درامية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مطعم لوبريستو — الداخلي" data-en="Le Presto Restaurant Interior">مطعم لوبريستو — الداخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="كافيه عصري بتصميم داخلي دافئ وجذاب" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="كافيه موكا — الزمالك" data-en="Mocha Cafe — Zamalek">كافيه موكا — الزمالك</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1497215842788-be93180c3813?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مساحة عمل تجارية بتصميم داخلي مميز" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="بنك الاستثمار — داخلي" data-en="Investment Bank Interior">بنك الاستثمار — داخلي</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1568992688441-26f66de16b39?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة اجتماعات راقية بتصميم داخلي تجاري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="قاعة اجتماعات إكزيكيوتيف" data-en="Executive Meeting Room">قاعة اجتماعات إكزيكيوتيف</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="عيادة طبية بتصميم داخلي نظيف وعصري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مركز طبي سمارت كلينك" data-en="Smart Clinic Medical Center">مركز طبي سمارت كلينك</h4>
-          <a href="portfolio.html?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- villa إضافي -->
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم خارجي لفيلا بالقاهرة الجديدة بطراز معماري حديث" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا الشيخ زايد" data-en="Sheikh Zayed Villa">فيلا الشيخ زايد</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا سكنية فاخرة بالرحاب — تصميم عصري راقٍ" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا الرحاب الفاخرة" data-en="El Rehab Luxury Villa">فيلا الرحاب الفاخرة</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا ريفية بمدينتي — حديقة خضراء وتصميم هادئ" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا مدينتي الريفية" data-en="Madinaty Country Villa">فيلا مدينتي الريفية</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا فاخرة بحمام سباحة خاص وحديقة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا ماونتن فيو — بالمسبح" data-en="Mountain View Pool Villa">فيلا ماونتن فيو — بالمسبح</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1580587771525-4e832f3641d1?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="منزل عصري بتصميم خارجي أنيق" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا هايد بارك الفاخرة" data-en="Hyde Park Luxury Villa">فيلا هايد بارك الفاخرة</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا فاخرة بتصميم معماري مميز وإطلالة بانورامية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا سوديك — الشيخ زايد" data-en="Sodic Villa — Sheikh Zayed">فيلا سوديك — الشيخ زايد</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيلا مودرن بواجهة زجاجية وإضاءة ليلية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="فيلا بيفرلي هيلز الزجاجية" data-en="Beverly Hills Glass Villa">فيلا بيفرلي هيلز الزجاجية</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="عمارة سكنية راقية بتصميم معاصر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="عمارة الرحاب السكنية" data-en="Al-Rehab Residential Building">عمارة الرحاب السكنية</h4>
-          <a href="portfolio.html?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- hospitality إضافي -->
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم منتجع ساحلي فاخر — إطلالة بانورامية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="منتجع الساحل الشمالي" data-en="North Coast Resort">منتجع الساحل الشمالي</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فندق فاخر بحمام سباحة لا نهاية له" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="فندق البحيرة الفاخر" data-en="Lakeside Luxury Hotel">فندق البحيرة الفاخر</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="جناح فندقي فاخر بإطلالة مفتوحة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="جناح النيل الملكي" data-en="Royal Nile Suite">جناح النيل الملكي</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="لوبي فندقي راقٍ بتصميم معاصر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="لوبي فندق الأهرام" data-en="Pyramids Hotel Lobby">لوبي فندق الأهرام</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطعم فندقي فاخر بإضاءة دافئة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="مطعم فندق سفير" data-en="Safir Hotel Restaurant">مطعم فندق سفير</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1551882547-ff40c4a49777?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة فندق راقية بديكور عصري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="غرفة فندق الواحة" data-en="Al-Waha Hotel Room">غرفة فندق الواحة</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فندق بتصميم خارجي عصري فاخر" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="فندق النخبة — العاصمة الإدارية" data-en="Elite Hotel — New Capital">فندق النخبة — العاصمة الإدارية</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="منتجع فاخر بحمام سباحة لا نهاية" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="فنادق" data-en="Hotels">فنادق</span>
-          <h4 data-ar="منتجع العين السخنة" data-en="Ain Sokhna Resort">منتجع العين السخنة</h4>
-          <a href="portfolio.html?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <!-- commercial إضافي -->
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب تجاري احترافي بأسلوب عصري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="مقر شركة مدينة نصر" data-en="Nasr City Corporate HQ">مقر شركة مدينة نصر</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم عيادة طبية احترافية بأسلوب مودرن" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="عيادة التجمع الطبية" data-en="New Cairo Medical Clinic">عيادة التجمع الطبية</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1560066984-138daaa1aef2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم صالون تجميل فاخر بإضاءة حديثة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="صالون لوكس — الزمالك" data-en="Lux Salon — Zamalek">صالون لوكس — الزمالك</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب تنفيذي راقٍ بالتجمع الخامس" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="مكتب التجمع التنفيذي" data-en="New Cairo Executive Office">مكتب التجمع التنفيذي</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب شركة بتصميم مفتوح وعصري" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="شركة الذكاء للاستثمار" data-en="Al-Dhakaa Investment HQ">شركة الذكاء للاستثمار</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مبنى تجاري راقٍ بالقاهرة الجديدة" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="برج الأعمال — التجمع الأول" data-en="Business Tower — 1st Settlement">برج الأعمال — التجمع الأول</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="واجهة مبنى إداري عصري زجاجي" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="المقر الرئيسي — الشيخ زايد" data-en="HQ Building — Sheikh Zayed">المقر الرئيسي — الشيخ زايد</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مكتب تنفيذي احترافي بديكور مودرن" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="مكتب المستقبل — مدينة نصر" data-en="Future Office — Nasr City">مكتب المستقبل — مدينة نصر</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-      <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فضاء عمل مشترك بتصميم عصري مفتوح" class="lazy-img" loading="lazy" />
-        <div class="port-overlay">
-          <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="مساحة عمل مشتركة — ووركسبيس" data-en="Coworking Space — Workspace">مساحة عمل مشتركة — ووركسبيس</h4>
-          <a href="portfolio.html?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
-        </div>
-      </div>
-    <!-- زر شاهد المزيد — يظهر فقط عند وجود مشاريع إضافية -->
-    <div id="showMoreWrap" style="text-align:center;margin:1.8rem 0 0;display:none;">
+      </div><div id="showMoreWrap" style="text-align:center;margin:1.8rem 0 0;display:none;">
       <button id="portfolioShowMore" class="btn-outline-gold" style="cursor:pointer;border:none;font-family:inherit;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:.5rem;vertical-align:middle"><polyline points="6 9 12 15 18 9"/></svg>
         <span data-ar="شاهد المزيد من المشاريع" data-en="Show More Projects">شاهد المزيد من المشاريع</span>
@@ -1751,8 +1403,13 @@ function switchBA(idx) {
         btn.parentNode.replaceChild(fresh, btn);
       });
 
-      /* العرض الأولي: "الكل" — 10 كروت */
-      applyView('all', LIMIT_INITIAL);
+      /* العرض الأولي: تصميم داخلي سكني — 4 كروت */
+      applyView('interior-res', 4);
+
+      /* تفعيل زر الفلتر الصحيح */
+      filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      var intResBtn = filterEl.querySelector('[data-cat="interior-res"]');
+      if (intResBtn) intResBtn.classList.add('active');
 
       /* ربط أزرار الفلتر */
       filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
