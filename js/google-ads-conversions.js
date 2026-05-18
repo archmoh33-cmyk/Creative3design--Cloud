@@ -27,8 +27,8 @@
   // ── ⚙️ CONFIG ── استبدل هذه القيم فقط ──────────────────────
   var CONFIG = {
     ADS_CONVERSION_ID   : 'AW-10829372232',          // ✅ Google Ads Conversion ID
-    WHATSAPP_CONV_LABEL : 'WHATSAPP_LABEL_HERE',    // ← Label تحويل الواتساب
-    PHONE_CONV_LABEL    : 'PHONE_LABEL_HERE',       // ← Label تحويل الهاتف
+    WHATSAPP_CONV_LABEL : 'AAAAAcXorb8',             // ✅ WhatsApp Click (ID: 7615327679)
+    PHONE_CONV_LABEL    : 'AAAAAcXo0GY',            // ✅ Phone Call Click (ID: 7615336550)
     GA4_MEASUREMENT_ID  : 'G-BYF05KS3PN',           // ✅ معرف GA4 الموجود
     CAMPAIGN_NAME       : 'al-mentor-june2026',
     DEBUG_MODE          : false                      // true لرؤية logs في Console
@@ -144,4 +144,4 @@
 
   log('🚀 C3D Ads Tracking initialized | Campaign: ' + CONFIG.CAMPAIGN_NAME);
 
-})();
+})(
