@@ -1936,5 +1936,46 @@ window.addEventListener('load', function () {
 
 
 <script src="wa-smart.js"></script>
+<script>
+/* ── Visit Counter: unique per browser, stored in Supabase site_visits ── */
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'c3d_visited_unique';
+  var el = document.getElementById('vc-number');
+  var isNew = !localStorage.getItem(STORAGE_KEY);
+  if (isNew) localStorage.setItem(STORAGE_KEY, '1');
+  function waitForClient(cb, attempts) {
+    attempts = attempts || 0;
+    var client = window.c3dClient || window.supabaseClient;
+    if (client) { cb(client); return; }
+    if (attempts > 150) return;
+    setTimeout(function () { waitForClient(cb, attempts + 1); }, 100);
+  }
+  waitForClient(function (client) {
+    if (isNew) {
+      client.from('site_visits').insert({ page: 'home' })
+        .then(function () { fetchCount(client, true); })
+        .catch(function () { fetchCount(client, false); });
+    } else {
+      fetchCount(client, false);
+    }
+    function fetchCount(c, highlight) {
+      c.from('site_visits').select('id', { count: 'exact', head: true })
+        .then(function (res) {
+          showCount(res.count != null ? res.count.toLocaleString('ar-EG') : '—', highlight);
+        })
+        .catch(function () { showCount('—', false); });
+    }
+    function showCount(val, highlight) {
+      if (!el) return;
+      el.textContent = val;
+      if (highlight) {
+        el.classList.add('vc-new');
+        setTimeout(function () { el.classList.remove('vc-new'); }, 1000);
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
