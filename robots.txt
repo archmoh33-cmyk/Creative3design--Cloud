@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://creative3design.com/sitemap.xml
+Sitemap: https://creativedesignegypt.com/sitemap.xml
