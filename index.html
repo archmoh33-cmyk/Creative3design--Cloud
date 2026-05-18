@@ -1525,14 +1525,16 @@ function switchBA(idx) {
         var commercial  = (results[2] && results[2].data) || [];
         /* بناء المجموعة: 8 مميّزة + 2 داخلي تجاري + 2 تجاري اداري = 12 */
         var seen = {};
-        /* 1. خذ 2 interior-com أولاً (مضمونة) */
+        /* guaranteed slots: 2 interior-com + 2 commercial + 8 featured = 12 */
         var slotInterior = interiorCom.slice(0, 2);
-        slotInterior.forEach(function(p){ seen[p.id] = true; });
-        /* 2. خذ 2 commercial (مضمونة — من المميّزة أولاً ثم غير المميّزة) */
-        var slotCommercial = commercial.slice(0, 2);
-        slotCommercial.forEach(function(p){ seen[p.id] = true; });
-        /* 3. امأل الـ 8 المتبقية من المميّزة (بدون تكرار) */
-        var slotFeatured = featured.filter(function(p){ return !seen[p.id]; }).slice(0, 8);
+        var featuredCommercial = featured.filter(function(p){ return p.category === 'commercial'; });
+        var poolCommercial = commercial.filter(function(p){
+          return !featuredCommercial.some(function(fc){ return fc.id === p.id; });
+        });
+        var slotCommercial = featuredCommercial.concat(poolCommercial).slice(0, 2);
+        var slotFeatured = featured.filter(function(p){
+          return p.category !== 'commercial' && p.category !== 'interior-com';
+        }).slice(0, 8);
         var data = slotFeatured.concat(slotInterior).concat(slotCommercial);
         if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */ /* لا توجد مشاريع — نحتفظ بالثابتة */
 
