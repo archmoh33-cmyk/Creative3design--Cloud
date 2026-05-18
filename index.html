@@ -1881,7 +1881,7 @@ function switchBA(idx) {
 /* ── Blog Posts — window.load ensures Supabase client is ready ── */
 window.addEventListener('load', function () {
   function loadBlog(retries) {
-    var client = window.c3dClient;
+    var client = window.c3dClient || window.supabaseClient;
     if (!client) {
       if (retries > 0) { setTimeout(function () { loadBlog(retries - 1); }, 400); }
       return;
