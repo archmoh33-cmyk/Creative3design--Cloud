@@ -1535,7 +1535,8 @@ function switchBA(idx) {
         var slotFeatured = featured.filter(function(p){
           return p.category !== 'commercial' && p.category !== 'interior-com';
         }).slice(0, 8);
-        var data = slotFeatured.concat(slotInterior).concat(slotCommercial);
+        /* ترتيب: 4 مميّزة + 2 تجاري وإداري + 2 تصميم داخلي تجاري + 4 مميّزة */
+        var data = slotFeatured.slice(0,4).concat(slotCommercial).concat(slotInterior).concat(slotFeatured.slice(4));
         if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */ /* لا توجد مشاريع — نحتفظ بالثابتة */
 
         // ترتيب حسب الفئة ثم اختيار أول 12
