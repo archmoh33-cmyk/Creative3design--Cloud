@@ -252,6 +252,41 @@ body.loading { overflow: hidden; }
   #packages-preview .lazy-reveal[style*="grid-template-columns:repeat(3"] { grid-template-columns:1fr !important; }
   #packages-preview [style*="grid-template-columns:repeat(5"] { grid-template-columns:repeat(3,1fr) !important; }
 }
+
+/* ── VISIT COUNTER BAR ───────────────────────────────────────── */
+.visit-counter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .65rem 1rem;
+  border-top: 1px solid rgba(var(--gold-rgb, 212,175,55), .18);
+  font-size: .78rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .04em;
+}
+.vc-icon { color: var(--gold); opacity: .75; line-height: 1; }
+.vc-divider { opacity: .3; }
+.vc-number {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 3ch;
+  text-align: center;
+  transition: color .3s;
+}
+.vc-number.vc-new {
+  color: #7fff7f;
+  animation: vcPulse .7s ease forwards;
+}
+@keyframes vcPulse {
+  0%   { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+@media(max-width:480px){
+  .visit-counter-bar { font-size: .72rem; }
+  .vc-number { font-size: .85rem; }
+}
 </style>
 </head>
 <body class="page-has-hero loading">
