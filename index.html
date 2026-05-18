@@ -1514,9 +1514,19 @@ function switchBA(idx) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      window.c3dFetchProjects({ featured: true, limit: 50 }).then(function(res) {
-        var data = res && res.data;
-        if (!data || !data.length) return;
+      /* جلب المشاريع المختارة + تصميم داخلي تجاري دائماً */
+      Promise.all([
+        window.c3dFetchProjects({ featured: true, limit: 50 }),
+        window.c3dFetchProjects({ category: 'interior-com', limit: 10 })
+      ]).then(function(results) {
+        var featured   = (results[0] && results[0].data) || [];
+        var interiorCom = (results[1] && results[1].data) || [];
+        /* دمج مع إزالة التكرار بالـ id */
+        var seen = {};
+        featured.forEach(function(p){ seen[p.id] = true; });
+        var extra = interiorCom.filter(function(p){ return !seen[p.id]; });
+        var data = featured.concat(extra);
+        if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */
 
         // ترتيب حسب الفئة ثم اختيار أول 12
         data = sortByCategory(data).slice(0, 12);
