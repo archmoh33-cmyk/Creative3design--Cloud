@@ -1523,14 +1523,18 @@ function switchBA(idx) {
         var featured    = (results[0] && results[0].data) || [];
         var interiorCom = (results[1] && results[1].data) || [];
         var commercial  = (results[2] && results[2].data) || [];
-        /* دمج مع إزالة التكرار بالـ id */
+        /* بناء المجموعة: 8 مميّزة + 2 داخلي تجاري + 2 تجاري اداري = 12 */
         var seen = {};
-        featured.forEach(function(p){ seen[p.id] = true; });
-        var extraInterior = interiorCom.filter(function(p){ return !seen[p.id]; });
-        extraInterior.forEach(function(p){ seen[p.id] = true; });
-        var extraCommercial = commercial.filter(function(p){ return !seen[p.id]; }).slice(0, 2);
-        var data = featured.concat(extraInterior).concat(extraCommercial).slice(0, 12);
-        if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */
+        /* 1. خذ 2 interior-com أولاً (مضمونة) */
+        var slotInterior = interiorCom.slice(0, 2);
+        slotInterior.forEach(function(p){ seen[p.id] = true; });
+        /* 2. خذ 2 commercial (مضمونة — من المميّزة أولاً ثم غير المميّزة) */
+        var slotCommercial = commercial.slice(0, 2);
+        slotCommercial.forEach(function(p){ seen[p.id] = true; });
+        /* 3. امأل الـ 8 المتبقية من المميّزة (بدون تكرار) */
+        var slotFeatured = featured.filter(function(p){ return !seen[p.id]; }).slice(0, 8);
+        var data = slotFeatured.concat(slotInterior).concat(slotCommercial);
+        if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */ /* لا توجد مشاريع — نحتفظ بالثابتة */
 
         // ترتيب حسب الفئة ثم اختيار أول 12
         data = sortByCategory(data).slice(0, 12);
