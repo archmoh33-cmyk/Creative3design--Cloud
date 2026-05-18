@@ -1514,18 +1514,22 @@ function switchBA(idx) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      /* جلب المشاريع المختارة + تصميم داخلي تجاري دائماً */
+      /* جلب المشاريع المختارة + تصميم داخلي تجاري + تجاري اداري دائماً */
       Promise.all([
         window.c3dFetchProjects({ featured: true, limit: 50 }),
-        window.c3dFetchProjects({ category: 'interior-com', limit: 10 })
+        window.c3dFetchProjects({ category: 'interior-com', limit: 10 }),
+        window.c3dFetchProjects({ category: 'commercial', limit: 10 })
       ]).then(function(results) {
-        var featured   = (results[0] && results[0].data) || [];
+        var featured    = (results[0] && results[0].data) || [];
         var interiorCom = (results[1] && results[1].data) || [];
+        var commercial  = (results[2] && results[2].data) || [];
         /* دمج مع إزالة التكرار بالـ id */
         var seen = {};
         featured.forEach(function(p){ seen[p.id] = true; });
-        var extra = interiorCom.filter(function(p){ return !seen[p.id]; });
-        var data = featured.concat(extra);
+        var extraInterior = interiorCom.filter(function(p){ return !seen[p.id]; });
+        extraInterior.forEach(function(p){ seen[p.id] = true; });
+        var extraCommercial = commercial.filter(function(p){ return !seen[p.id]; }).slice(0, 2);
+        var data = featured.concat(extraInterior).concat(extraCommercial).slice(0, 12);
         if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */
 
         // ترتيب حسب الفئة ثم اختيار أول 12
