@@ -1477,18 +1477,21 @@ function switchBA(idx) {
       Promise.all([
         window.c3dFetchProjects({ category: 'interior-res', limit: 12 }),
         window.c3dFetchProjects({ category: 'interior-com', limit: 6 }),
+        window.c3dFetchProjects({ category: 'villa',        limit: 6  }),
         window.c3dFetchProjects({ featured: true, limit: 30 })
       ]).then(function(results) {
         var interiorRes = (results[0]&&results[0].data)||[];
         var interiorCom = (results[1]&&results[1].data)||[];
-        var featured    = (results[2]&&results[2].data)||[];
+        var villa       = (results[2]&&results[2].data)||[];
+        var featured    = (results[3]&&results[3].data)||[];
         var resIds = interiorRes.map(function(p){return p.id;});
         var comIds = interiorCom.map(function(p){return p.id;});
+        var vilIds  = villa.map(function(p){return p.id;});
         var others = featured.filter(function(p){
           return resIds.indexOf(p.id)===-1 && comIds.indexOf(p.id)===-1
-              && p.category!=='interior-res' && p.category!=='interior-com';
+              && p.category!=='interior-res' && p.category!=='interior-com' && p.category!=='villa';
         }).slice(0,6);
-        var data = interiorRes.slice(0,4).concat(interiorCom.slice(0,2)).concat(others);
+        var data = interiorRes.slice(0,4).concat(interiorCom.slice(0,2)).concat(villa.slice(0,2)).concat(others);
         if (!data.length) return;
         defaultData = data;
         renderProjects(data);
