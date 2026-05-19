@@ -1397,147 +1397,65 @@ function switchBA(idx) {
 (function () {
   'use strict';
 
-  var CATS = ['interior-res','commercial','interior-com','villa','hospitality'];
+  var BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
-  var CAT_LABEL_AR = {
-    'interior-res': 'تصميم داخلي سكني',
-    'interior-com': 'تصميم داخلي تجاري',
-    'villa':        'فيلات وعمارات',
-    'hospitality':  'فنادق',
-    'commercial':   'تجاري وإداري'
-  };
-
-  var LIMIT_INITIAL = 12;  // عدد المشاريع الأولية
-  var LIMIT_MORE    = 20;  // عدد المشاريع بعد "شاهد المزيد"
-
-  var allProjects   = [];  // كل المشاريع المحمّلة من Supabase
-  var currentCat    = 'all';
-  var currentLimit  = LIMIT_INITIAL;
-
-  /* ── بناء HTML لكارت واحد ── */
-  function buildCard(p) {
-    var img  = p.image_url || '';
-    var name = p.name_ar   || '';
-    var cat  = p.category  || '';
-    var lbl  = CAT_LABEL_AR[cat] || cat;
-    return '<div class="port-card lazy-reveal" data-cat="' + cat + '">' +
-           '<img data-src="' + img + '" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" ' +
-           'alt="' + name + ' — Creative3Design" class="lazy-img" loading="lazy" />' +
-           '<div class="port-overlay">' +
-           '<span class="port-cat">' + lbl + '</span>' +
-           '<h4>' + name + '</h4>' +
-           '<a href="portfolio.html?cat=' + cat + '" class="port-link">عرض المشروع</a>' +
-           '</div></div>';
-  }
-
-  /* ── اختيار الـ pool حسب الفئة والحد ──
-     "الكل":  المميّزون أولاً (featured) ثم الأحدث — بالتوزيع per-category
-     قسم:     فلترة بالقسم مع الحد المطلوب */
-  /* التوزيع المخصص للعرض الأولي (الكل): 4+2+2+2+2 = 12 */
-  var CAT_QUOTA = { 'interior-res':4, 'interior-com':2, 'villa':2, 'hospitality':2, 'commercial':2 };
-
-  function getPool(cat, limit) {
-    if (cat === 'all') {
-      var quota = (limit === LIMIT_INITIAL) ? CAT_QUOTA : null;
-      var perCat = quota ? null : Math.ceil(limit / CATS.length);
-      var featured   = {};
-      var unfeatured = {};
-      CATS.forEach(function(c){ featured[c]=[]; unfeatured[c]=[]; });
-      allProjects.forEach(function(p) {
-        var c = p.category;
-        if (!CATS.includes(c)) return;
-        if (p.featured) featured[c].push(p);
-        else            unfeatured[c].push(p);
-      });
-      var result = [];
-      CATS.forEach(function(c) {
-        var n = quota ? (quota[c] || 0) : perCat;
-        featured[c].concat(unfeatured[c]).slice(0, n).forEach(function(p){ result.push(p); });
-      });
-      return result.slice(0, limit);
-    } else {
-      return allProjects.filter(function(p){ return p.category === cat; }).slice(0, limit);
-    }
-  }
-
-  /* ── رسم الكروت في الـ grid ── */
-  function renderGrid(projects) {
-    var grid = document.getElementById('portfolioGrid');
-    if (!grid || !projects || !projects.length) return;
-    grid.innerHTML = projects.map(buildCard).join('');
-    if (typeof initLazyImages === 'function') initLazyImages();
-    grid.querySelectorAll('.lazy-reveal').forEach(function(el){
-      setTimeout(function(){ el.classList.add('revealed'); }, 50);
-    });
-  }
-
-  /* ── إدارة زر "شاهد المزيد" ── */
-  function updateShowMoreBtn() {
-    var wrap = document.getElementById('showMoreWrap');
-    var btn  = document.getElementById('portfolioShowMore');
-    if (!wrap || !btn) return;
-
-    var totalInCat = currentCat === 'all'
-      ? Math.min(allProjects.length, CATS.length * 99) // تقدير
-      : allProjects.filter(function(p){ return p.category === currentCat; }).length;
-
-    var alreadyShown = currentLimit;
-
-    if (alreadyShown < LIMIT_MORE && totalInCat > alreadyShown) {
-      // لا يزال هناك مشاريع أكثر ولم نصل للحد
-      wrap.style.display = 'block';
-      btn.querySelector('span').textContent = 'شاهد المزيد من المشاريع';
-    } else {
-      // وصلنا للحد أو استنفدنا المشاريع
-      wrap.style.display = 'none';
-    }
-  }
-
-  /* ── تحديث العرض بعد اختيار فئة أو ضغط "شاهد المزيد" ── */
-  function applyView(cat, limit) {
-    currentCat   = cat;
-    currentLimit = limit;
-    renderGrid(getPool(cat, limit));
-    updateShowMoreBtn();
-  }
-
-  /* ── تصنيفات عربية/إنجليزية ── */
   var CAT_LABELS = {
     'interior-res': { ar: 'تصميم داخلي سكني',  en: 'Residential Interior', link: 'portfolio.html?cat=interior-res' },
     'interior-com': { ar: 'تصميم داخلي تجاري', en: 'Commercial Interior',  link: 'portfolio.html?cat=interior-com' },
-    'villa':        { ar: 'فيلات وعمارات',      en: 'Villas & Buildings',   link: 'portfolio.html?cat=villa'         },
-    'hospitality':  { ar: 'فنادق وضيافة',       en: 'Hotels & Hospitality', link: 'portfolio.html?cat=hospitality'   },
-    'commercial':   { ar: 'تجاري وإداري',       en: 'Commercial & Admin',   link: 'portfolio.html?cat=commercial'    }
+    'villa':        { ar: 'فيلات وعمارات',      en: 'Villas & Buildings',   link: 'portfolio.html?cat=villa'        },
+    'hospitality':  { ar: 'فنادق وضيافة',       en: 'Hotels & Hospitality', link: 'portfolio.html?cat=hospitality'  },
+    'commercial':   { ar: 'تجاري وإداري',       en: 'Commercial & Admin',   link: 'portfolio.html?cat=commercial'   }
   };
 
-  var BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+  var defaultData = null;
 
   function buildCard(p) {
-    var cat   = p.category || 'villa';
-    var lbl   = CAT_LABELS[cat] || { ar: cat, en: cat, link: 'portfolio.html' };
+    var cat  = p.category || 'villa';
+    var lbl  = CAT_LABELS[cat] || { ar: cat, en: cat, link: 'portfolio.html' };
     var nameAr = p.name_ar  || '';
     var nameEn = p.name_en  || nameAr;
     var img    = p.image_url || BLANK_GIF;
     var alt    = p.image_alt_ar || (nameAr + ' — Creative3Design');
     return '<div class="port-card lazy-reveal" data-cat="' + cat + '">' +
-      '<img src="' + img + '" alt="' + alt + '" class="lazy-img" loading="eager" />' +
+      '<img data-src="' + img + '" src="' + BLANK_GIF + '" alt="' + alt + '" class="lazy-img" loading="lazy" />' +
       '<div class="port-overlay">' +
         '<span class="port-cat" data-ar="' + lbl.ar + '" data-en="' + lbl.en + '">' + lbl.ar + '</span>' +
         '<h4 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h4>' +
-        '<a href="' + lbl.link + '" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>' +
+        '<a href="' + lbl.link + '" class="port-link" data-ar="عرض المتشرظ" data-en="View Project">عرض المتشروع</a>' +
       '</div></div>';
   }
 
-  function bindFilter(grid, filterEl) {
-    filterEl.querySelectorAll('.filter-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var cat = btn.dataset.cat || 'all';
-        filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
-        btn.classList.add('active');
-        grid.querySelectorAll('.port-card').forEach(function(card) {
-          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
-        });
-      });
+  function renderProjects(data) {
+    var grid = document.getElementById('portfolioGrid');
+    if (!grid) return;
+    var showMoreWrap = document.getElementById('showMoreWrap');
+    grid.innerHTML = data.map(buildCard).join('');
+    if (showMoreWrap) grid.appendChild(showMoreWrap);
+    if (typeof lazyLoad === 'function') lazyLoad();
+    grid.querySelectorAll('.lazy-reveal').forEach(function(el){
+      setTimeout(function(){ el.classList.add('revealed'); }, 50);
+    });
+  }
+
+  function bindFilter(filterEl) {
+    filterEl.addEventListener('click', function(e) {
+      var btn = e.target.closest ? e.target.closest('.filter-btn') : null;
+      if (!btn) return;
+      var cat = btn.dataset.cat || 'all';
+      filterEl.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      if (cat === 'all') {
+        if (defaultData) { renderProjects(defaultData); }
+        else { var g = document.getElementById('portfolioGrid'); if (g) g.querySelectorAll('.port-card').forEach(function(c){ c.style.display=''; }); }
+      } else {
+        if (window.c3dFetchProjects) {
+          window.c3dFetchProjects({ category: cat, limit: 12 }).then(function(r) {
+            var d = (r&&r.data)||[];
+            if (d.length) { renderProjects(d); }
+            else { var g = document.getElementById('portfolioGrid'); if (g) g.querySelectorAll('.port-card').forEach(function(c){ c.style.display=(c.dataset.cat===cat)?'':'none'; }); }
+          }).catch(function() { var g = document.getElementById('portfolioGrid'); if (g) g.querySelectorAll('.port-card').forEach(function(c){ c.style.display=(c.dataset.cat===cat)?'':'none'; }); });
+        } else { var g = document.getElementById('portfolioGrid'); if (g) g.querySelectorAll('.port-card').forEach(function(c){ c.style.display=(c.dataset.cat===cat)?'':'none'; }); }
+      }
     });
   }
 
@@ -1545,83 +1463,32 @@ function switchBA(idx) {
     var grid     = document.getElementById('portfolioGrid');
     var filterEl = document.getElementById('portfolioFilter');
     if (!grid || !filterEl) return;
-
-    bindFilter(grid, filterEl);
+    bindFilter(filterEl);
     if (typeof lazyLoad === 'function') lazyLoad();
-
-    // ترتيب الفئات المطلوب في الصفحة الرئيسية
-    var CAT_ORDER = ['interior-res','interior-com','villa','hospitality','commercial'];
-
-    function sortByCategory(data) {
-      return data.slice().sort(function(a, b) {
-        var ai = CAT_ORDER.indexOf(a.category);
-        var bi = CAT_ORDER.indexOf(b.category);
-        if (ai < 0) ai = 99;
-        if (bi < 0) bi = 99;
-        return ai - bi;
-      });
-    }
-
     function tryFetch(attempt) {
       if (!window.c3dFetchProjects || !window.c3dClient) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      /* جلب المشاريع المختارة + تصميم داخلي تجاري + تجاري اداري دائماً */
       Promise.all([
         window.c3dFetchProjects({ featured: true, limit: 50 }),
         window.c3dFetchProjects({ category: 'interior-com', limit: 10 }),
         window.c3dFetchProjects({ category: 'commercial', limit: 10 })
       ]).then(function(results) {
-        var featured    = (results[0] && results[0].data) || [];
-        var interiorCom = (results[1] && results[1].data) || [];
-        var commercial  = (results[2] && results[2].data) || [];
-        /* بناء المجموعة: 8 مميّزة + 2 داخلي تجاري + 2 تجاري اداري = 12 */
-        var seen = {};
-        /* guaranteed slots: 2 interior-com + 2 commercial + 8 featured = 12 */
-        var slotInterior = interiorCom.slice(0, 2);
-        var featuredCommercial = featured.filter(function(p){ return p.category === 'commercial'; });
-        var poolCommercial = commercial.filter(function(p){
-          return !featuredCommercial.some(function(fc){ return fc.id === p.id; });
-        });
-        var slotCommercial = featuredCommercial.concat(poolCommercial).slice(0, 2);
-        var slotFeatured = featured.filter(function(p){
-          return p.category !== 'commercial' && p.category !== 'interior-com';
-        }).slice(0, 8);
-        /* ترتيب: 4 مميّزة + 2 تجاري وإداري + 2 تصميم داخلي تجاري + 4 مميّزة */
-        var data = slotFeatured.slice(0,4).concat(slotCommercial).concat(slotInterior).concat(slotFeatured.slice(4));
-        if (!data.length) return; /* لا توجد مشاريع — نحتفظ بالثابتة */ /* لا توجد مشاريع — نحتفظ بالثابتة */
-
-        // ترتيب حسب الفئة ثم اختيار أول 12
-        data = sortByCategory(data).slice(0, 12);
-
-        // حذف الفئات غير الموجودة من أزرار الفلتر
-        var presentCats = {};
-        data.forEach(function(p){ presentCats[p.category] = true; });
-        filterEl.querySelectorAll('.filter-btn[data-cat]').forEach(function(btn){
-          var cat = btn.dataset.cat;
-          if (cat && cat !== 'all') btn.style.display = presentCats[cat] ? '' : 'none';
-        });
-
-        var html = data.map(buildCard).join('');
-        var showMoreWrap = document.getElementById('showMoreWrap');
-        grid.innerHTML = html;
-        if (showMoreWrap) grid.appendChild(showMoreWrap);
-
-        // تحميل الصور فوراً
-        grid.querySelectorAll('img.lazy-img[data-src]').forEach(function(img){
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-        });
-        // إظهار الكروت (تجاوز lazy-reveal)
-        grid.querySelectorAll('.port-card.lazy-reveal').forEach(function(card){
-          card.classList.add('revealed');
-        });
-        bindFilter(grid, filterEl);
-        if (typeof lazyLoad === 'function') lazyLoad();
+        var featured    = (results[0]&&results[0].data)||[];
+        var interiorCom = (results[1]&&results[1].data)||[];
+        var commercial  = (results[2]&&results[2].data)||[];
+        var slotInterior = interiorCom.slice(0,2);
+        var featComm = featured.filter(function(p){return p.category==='commercial';});
+        var nonFeatComm = commercial.filter(function(p){return !featComm.some(function(fc){return fc.id===p.id;});});
+        var slotComm = featComm.concat(nonFeatComm).slice(0,2);
+        var slotFeat = featured.filter(function(p){return p.category!=='commercial'&&p.category!=='interior-com';}).slice(0,8);
+        var data = slotFeat.slice(0,4).concat(slotComm).concat(slotInterior).concat(slotFeat.slice(4));
+        if (!data.length) return;
+        defaultData = data;
+        renderProjects(data);
       }).catch(function(){});
     }
-
     tryFetch(0);
   }
 
