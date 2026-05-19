@@ -174,29 +174,17 @@ function initLazyImages() {
 }
 
 /* ── BEFORE / AFTER ── */
-const baData = [
-  {
-    before: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80',
-    after:  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=80'
-  },
-  {
-    before: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&q=80',
-    after:  'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=900&q=80'
-  },
-  {
-    before: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
-    after:  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80'
-  }
-];
-
 function switchBA(idx) {
   const thumbs = document.querySelectorAll('.ba-thumb');
   thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
   const before = document.getElementById('ba-before');
   const after  = document.getElementById('ba-after');
   if (!before || !after) return;
-  before.src = baData[idx].before;
-  after.src  = baData[idx].after;
+  const items = window.__baItems;
+  if (items && items[idx]) {
+    if (items[idx].before_url) before.src = items[idx].before_url;
+    if (items[idx].after_url)  after.src  = items[idx].after_url;
+  }
   const divider = document.getElementById('ba-divider');
   if (divider) {
     divider.style.left = '50%';
