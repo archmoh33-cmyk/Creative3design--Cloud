@@ -91,7 +91,13 @@ function goToSlide(idx) {
   slides[heroIndex].classList.remove('active');
   if (dots[heroIndex]) dots[heroIndex].classList.remove('active');
   heroIndex = (idx + slides.length) % slides.length;
-  slides[heroIndex].classList.add('active');
+  /* Lazy load: حمّل صورة الخلفية أول مرة يُعرض فيها السلايد */
+  const target = slides[heroIndex];
+  if (target.dataset.bg) {
+    target.style.backgroundImage = "url('" + target.dataset.bg + "')";
+    target.removeAttribute('data-bg');
+  }
+  target.classList.add('active');
   if (dots[heroIndex]) dots[heroIndex].classList.add('active');
 }
 
