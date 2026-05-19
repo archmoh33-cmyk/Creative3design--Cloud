@@ -1431,7 +1431,8 @@ function switchBA(idx) {
     var showMoreWrap = document.getElementById('showMoreWrap');
     grid.innerHTML = data.map(buildCard).join('');
     if (showMoreWrap) grid.appendChild(showMoreWrap);
-    if (typeof lazyLoad === 'function') lazyLoad();
+    if (typeof initLazyImages === 'function') { initLazyImages(); }
+    else { grid.querySelectorAll('.lazy-img[data-src]').forEach(function(img){ img.src = img.dataset.src; img.removeAttribute('data-src'); }); }
     grid.querySelectorAll('.lazy-reveal').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
     });
