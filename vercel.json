@@ -77,6 +77,5 @@
       "source": "/blog",
       "destination": "/blog/index.html"
     }
-  ],
-  "toolbar": false
+  ]
 }
