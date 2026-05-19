@@ -1534,7 +1534,11 @@ function switchBA(idx) {
         url = url.replace('/upload/', '/upload/c_fill,w_1920,h_1080,q_85,f_auto/');
       }
       slide.style.display = '';
-      slide.style.backgroundImage = "url('" + url + "')";
+      if (shown === 0) {
+        slide.style.backgroundImage = "url('" + url + "')"; /* السلايد الأول يُحمَّل فوراً */
+      } else {
+        slide.setAttribute('data-bg', url); /* البقية: تُخزَّن وتُحمَّل عند العرض */
+      }
       slide.setAttribute('data-project', item.title_ar || '');
       if (shown === 0) slide.classList.add('active');
       if (dots[i]) { dots[i].style.display = ''; if (shown === 0) dots[i].classList.add('active'); }
