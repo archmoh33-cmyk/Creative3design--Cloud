@@ -1465,26 +1465,27 @@ function switchBA(idx) {
     var filterEl = document.getElementById('portfolioFilter');
     if (!grid || !filterEl) return;
     bindFilter(filterEl);
-    if (typeof lazyLoad === 'function') lazyLoad();
+    if (typeof initLazyImages === 'function') initLazyImages();
     function tryFetch(attempt) {
       if (!window.c3dFetchProjects || !window.c3dClient) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
       Promise.all([
-        window.c3dFetchProjects({ featured: true, limit: 50 }),
-        window.c3dFetchProjects({ category: 'interior-com', limit: 10 }),
-        window.c3dFetchProjects({ category: 'commercial', limit: 10 })
+        window.c3dFetchProjects({ category: 'interior-res', limit: 12 }),
+        window.c3dFetchProjects({ category: 'interior-com', limit: 6 }),
+        window.c3dFetchProjects({ featured: true, limit: 30 })
       ]).then(function(results) {
-        var featured    = (results[0]&&results[0].data)||[];
+        var interiorRes = (results[0]&&results[0].data)||[];
         var interiorCom = (results[1]&&results[1].data)||[];
-        var commercial  = (results[2]&&results[2].data)||[];
-        var slotInterior = interiorCom.slice(0,2);
-        var featComm = featured.filter(function(p){return p.category==='commercial';});
-        var nonFeatComm = commercial.filter(function(p){return !featComm.some(function(fc){return fc.id===p.id;});});
-        var slotComm = featComm.concat(nonFeatComm).slice(0,2);
-        var slotFeat = featured.filter(function(p){return p.category!=='commercial'&&p.category!=='interior-com';}).slice(0,8);
-        var data = slotFeat.slice(0,4).concat(slotComm).concat(slotInterior).concat(slotFeat.slice(4));
+        var featured    = (results[2]&&results[2].data)||[];
+        var resIds = interiorRes.map(function(p){return p.id;});
+        var comIds = interiorCom.map(function(p){return p.id;});
+        var others = featured.filter(function(p){
+          return resIds.indexOf(p.id)===-1 && comIds.indexOf(p.id)===-1
+              && p.category!=='interior-res' && p.category!=='interior-com';
+        }).slice(0,6);
+        var data = interiorRes.slice(0,4).concat(interiorCom.slice(0,2)).concat(others);
         if (!data.length) return;
         defaultData = data;
         renderProjects(data);
