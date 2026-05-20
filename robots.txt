@@ -1,5 +1,48 @@
+# Creative3Design - robots.txt
+# Last updated: 2026-05-20
+
+# Allow all search engines
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /_backup_*/
+Disallow: /_backup_seo_*/
+Disallow: /*.bak$
+Disallow: /*.ps1$
+Disallow: /*.py$
+Disallow: /*.bat$
+Disallow: /_*.html
+Disallow: /_*.txt
+Disallow: /_*.md
+Disallow: /node_modules/
+Disallow: /.git/
+Crawl-delay: 1
 
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+Disallow: /admin/
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /admin/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+# Sitemap location
 Sitemap: https://creativedesignegypt.com/sitemap.xml
+
+# Host preference
+Host: https://creativedesignegypt.com

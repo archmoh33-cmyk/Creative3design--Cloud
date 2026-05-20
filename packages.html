@@ -10,28 +10,26 @@
     gtag('config', 'G-BYF05KS3PN');
     gtag('config', 'AW-10829372232');
   </script>
-  <!-- Cache busting — forces fresh load on mobile -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <script>
-    // If no version param → redirect with ?v=4 to bypass mobile cache
-    (function(){
-      if(location.search.indexOf('v=')===-1){
-        var _sep=location.search?'&':'?'; location.replace(location.pathname+(location.search||'')+_sep+'v=5'+(location.hash||''));
-      }
-    })();
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>حاسبة تكلفة التشطيب والتصميم المعماري 2026 | Creative3Design — القاهرة</title>
-  <meta name="description" content="احسب تكلفة تشطيب مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP. حاسبة التصميم الداخلي والتصميم المعماري لجميع أنواع المباني. Creative3Design أفضل مكتب هندسي في مصر." />
-  <meta name="keywords" content="تكلفة تشطيب شقة 2026, حاسبة تشطيب, سعر متر التشطيب مصر 2026, تصميم معماري, رسوم تصميم معماري, تكلفة تصميم داخلي, حاسبة تصميم, باقات تصميم داخلي, أفضل مكتب هندسي في مصر" />
+  <title>أسعار التشطيب والتصميم 2026 — احسب تكلفة مشروعك مجاناً | C3D</title>
+  <meta name="description" content="حاسبة أسعار شفافة 2026 · ستاندرد 5,500 ج.م/م² · بريميم 6,000 · لاكشري 10,750 · سوبر 14,250 · Ultra VIP 17,000+. احسب تكلفة شقتك أو فيلتك في 60 ثانية مجاناً." />
+  <meta name="keywords" content="اسعار تشطيب شقة 2026, تكلفة تشطيب شقة, سعر متر التشطيب مصر, حاسبة تشطيب, اسعار تشطيب الترا سوبر لوكس, تكلفة تصميم داخلي, رسوم تصميم معماري, باقات تشطيب, اسعار تشطيب فيلا, تشطيب شقة 100 متر" />
   <link rel="canonical" href="https://creativedesignegypt.com/packages.html" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="حاسبة تكلفة التشطيب والتصميم | Creative3Design" />
-  <meta property="og:description" content="احسب تكلفة مشروعك فوراً — من الباقة المتوسطة حتى Ultra VIP." />
+  <meta name="author" content="Creative3Design" />
+  <meta name="geo.region" content="EG-C" />
+  <meta name="geo.placename" content="Cairo" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ar_EG" />
+  <meta property="og:site_name" content="Creative3Design" />
+  <meta property="og:title" content="أسعار التشطيب والتصميم 2026 — احسب تكلفة مشروعك مجاناً" />
+  <meta property="og:description" content="حاسبة شفافة · 5 باقات من 5,500 حتى 17,000+ ج.م/م² · احسب في 60 ثانية." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80" />
   <meta property="og:url" content="https://creativedesignegypt.com/packages.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="أسعار التشطيب 2026 — احسب تكلفة مشروعك مجاناً" />
+  <meta name="twitter:description" content="5 باقات · من 5,500 حتى 17,000+ ج.م/م² · شفافية كاملة." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -93,11 +91,7 @@
     /* Package cards grid */
     .pkg-cards { display:grid; grid-template-columns:repeat(5,1fr); gap:.8rem; margin-top:2rem; }
     @media(max-width:1000px){ .pkg-cards { grid-template-columns:repeat(3,1fr); } }
-    @media(max-width:640px){
-  .pkg-cards{display:flex !important;flex-wrap:nowrap !important;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:.75rem;padding:.4rem 1.2rem 1.4rem;scrollbar-width:none;margin-left:-1rem;margin-right:-1rem;}
-  .pkg-cards::-webkit-scrollbar{display:none;}
-  .pkg-cards .pkg-c{flex:0 0 80vw;max-width:290px;scroll-snap-align:center;}
-}
+    @media(max-width:640px){ .pkg-cards { grid-template-columns:1fr 1fr; } }
 
     .pkg-c {
       border:2px solid var(--gray-border); padding:1.2rem 1rem; text-align:center;
@@ -182,6 +176,7 @@
 
     /* ── Mobile overrides ── */
     @media(max-width:640px){
+      .pkg-cards { grid-template-columns:1fr !important; }
       #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
       .arch-result-grid { grid-template-columns:repeat(2,1fr) !important; }
     }
@@ -189,24 +184,78 @@
       #arch-type-grid { grid-template-columns:repeat(2,1fr) !important; }
       .arch-result-grid { grid-template-columns:1fr !important; }
     }
-  
-    .pkg-type-bar{display:none;align-items:center;justify-content:space-between;background:rgba(184,151,106,.07);border:1px solid rgba(184,151,106,.22);border-radius:.7rem;padding:.55rem 1rem;margin-bottom:.7rem;font-size:.78rem;color:var(--platinum,#ccc);gap:.5rem;}
-    .pkg-type-bar strong{color:var(--gold,#b8976a);}
-    .pkg-type-count{font-size:.72rem;color:var(--text-muted,#888);white-space:nowrap;}
-    @media(max-width:640px){.pkg-type-bar{display:flex;}}
-    .pkg-swipe-hint{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:.76rem;color:var(--gold,#b8976a);margin-top:.5rem;animation:pkgSwipe 1.8s ease-in-out infinite;pointer-events:none;}
-    @keyframes pkgSwipe{0%,100%{transform:translateX(0);opacity:.75;}50%{transform:translateX(-7px);opacity:1;}}
-    @media(max-width:640px){.pkg-swipe-hint{display:flex;}}
-    .pkg-dots{display:none;justify-content:center;align-items:center;gap:.4rem;margin-top:.65rem;}
-    .pkg-dots .dot{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;background-color:rgba(184,151,106,.3);transition:all .22s;}
-    .pkg-dots .dot.active{background-color:var(--gold,#b8976a);width:22px;border-radius:4px;}
-    @media(max-width:640px){.pkg-dots{display:flex;}}
-    @media(max-width:700px){.calc-tabs{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap !important;gap:.45rem;padding-bottom:.5rem;}.calc-tabs::-webkit-scrollbar{display:none;}.calc-tab{flex-shrink:0;font-size:.75rem;padding:.55rem .85rem;white-space:nowrap;}}
-    .drc-original { font-size:.8rem; color:var(--text-muted); text-decoration:line-through; margin-bottom:.18rem; line-height:1.2; }
-    .drc-badge { display:inline-block; background:var(--gold); color:#111; font-size:.7rem; font-weight:700; padding:.1rem .45rem; border-radius:2rem; margin-bottom:.2rem; }
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"حاسبة تكلفة التشطيب والتصميم 2026","url":"https://creativedesignegypt.com/packages.html","description":"احسب تكلفة مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP","provider":{"@type":"Organization","name":"Creative3Design","telephone":"+201019053288"}}
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "حاسبة تكلفة التشطيب والتصميم المعماري 2026",
+    "url": "https://creativedesignegypt.com/packages.html",
+    "description": "احسب تكلفة تشطيب مشروعك 2026 — من الباقة المتوسطة حتى Ultra VIP.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Creative3Design",
+      "url": "https://creativedesignegypt.com",
+      "telephone": "+201019053288"
+    },
+    "offers": [
+      {"@type": "Offer", "name": "باقة ستاندرد", "description": "تشطيب اقتصادي للوحدات السكنية", "priceCurrency": "EGP", "price": "5500", "priceSpecification": {"@type": "UnitPriceSpecification", "unitText": "م²"}},
+      {"@type": "Offer", "name": "باقة بريميم", "description": "تشطيب متوسط بخامات ممتازة", "priceCurrency": "EGP", "price": "6000", "priceSpecification": {"@type": "UnitPriceSpecification", "unitText": "م²"}},
+      {"@type": "Offer", "name": "باقة لاكشري", "description": "تشطيب فاخر بأعلى الخامات", "priceCurrency": "EGP", "price": "10750", "priceSpecification": {"@type": "UnitPriceSpecification", "unitText": "م²"}},
+      {"@type": "Offer", "name": "باقة سوبر", "description": "تشطيب سوبر لاكشري بخامات نادرة", "priceCurrency": "EGP", "price": "14250", "priceSpecification": {"@type": "UnitPriceSpecification", "unitText": "م²"}},
+      {"@type": "Offer", "name": "باقة Ultra VIP", "description": "تشطيب حصري لكبار العملاء", "priceCurrency": "EGP", "price": "17000", "priceSpecification": {"@type": "UnitPriceSpecification", "unitText": "م²"}}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://creativedesignegypt.com/" },
+      { "@type": "ListItem", "position": 2, "name": "الباقات والأسعار", "item": "https://creativedesignegypt.com/packages.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "كم تكلفة تشطيب شقة 100 متر في مصر 2026؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "تكلفة تشطيب شقة 100 متر تبدأ من 550,000 ج.م لباقة الستاندرد، 600,000 ج.م للبريميم، 1,075,000 ج.م للاكشري، 1,425,000 ج.م للسوبر، و1,700,000+ ج.م لـ Ultra VIP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ما الفرق بين باقات التشطيب الـ 5؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "تختلف الباقات في جودة الخامات: ستاندرد (5,500 ج.م/م²) خامات محلية، بريميم (6,000) خامات مستوردة جزئياً، لاكشري (10,750) خامات إيطالية، سوبر (14,250) خامات فاخرة عالمية، Ultra VIP (17,000+) خامات حصرية ومخصصة."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل الأسعار تشمل التصميم والإشراف الهندسي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، جميع الأسعار شاملة: التصميم ثلاثي الأبعاد + الرسومات التنفيذية + الإشراف الميداني الكامل + ضمان الجودة + خدمة ما بعد التسليم."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل يمكن دفع تكلفة التشطيب على أقساط؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نقدم نظام دفع مرن على مراحل المشروع: 30% عند التعاقد، 30% في منتصف التنفيذ، 30% قبل التسليم، و10% بعد المعاينة النهائية."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -303,11 +352,7 @@
           <div class="slider-minmax"><span>40 م²</span><span>1,000 م²</span></div>
         </div>
         <h3 style="margin-bottom:1rem;font-size:1rem;" data-ar="اختر باقة التشطيب" data-en="Choose Finishing Package">اختر باقة التشطيب</h3>
-        <div class="pkg-type-bar" id="pkgTypeBar">
-        <span>🏗️ <strong>باقات التشطيب</strong> — 5 باقات</span>
-        <span class="pkg-type-count">اسحب للتصفح ←</span>
-      </div>
-      <div class="pkg-cards" id="fin-pkg-cards">
+        <div class="pkg-cards" id="fin-pkg-cards">
           <div class="pkg-c" onclick="selectPkg(this,'standard')" data-pkg="standard">
             <div class="pkg-icon">🔨</div>
             <div class="pkg-c-name">ستاندرد</div>
@@ -350,17 +395,6 @@
             <span class="pkg-c-total" id="fin-total-ultravip">—</span>
             <ul class="pkg-c-features"><li>حسب الطلب كلياً</li><li>مواد نادرة</li><li>ضمان 5 سنوات</li></ul>
           </div>
-        </div>
-        <!-- Mobile swipe hint & dots -->
-        <div class="pkg-swipe-hint" id="pkgSwipeHint">
-          <span>→</span><span>اسحب للتنقل بين الباقات</span><span>←</span>
-        </div>
-        <div class="pkg-dots" id="pkgDots">
-          <button class="dot active" onclick="scrollToPkg(0)" aria-label="ستاندرد"></button>
-          <button class="dot" onclick="scrollToPkg(1)" aria-label="بريميم"></button>
-          <button class="dot" onclick="scrollToPkg(2)" aria-label="لاكشري"></button>
-          <button class="dot" onclick="scrollToPkg(3)" aria-label="سوبر لاكشري"></button>
-          <button class="dot" onclick="scrollToPkg(4)" aria-label="Ultra VIP"></button>
         </div>
         <div class="calc-result">
           <div>
@@ -417,18 +451,15 @@
           <div class="slider-minmax"><span>50 م²</span><span>2,000 م²</span></div>
         </div>
         <div class="design-result-grid">
-          <div class="design-result-card"><div class="drc-label">باقة أساسية</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-basic-orig">—</div><div class="drc-value" id="des-basic">—</div><div class="drc-sub">مخططات 2D فقط</div></div>
-          <div class="design-result-card highlight"><div class="drc-label">باقة شاملة ⭐</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-standard-orig">—</div><div class="drc-value" id="des-standard">—</div><div class="drc-sub">2D + 3D</div></div>
-          <div class="design-result-card"><div class="drc-label">باقة فاخرة</div><span class="drc-badge">خصم 30%</span><div class="drc-original" id="des-luxury-orig">—</div><div class="drc-value" id="des-luxury">—</div><div class="drc-sub">2D + 3D + فيديو</div></div>
-        </div>
-                <div style="text-align:center;margin:.8rem 0 1rem;padding:.7rem 1.4rem;background:rgba(184,151,106,.13);border:1px solid var(--gold);border-radius:4px;">
-          <span style="color:var(--gold);font-weight:700;font-size:.92rem;">🎉 خصم 30% مطبَّق — وفّرت <span id="des-discount-amt">—</span> ج.م على الباقة الشاملة</span>
+          <div class="design-result-card"><div class="drc-label">باقة أساسية</div><div class="drc-value" id="des-basic">—</div><div class="drc-sub">مخططات 2D فقط</div></div>
+          <div class="design-result-card highlight"><div class="drc-label">باقة شاملة ⭐</div><div class="drc-value" id="des-standard">—</div><div class="drc-sub">2D + 3D + إشراف</div></div>
+          <div class="design-result-card"><div class="drc-label">باقة فاخرة</div><div class="drc-value" id="des-luxury">—</div><div class="drc-sub">تصميم + تنفيذ كامل</div></div>
         </div>
         <div class="calc-result" style="margin-top:1.5rem;">
           <div>
             <div class="result-label">رسوم التصميم الداخلي للمشروع</div>
-            <div class="result-range" id="des-result-range">تتراوح من — إلى —</div>
-            <div class="result-note">* تشمل: المخططات + اللوحات التنفيذية.</div>
+            <div class="result-range" id="des-result-range">اختر نوع المشروع والمساحة</div>
+            <div class="result-note">* تشمل: المخططات + اللوحات التنفيذية + متابعة التنفيذ حسب الباقة.</div>
           </div>
           <a id="des-wa-btn" href="https://wa.me/201019053288?text=أريد استفسار عن رسوم التصميم الداخلي" target="_blank" rel="noopener"
              style="display:inline-block;background:var(--gold);color:#fff;padding:.75rem 1.8rem;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">استشارة مجانية</a>
@@ -485,7 +516,7 @@
         <p style="color:var(--text-muted);font-size:.78rem;text-align:center;margin-bottom:1.5rem;">
           * الأسعار تشمل: المخططات المعمارية · اللوحات التنفيذية · الموديل ثلاثي الأبعاد · تصاريح البناء (حسب الباقة).<br>
           الحد الأدنى للرسوم يُطبّق على المشاريع الصغيرة. الأسعار مايو 2026.<br>
-          <strong style="color:var(--gold);">خصم 10% للمساحات حتى 900 م² · خصم 30% من 901 إلى 1500 م² · خصم 40% للمساحات أكثر من 1500 م²</strong>
+          <strong style="color:var(--gold);">خصم 20% للمساحات الإجمالية &gt; 900 م² · خصم 30% للمساحات الإجمالية &gt; 1500 م²</strong>
         </p>
         <div class="calc-result">
           <div>
@@ -678,25 +709,15 @@ function updateDesCalc() {
   const basic    = Math.max(area * base * 0.55, 8000);
   const standard = Math.max(area * base, 15000);
   const luxury   = Math.max(area * base * 1.6, 25000);
-  // Original (pre-discount) prices × 1.3
-  const basicOrig    = Math.round(basic    * 1.3);
-  const standardOrig = Math.round(standard * 1.3);
-  const luxuryOrig   = Math.round(luxury   * 1.3);
-  const desSaved     = standardOrig - standard;
-  document.getElementById('des-basic-orig').textContent    = fmt(basicOrig)    + ' ج.م';
-  document.getElementById('des-standard-orig').textContent = fmt(standardOrig) + ' ج.م';
-  document.getElementById('des-luxury-orig').textContent   = fmt(luxuryOrig)   + ' ج.م';
-  document.getElementById('des-discount-amt').textContent  = fmt(desSaved);
   document.getElementById('des-basic').textContent    = fmt(basic) + ' ج.م';
   document.getElementById('des-standard').textContent = fmt(standard) + ' ج.م';
   document.getElementById('des-luxury').textContent   = fmt(luxury) + ' ج.م';
-  document.getElementById('des-result-range').textContent = 'تتراوح من ' + fmt(basic) + ' إلى ' + fmt(luxury) + ' ج.م';
+  document.getElementById('des-result-range').textContent = fmt(basic) + ' — ' + fmt(luxury) + ' ج.م';
   // Dynamic WhatsApp link
   const msg = 'مرحباً،\nأريد استفسار عن رسوم التصميم الداخلي\n\n' +
     '📌 نوع المشروع: ' + (desTypeLabel[desSelType] || desSelType) + '\n' +
     '📐 المساحة: ' + area.toLocaleString('ar-EG') + ' م²\n' +
     '💰 نطاق الرسوم: ' + fmt(basic) + ' — ' + fmt(luxury) + ' ج.م\n' +
-    '🎉 خصم 30% مطبَّق — السعر قبل الخصم: ' + fmt(standardOrig) + ' ج.م (توفير: ' + fmt(desSaved) + ' ج.م)\n' +
     '   (أساسي: ' + fmt(basic) + ' | شامل: ' + fmt(standard) + ' | فاخر: ' + fmt(luxury) + ')\n\n' +
     'أرجو التواصل لمعرفة تفاصيل العرض.';
   const btn = document.getElementById('des-wa-btn');
@@ -704,7 +725,7 @@ function updateDesCalc() {
 }
 
 const archTypeData = {
-  villa_arch:     { ratePerM2: 63.33333, supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
+  villa_arch:     { ratePerM2: 120, supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
   apt_building:   { ratePerM2: 135, supPct: 0.20, label: 'عمارة سكنية',         minFee: 15000 },
   commercial_bld: { ratePerM2: 150, supPct: 0.22, label: 'مبنى تجاري',          minFee: 15000 },
   hotel_arch:     { ratePerM2: 240, supPct: 0.28, label: 'فندق / منتجع',        minFee: 30000 },
@@ -715,7 +736,7 @@ const archTypeData = {
   hospital:       { ratePerM2: 240, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 35000 },
   mixed:          { ratePerM2: 180, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 25000 },
 };
-const archLevelMul = { basic: 0.65, standard: 1.00, premium: 1.35, full: 1.75 };
+const archLevelMul = { basic: 0.55, standard: 1.00, premium: 1.15, full: 1.50 };
 let archSelType  = 'villa_arch';
 let archSelLevel = 'standard';
 
@@ -749,9 +770,8 @@ function updateArchCalc() {
 
   // ── خصم المساحات الكبيرة ──
   let discountPct = 0;
-  if (totalArea > 1500)     discountPct = 40;
-  else if (totalArea > 900) discountPct = 30;
-  else                      discountPct = 10;
+  if (totalArea > 1500)     discountPct = 30;
+  else if (totalArea > 900) discountPct = 20;
   const discountAmt = discountPct > 0 ? Math.round(rawDesign * discountPct / 100) : 0;
   if (discountPct > 0) rawDesign = Math.round(rawDesign * (1 - discountPct / 100));
   const discBar = document.getElementById('arch-discount-bar');
@@ -764,6 +784,7 @@ function updateArchCalc() {
       discBar.style.display = 'none';
     }
   }
+
   const supFee = (archSelLevel === 'premium' || archSelLevel === 'full') ? rawDesign * d.supPct : 0;
   const grandTotal = rawDesign + supFee;
   document.getElementById('arch-total-area').textContent   = fmt(totalArea) + ' م²';
@@ -794,64 +815,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const btt = document.getElementById('backToTop');
   if (btt) window.addEventListener('scroll', () => { btt.classList.toggle('visible', window.scrollY > 400); });
 });
-
-  // ── Mobile package carousel — dots & swipe hint ──────────────────
-  function initPkgMobile() {
-    if (window.innerWidth > 640) return;
-    const cards  = document.getElementById('fin-pkg-cards');
-    const dots   = document.getElementById('pkgDots');
-    const hint   = document.getElementById('pkgSwipeHint');
-    const typeBar= document.getElementById('pkgTypeBar');
-    if (!cards || !dots) return;
-
-    const pkgNames = ['ستاندرد','بريميم','لاكشري','سوبر لاكشري','Ultra VIP'];
-    let hintGone = false;
-    let lastIdx  = -1;
-
-    cards.addEventListener('scroll', function() {
-      // Dismiss swipe hint after first real scroll
-      if (!hintGone && cards.scrollLeft > 20 && hint) {
-        hint.style.opacity = '0';
-        hint.style.transition = 'opacity .35s';
-        setTimeout(() => { hint.style.display = 'none'; }, 380);
-        hintGone = true;
-      }
-      // Update active dot + type bar label
-      const cardEls = cards.querySelectorAll('.pkg-c');
-      if (!cardEls.length) return;
-      const cardW = cardEls[0].offsetWidth + 12; // card + gap
-      const idx = Math.min(Math.round(cards.scrollLeft / cardW), cardEls.length - 1);
-      if (idx === lastIdx) return;
-      lastIdx = idx;
-      dots.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===idx));
-      if (typeBar) {
-        typeBar.querySelector('strong').textContent = 'باقات التشطيب — ' + pkgNames[idx];
-      }
-    }, {passive:true});
-  }
-
-  function scrollToPkg(idx) {
-    const cards = document.getElementById('fin-pkg-cards');
-    if (!cards) return;
-    const card = cards.querySelectorAll('.pkg-c')[idx];
-    if (card) card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-  }
-
-  document.addEventListener('DOMContentLoaded', initPkgMobile);
-  window.addEventListener('resize', initPkgMobile);
-  // ─────────────────────────────────────────────────────────────────
-
-  // Auto-switch calculator tab from URL param (?tab=design or ?tab=arch)
-  (function(){
-    var _tab = new URLSearchParams(location.search).get('tab');
-    if(_tab === 'design' || _tab === 'arch'){
-      if(typeof switchCalc === 'function'){
-        switchCalc(_tab);
-      }
-      var el = document.getElementById('calculator');
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  })();
 </script>
 
 <!-- FLOATING BUTTONS -->
@@ -864,7 +827,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 
-
-<script src="wa-smart.js"></script>
 </body>
 </html>
