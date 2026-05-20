@@ -95,6 +95,8 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 .lazy-reveal.revealed { opacity:1; transform:translateY(0); }
 .lazy-reveal-left { opacity:0; transform:translateX(32px); transition:opacity .7s ease, transform .7s ease; }
 .lazy-reveal-left.revealed { opacity:1; transform:translateX(0); }
+/* محتوى المقالة دائماً مرئي — لا يعتمد على توقيت JavaScript */
+.article-body { opacity:1 !important; transform:none !important; transition:none !important; }
 
 /* ── TOP BAR ── */
 .top-bar {
