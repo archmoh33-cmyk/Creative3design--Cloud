@@ -2195,13 +2195,13 @@ window.addEventListener('load', function () {
   /* ── انتظر حتى يصبح Supabase client جاهزاً ── */
   function waitForClient(cb, attempts) {
     attempts = attempts || 0;
-    if (window.supabaseClient) { cb(); return; }
+    if (window.c3dClient) { cb(); return; }
     if (attempts > 30) return; // timeout بعد 3 ثوانٍ
     setTimeout(function () { waitForClient(cb, attempts + 1); }, 100);
   }
 
   waitForClient(function () {
-    var client = window.supabaseClient;
+    var client = window.c3dClient;
 
     /* 1. إذا زيارة جديدة → INSERT صف جديد */
     if (isNew) {
