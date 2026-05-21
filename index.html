@@ -1939,7 +1939,7 @@ function switchBA(idx) {
       var slide = slides[i];
       var url = item.image_url;
       if (url.includes('res.cloudinary.com')) {
-        url = url.replace('/upload/', '/upload/c_fill,w_1920,h_1080,q_85,f_auto/');
+        url = url.replace('/upload/', '/upload/c_fill,w_1440,h_810,q_65,f_auto/');
       }
       slide.style.display = '';
       if (shown === 0) {
