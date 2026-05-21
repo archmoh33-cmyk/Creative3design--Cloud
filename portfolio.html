@@ -514,10 +514,27 @@ window.C3D_PORTFOLIO_PAGE = true;
   var displayedCount = PAGE_SIZE;
   var searchTimer    = null;
 
+  /* ── ترتيب المشاريع بنمط الرئيسية 4+2+2+4 ── */
+  function sortLikeHomepage(projects) {
+    var res = projects.filter(function(p){ return p.category === 'interior-res'; });
+    var com = projects.filter(function(p){ return p.category === 'interior-com'; });
+    var vil = projects.filter(function(p){ return p.category === 'villa'; });
+    var oth = projects.filter(function(p){ return p.category !== 'interior-res' && p.category !== 'interior-com' && p.category !== 'villa'; });
+    var result = [];
+    var ri = 0, ci = 0, vi = 0, oi = 0;
+    while (ri < res.length || ci < com.length || vi < vil.length || oi < oth.length) {
+      for (var a = 0; a < 4 && ri < res.length; a++) result.push(res[ri++]);
+      for (var a = 0; a < 2 && ci < com.length; a++) result.push(com[ci++]);
+      for (var a = 0; a < 2 && vi < vil.length; a++) result.push(vil[vi++]);
+      for (var a = 0; a < 4 && oi < oth.length; a++) result.push(oth[oi++]);
+    }
+    return result;
+  }
+
   /* ── Combined filter ── */
   function getFiltered() {
     var q = searchQuery.trim().toLowerCase();
-    return allProjects.filter(function(p) {
+    var filtered = allProjects.filter(function(p) {
       var matchCat   = activeCat   === 'all' || p.category === activeCat;
       var matchStyle = activeStyle === 'all' || p.style    === activeStyle;
       var matchQ     = !q || (p.name_ar     || '').toLowerCase().indexOf(q) !== -1
@@ -525,6 +542,8 @@ window.C3D_PORTFOLIO_PAGE = true;
                           || (p.name_en     || '').toLowerCase().indexOf(q) !== -1;
       return matchCat && matchStyle && matchQ;
     });
+    if (activeCat === 'all') { return sortLikeHomepage(filtered); }
+    return filtered;
   }
 
   function renderProjects(projects) {
