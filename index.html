@@ -1749,6 +1749,9 @@ function switchBA(idx) {
   };
 
   var defaultData = null; /* مشاريع "الكل" الافتراضية */
+  var PAGE_SIZE   = 6;   /* عدد المشاريع في كل دفعة */
+  var _allData    = [];  /* جميع المشاريع المحمّلة */
+  var _shownCount = 0;   /* عدد المشاريع المعروضة حالياً */
 
   /* ── بناء HTML لكارت مشروع ── */
   function buildCard(p) {
@@ -1767,18 +1770,53 @@ function switchBA(idx) {
       '</div></div>';
   }
 
-  /* ── رسم الكروت في الـ grid ── */
-  function renderProjects(data) {
+  /* ── تحديث حالة زر "شاهد المزيد" ── */
+  function updateShowMoreBtn() {
+    var wrap = document.getElementById('showMoreWrap');
     var grid = document.getElementById('portfolioGrid');
-    if (!grid) return;
-    var showMoreWrap = document.getElementById('showMoreWrap');
-    grid.innerHTML = data.map(buildCard).join('');
-    if (showMoreWrap) grid.appendChild(showMoreWrap);
+    if (!wrap) return;
+    if (_shownCount < _allData.length) {
+      wrap.style.display = '';
+      if (grid && !grid.contains(wrap)) grid.appendChild(wrap);
+    } else {
+      wrap.style.display = 'none';
+    }
+  }
+
+  /* ── تفعيل صور lazy + animations ── */
+  function activateCards(grid) {
     if (typeof initLazyImages === 'function') { initLazyImages(); }
     else { grid.querySelectorAll('.lazy-img[data-src]').forEach(function(img){ img.src = img.dataset.src; img.removeAttribute('data-src'); }); }
-    grid.querySelectorAll('.lazy-reveal').forEach(function(el){
+    grid.querySelectorAll('.lazy-reveal:not(.revealed)').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
     });
+  }
+
+  /* ── رسم دفعة من الكروت (fresh=true يمسح القديم) ── */
+  function renderBatch(fresh) {
+    var grid = document.getElementById('portfolioGrid');
+    if (!grid) return;
+    var wrap = document.getElementById('showMoreWrap');
+    if (wrap && grid.contains(wrap)) grid.removeChild(wrap);
+    if (fresh) {
+      grid.innerHTML = '';
+      _shownCount = 0;
+    }
+    var batch = _allData.slice(_shownCount, _shownCount + PAGE_SIZE);
+    batch.forEach(function(p) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = buildCard(p);
+      grid.appendChild(tmp.firstChild);
+    });
+    _shownCount += batch.length;
+    activateCards(grid);
+    updateShowMoreBtn();
+  }
+
+  /* ── رسم الكروت في الـ grid ── */
+  function renderProjects(data) {
+    _allData = data;
+    renderBatch(true);
   }
 
   /* ── ربط أزرار الفلتر بـ event delegation ── */
@@ -1841,6 +1879,20 @@ function switchBA(idx) {
     bindFilter(filterEl);
     if (typeof initLazyImages === 'function') initLazyImages();
 
+    /* ── ربط زر "شاهد المزيد" ── */
+    var showMoreBtn = document.getElementById('portfolioShowMore');
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', function() {
+        renderBatch(false);
+        var grid = document.getElementById('portfolioGrid');
+        if (grid) {
+          var cards = grid.querySelectorAll('.port-card');
+          var firstNew = cards[_shownCount - PAGE_SIZE < 0 ? 0 : _shownCount - PAGE_SIZE];
+          if (firstNew) firstNew.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
     /* 2. انتظر Supabase client ثم جلب المشاريع */
     function tryFetch(attempt) {
       if (!window.c3dFetchProjects || !window.c3dClient) {
@@ -1848,10 +1900,10 @@ function switchBA(idx) {
         return;
       }
       Promise.all([
-        window.c3dFetchProjects({ category: 'interior-res', limit: 12 }),
-        window.c3dFetchProjects({ category: 'interior-com', limit: 6 }),
-        window.c3dFetchProjects({ category: 'villa',        limit: 6  }),
-        window.c3dFetchProjects({ featured: true, limit: 30 })
+        window.c3dFetchProjects({ category: 'interior-res', limit: 20 }),
+        window.c3dFetchProjects({ category: 'interior-com', limit: 10 }),
+        window.c3dFetchProjects({ category: 'villa',        limit: 10 }),
+        window.c3dFetchProjects({ featured: true, limit: 50 })
       ]).then(function(results) {
         var interiorRes = (results[0] && results[0].data) || [];
         var interiorCom = (results[1] && results[1].data) || [];
@@ -1865,9 +1917,9 @@ function switchBA(idx) {
         var others  = featured.filter(function(p){
           return resIds.indexOf(p.id) === -1 && comIds.indexOf(p.id) === -1 && vilIds.indexOf(p.id) === -1
               && p.category !== 'interior-res' && p.category !== 'interior-com' && p.category !== 'villa';
-        }).slice(0, 4);
+        }).slice(0, 8);
 
-        var data = interiorRes.slice(0, 4).concat(interiorCom.slice(0, 2)).concat(villa.slice(0, 2)).concat(others);
+        var data = interiorRes.slice(0, 8).concat(interiorCom.slice(0, 5)).concat(villa.slice(0, 5)).concat(others);
         if (!data.length) return;
 
         defaultData = data; /* حفظ البيانات الافتراضية لزر "الكل" */
