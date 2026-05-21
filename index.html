@@ -1748,10 +1748,13 @@ function switchBA(idx) {
     'commercial':   { ar: 'تجاري وإداري',       en: 'Commercial & Admin',   link: 'portfolio.html?cat=commercial'   }
   };
 
-  var defaultData = null;
-  var _portfolioOffset = 0;
+  var defaultData  = null; /* مشاريع "الكل" الافتراضية (الدفعة الأولى) */
 
-  /* ── بناء HTML لكارت مشروع ── */
+  /* ── offset لكل "خانة" في توزيع 4+2+2+4 ── */
+  var _offs        = { res: 0, com: 0, vil: 0, oth: 0 };
+  var _defaultOffs = null; /* snapshot بعد الدفضة الأولى — يُستعاد عند الرجوع لـ "الكل" */
+
+  /* ── إضافة كروت جديدة للـ grid بدون مسح القديم ── */
   function buildCard(p) {
     var cat  = p.category || 'villa';
     var lbl  = CAT_LABELS[cat] || { ar: cat, en: cat, link: 'portfolio.html' };
@@ -1768,15 +1771,14 @@ function switchBA(idx) {
       '</div></div>';
   }
 
-  /* ── رسم الكروت في الـ grid ── */
-  function renderProjects(data) {
+  /* ── رسم الكروت في الـ grid (يعرض كل data دفعة واحدة) ── */
+  function renderProjects(data, hideBtn) {
     var grid = document.getElementById('portfolioGrid');
     if (!grid) return;
     var showMoreWrap = document.getElementById('showMoreWrap');
     grid.innerHTML = data.map(buildCard).join('');
-    _portfolioOffset = data.length;
     if (showMoreWrap) {
-      showMoreWrap.style.display = (data.length >= 12) ? '' : 'none';
+      showMoreWrap.style.display = hideBtn ? 'none' : '';
       grid.appendChild(showMoreWrap);
     }
     if (typeof initLazyImages === 'function') { initLazyImages(); }
@@ -1786,7 +1788,7 @@ function switchBA(idx) {
     });
   }
 
-  /* ── إضافة كروت جديدة بدون مسح القديم ── */
+  /* ── إضافة كروت جديدة للـ grid بدون مسح القديم ── */
   function appendProjects(data) {
     var grid = document.getElementById('portfolioGrid');
     if (!grid) return;
@@ -1797,15 +1799,46 @@ function switchBA(idx) {
       tmp.innerHTML = buildCard(p);
       grid.appendChild(tmp.firstChild);
     });
-    _portfolioOffset += data.length;
-    if (showMoreWrap) {
-      showMoreWrap.style.display = (data.length >= 12) ? '' : 'none';
-      grid.appendChild(showMoreWrap);
-    }
+    if (showMoreWrap) { grid.appendChild(showMoreWrap); }
     if (typeof initLazyImages === 'function') { initLazyImages(); }
     else { grid.querySelectorAll('.lazy-img[data-src]').forEach(function(img){ img.src = img.dataset.src; img.removeAttribute('data-src'); }); }
     grid.querySelectorAll('.lazy-reveal:not(.revealed)').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
+    });
+  }
+
+  /* ── جلب دفعة واحدة بتوزيع 4+2+2+4 من Supabase مباشرة ── */
+  function fetchBatch() {
+    var db = window.c3dClient;
+    return Promise.all([
+      /* 4 داخلي سكني */
+      db.from('projects').select('*').eq('status','published').eq('category','interior-res')
+        .order('sort_order',{ascending:true}).order('created_at',{ascending:false})
+        .range(_offs.res, _offs.res + 3),
+      /* 2 داخلي تجاري */
+      db.from('projects').select('*').eq('status','published').eq('category','interior-com')
+        .order('sort_order',{ascending:true}).order('created_at',{ascending:false})
+        .range(_offs.com, _offs.com + 1),
+      /* 2 فيلات وعمارات */
+      db.from('projects').select('*').eq('status','published').eq('category','villa')
+        .order('sort_order',{ascending:true}).order('created_at',{ascending:false})
+        .range(_offs.vil, _offs.vil + 1),
+      /* 4 تصنيفات أخرى (featured غيس الثلاثة الرئيسية) */
+      db.from('projects').select('*').eq('status','published').eq('featured',true)
+        .not('category','eq','interior-res').not('category','eq','interior-com').not('category','eq','villa')
+        .order('sort_order',{ascending:true}).order('created_at',{ascending:false})
+        .range(_offs.oth, _offs.oth + 3)
+    ]).then(function(results) {
+      var res = (results[0] && results[0].data) || [];
+      var com = (results[1] && results[1].data) || [];
+      var vil = (results[2] && results[2].data) || [];
+      var oth = (results[3] && results[3].data) || [];
+      /* تحديث الـ offsets بعدد ما أُعيد فعلاً */
+      _offs.res += res.length;
+      _offs.com += com.length;
+      _offs.vil += vil.length;
+      _offs.oth += oth.length;
+      return res.concat(com).concat(vil).concat(oth);
     });
   }
 
@@ -1821,7 +1854,8 @@ function switchBA(idx) {
       btn.classList.add('active');
 
       if (cat === 'all') {
-        /* إعادة عرض المشاريع الافتراضية */
+        /* إعادة عرض الدفعة الأولى + إعادة الـ offsets لما بعدها */
+        if (_defaultOffs) { _offs.res = _defaultOffs.res; _offs.com = _defaultOffs.com; _offs.vil = _defaultOffs.vil; _offs.oth = _defaultOffs.oth; }
         if (defaultData) {
           renderProjects(defaultData);
         } else {
@@ -1829,14 +1863,13 @@ function switchBA(idx) {
           if (grid) grid.querySelectorAll('.port-card').forEach(function(card){ card.style.display = ''; });
         }
       } else {
-        /* جلب حتى 12 مشروع من هذا التصنيف */
+        /* جلب حتى 12 مشروع من هذا التصنيف وإخفاء زر المزيد */
         if (window.c3dFetchProjects) {
           window.c3dFetchProjects({ category: cat, limit: 12 }).then(function(result) {
             var data = (result && result.data) || [];
             if (data.length) {
-              renderProjects(data);
+              renderProjects(data, true);
             } else {
-              /* لا توجد مشاريع — فلترة الكروت الموجودة */
               var grid = document.getElementById('portfolioGrid');
               if (grid) grid.querySelectorAll('.port-card').forEach(function(card){
                 card.style.display = (card.dataset.cat === cat) ? '' : 'none';
@@ -1849,7 +1882,6 @@ function switchBA(idx) {
             });
           });
         } else {
-          /* Supabase غير متاح بعد — فلترة الكروت الموجودة */
           var grid = document.getElementById('portfolioGrid');
           if (grid) grid.querySelectorAll('.port-card').forEach(function(card){
             card.style.display = (card.dataset.cat === cat) ? '' : 'none';
@@ -1865,11 +1897,11 @@ function switchBA(idx) {
     var filterEl = document.getElementById('portfolioFilter');
     if (!grid || !filterEl) return;
 
-    /* 1. ربط الفلتر فوراً (يعمل على الكروت الثابتة أيضاً) */
+    /* 1. ربط الفلتر فوراً */
     bindFilter(filterEl);
     if (typeof initLazyImages === 'function') initLazyImages();
 
-    /* ── ربط زر "شاهد المزيد" — يجلب 12 مشروع إضافي من Supabase ── */
+    /* ── ربط زر "شاهد المزيد" — يجلب 4+2+2+4 مشروع إضافي بنفس التوزيع ── */
     var showMoreBtn = document.getElementById('portfolioShowMore');
     if (showMoreBtn) {
       showMoreBtn.addEventListener('click', function() {
@@ -1877,59 +1909,39 @@ function switchBA(idx) {
         var btnSpan = showMoreBtn.querySelector('span[data-ar]');
         showMoreBtn.disabled = true;
         if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
-        var from = _portfolioOffset;
-        var to   = _portfolioOffset + 11;
-        window.c3dClient.from('projects').select('*')
-          .eq('status','published')
-          .order('sort_order',{ascending:true})
-          .order('created_at',{ascending:false})
-          .range(from, to)
-          .then(function(res) {
-            showMoreBtn.disabled = false;
-            if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
-            var data = (res && res.data) || [];
-            if (data.length) {
-              appendProjects(data);
-              var g = document.getElementById('portfolioGrid');
-              if (g) { var c=g.querySelectorAll('.port-card'); if(c[from]) c[from].scrollIntoView({behavior:'smooth',block:'start'}); }
-            } else {
-              var wrap = document.getElementById('showMoreWrap');
-              if (wrap) wrap.style.display = 'none';
+        var prevCount = (document.getElementById('portfolioGrid').querySelectorAll('.port-card') || []).length;
+        fetchBatch().then(function(data) {
+          showMoreBtn.disabled = false;
+          if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
+          if (data.length) {
+            appendProjects(data);
+            var g = document.getElementById('portfolioGrid');
+            if (g) {
+              var cards = g.querySelectorAll('.port-card');
+              if (cards[prevCount]) cards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-          }).catch(function(){ showMoreBtn.disabled=false; if(btnSpan) btnSpan.textContent='شاهد المزيد من المشاريع'; });
+          } else {
+            var wrap = document.getElementById('showMoreWrap');
+            if (wrap) wrap.style.display = 'none';
+          }
+        }).catch(function() {
+          showMoreBtn.disabled = false;
+          if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
+        });
       });
     }
 
-    /* 2. انتظر Supabase client ثم جلب المشاريع */
+    /* 2. انتظر Supabase client ثم جلب الدفضة الأولى */
     function tryFetch(attempt) {
-      if (!window.c3dFetchProjects || !window.c3dClient) {
+      if (!window.c3dClient) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      Promise.all([
-        window.c3dFetchProjects({ category: 'interior-res', limit: 20 }),
-        window.c3dFetchProjects({ category: 'interior-com', limit: 10 }),
-        window.c3dFetchProjects({ category: 'villa',        limit: 10 }),
-        window.c3dFetchProjects({ featured: true, limit: 50 })
-      ]).then(function(results) {
-        var interiorRes = (results[0] && results[0].data) || [];
-        var interiorCom = (results[1] && results[1].data) || [];
-        var villa       = (results[2] && results[2].data) || [];
-        var featured    = (results[3] && results[3].data) || [];
-
-        /* الترتيب: داخلي سكني ← داخلي تجاري ← فيلات وعمارات ← باقي التصنيفات */
-        var resIds  = interiorRes.map(function(p){ return p.id; });
-        var comIds  = interiorCom.map(function(p){ return p.id; });
-        var vilIds  = villa.map(function(p){ return p.id; });
-        var others  = featured.filter(function(p){
-          return resIds.indexOf(p.id) === -1 && comIds.indexOf(p.id) === -1 && vilIds.indexOf(p.id) === -1
-              && p.category !== 'interior-res' && p.category !== 'interior-com' && p.category !== 'villa';
-        }).slice(0, 8);
-
-        var data = interiorRes.slice(0, 8).concat(interiorCom.slice(0, 5)).concat(villa.slice(0, 5)).concat(others);
+      fetchBatch().then(function(data) {
         if (!data.length) return;
-
-        defaultData = data; /* حفظ البيانات الافتراضية لزر "الكل" */
+        /* حفظ snapshot الـ offsets بعد الدفعة الأولى */
+        _defaultOffs = { res: _offs.res, com: _offs.com, vil: _offs.vil, oth: _offs.oth };
+        defaultData = data;
         renderProjects(data);
       }).catch(function(){});
     }
