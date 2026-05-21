@@ -1748,10 +1748,8 @@ function switchBA(idx) {
     'commercial':   { ar: 'تجاري وإداري',       en: 'Commercial & Admin',   link: 'portfolio.html?cat=commercial'   }
   };
 
-  var defaultData = null; /* مشاريع "الكل" الافتراضية */
-  var PAGE_SIZE   = 6;   /* عدد المشاريع في كل دفعة */
-  var _allData    = [];  /* جميع المشاريع المحمّلة */
-  var _shownCount = 0;   /* عدد المشاريع المعروضة حالياً */
+  var defaultData = null;
+  var _portfolioOffset = 0;
 
   /* ── بناء HTML لكارت مشروع ── */
   function buildCard(p) {
@@ -1770,53 +1768,45 @@ function switchBA(idx) {
       '</div></div>';
   }
 
-  /* ── تحديث حالة زر "شاهد المزيد" ── */
-  function updateShowMoreBtn() {
-    var wrap = document.getElementById('showMoreWrap');
+  /* ── رسم الكروت في الـ grid ── */
+  function renderProjects(data) {
     var grid = document.getElementById('portfolioGrid');
-    if (!wrap) return;
-    if (_shownCount < _allData.length) {
-      wrap.style.display = '';
-      if (grid && !grid.contains(wrap)) grid.appendChild(wrap);
-    } else {
-      wrap.style.display = 'none';
+    if (!grid) return;
+    var showMoreWrap = document.getElementById('showMoreWrap');
+    grid.innerHTML = data.map(buildCard).join('');
+    _portfolioOffset = data.length;
+    if (showMoreWrap) {
+      showMoreWrap.style.display = (data.length >= 12) ? '' : 'none';
+      grid.appendChild(showMoreWrap);
     }
+    if (typeof initLazyImages === 'function') { initLazyImages(); }
+    else { grid.querySelectorAll('.lazy-img[data-src]').forEach(function(img){ img.src = img.dataset.src; img.removeAttribute('data-src'); }); }
+    grid.querySelectorAll('.lazy-reveal').forEach(function(el){
+      setTimeout(function(){ el.classList.add('revealed'); }, 50);
+    });
   }
 
-  /* ── تفعيل صور lazy + animations ── */
-  function activateCards(grid) {
+  /* ── إضافة كروت جديدة بدون مسح القديم ── */
+  function appendProjects(data) {
+    var grid = document.getElementById('portfolioGrid');
+    if (!grid) return;
+    var showMoreWrap = document.getElementById('showMoreWrap');
+    if (showMoreWrap && grid.contains(showMoreWrap)) grid.removeChild(showMoreWrap);
+    data.forEach(function(p) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = buildCard(p);
+      grid.appendChild(tmp.firstChild);
+    });
+    _portfolioOffset += data.length;
+    if (showMoreWrap) {
+      showMoreWrap.style.display = (data.length >= 12) ? '' : 'none';
+      grid.appendChild(showMoreWrap);
+    }
     if (typeof initLazyImages === 'function') { initLazyImages(); }
     else { grid.querySelectorAll('.lazy-img[data-src]').forEach(function(img){ img.src = img.dataset.src; img.removeAttribute('data-src'); }); }
     grid.querySelectorAll('.lazy-reveal:not(.revealed)').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
     });
-  }
-
-  /* ── رسم دفعة من الكروت (fresh=true يمسح القديم) ── */
-  function renderBatch(fresh) {
-    var grid = document.getElementById('portfolioGrid');
-    if (!grid) return;
-    var wrap = document.getElementById('showMoreWrap');
-    if (wrap && grid.contains(wrap)) grid.removeChild(wrap);
-    if (fresh) {
-      grid.innerHTML = '';
-      _shownCount = 0;
-    }
-    var batch = _allData.slice(_shownCount, _shownCount + PAGE_SIZE);
-    batch.forEach(function(p) {
-      var tmp = document.createElement('div');
-      tmp.innerHTML = buildCard(p);
-      grid.appendChild(tmp.firstChild);
-    });
-    _shownCount += batch.length;
-    activateCards(grid);
-    updateShowMoreBtn();
-  }
-
-  /* ── رسم الكروت في الـ grid ── */
-  function renderProjects(data) {
-    _allData = data;
-    renderBatch(true);
   }
 
   /* ── ربط أزرار الفلتر بـ event delegation ── */
@@ -1879,17 +1869,34 @@ function switchBA(idx) {
     bindFilter(filterEl);
     if (typeof initLazyImages === 'function') initLazyImages();
 
-    /* ── ربط زر "شاهد المزيد" ── */
+    /* ── ربط زر "شاهد المزيد" — يجلب 12 مشروع إضافي من Supabase ── */
     var showMoreBtn = document.getElementById('portfolioShowMore');
     if (showMoreBtn) {
       showMoreBtn.addEventListener('click', function() {
-        renderBatch(false);
-        var grid = document.getElementById('portfolioGrid');
-        if (grid) {
-          var cards = grid.querySelectorAll('.port-card');
-          var firstNew = cards[_shownCount - PAGE_SIZE < 0 ? 0 : _shownCount - PAGE_SIZE];
-          if (firstNew) firstNew.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (!window.c3dClient) return;
+        var btnSpan = showMoreBtn.querySelector('span[data-ar]');
+        showMoreBtn.disabled = true;
+        if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
+        var from = _portfolioOffset;
+        var to   = _portfolioOffset + 11;
+        window.c3dClient.from('projects').select('*')
+          .eq('status','published')
+          .order('sort_order',{ascending:true})
+          .order('created_at',{ascending:false})
+          .range(from, to)
+          .then(function(res) {
+            showMoreBtn.disabled = false;
+            if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
+            var data = (res && res.data) || [];
+            if (data.length) {
+              appendProjects(data);
+              var g = document.getElementById('portfolioGrid');
+              if (g) { var c=g.querySelectorAll('.port-card'); if(c[from]) c[from].scrollIntoView({behavior:'smooth',block:'start'}); }
+            } else {
+              var wrap = document.getElementById('showMoreWrap');
+              if (wrap) wrap.style.display = 'none';
+            }
+          }).catch(function(){ showMoreBtn.disabled=false; if(btnSpan) btnSpan.textContent='شاهد المزيد من المشاريع'; });
       });
     }
 
