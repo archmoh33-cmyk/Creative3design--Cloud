@@ -1762,12 +1762,14 @@ function switchBA(idx) {
     var nameEn = p.name_en  || nameAr;
     var img    = p.image_url || BLANK_GIF;
     var alt    = p.image_alt_ar || (nameAr + ' — Creative3Design');
+    var pid    = p.id ? String(p.id) : '';
+    var safeName = nameAr.replace(/"/g, '&quot;');
     return '<div class="port-card lazy-reveal" data-cat="' + cat + '">' +
       '<img data-src="' + img + '" src="' + BLANK_GIF + '" alt="' + alt + '" class="lazy-img" loading="lazy" />' +
       '<div class="port-overlay">' +
         '<span class="port-cat" data-ar="' + lbl.ar + '" data-en="' + lbl.en + '">' + lbl.ar + '</span>' +
         '<h4 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h4>' +
-        '<a href="' + lbl.link + '" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>' +
+        '<button class="port-link" data-pid="' + pid + '" data-img="' + img + '" data-name="' + safeName + '" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</button>' +
       '</div></div>';
   }
 
@@ -2323,6 +2325,34 @@ window.addEventListener('load', function () {
 })();
 </script>
 
+
+<!-- HOME PORTFOLIO LIGHTBOX -->
+<div id="c3dLb" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);align-items:center;justify-content:center;flex-direction:column;" role="dialog" aria-modal="true">
+  <button id="c3dLbClose" style="position:absolute;top:1.2rem;left:1.2rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.6rem;width:2.4rem;height:2.4rem;border-radius:50%;cursor:pointer;z-index:10001;display:flex;align-items:center;justify-content:center;">✕</button>
+  <div id="c3dLbTitle" style="color:#b8976a;font-size:1rem;font-weight:600;margin-bottom:.6rem;text-align:center;direction:rtl;max-width:90vw;padding:0 3rem;"></div>
+  <div style="position:relative;display:flex;align-items:center;justify-content:center;width:100%;max-width:94vw;">
+    <button id="c3dLbPrev" style="position:absolute;right:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:2rem;width:2.8rem;height:2.8rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+    <img id="c3dLbImg" src="" alt="" style="max-width:82vw;max-height:74vh;object-fit:contain;border-radius:6px;display:block;" />
+    <button id="c3dLbNext" style="position:absolute;left:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:2rem;width:2.8rem;height:2.8rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
+  </div>
+  <div id="c3dLbCounter" style="color:rgba(255,255,255,.5);font-size:.82rem;margin-top:.6rem;"></div>
+  <div id="c3dLbThumbs" style="display:flex;gap:.45rem;margin-top:.7rem;max-width:90vw;overflow-x:auto;padding:.3rem .2rem .5rem;"></div>
+</div>
+<script>
+(function(){
+  var lb=document.getElementById("c3dLb"),lbImg=document.getElementById("c3dLbImg"),lbTitle=document.getElementById("c3dLbTitle"),lbCount=document.getElementById("c3dLbCounter"),lbThumbs=document.getElementById("c3dLbThumbs");
+  var _imgs=[],_idx=0;
+  function showImg(i){if(!_imgs.length)return;_idx=((i%_imgs.length)+_imgs.length)%_imgs.length;lbImg.src=_imgs[_idx];lbCount.textContent=(_idx+1)+" / "+_imgs.length;lbThumbs.querySelectorAll(".c3dlb-th").forEach(function(t,ti){t.style.outline=(ti===_idx)?"2px solid #b8976a":"none";t.style.opacity=(ti===_idx)?"1":"0.5";});}
+  function buildThumbs(nm){lbThumbs.innerHTML="";_imgs.forEach(function(url,i){var t=document.createElement("img");t.className="c3dlb-th";t.src=url;t.alt=nm+" "+(i+1);t.style.cssText="width:58px;height:44px;object-fit:cover;border-radius:4px;cursor:pointer;flex-shrink:0;";t.addEventListener("click",function(){showImg(i);});lbThumbs.appendChild(t);});}
+  window.c3dHomeLbOpen=function(btn){var pid=btn.getAttribute("data-pid")||"",mImg=btn.getAttribute("data-img")||"",nm=btn.getAttribute("data-name")||"";_imgs=mImg?[mImg]:[];_idx=0;lbTitle.textContent=nm;lbThumbs.innerHTML="";lb.style.display="flex";document.body.style.overflow="hidden";if(_imgs.length){lbImg.src=_imgs[0];lbCount.textContent="1 / 1";}if(pid&&window.c3dClient){window.c3dClient.from("project_images").select("image_url,sort_order").eq("project_id",pid).order("sort_order",{ascending:true}).then(function(res){if(res&&res.data&&res.data.length){var f=res.data.map(function(r){return r.image_url;}).filter(Boolean);if(f.length){_imgs=f;buildThumbs(nm);showImg(0);}}})}};  window.c3dHomeLbClose=function(){lb.style.display="none";document.body.style.overflow="";lbImg.src="";_imgs=[];lbThumbs.innerHTML="";};
+  document.getElementById("c3dLbClose").addEventListener("click",c3dHomeLbClose);
+  document.getElementById("c3dLbPrev").addEventListener("click",function(){showImg(_idx-1);});
+  document.getElementById("c3dLbNext").addEventListener("click",function(){showImg(_idx+1);});
+  lb.addEventListener("click",function(e){if(e.target===lb)c3dHomeLbClose();});
+  document.addEventListener("keydown",function(e){if(lb.style.display==="none")return;if(e.key==="Escape")c3dHomeLbClose();if(e.key==="ArrowRight")showImg(_idx-1);if(e.key==="ArrowLeft")showImg(_idx+1);});
+  document.addEventListener("click",function(e){var b2=e.target.closest&&e.target.closest(".port-link[data-pid]");if(b2){e.preventDefault();c3dHomeLbOpen(b2);}});
+})();
+</script>
 </body>
 </html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
