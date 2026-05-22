@@ -542,7 +542,10 @@ window.C3D_PORTFOLIO_PAGE = true;
                           || (p.name_en     || '').toLowerCase().indexOf(q) !== -1;
       return matchCat && matchStyle && matchQ;
     });
-    if (activeCat === 'all') { return sortLikeHomepage(filtered); }
+    /* عند عرض "الكل" رتّب بنفس نمط الصفحة الرئيسية 4+2+2+4 */
+    if (activeCat === 'all') {
+      return sortLikeHomepage(filtered);
+    }
     return filtered;
   }
 
