@@ -1296,3 +1296,6 @@ html[dir="ltr"] .ticker-track { direction: ltr; }
 
 /* Stat items */
 html[dir="ltr"] .stat-item { text-align: center; }
+
+/* Hide Vercel Live feedback widget */
+vercel-live-feedback { display: none !important; }
