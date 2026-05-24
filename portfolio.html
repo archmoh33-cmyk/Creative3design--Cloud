@@ -23,14 +23,12 @@
   <meta property="og:locale" content="ar_EG" />
   <meta property="og:site_name" content="Creative3Design" />
   <meta property="og:title" content="معرض أعمالنا | 1100+ مشروع تصميم داخلي وتشطيب فاخر" />
-  <meta property="og:description" content="شاهد 1100+ مشروع تصميم داخلي وتشطيب فاخر في مصر والخليج — فيلات وشقق ومطاعم وفنادق. أعمال Creative3Design في بالم هيلز وماونتن فيو ومدينتي والتجمع الخامس." />
   <meta property="og:description" content="مشاريع في أرقى الكمبوندات: بالم هيلز · ماونتن فيو · مدينتي · الرياض. شاهد أعمالنا." />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80" />
   <meta property="og:url" content="https://creativedesignegypt.com/portfolio" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="معرض أعمالنا | 1100+ مشروع تصميم داخلي فاخر" />
   <meta name="twitter:description" content="فيلات · شقق · مطاعم · فنادق · في مصر والخليج." />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=1200&q=80" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
@@ -576,24 +574,35 @@ window.C3D_PORTFOLIO_PAGE = true;
     var slice = toShow.slice(0, displayedCount);
 
     grid.innerHTML = slice.map(function(p, i) {
-      var img  = p.image_url  || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80';
-      var alt  = p.image_alt_ar || (p.name_ar + ' — Creative3Design');
-      var name = p.name_ar || '';
-      var loc  = p.location_ar || '';
-      var cat  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
-      var sty  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : p.style;
+      var img    = p.image_url  || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80';
+      var nameAr = p.name_ar || '';
+      var nameEn = p.name_en || nameAr;
+      var locAr  = p.location_ar || '';
+      var locEn  = p.location_en || locAr;
+      var catAr  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : p.category;
+      var catEn  = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'en') : p.category;
+      var styAr  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'ar')       : (p.style||'');
+      var styEn  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'en')       : (p.style||'');
+      var metaAr = catAr + (styAr?' · '+styAr:'') + (locAr?' · '+locAr:'');
+      var metaEn = catEn + (styEn?' · '+styEn:'') + (locEn?' · '+locEn:'');
+      var altAr  = p.image_alt_ar || (nameAr + ' — Creative3Design');
+      var q = function(s){ return (s||'').replace(/"/g,'&quot;'); };
       return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's"' +
              ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
              '<div class="port-card">' +
-             '<img src="' + img + '" alt="' + alt + '" loading="lazy" class="port-img"' +
+             '<img src="' + img + '" alt="' + altAr + '" loading="lazy" class="port-img"' +
              ' onerror="this.src=\'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80\'" />' +
              '<div class="port-overlay"><div class="port-info">' +
-             '<h3 class="port-name">' + name + '</h3>' +
-             '<p class="port-meta">' + cat + (sty?' · '+sty:'') + (loc?' · '+loc:'') + '</p>' +
+             '<h3 class="port-name" data-ar="' + q(nameAr) + '" data-en="' + q(nameEn) + '">' + nameAr + '</h3>' +
+             '<p class="port-meta" data-ar="' + q(metaAr) + '" data-en="' + q(metaEn) + '">' + metaAr + '</p>' +
              '</div></div></div></div>';
     }).join('');
 
     grid.querySelectorAll('.lazy-reveal').forEach(function(el){ el.classList.add('revealed'); });
+    /* ── تطبيق اللغة الحالية على الكروت الجديدة ── */
+    if (typeof setLang === 'function' && typeof currentLang !== 'undefined' && currentLang !== 'ar') {
+      setLang(currentLang);
+    }
 
     if (wrap) wrap.style.display = displayedCount >= toShow.length ? 'none' : 'block';
   }
