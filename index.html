@@ -1792,6 +1792,10 @@ function switchBA(idx) {
     grid.querySelectorAll('.lazy-reveal').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
     });
+    /* ── تطبيق اللغة الحالية على الكروت الجديدة ── */
+    if (typeof setLang === 'function' && typeof currentLang !== 'undefined' && currentLang !== 'ar') {
+      setLang(currentLang);
+    }
   }
 
   /* ── إضافة كروت جديدة للـ grid بدون مسح القديم ── */
@@ -1811,6 +1815,10 @@ function switchBA(idx) {
     grid.querySelectorAll('.lazy-reveal:not(.revealed)').forEach(function(el){
       setTimeout(function(){ el.classList.add('revealed'); }, 50);
     });
+    /* ── تطبيق اللغة الحالية على الكروت المُضافة ── */
+    if (typeof setLang === 'function' && typeof currentLang !== 'undefined' && currentLang !== 'ar') {
+      setLang(currentLang);
+    }
   }
 
   /* ── جلب دفعة واحدة بتوزيع 4+2+2+4 من Supabase مباشرة ── */
