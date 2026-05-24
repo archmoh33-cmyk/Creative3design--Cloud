@@ -2175,6 +2175,14 @@ async function saveProject() {
     return;
   }
 
+  // ── Auto-unfeatured: إذا تم تعيين هذا المشروع ممثلاً للقسم، أزل التمييز عن باقي مشاريع نفس الفئة ──
+  if (savedId && payload.featured && payload.category) {
+    await window.c3dClient.from('projects')
+      .update({ featured: false })
+      .eq('category', payload.category)
+      .neq('id', savedId);
+  }
+
   // ── Save gallery images to project_images table ──
   if (savedId && formGalleryImages.length > 0) {
     // On edit: delete existing rows first then re-insert
