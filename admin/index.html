@@ -242,6 +242,16 @@ img{max-width:100%;display:block}
 }
 .image-preview-remove:hover{background:var(--danger)}
 
+/* Gallery grid — multi-image upload */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin-top:.8rem}
+.gallery-thumb{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--surface2);border:2px solid var(--border)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover}
+.gallery-thumb-remove{position:absolute;top:4px;right:4px;background:rgba(224,82,82,.85);border:none;border-radius:50%;width:22px;height:22px;color:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.gallery-thumb-remove:hover{background:var(--danger)}
+.gallery-add-btn{border:2px dashed var(--border);border-radius:var(--radius);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;cursor:pointer;font-size:.75rem;color:var(--text-muted);background:none;transition:border-color var(--transition),color var(--transition),background var(--transition);width:100%}
+.gallery-add-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.gallery-count{font-size:.75rem;color:var(--text-muted);margin-top:.4rem}
+
 /* Toggle */
 .toggle-row{display:flex;align-items:center;gap:.6rem}
 .toggle-label{font-size:.82rem;color:var(--text-muted);font-weight:600}
@@ -459,7 +469,7 @@ img{max-width:100%;display:block}
     <div class="form-section" style="gap:.7rem">
       <div class="field">
         <label>البريد الإلكتروني</label>
-        <input type="email" id="loginEmail" placeholder="admin@creative3design.com" autocomplete="email" />
+        <input type="email" id="loginEmail" placeholder="admin@creativedesignegypt.com" autocomplete="email" />
       </div>
       <div class="field">
         <label>كلمة المرور</label>
@@ -693,7 +703,7 @@ img{max-width:100%;display:block}
             <div class="panel-section-body">
               <div class="form-row form-row-2">
                 <div class="field"><label>رقم واتساب (بدون +)</label><input type="text" id="s-whatsapp" placeholder="201019053288" /></div>
-                <div class="field"><label>البريد الإلكتروني</label><input type="email" id="s-email" placeholder="info@creative3design.com" /></div>
+                <div class="field"><label>البريد الإلكتروني</label><input type="email" id="s-email" placeholder="info@creativedesignegypt.com" /></div>
               </div>
               <div class="form-row form-row-2">
                 <div class="field"><label>اسم الشركة (عربي)</label><input type="text" id="s-name_ar" /></div>
@@ -1170,6 +1180,19 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
+      <!-- ─── معرض الصور ─── -->
+      <div class="form-section">
+        <div class="form-section-title">معرض صور المشروع <span style="font-size:.75rem;color:var(--text-muted);font-weight:400">(صور متعددة للـ Lightbox)</span></div>
+        <div id="galleryGrid" class="gallery-grid">
+          <button type="button" class="gallery-add-btn" onclick="openGalleryWidget()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>إضافة صور</span>
+          </button>
+        </div>
+        <div id="galleryCount" class="gallery-count"></div>
+        <span class="field-hint">ارفع عدة صور دفعة واحدة — تظهر في lightbox المشروع على الموقع</span>
+      </div>
+
       <!-- ─── SEO ─── -->
       <div class="form-section">
         <div class="form-section-title">
@@ -1267,10 +1290,12 @@ img{max-width:100%;display:block}
 ══════════════════════════════════════════════════ */
 let allProjects   = [];
 let editingId     = null;    // null = new, uuid = edit
-let formImageUrl  = '';
-let formCloudId   = '';
-let confirmCb     = null;
-let cloudWidget   = null;
+let formImageUrl     = '';
+let formCloudId      = '';
+let formGalleryImages = [];  // [{url, public_id}] — multi-image gallery
+let confirmCb        = null;
+let cloudWidget      = null;
+let galleryWidget    = null;
 
 const CATEGORY_AR = { residential:'سكني', commercial:'تجاري', villa:'فيلات', hospitality:'ضيافة', office:'مكاتب', 'interior-res':'داخلي سكني', 'interior-com':'داخلي تجاري' };
 const STYLE_AR    = { modern:'مودرن', classic:'كلاسيك', contemporary:'معاصر', neoclassic:'نيوكلاسيك', minimal:'مينيمال', luxury:'فاخر' };
@@ -2039,6 +2064,7 @@ function openModal(projectId = null) {
     document.getElementById('modalTitle').textContent = 'تعديل المشروع';
     document.getElementById('saveBtnText').textContent = 'حفظ التعديلات';
     populateForm(p);
+    loadExistingGallery(projectId);
   } else {
     document.getElementById('modalTitle').textContent = 'مشروع جديد';
     document.getElementById('saveBtnText').textContent = 'حفظ المشروع';
@@ -2068,6 +2094,8 @@ function resetForm() {
   document.getElementById('f-sort_order').value = '0';
   document.getElementById('f-featured').checked = false;
   removeImage(true);
+  formGalleryImages = [];
+  renderGalleryGrid();
   clearErrors();
   updateSEOCount();
 }
@@ -2129,11 +2157,14 @@ async function saveProject() {
     status:               document.getElementById('f-status').value,
   };
 
-  let error;
+  let error, savedId;
   if (editingId) {
     ({ error } = await window.c3dClient.from('projects').update(payload).eq('id', editingId));
+    savedId = editingId;
   } else {
-    ({ error } = await window.c3dClient.from('projects').insert([payload]));
+    const { data: inserted, error: insErr } = await window.c3dClient.from('projects').insert([payload]).select('id').single();
+    error   = insErr;
+    savedId = inserted?.id;
   }
 
   btn.disabled = false;
@@ -2142,6 +2173,25 @@ async function saveProject() {
   if (error) {
     showToast('حدث خطأ: ' + error.message, 'error');
     return;
+  }
+
+  // ── Save gallery images to project_images table ──
+  if (savedId && formGalleryImages.length > 0) {
+    // On edit: delete existing rows first then re-insert
+    if (editingId) {
+      await window.c3dClient.from('project_images').delete().eq('project_id', savedId);
+    }
+    const rows = formGalleryImages.map((img, idx) => ({
+      project_id: savedId,
+      image_url:  img.url,
+      sort_order: idx
+    }));
+    const { error: gallErr } = await window.c3dClient.from('project_images').insert(rows);
+    if (gallErr) showToast('⚠️ صور المعرض لم تُحفظ: ' + gallErr.message, 'error');
+    else showToast(`✅ تم حفظ ${rows.length} صورة في المعرض`, 'success');
+  } else if (savedId && editingId && formGalleryImages.length === 0) {
+    // User cleared all gallery images on edit — delete existing
+    await window.c3dClient.from('project_images').delete().eq('project_id', savedId);
   }
 
   showToast(editingId ? '✅ تم تحديث المشروع بنجاح' : '✅ تم إضافة المشروع بنجاح', 'success');
@@ -2232,6 +2282,9 @@ function initCloudinaryWidget() {
       generateAlt(); // auto alt text after upload
     }
   });
+
+  // Also init the gallery (multi) widget with same config
+  initGalleryWidget(cfg);
 }
 
 function openCloudinaryWidget() {
@@ -2240,6 +2293,100 @@ function openCloudinaryWidget() {
     return;
   }
   cloudWidget.open();
+}
+
+/* ══════════════════════════════════════════════════
+   GALLERY — Multi-Image Upload
+══════════════════════════════════════════════════ */
+function initGalleryWidget(cfg) {
+  galleryWidget = cloudinary.createUploadWidget({
+    cloudName:    cfg.cloudName,
+    uploadPreset: cfg.uploadPreset,
+    sources:      ['local', 'url', 'camera'],
+    multiple:     true,
+    maxFiles:     20,
+    maxFileSize:  5000000,
+    allowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+    folder:       cfg.folder || 'creative3design/portfolio',
+    cropping:     false,
+    language:     'ar',
+    showAdvancedOptions: false,
+    styles: {
+      palette: {
+        window:'#161311', tabIcon:'#B8976A', menuIcons:'#B8976A',
+        textDark:'#FFFFFF', textLight:'#FFFFFF', link:'#B8976A',
+        action:'#B8976A', inactiveTabIcon:'#888',
+        error:'#E05252', inProgress:'#B8976A', complete:'#4caf7d',
+        sourceBg:'#1e1b17'
+      }
+    }
+  }, (error, result) => {
+    if (error) { showToast('خطأ في رفع الصور: ' + error.message, 'error'); return; }
+    if (result.event === 'success') {
+      formGalleryImages.push({ url: result.info.secure_url, public_id: result.info.public_id });
+      renderGalleryGrid();
+    }
+    if (result.event === 'queues-end') {
+      const added = formGalleryImages.length;
+      showToast(`✅ تم رفع ${added} صورة في المعرض`, 'success');
+    }
+  });
+}
+
+function openGalleryWidget() {
+  if (!galleryWidget) {
+    showToast('⚠️ Cloudinary غير مُهيّأ — عبّئ js/config.js أولاً', 'error');
+    return;
+  }
+  galleryWidget.open();
+}
+
+function removeGalleryImage(idx) {
+  formGalleryImages.splice(idx, 1);
+  renderGalleryGrid();
+}
+
+function renderGalleryGrid() {
+  const grid = document.getElementById('galleryGrid');
+  const count = document.getElementById('galleryCount');
+  if (!grid) return;
+
+  // Build thumbnails
+  let html = '';
+  formGalleryImages.forEach((img, i) => {
+    html += `<div class="gallery-thumb">
+      <img src="${img.url}" alt="صورة ${i+1}" loading="lazy" />
+      <button class="gallery-thumb-remove" onclick="removeGalleryImage(${i})" title="إزالة">✕</button>
+    </div>`;
+  });
+
+  // Add button always last
+  html += `<button type="button" class="gallery-add-btn" onclick="openGalleryWidget()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    <span>إضافة صور</span>
+  </button>`;
+
+  grid.innerHTML = html;
+  if (count) count.textContent = formGalleryImages.length > 0 ? `${formGalleryImages.length} صورة في المعرض` : '';
+}
+
+async function loadExistingGallery(projectId) {
+  formGalleryImages = [];
+  renderGalleryGrid();
+  try {
+    const { data, error } = await window.c3dClient
+      .from('project_images')
+      .select('image_url, sort_order')
+      .eq('project_id', projectId)
+      .order('sort_order');
+    if (error) throw error;
+    if (data && data.length > 0) {
+      formGalleryImages = data.map(r => ({ url: r.image_url, public_id: '' }));
+      renderGalleryGrid();
+    }
+  } catch (e) {
+    console.warn('loadExistingGallery error:', e.message);
+  }
 }
 
 function showImagePreview(url) {
