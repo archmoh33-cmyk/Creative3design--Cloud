@@ -1,5 +1,5 @@
 # Creative3Design - robots.txt
-# Last updated: 2026-05-20
+# Last updated: 2026-05-24
 
 # Allow all search engines
 User-agent: *
@@ -11,6 +11,7 @@ Disallow: /*.bak$
 Disallow: /*.ps1$
 Disallow: /*.py$
 Disallow: /*.bat$
+Disallow: /*.env$
 Disallow: /_*.html
 Disallow: /_*.txt
 Disallow: /_*.md
