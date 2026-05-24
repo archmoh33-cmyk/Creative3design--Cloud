@@ -1089,7 +1089,7 @@ img{max-width:100%;display:block}
             <span class="field-error">هذا الحقل مطلوب</span>
           </div>
           <div class="field">
-            <label>اسم المشروع (إنجليزي)</label>
+            <label>اسم المشروع (إنجليزي) <span style="font-size:.7rem;color:var(--text-muted);font-weight:400">— يُترجم تلقائياً عند الحفظ إن تُرك فارغاً</span></label>
             <input type="text" id="f-name_en" placeholder="New Cairo Luxury Apartment" />
           </div>
         </div>
@@ -2135,6 +2135,10 @@ async function saveProject() {
 
   const btn = document.getElementById('saveBtn');
   btn.disabled = true;
+
+  // ── ترجمة تلقائية: املأ الحقول الإنجليزية الفارغة من العربية ──
+  document.getElementById('saveBtnText').textContent = 'جارٍ الترجمة...';
+  await autoFillEnglishFields();
   document.getElementById('saveBtnText').textContent = 'جارٍ الحفظ...';
 
   const payload = {
@@ -2175,14 +2179,6 @@ async function saveProject() {
     return;
   }
 
-  // ── Auto-unfeatured: إذا تم تعيين هذا المشروع ممثلاً للقسم، أزل التمييز عن باقي مشاريع نفس الفئة ──
-  if (savedId && payload.featured && payload.category) {
-    await window.c3dClient.from('projects')
-      .update({ featured: false })
-      .eq('category', payload.category)
-      .neq('id', savedId);
-  }
-
   // ── Save gallery images to project_images table ──
   if (savedId && formGalleryImages.length > 0) {
     // On edit: delete existing rows first then re-insert
@@ -2219,6 +2215,54 @@ function validateForm() {
     document.getElementById('field-style').classList.add('has-error'); valid = false;
   }
   return valid;
+}
+
+// ── الترجمة التلقائية عربي → إنجليزي (MyMemory API — مجانية) ──
+async function translateAr2En(text) {
+  if (!text || !text.trim()) return '';
+  try {
+    const url = 'https://api.mymemory.translated.net/get?q=' +
+                encodeURIComponent(text.trim()) +
+                '&langpair=ar|en&de=archmoh33%40gmail.com';
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data.responseStatus === 200 && data.responseData?.translatedText) {
+      // MyMemory أحياناً يُرجع "PLEASE SELECT TWO DISTINCT LANGUAGES" — تجاهلها
+      const t = data.responseData.translatedText;
+      return t.startsWith('PLEASE SELECT') ? '' : t;
+    }
+    return '';
+  } catch (e) {
+    return '';
+  }
+}
+
+async function autoFillEnglishFields() {
+  // الحقول: {ar: معرّف الحقل العربي, en: معرّف الحقل الإنجليزي}
+  const pairs = [
+    { ar: 'f-name_ar',        en: 'f-name_en' },
+    { ar: 'f-description_ar', en: 'f-description_en' },
+    { ar: 'f-location_ar',    en: 'f-location_en' },
+    { ar: 'f-image_alt_ar',   en: 'f-image_alt_en' },
+  ];
+
+  // فقط الحقول التي لها محتوى عربي وحقلها الإنجليزي فارغ
+  const toTranslate = pairs.filter(p => {
+    const arEl = document.getElementById(p.ar);
+    const enEl = document.getElementById(p.en);
+    return arEl && enEl && arEl.value.trim() && !enEl.value.trim();
+  });
+
+  if (!toTranslate.length) return; // لا شيء للترجمة
+
+  // ترجمة متوازية لتوفير الوقت
+  const results = await Promise.all(
+    toTranslate.map(p => translateAr2En(document.getElementById(p.ar).value.trim()))
+  );
+
+  toTranslate.forEach((p, i) => {
+    if (results[i]) document.getElementById(p.en).value = results[i];
+  });
 }
 
 function clearErrors() {
