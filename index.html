@@ -213,10 +213,9 @@
   /* hero instant placeholder — dark bg shows while Supabase image loads */
   #heroSlides { background: #0d0d1a; }
   </style>
-  <!-- Non-blocking main CSS — loads after render -->
-  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
-  <link rel="preload" as="style" href="css/mobile.css" media="print" onload="this.onload=null;this.rel='stylesheet';this.media='(max-width:900px)'" />
-  <noscript><link rel="stylesheet" href="css/mobile.css" media="(max-width:900px)" /></noscript>
+  <!-- Blocking CSS — prevents CLS (layout shift) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 900px)" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
