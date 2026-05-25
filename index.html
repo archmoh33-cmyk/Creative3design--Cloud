@@ -43,7 +43,10 @@
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preload" as="style" href="css/style.css" />
+  <!-- LCP Hero Image Preload — fixes LCP from 7.6s -->
+  <link rel="preload" as="image" href="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1440,h_810,q_65,f_auto/v1779356236/creative3design/hero/adhodfmatcbnq7ebhelt.webp" fetchpriority="high" />
+  <!-- Non-blocking CSS preload — fixes render-blocking 1050ms -->
+  <link rel="preload" as="style" href="css/style.css" onload="this.onload=null;this.rel='stylesheet'" />
     <style id="gfonts-inline">
 /* arabic */
 @font-face {
@@ -210,8 +213,10 @@
   /* hero instant placeholder — dark bg shows while Supabase image loads */
   #heroSlides { background: #0d0d1a; }
   </style>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 900px)" />
+  <!-- Non-blocking main CSS — loads after render -->
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+  <link rel="preload" as="style" href="css/mobile.css" media="print" onload="this.onload=null;this.rel='stylesheet';this.media='(max-width:900px)'" />
+  <noscript><link rel="stylesheet" href="css/mobile.css" media="(max-width:900px)" /></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -727,7 +732,7 @@ body.loading { overflow: hidden; }
 <section class="hero" id="hero">
   <div class="hero-slides" id="heroSlides">
     <!-- Slide 1 -->
-    <div class="hero-slide active" data-hero-idx="0">
+    <div class="hero-slide active" data-hero-idx="0" style="background-image:url('https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1440,h_810,q_65,f_auto/v1779356236/creative3design/hero/adhodfmatcbnq7ebhelt.webp')" data-lcp-preloaded="true">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-tag" data-ar="مكتب استشاري معتمد منذ 2003" data-en="Certified Design Office Since 2003">مكتب استشاري معتمد منذ 2003</p>
