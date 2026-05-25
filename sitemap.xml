@@ -113,7 +113,7 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
+ "</url>
 
   <url>
     <loc>https://creativedesignegypt.com/blog/tasmeem-filla-luxury</loc>
@@ -134,7 +134,7 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
+ "</url>
 
   <url>
     <loc>https://creativedesignegypt.com/blog/tasmeem-memari-villa-2026</loc>
@@ -177,6 +177,14 @@
   <url>
     <loc>https://creativedesignegypt.com/blog/khutuat-tashtib-shaqqa-min-sifr</loc>
     <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ===== Day 18 SEO Article (Added 2026-05-25) ===== -->
+  <url>
+    <loc>https://creativedesignegypt.com/blog/tasmeem-ghurfa-nawm-saghira-2026</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
