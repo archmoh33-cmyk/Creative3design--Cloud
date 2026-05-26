@@ -271,6 +271,7 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 }
 .hero-slide.active { opacity:1; z-index:1; }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(20,18,16,.5) 0%, rgba(20,18,16,.7) 60%, rgba(20,18,16,.9) 100%); }
+/* hero-content مرفوع خارج الـ slides — لا يتأثر بـ cross-fade */
 .hero-content {
   position:absolute; top:0; left:0; right:0; bottom:0; z-index:10;
   display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
@@ -279,6 +280,7 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   pointer-events:none;
 }
 .hero-content a, .hero-content button { pointer-events:auto; }
+/* بيانات كل slide — مخفية، تُقرأ بالـ JS */
 .hsd { display:none !important; }
 .hero-tag {
   font-size:.8rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
@@ -948,8 +950,38 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   .whyus-grid    { grid-template-columns:1fr; gap:.9rem; }
   .why-card      { padding:1.4rem 1.1rem; }
   .video-card    { min-width:calc(100% - 1rem); }
-  .testi-card    { min-width:calc(100% - 0px); padding:1.4rem 1.1rem; }
-  .testi-track   { gap:.6rem; }
+  /* TESTIMONIALS — robust mobile layout: full text wraps, no overflow */
+  .testi-wrap {
+    margin: 0 -.2rem;
+    padding-bottom: .3rem;
+  }
+  .testi-track {
+    gap: 0 !important;
+    display: flex !important;
+  }
+  .testi-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.4rem 1.15rem !important;
+    margin: 0;
+  }
+  .testi-card > p {
+    overflow-wrap: anywhere !important;
+    word-wrap: break-word !important;
+    word-break: normal;
+    font-size: .9rem;
+    line-height: 1.75;
+    margin-bottom: 1.1rem;
+  }
+  .testi-stars  { font-size: 1rem !important; margin-bottom: .75rem !important; }
+  .testi-client strong { font-size: .92rem; }
+  .testi-client span   { font-size: .76rem; }
+  .testi-avatar { width: 38px; height: 38px; font-size: .9rem; }
+  .testi-controls { gap: .5rem; margin-top: 1.2rem; }
+  .testi-btn { width: 38px; height: 38px; }
   .portfolio-grid  { grid-template-columns:repeat(2,1fr); gap:.6rem; }
   .portfolio-filter{ gap:.3rem; flex-wrap:wrap; justify-content:center; }
   .filter-btn      { padding:.3rem .75rem; font-size:.75rem; }
