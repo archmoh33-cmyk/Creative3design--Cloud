@@ -99,6 +99,18 @@ function goToSlide(idx) {
   }
   target.classList.add('active');
   if (dots[heroIndex]) dots[heroIndex].classList.add('active');
+  /* تحديث النص المشترك من بيانات الـ slide النشط */
+  var shared = document.getElementById('heroContent');
+  if (shared) {
+    var data = target.querySelector('.hsd');
+    if (data) {
+      shared.innerHTML = data.innerHTML;
+      var lang = document.documentElement.lang;
+      shared.querySelectorAll('[data-ar]').forEach(function(el) {
+        if (lang !== 'en') el.textContent = el.getAttribute('data-ar');
+      });
+    }
+  }
 }
 
 function initHeroSlider() {
