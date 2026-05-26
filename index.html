@@ -455,6 +455,55 @@ body.loading { overflow: hidden; }
   #packages-preview [style*="grid-template-columns:repeat(5"] { grid-template-columns:repeat(3,1fr) !important; }
 }
 
+/* ── Mobile carousel hint + dots indicator for calculator cards ── */
+.calc-cards-mobile-hint, .calc-cards-dots { display:none; }
+@media (max-width: 768px) {
+  .calc-cards-mobile-hint {
+    display:flex; align-items:center; justify-content:center; gap:.5rem;
+    flex-wrap:wrap;
+    text-align:center;
+    font-size:.78rem;
+    color:var(--text-muted);
+    margin:0 0 1rem;
+    padding:.6rem .8rem;
+    background:rgba(184,151,106,.06);
+    border:1px solid rgba(184,151,106,.2);
+    border-radius:6px;
+  }
+  .calc-cards-mobile-hint .cch-num {
+    color:var(--gold); font-weight:900; font-size:1rem;
+    background:rgba(184,151,106,.15);
+    width:1.7rem; height:1.7rem; line-height:1.7rem;
+    border-radius:50%; display:inline-block; text-align:center;
+  }
+  .calc-cards-mobile-hint .cch-text { color:var(--diamond-white); font-weight:700; font-size:.82rem; }
+  .calc-cards-mobile-hint .cch-swipe {
+    color:var(--gold); font-size:.72rem;
+    width:100%;
+    animation: calc-swipe-bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes calc-swipe-bounce {
+    0%, 100% { transform: translateX(0); opacity: .85; }
+    50%      { transform: translateX(-7px); opacity: 1; }
+  }
+
+  .calc-cards-dots {
+    display:flex; justify-content:center; gap:.45rem;
+    margin: 0 0 1.5rem;
+    padding-top: .2rem;
+  }
+  .ccd-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:rgba(255,255,255,.22); border:none; padding:0;
+    cursor:pointer; transition: all .3s ease;
+  }
+  .ccd-dot:hover { background:rgba(184,151,106,.5); }
+  .ccd-dot.active {
+    background:var(--gold);
+    width:24px; border-radius:4px;
+  }
+}
+
 /* ── VISIT COUNTER BAR ───────────────────────────────────────── */
 .visit-counter-bar {
   display: flex;
@@ -1176,10 +1225,17 @@ body.loading { overflow: hidden; }
       <h2 data-ar="احسب تكلفة مشروعك الآن" data-en="Calculate Your Project Cost Now">احسب تكلفة مشروعك الآن</h2>
       <p class="section-desc" data-ar="أسعار مايو 2026 — شفافية كاملة قبل البدء في أي مشروع" data-en="May 2026 pricing — full transparency before any project">أسعار مايو 2026 — شفافية كاملة قبل البدء في أي مشروع</p>
     </div>
-    <div class="pkg-preview-grid lazy-reveal">
+    <!-- Mobile-only carousel hint: tells visitors there are 3 calculators -->
+    <div class="calc-cards-mobile-hint" aria-hidden="true">
+      <span class="cch-num">3</span>
+      <span class="cch-text">حاسبات تفاعلية</span>
+      <span class="cch-swipe">← اسحب جانباً للتنقل بين الحاسبات</span>
+    </div>
+
+    <div class="pkg-preview-grid lazy-reveal" id="calcCardsCarousel">
 
       <!-- Card 1: Finishing -->
-      <a href="packages#calculator" class="pkg-preview-card">
+      <a href="packages#calculator" class="pkg-preview-card" data-calc-idx="0">
         <div class="pkg-preview-icon">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
@@ -1189,7 +1245,7 @@ body.loading { overflow: hidden; }
       </a>
 
       <!-- Card 2: Interior Design -->
-      <a href="packages?tab=design#calculator" onclick="setTimeout(()=>switchCalcExternal('design'),300)" class="pkg-preview-card">
+      <a href="packages?tab=design#calculator" onclick="setTimeout(()=>switchCalcExternal('design'),300)" class="pkg-preview-card" data-calc-idx="1">
         <div class="pkg-preview-icon">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
         </div>
@@ -1199,7 +1255,7 @@ body.loading { overflow: hidden; }
       </a>
 
       <!-- Card 3: Architectural Design — FEATURED -->
-      <a href="packages?tab=arch#calculator" class="pkg-preview-card pkg-preview-card--featured">
+      <a href="packages?tab=arch#calculator" class="pkg-preview-card pkg-preview-card--featured" data-calc-idx="2">
         <div class="pkg-preview-badge" style="left:.9rem;right:auto;">جديد 2026</div>
         <div class="pkg-recommended-badge" data-ar="⭐ الأكثر طلباً" data-en="⭐ Most Popular">⭐ الأكثر طلباً</div>
         <div class="pkg-preview-icon">
@@ -1210,6 +1266,13 @@ body.loading { overflow: hidden; }
         <span class="pkg-preview-cta" data-ar="احسب الآن ←" data-en="Calculate Now ←">احسب الآن ←</span>
       </a>
 
+    </div>
+
+    <!-- Mobile-only dots indicator below the carousel -->
+    <div class="calc-cards-dots" role="tablist" aria-label="مؤشر الحاسبة الحالية">
+      <button class="ccd-dot active" data-calc-go="0" aria-label="حاسبة التشطيب"></button>
+      <button class="ccd-dot" data-calc-go="1" aria-label="حاسبة التصميم الداخلي"></button>
+      <button class="ccd-dot" data-calc-go="2" aria-label="حاسبة التصميم المعماري"></button>
     </div>
 
     <!-- Mini price reference — compact pill bar -->
@@ -2478,6 +2541,56 @@ window.addEventListener('load', function () {
   });
 })();
 </script>
+
+<!-- ── Calculator Cards Carousel — Dots Sync (mobile only) ── -->
+<script>
+(function(){
+  'use strict';
+  var carousel = document.getElementById('calcCardsCarousel');
+  var dots = document.querySelectorAll('.calc-cards-dots .ccd-dot');
+  if (!carousel || !dots.length) return;
+
+  function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+
+  /* Sync active dot based on scroll position */
+  function syncDots() {
+    if (!isMobile()) return;
+    var cards = carousel.querySelectorAll('.pkg-preview-card');
+    if (!cards.length) return;
+    var scrollLeft = Math.abs(carousel.scrollLeft); /* abs because RTL has negative scrollLeft */
+    var cardWidth = cards[0].offsetWidth + 10; /* +gap approx */
+    var activeIdx = Math.round(scrollLeft / cardWidth);
+    if (activeIdx < 0) activeIdx = 0;
+    if (activeIdx >= dots.length) activeIdx = dots.length - 1;
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === activeIdx); });
+  }
+
+  /* Click on a dot → scroll to that card */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(dot.getAttribute('data-calc-go'), 10) || 0;
+      var cards = carousel.querySelectorAll('.pkg-preview-card');
+      var target = cards[idx];
+      if (target) {
+        var dir = getComputedStyle(carousel).direction === 'rtl' ? -1 : 1;
+        var offsetLeft = target.offsetLeft - carousel.offsetLeft;
+        carousel.scrollTo({ left: dir * offsetLeft, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* Listen to scroll events with debounce */
+  var scrollTimer;
+  carousel.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(syncDots, 120);
+  }, { passive: true });
+
+  /* Initial sync after slight delay (layout settles) */
+  setTimeout(syncDots, 400);
+})();
+</script>
+
 </body>
 </html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
