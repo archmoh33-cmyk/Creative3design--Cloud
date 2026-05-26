@@ -213,9 +213,10 @@
   /* hero instant placeholder — dark bg shows while Supabase image loads */
   #heroSlides { background: #0d0d1a; }
   </style>
-  <!-- Blocking CSS — prevents CLS (layout shift) -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 900px)" />
+  <!-- Non-blocking main CSS — loads after render -->
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+  <link rel="preload" as="style" href="css/mobile.css" media="print" onload="this.onload=null;this.rel='stylesheet';this.media='(max-width:900px)'" />
+  <noscript><link rel="stylesheet" href="css/mobile.css" media="(max-width:900px)" /></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -716,7 +717,7 @@ body.loading { overflow: hidden; }
         <option value="services.html">⚙️ الخدمات</option>
         <option value="packages.html">📦 الباقات</option>
         <option value="portfolio.html">🖼️ الأعمال</option>
-        <option value="blog/index">📝 المدونة</option>
+        <option value="blog/index.html">📝 المدونة</option>
         <option value="contact.html">📞 تواصل معنا</option>
       </select>
     </div>
@@ -780,7 +781,6 @@ body.loading { overflow: hidden; }
       <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-outline-gold" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
     </div>
   </div>
-  
   <!-- Slide Dots -->
   <div class="hero-dots" id="heroDots">
     <button class="hero-dot active" onclick="goToSlide(0)"></button>
@@ -1567,7 +1567,7 @@ body.loading { overflow: hidden; }
         <a href="https://wa.me/201019053288" target="_blank" rel="noopener" class="btn-gold" data-ar="تواصل عبر واتساب" data-en="Contact via WhatsApp">تواصل عبر واتساب</a>
       </div>
       <div class="location-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d461!2d31.4303277!3d30.0094132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583d3f8546fa71%3A0xf64dd6171534d7d0!2screative%203design%20%D9%85%D9%83%D8%AA%D8%A8%20%D8%AA%D8%B5%D9%85%D9%8A%D9%85%D8%A7%D8%AA%20%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9%20%D9%88%20%D8%AA%D8%B4%D8%B7%D9%8A%D8%A8%D8%A7%D8%AA!5e0!3m2!1sar!2seg!4v1716000000000!5m2!1sar!2seg" width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="موقع Creative3Design على الخريطة"></iframe>
+        <iframe id="mapFrame" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d461!2d31.4303277!3d30.0094132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583d3f8546fa71%3A0xf64dd6171534d7d0!2screative%203design%20%D9%85%D9%83%D8%AA%D8%A8%20%D8%AA%D8%B5%D9%85%D9%8A%D9%85%D8%A7%D8%AA%20%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9%20%D9%88%20%D8%AA%D8%B4%D8%B7%D9%8A%D8%A8%D8%A7%D8%AA!5e0!3m2!1sar!2seg!4v1716000000000!5m2!1sar!2seg" width="100%" height="360" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="موقع Creative3Design على الخريطة"></iframe>
       </div>
     </div>
   </div>
@@ -2397,6 +2397,9 @@ window.addEventListener('load', function () {
     });
   }
 
+  /* ── حالة الـ history لمنع الخروج من الموقع عند الضغط على Back ── */
+  var _lbHistoryPushed = false;
+
   window.c3dHomeLbOpen = function(btn) {
     var pid     = btn.getAttribute('data-pid') || '';
     var mainImg = btn.getAttribute('data-img') || '';
@@ -2408,6 +2411,13 @@ window.addEventListener('load', function () {
     lb.style.display    = 'flex';
     document.body.style.overflow = 'hidden';
     if (_imgs.length) { lbImg.src = _imgs[0]; lbCount.textContent = '1 / 1'; }
+    /* أضف entry في تاريخ المتصفح لكي يغلق Back اللايتبوكس بدلاً من الخروج من الموقع */
+    if (!_lbHistoryPushed) {
+      try {
+        history.pushState({ c3dLb: true }, '', location.pathname + location.search + '#project');
+        _lbHistoryPushed = true;
+      } catch (err) { /* fallback silently */ }
+    }
     /* جلب صور المشروع الكاملة من Supabase */
     if (pid && window.c3dClient) {
       window.c3dClient.from('project_images')
@@ -2427,21 +2437,36 @@ window.addEventListener('load', function () {
     }
   };
 
-  window.c3dHomeLbClose = function() {
+  /* fromPopState = true عندما يأتي الاستدعاء من popstate (المستخدم ضغط Back) */
+  window.c3dHomeLbClose = function(fromPopState) {
     lb.style.display = 'none';
     document.body.style.overflow = '';
     lbImg.src = '';
     _imgs = [];
     lbThumbs.innerHTML = '';
+    /* إذا أُغلق بطريقة غير Back (X أو Esc أو نقر خارج) — نظّف الـ history entry */
+    if (_lbHistoryPushed && !fromPopState) {
+      _lbHistoryPushed = false;
+      try { history.back(); } catch (err) {}
+    } else if (fromPopState) {
+      _lbHistoryPushed = false;
+    }
   };
 
-  document.getElementById('c3dLbClose').addEventListener('click', c3dHomeLbClose);
+  /* عند الضغط على Back في المتصفح — أغلق اللايتبوكس بدلاً من الخروج من الموقع */
+  window.addEventListener('popstate', function(e) {
+    if (lb.style.display !== 'none') {
+      c3dHomeLbClose(true);
+    }
+  });
+
+  document.getElementById('c3dLbClose').addEventListener('click', function(){ c3dHomeLbClose(false); });
   document.getElementById('c3dLbPrev').addEventListener('click', function(){ showImg(_idx - 1); });
   document.getElementById('c3dLbNext').addEventListener('click', function(){ showImg(_idx + 1); });
-  lb.addEventListener('click', function(e){ if (e.target === lb) c3dHomeLbClose(); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) c3dHomeLbClose(false); });
   document.addEventListener('keydown', function(e){
     if (lb.style.display === 'none') return;
-    if (e.key === 'Escape')     c3dHomeLbClose();
+    if (e.key === 'Escape')     c3dHomeLbClose(false);
     if (e.key === 'ArrowRight') showImg(_idx - 1);
     if (e.key === 'ArrowLeft')  showImg(_idx + 1);
   });
