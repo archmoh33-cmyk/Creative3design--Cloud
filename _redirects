@@ -2,14 +2,16 @@
 # Last Updated: 2026-05-20
 
 # ===== 301 Redirects (SEO) =====
-/home          /index.html       301
-/index         /index.html       301
-/ar/           /index.html       301
-/en/           /index.html       301
-/about-us      /about.html       301
-/our-services  /services.html    301
-/our-work      /portfolio.html   301
-/contact-us    /contact.html     301
+# Fixed 2026-05-26: removed .html from destinations to avoid 2-hop redirect chains
+# (Vercel cleanUrls:true already redirects .html → clean URL, causing double redirect)
+/home          /                 301
+/index         /                 301
+/ar/           /                 301
+/en/           /                 301
+/about-us      /about            301
+/our-services  /services         301
+/our-work      /portfolio        301
+/contact-us    /contact          301
 
 # ===== Security Blocks =====
 # Block access to sensitive files via URL
