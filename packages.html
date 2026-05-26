@@ -66,13 +66,59 @@
   <link rel="stylesheet" href="css/mobile.css" media="(max-width: 900px)" />
   <style>
     /* ── CALCULATOR SPECIFIC STYLES ── */
-    .calc-tabs { display:flex; gap:.5rem; justify-content:center; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .calc-tabs {
+      display:flex; gap:.5rem; justify-content:center; margin-bottom:1rem; flex-wrap:wrap;
+    }
     .calc-tab {
       padding:.65rem 1.8rem; font-size:.95rem; font-weight:700; font-family:'Cairo',sans-serif;
       border:2px solid var(--gray-border); color:var(--text-muted);
       background:transparent; cursor:pointer; transition:all .25s;
+      display:flex; align-items:center; justify-content:center; gap:.4rem;
+      border-radius:4px;
     }
+    .calc-tab .ct-icon { font-size:1.15rem; line-height:1; }
+    .calc-tab .ct-label-full { display:inline; }
+    .calc-tab .ct-label-short { display:none; }
     .calc-tab.active { border-color:var(--gold); color:#fff; background:var(--gold); }
+
+    /* Calculator count hint — يوضّح للزائر أن هناك 3 حاسبات */
+    .calc-count-hint {
+      display:none;
+      text-align:center;
+      color:var(--text-muted);
+      font-size:.78rem;
+      margin:0 0 1.4rem;
+      letter-spacing:.3px;
+    }
+    .calc-count-hint .ch-num { color:var(--gold); font-weight:900; font-size:.92rem; }
+    .calc-count-hint .ch-dot { color:var(--gold); margin:0 .35rem; }
+
+    /* ── MOBILE: 3-column compact grid for tabs ── */
+    @media (max-width: 768px) {
+      .calc-tabs {
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap:.4rem;
+        margin-bottom:.8rem;
+      }
+      .calc-tab {
+        padding:.7rem .25rem;
+        font-size:.72rem;
+        line-height:1.25;
+        flex-direction:column;
+        gap:.35rem;
+        min-height:4.6rem;
+        border-width:1.5px;
+      }
+      .calc-tab .ct-icon { font-size:1.4rem; }
+      .calc-tab .ct-label-full { display:none; }
+      .calc-tab .ct-label-short { display:inline; }
+      .calc-count-hint { display:block; }
+    }
+    @media (max-width: 380px) {
+      .calc-tab { font-size:.66rem; padding:.6rem .15rem; }
+      .calc-tab .ct-icon { font-size:1.25rem; }
+    }
 
     .calc-panel { display:none; }
     .calc-panel.active { display:block; }
@@ -350,17 +396,29 @@
   <div class="container">
 
     <!-- TABS -->
-    <div class="calc-tabs">
-      <button class="calc-tab active" onclick="switchCalc('finishing')">
-        🏗️ حاسبة تكلفة التشطيب
+    <div class="calc-tabs" role="tablist" aria-label="حاسبات الأسعار الثلاث">
+      <button class="calc-tab active" onclick="switchCalc('finishing')" role="tab" aria-selected="true">
+        <span class="ct-icon">🏗️</span>
+        <span class="ct-label-full">حاسبة تكلفة التشطيب</span>
+        <span class="ct-label-short">التشطيب</span>
       </button>
-      <button class="calc-tab" onclick="switchCalc('design')">
-        ✏️ حاسبة التصميم الداخلي
+      <button class="calc-tab" onclick="switchCalc('design')" role="tab" aria-selected="false">
+        <span class="ct-icon">✏️</span>
+        <span class="ct-label-full">حاسبة التصميم الداخلي</span>
+        <span class="ct-label-short">التصميم الداخلي</span>
       </button>
-      <button class="calc-tab" onclick="switchCalc('arch')">
-        🏛️ حاسبة التصميم المعماري
+      <button class="calc-tab" onclick="switchCalc('arch')" role="tab" aria-selected="false">
+        <span class="ct-icon">🏛️</span>
+        <span class="ct-label-full">حاسبة التصميم المعماري</span>
+        <span class="ct-label-short">التصميم المعماري</span>
       </button>
     </div>
+
+    <!-- Calculator count hint (mobile only) -->
+    <p class="calc-count-hint" aria-hidden="true">
+      <span class="ch-num">3</span> حاسبات تفاعلية
+      <span class="ch-dot">•</span> اضغط أي تبويب لتبديل الحاسبة
+    </p>
 
     <!-- ══════════════════════════════════════════ -->
     <!-- PANEL 1: FINISHING CALCULATOR              -->
@@ -641,7 +699,11 @@
 function switchCalc(panel) {
   const map = { finishing: 0, design: 1, arch: 2 };
   document.querySelectorAll('.calc-panel').forEach((p, i) => { p.classList.toggle('active', i === map[panel]); });
-  document.querySelectorAll('.calc-tab').forEach((t, i) => { t.classList.toggle('active', i === map[panel]); });
+  document.querySelectorAll('.calc-tab').forEach((t, i) => {
+    const isActive = i === map[panel];
+    t.classList.toggle('active', isActive);
+    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
   if (panel === 'finishing') updateFinCalc();
   if (panel === 'design') updateDesCalc();
   if (panel === 'arch') updateArchCalc();
