@@ -100,12 +100,13 @@ function goToSlide(idx) {
   target.classList.add('active');
   if (dots[heroIndex]) dots[heroIndex].classList.add('active');
   /* تحديث النص المشترك من بيانات الـ slide النشط */
-  var shared = document.getElementById('heroContent');
+  const shared = document.getElementById('heroContent');
   if (shared) {
-    var data = target.querySelector('.hsd');
+    const data = target.querySelector('.hsd');
     if (data) {
       shared.innerHTML = data.innerHTML;
-      var lang = document.documentElement.lang;
+      /* إعادة تطبيق اللغة الحالية على المحتوى الجديد */
+      const lang = document.documentElement.lang;
       shared.querySelectorAll('[data-ar]').forEach(function(el) {
         if (lang !== 'en') el.textContent = el.getAttribute('data-ar');
       });
@@ -123,16 +124,19 @@ function initHeroSlider() {
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
   const duration = 2000;
-  const start = performance.now();
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
+  const steps = 60;
+  const interval = duration / steps;
+  let step = 0;
+  const timer = setInterval(function() {
+    step++;
+    const progress = Math.min(step / steps, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.floor(ease * target);
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(update);
+    if (step >= steps) {
+      clearInterval(timer);
+      el.textContent = target;
+    }
+  }, interval);
 }
 
 function initCounters() {
@@ -145,13 +149,27 @@ function initCounters() {
         animateCounter(e.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0, rootMargin: '0px 0px 80px 0px' });
   counters.forEach(c => obs.observe(c));
 }
 
 /* ── LAZY REVEAL ── */
 function initLazyReveal() {
-  const els = document.querySelectorAll('.lazy-reveal, .lazy-reveal-left');
+  const sel = '.lazy-reveal, .lazy-reveal-left';
+  /* Reveal elements already in or near the viewport */
+  function revealVisible() {
+    document.querySelectorAll(sel + ':not(.revealed)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight + 120) {
+        el.classList.add('revealed');
+      }
+    });
+  }
+  /* Run immediately, then again after layout settles (hero loads from Supabase async) */
+  revealVisible();
+  setTimeout(revealVisible, 400);
+  setTimeout(revealVisible, 1000);
+  /* IntersectionObserver for below-fold elements — triggers as soon as edge enters view */
+  const els = document.querySelectorAll(sel);
   if (!els.length) return;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -160,7 +178,7 @@ function initLazyReveal() {
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 60px 0px' });
   els.forEach(el => obs.observe(el));
 }
 
@@ -192,6 +210,7 @@ function switchBA(idx) {
   const before = document.getElementById('ba-before');
   const after  = document.getElementById('ba-after');
   if (!before || !after) return;
+  /* Use dynamic Supabase data when available */
   const items = window.__baItems;
   if (items && items[idx]) {
     if (items[idx].before_url) before.src = items[idx].before_url;
@@ -223,6 +242,10 @@ function initBeforeAfter() {
     divider.style.left = pct + '%';
     updateAfterClip(pct);
   }
+
+  /* Set initial position at 50% */
+  divider.style.left = '50%';
+  updateAfterClip(50);
 
   divider.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
   window.addEventListener('mousemove', e => { if (dragging) move(e.clientX); });
@@ -275,11 +298,16 @@ function testiUpdate() {
   const track = document.getElementById('testiTrack');
   if (!track) return;
   const cards = track.querySelectorAll('.testi-card');
+  if (!cards.length) return;
   const visible = getTestiVisible();
   const max = Math.max(0, cards.length - visible);
   testiIdx = Math.min(testiIdx, max);
-  const w = track.parentElement.offsetWidth / visible;
-  track.style.transform = `translateX(${testiIdx * w}px)`;
+  /* Use the actual rendered card width + gap for accurate sliding —
+     this avoids miscalculation when card box-sizing or container width differs */
+  const trackStyle = getComputedStyle(track);
+  const gap = parseFloat(trackStyle.gap) || 0;
+  const cardW = cards[0].offsetWidth + gap;
+  track.style.transform = `translateX(${testiIdx * cardW}px)`;
 }
 
 function testiNext() { testiIdx = Math.max(0, testiIdx - 1); testiUpdate(); }
@@ -330,6 +358,7 @@ function applyPortfolioFilter(cat, cards, limit) {
 }
 
 function initPortfolioFilter() {
+  // Skip on portfolio.html — that page manages its own Supabase-based filter
   if (window.C3D_PORTFOLIO_PAGE) return;
   const filterEl = document.getElementById('portfolioFilter');
   if (!filterEl) return;
@@ -344,7 +373,7 @@ function initPortfolioFilter() {
     staticLimit = limit;
     const cards = document.querySelectorAll('#portfolioGrid .port-card');
     applyPortfolioFilter(cat, cards, limit);
-    // زر شاهد المسيد للـ static
+    // زر شاهد المزيد للـ static
     const wrap = document.getElementById('showMoreWrap');
     const moreBtn = document.getElementById('portfolioShowMore');
     if (wrap && moreBtn) {
@@ -599,5 +628,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolioFilter();
   videoSlideUpdate();
   testiUpdate();
-  window.addEventListener('resize', () => { videoSlideUpdate(); testiUpdate(); }, { passive: true });
+  /* Lazy load Google Maps — تحميل الخريطة عند الاقتراب منها فقط */
+  (function() {
+    var mapFrame = document.getElementById('mapFrame');
+    if (!mapFrame || !mapFrame.dataset.src) return;
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          mapFrame.src = mapFrame.dataset.src;
+          obs.unobserve(mapFrame);
+        }
+      }, { rootMargin: '300px' });
+      obs.observe(mapFrame);
+    } else {
+      mapFrame.src = mapFrame.dataset.src;
+    }
+  })();
 });
