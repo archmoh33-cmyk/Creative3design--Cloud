@@ -294,7 +294,7 @@ gtag('config', 'AW-10829372232');
   <a href="tel:00201019053288" class="float-btn float-btn-call" aria-label="اتصال"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
 </div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
-<script>document.querySelectorAll('.lazy-img[data-src]').forEach(function(img){img.src=img.dataset.src;});</script>
+<script>document.querySelectorAll('.lazy-img[data-src]').forEach(function(img){img.removeAttribute('loading');var s=img.dataset.src;img.removeAttribute('data-src');img.src=s;});</script>
 <script src="../js/main.js"></script>
 </body>
 </html>
