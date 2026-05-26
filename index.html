@@ -2249,7 +2249,7 @@ window.addEventListener('load', function () {
         var isAr = document.documentElement.lang !== 'en';
         grid.innerHTML = posts.slice(0, 3).map(function (p) {
           var img = p.cover_url || FALLBACK[0].cover_url;
-          var href = p.slug || '#';
+          var href = (p.slug || '#').replace(/\.html$/, '');
           var title = p.title_ar || '';
           var excerpt = p.excerpt_ar || '';
           return '<article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold);">'
