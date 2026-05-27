@@ -908,6 +908,19 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     setTimeout(initCalcs, 200);
   }
+  // Deep-link: open the correct calculator tab from ?tab= URL param
+  const urlParams = new URLSearchParams(window.location.search);
+  const tabParam = urlParams.get('tab');
+  if (tabParam && ['finishing', 'design', 'arch'].includes(tabParam)) {
+    switchCalc(tabParam);
+  }
+  // Auto-scroll to calculator section if #calculator hash present
+  if (window.location.hash === '#calculator') {
+    setTimeout(() => {
+      const el = document.getElementById('calculator');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 350);
+  }
 });
 </script>
 
