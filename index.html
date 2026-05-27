@@ -45,8 +45,8 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <!-- LCP Hero Image Preload — fixes LCP from 7.6s -->
   <link rel="preload" as="image" href="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1440,h_810,q_65,f_auto/v1779356236/creative3design/hero/adhodfmatcbnq7ebhelt.webp" fetchpriority="high" />
-  <!-- Non-blocking CSS preload — fixes render-blocking 1050ms -->
-  <link rel="preload" as="style" href="css/style.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <!-- Blocking CSS — eliminates CLS caused by late async stylesheet apply -->
+  <link rel="stylesheet" href="css/style.css" />
     <style id="gfonts-inline">
 /* arabic */
 @font-face {
@@ -865,7 +865,7 @@ body.loading { overflow: hidden; }
     <div class="about-grid">
       <div class="about-images">
         <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" alt="تصميم داخلي فاخر لغرفة معيشة بتوقيع Creative3Design" class="about-img-main" loading="lazy" />
-        <img data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تفاصيل ديكور راقية في مشروع تشطيب شقة" class="about-img-small lazy-img" loading="lazy" />
+        <img data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تفاصيل ديكور راقية في مشروع تشطيب شقة" class="about-img-small lazy-img" loading="lazy" width="400" height="300" />
         <div class="about-badge">
           <span class="badge-num">22</span>
           <span class="badge-text" data-ar="عاماً من التميز" data-en="Years of Excellence">عاماً من التميز</span>
@@ -914,7 +914,7 @@ body.loading { overflow: hidden; }
       <!-- 1. سكني -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي سكني فاخر — رسيبشن فيلا ألترا مودرن بالقاهرة" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي سكني فاخر — رسيبشن فيلا ألترا مودرن بالقاهرة" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -928,7 +928,7 @@ body.loading { overflow: hidden; }
       <!-- 2. تجاري -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب تجاري احترافي وعصري بالقاهرة" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم مكتب تجاري احترافي وعصري بالقاهرة" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -942,7 +942,7 @@ body.loading { overflow: hidden; }
       <!-- 3. معماري -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم معماري لمبنى فاخر — Creative3Design" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم معماري لمبنى فاخر — Creative3Design" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -956,7 +956,7 @@ body.loading { overflow: hidden; }
       <!-- 4. تشطيب -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تشطيب وتنفيذ ديكور داخلي فاخر — أعمال Creative3Design" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تشطيب وتنفيذ ديكور داخلي فاخر — أعمال Creative3Design" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -970,7 +970,7 @@ body.loading { overflow: hidden; }
       <!-- 5. استشارات -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="استشارة هندسية متخصصة مع مهندسي Creative3Design" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="استشارة هندسية متخصصة مع مهندسي Creative3Design" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -984,7 +984,7 @@ body.loading { overflow: hidden; }
       <!-- 6. VR -->
       <div class="service-card lazy-reveal">
         <div class="service-card-img-wrap">
-    <img data-src="https://images.unsplash.com/photo-1617802690658-1173a812650d?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="جولة VR ثلاثية الأبعاد لمعاينة التصميم الداخلي قبل التنفيذ" class="lazy-img" loading="lazy"/>
+    <img data-src="https://images.unsplash.com/photo-1617802690658-1173a812650d?w=800&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="جولة VR ثلاثية الأبعاد لمعاينة التصميم الداخلي قبل التنفيذ" class="lazy-img" loading="lazy" width="800" height="450"/>
   </div>
   <div class="service-card-body">
         <div class="service-icon">
@@ -1021,7 +1021,7 @@ body.loading { overflow: hidden; }
       <!-- ═══ 4 مشاريع تصميم داخلي سكني — صور حقيقية من Cloudinary ═══ -->
 
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039468/creative3design/portfolio/utp0z9lb4nohzu3domh0.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن فيلا بكمبوند ماونتن فيو — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039468/creative3design/portfolio/utp0z9lb4nohzu3domh0.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن فيلا بكمبوند ماونتن فيو — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
           <h4 data-ar="رسيبشن فيلا ماونتن فيو" data-en="Mountain View Villa Reception">رسيبشن فيلا ماونتن فيو</h4>
@@ -1030,7 +1030,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039530/creative3design/portfolio/sc7csy5tnpntuqwv9phl.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن الترا مودرن بفيلا بفرلي هيلز — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039530/creative3design/portfolio/sc7csy5tnpntuqwv9phl.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن الترا مودرن بفيلا بفرلي هيلز — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
           <h4 data-ar="فيلا بيفرلي هيلز الترا مودرن" data-en="Beverly Hills Ultra Modern Villa">فيلا بيفرلي هيلز الترا مودرن</h4>
@@ -1039,7 +1039,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039369/creative3design/portfolio/wcc9kjzoi0juxin99p7t.webp" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="لوبي فيلا ليك فيو — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039369/creative3design/portfolio/wcc9kjzoi0juxin99p7t.webp" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="لوبي فيلا ليك فيو — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
           <h4 data-ar="لوبي فيلا ليك فيو" data-en="Lake View Villa Lobby">لوبي فيلا ليك فيو</h4>
@@ -1048,7 +1048,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="interior-res">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039431/creative3design/portfolio/uaiiheytrohx3wabdvrs.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم بفيلا مدينتي — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039431/creative3design/portfolio/uaiiheytrohx3wabdvrs.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم بفيلا مدينتي — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
           <h4 data-ar="غرفة نوم فيلا مدينتي" data-en="Madinaty Villa Bedroom">غرفة نوم فيلا مدينتي</h4>
@@ -1058,7 +1058,7 @@ body.loading { overflow: hidden; }
       <!-- ═══ 2 تجاري وإداري — صور حقيقية من Cloudinary ═══ -->
 
       <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798894/creative3design/commercial/03_maadi_shopping_mall/qy5yd4u8zvv0gcedlhle.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Maadi Shopping Mall — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798894/creative3design/commercial/03_maadi_shopping_mall/qy5yd4u8zvv0gcedlhle.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Maadi Shopping Mall — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
           <h4 data-ar="Maadi Shopping Mall" data-en="Maadi Shopping Mall">Maadi Shopping Mall</h4>
@@ -1067,7 +1067,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="commercial">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fasntazy Mall — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fasntazy Mall — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
           <h4 data-ar="Fasntazy Mall" data-en="Fasntazy Mall">Fasntazy Mall</h4>
@@ -1078,7 +1078,7 @@ body.loading { overflow: hidden; }
       <!-- ═══ 2 تصميم داخلي تجاري — صور حقيقية من Cloudinary ═══ -->
 
       <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110928/creative3design/interior-com/%D9%83%D8%A7%D9%81%D9%8A%D9%87_%D8%A8%D8%AC%D8%AF%D8%A9/nyi90aaryswvoxka0gxl.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="كافيه بجدة — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110928/creative3design/interior-com/%D9%83%D8%A7%D9%81%D9%8A%D9%87_%D8%A8%D8%AC%D8%AF%D8%A9/nyi90aaryswvoxka0gxl.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="كافيه بجدة — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
           <h4 data-ar="كافيه بجدة" data-en="Jeddah Cafe">كافيه بجدة</h4>
@@ -1087,7 +1087,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="interior-com">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110950/creative3design/interior-com/%D9%85%D8%B7%D8%B9%D9%85_%D8%A7%D9%84_%D9%85%D9%88%D8%AF_%D8%A8%D9%85%D8%AF%D9%8A%D9%86%D8%AA%D9%8A/ruru1rukxehsshwkvmsf.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطعم ال مود بمدينتي — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110950/creative3design/interior-com/%D9%85%D8%B7%D8%B9%D9%85_%D8%A7%D9%84_%D9%85%D9%88%D8%AF_%D8%A8%D9%85%D8%AF%D9%8A%D9%86%D8%AA%D9%8A/ruru1rukxehsshwkvmsf.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطعم ال مود بمدينتي — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
           <h4 data-ar="مطعم ال مود بمدينتي" data-en="Al Mood Restaurant Madinaty">مطعم ال مود بمدينتي</h4>
@@ -1098,7 +1098,7 @@ body.loading { overflow: hidden; }
       <!-- ═══ 2 فيلات — صور حقيقية من Cloudinary ═══ -->
 
       <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778541005/creative3design/portfolio/vbryadjbdnbuxxl5dlsu.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fatemy Villas — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778541005/creative3design/portfolio/vbryadjbdnbuxxl5dlsu.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fatemy Villas — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
           <h4 data-ar="Fatemy Villas" data-en="Fatemy Villas">Fatemy Villas</h4>
@@ -1107,7 +1107,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="villa">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778543563/creative3design/portfolio/hg2ajnikwr7lxkruolsy.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Classic Villa — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778543563/creative3design/portfolio/hg2ajnikwr7lxkruolsy.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Classic Villa — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
           <h4 data-ar="Classic Villa" data-en="Classic Villa">Classic Villa</h4>
@@ -1118,7 +1118,7 @@ body.loading { overflow: hidden; }
       <!-- ═══ 2 فنادق وضيافة — صور حقيقية من Cloudinary ═══ -->
 
       <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797546/creative3design/hotels/01_the_platinum_hotel/woruyqrkq5fpi96nfr4v.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="The Platinum Hotel — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797546/creative3design/hotels/01_the_platinum_hotel/woruyqrkq5fpi96nfr4v.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="The Platinum Hotel — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فنادق وضيافة" data-en="Hotels">فنادق وضيافة</span>
           <h4 data-ar="The Platinum Hotel" data-en="The Platinum Hotel">The Platinum Hotel</h4>
@@ -1127,7 +1127,7 @@ body.loading { overflow: hidden; }
       </div>
 
       <div class="port-card lazy-reveal" data-cat="hospitality">
-        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797649/creative3design/hotels/05_riyadh_hotel/nit7azprrzkxyt2yg8ym.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Riyadh Hotel — Creative3Design" class="lazy-img" loading="lazy" />
+        <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797649/creative3design/hotels/05_riyadh_hotel/nit7azprrzkxyt2yg8ym.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Riyadh Hotel — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فنادق وضيافة" data-en="Hotels">فنادق وضيافة</span>
           <h4 data-ar="Riyadh Hotel" data-en="Riyadh Hotel">Riyadh Hotel</h4>
@@ -1451,7 +1451,7 @@ body.loading { overflow: hidden; }
       <div class="video-slider-track" id="videoTrack">
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('dQw4w9WgXcQ')" aria-label="تشغيل فيديو تصميم فيلا فاخرة">
-            <img data-src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم فيلا فاخرة - Creative3Design" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم فيلا فاخرة - Creative3Design" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
@@ -1460,7 +1460,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('ScMzIvxBSi4')" aria-label="تشغيل فيديو شقة التجمع">
-            <img data-src="https://i.ytimg.com/vi/ScMzIvxBSi4/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم شقة فاخرة في التجمع الخامس" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/ScMzIvxBSi4/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم شقة فاخرة في التجمع الخامس" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
@@ -1469,7 +1469,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('YQHsXMglC9A')" aria-label="تشغيل فيديو مكتب تجاري">
-            <img data-src="https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مكتب شركة احترافي" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مكتب شركة احترافي" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
@@ -1478,7 +1478,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('kJQP7kiw5Fk')" aria-label="تشغيل فيديو تصميم مطبخ">
-            <img data-src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مطبخ فاخر" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مطبخ فاخر" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
@@ -1487,7 +1487,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('fJ9rUzIMcZQ')" aria-label="تشغيل فيديو تشطيب شقة">
-            <img data-src="https://i.ytimg.com/vi/fJ9rUzIMcZQ/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تشطيب شقة كاملة قبل وبعد" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/fJ9rUzIMcZQ/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تشطيب شقة كاملة قبل وبعد" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
@@ -1496,7 +1496,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('RgKAFK5djSk')" aria-label="تشغيل فيديو تصميم مطعم">
-            <img data-src="https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مطعم فاخر بالقاهرة" class="lazy-img" loading="lazy"/>
+            <img data-src="https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="فيديو تصميم مطعم فاخر بالقاهرة" class="lazy-img" loading="lazy" width="480" height="360"/>
             <div class="play-btn-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
