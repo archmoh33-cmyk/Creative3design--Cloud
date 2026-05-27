@@ -53,6 +53,7 @@
     border-radius: 7px !important;
     cursor: pointer !important;
     flex-shrink: 0 !important;
+    order: 3 !important;
     order: 2 !important; /* في RTL: آخر عنصر = يسار */
   }
   .hero-hamburger span {
