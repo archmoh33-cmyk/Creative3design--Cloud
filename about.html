@@ -280,5 +280,80 @@
   </div>
 </footer>
 
+<script defer src="js/main.js?v=about-fix1"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script defer src="js/config.js"></script>
+<script defer src="js/supabase-client.js"></script>
+<script>
+/* REVEAL + COUNTER FALLBACK — runs after DOM ready */
+document.addEventListener('DOMContentLoaded', function () {
+  /* --- Lazy images --- */
+  var lazyImgs = document.querySelectorAll('img.lazy-img[data-src]');
+  if ('IntersectionObserver' in window) {
+    var imgObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var img = e.target;
+          img.src = img.dataset.src;
+          img.classList.remove('lazy-img');
+          obs.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px' });
+    lazyImgs.forEach(function (img) { imgObs.observe(img); });
+  } else {
+    lazyImgs.forEach(function (img) { img.src = img.dataset.src; });
+  }
+
+  /* --- Lazy reveal --- */
+  var reveals = document.querySelectorAll('.lazy-reveal');
+  if ('IntersectionObserver' in window) {
+    var revObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { revObs.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  /* --- Counter animation --- */
+  function animateCounter(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    var target = +el.dataset.target;
+    var duration = 1800;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('.counter');
+  if ('IntersectionObserver' in window) {
+    var cntObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { cntObs.observe(c); });
+  } else {
+    counters.forEach(function (c) { animateCounter(c); });
+  }
+});
+</script>
+
 <div class="float-group">
   <a href="https://wa.me/201019053288?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%F0%9F%91%8B%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%F0%9F%93%8D%20%D8%B2%D8%B1%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D8%A7%D9%84%D8%B3%D8%B1%D9%8A%D8%B9%20-%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8" target="_blank" rel="noopener" class="float-btn float-btn-wa" aria-label="واتساب"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413
