@@ -179,9 +179,9 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
   opacity:.6; flex-shrink:0;
 }
 .logo-abbr {
-  display:flex; align-items:baseline; gap:.05em;
+  display:flex; flex-direction:row; align-items:baseline; gap:.05em;
   font-size:1.55rem; font-weight:900; font-family:var(--font-heading); line-height:1;
-  direction:ltr; unicode-bidi:embed;
+  direction:ltr; unicode-bidi:bidi-override;
 }
 .logo-c3 { color:var(--gold); }
 .logo-d  { color:var(--diamond-white); }
