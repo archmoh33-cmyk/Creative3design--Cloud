@@ -534,20 +534,19 @@ function initMobileHeader() {
   bar.id = 'heroMobileHeader';
   bar.className = 'hero-mobile-header';
 
-  // Inline styles مضمونة — لا تعتمد على تحميل mobile.css
-  // الترتيب: ☰ هامبرغر (أقصى اليسار) | EN (يمينه مباشرة) | Creative3Design (المنتصف)
+  // z-index:1001 — أعلى من الـ navbar (عادةً 1000) لمنع التداخل
+  // الترتيب: [☰ | EN] — أقصى اليسار | Creative3Design — المنتصف | C3D — أقصى اليمين
   bar.style.cssText = [
     'position:fixed',
     'top:0',
     'left:0',
     'right:0',
-    'z-index:940',
+    'z-index:1001',
     'height:56px',
     'display:flex',
     'align-items:center',
-    'justify-content:center',
     'pointer-events:auto',
-    'background:linear-gradient(to bottom,rgba(10,8,6,.88) 0%,rgba(10,8,6,.45) 65%,transparent 100%)'
+    'background:linear-gradient(to bottom,rgba(10,8,6,.92) 0%,rgba(10,8,6,.55) 70%,transparent 100%)'
   ].join(';');
 
   bar.innerHTML = `
@@ -562,12 +561,22 @@ function initMobileHeader() {
       ${currentLang === 'ar' ? 'EN' : 'عربي'}
     </button>
     <a href="${base}index.html" class="hero-mobile-logo"
-      style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Cairo',sans-serif;font-size:.88rem;font-weight:900;color:#f5f5f5;letter-spacing:.03em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:1;">
+      style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:900;color:#f5f5f5;letter-spacing:.03em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:1;">
       Creative<span style="color:#b8976a;">3</span>Design
+    </a>
+    <a href="${base}index.html"
+      style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:900;letter-spacing:.08em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:2;line-height:1;display:flex;align-items:baseline;gap:0;">
+      <span style="color:#b8976a;">C3</span><span style="color:#f0f0f0;">D</span>
     </a>
   `;
 
   document.body.insertBefore(bar, document.body.firstChild);
+
+  // إخفاء شعار الـ navbar + الهامبرغر الأصلي على موبايل — يُستعاض عنهما بـ heroMobileHeader
+  const navLogo = document.querySelector('.nav-logo');
+  if (navLogo) { navLogo.style.visibility = 'hidden'; navLogo.style.pointerEvents = 'none'; }
+  const navHamburger = document.getElementById('hamburger');
+  if (navHamburger) { navHamburger.style.visibility = 'hidden'; navHamburger.style.pointerEvents = 'none'; }
 }
 
 function initMobileDrawer() {
