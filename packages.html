@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" id="html-root">
 <head>
   <!-- Google tag (gtag.js) — GA4 + Google Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10829372232"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYF05KS3PN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -64,7 +64,6 @@
   </style>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/mobile.css" media="(max-width: 900px)" />
-    <link rel="stylesheet" href="css/mobile.css">
   <style>
     /* ── CALCULATOR SPECIFIC STYLES ── */
     .calc-tabs {
@@ -210,7 +209,7 @@
     .result-note { font-size:.75rem; color:var(--text-muted); margin-top:.2rem; }
 
     /* Design calc type grid */
-    .design-types { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-bottom:2rem; }
+    .design-types { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; margin-bottom:2rem; }
     @media(max-width:700px){ .design-types { grid-template-columns:repeat(2,1fr); } }
 
     .design-type-btn {
@@ -381,14 +380,6 @@
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
-  <!-- Mobile Hero Header (mobile only) -->
-  <div class="hero-mobile-header" id="heroMobileHeader">
-    <a href="/" class="hero-mobile-logo">Creative3<span>Design</span></a>
-    <button class="hero-lang-btn" id="heroLangBtn" onclick="toggleLang()">EN</button>
-    <button class="hero-hamburger" id="heroHamburger" aria-label="القائمة" onclick="toggleNav()">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 
 <!-- PAGE HERO -->
@@ -569,7 +560,7 @@
     <div class="calc-panel" id="panel-arch">
       <div class="calc-box">
         <h3 style="margin-bottom:.5rem;font-size:1.15rem;" data-ar="نوع المبنى" data-en="Building Type">نوع المبنى</h3>
-        <p style="color:var(--text-muted);font-size:.82rem;margin-bottom:1.5rem;">رسوم التصميم المعماري — أسعار مايو 2026 وفق متوسطات السوق المصري</p>
+        <p style="color:var(--text-muted);font-size:.82rem;margin-bottom:1.5rem;">رسوم التصميم المعماري فقط — أسعار مايو 2026 وفق متوسطات السوق المصري</p>
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:2rem;" id="arch-type-grid">
           <button class="design-type-btn active" onclick="selectArchType(this,'villa_arch')"><span class="dt-icon">🏡</span><span class="dt-name">فيلا سكنية</span></button>
           <button class="design-type-btn" onclick="selectArchType(this,'apt_building')"><span class="dt-icon">🏢</span><span class="dt-name">عمارة سكنية</span></button>
@@ -583,12 +574,12 @@
           <button class="design-type-btn" onclick="selectArchType(this,'mixed')"><span class="dt-icon">🌆</span><span class="dt-name">متعدد الاستخدام</span></button>
         </div>
         <div class="slider-row">
-          <div class="slider-label"><span>مساحة الدور الواحد</span><span class="slider-value"><span id="arch-area-val">500</span> م²</span></div>
-          <input type="range" class="range-slider" id="arch-area" min="100" max="10000" value="500" step="50" oninput="updateArchCalc()">
+          <div class="slider-label"><span>مساحة الدور الواحد</span><span class="slider-value"><span id="arch-area-val">250</span> م²</span></div>
+          <input type="range" class="range-slider" id="arch-area" min="100" max="10000" value="250" step="50" oninput="updateArchCalc()">
           <div class="slider-minmax"><span>100 م²</span><span>10,000 م²</span></div>
         </div>
         <div class="slider-row">
-          <div class="slider-label"><span>عدد الأدوار</span><span class="slider-value"><span id="arch-floors-val">4</span> دور</span></div>
+          <div class="slider-label"><span>عدد الأدوار</span><span class="slider-value"><span id="arch-floors-val">2</span> دور</span></div>
           <input type="range" class="range-slider" id="arch-floors" min="1" max="20" value="2" step="1" oninput="updateArchCalc()">
           <div class="slider-minmax"><span>1</span><span>20</span></div>
         </div>
@@ -596,12 +587,12 @@
         <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;" id="arch-level-btns">
           <button class="proj-type" onclick="selectArchLevel(this,'basic')">📋 أساسي (2D فقط)</button>
           <button class="proj-type active" onclick="selectArchLevel(this,'standard')">📐 ستاندرد (2D+3D)</button>
-          <button class="proj-type" onclick="selectArchLevel(this,'premium')">✨ بريميم (+إشراف)</button>
+          <button class="proj-type" onclick="selectArchLevel(this,'premium')">✨ بريميم +</button>
           <button class="proj-type" onclick="selectArchLevel(this,'full')">🏆 شامل كامل</button>
         </div>
         <div class="arch-result-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem;">
           <div class="design-result-card"><div class="drc-label">المساحة الإجمالية</div><div class="drc-value" id="arch-total-area">—</div><div class="drc-sub">م² إجمالي</div></div>
-          <div class="design-result-card"><div class="drc-label">رسوم التصميم</div><div class="drc-value" id="arch-design-fee">—</div><div class="drc-sub">ج.م (بدون إشراف)</div></div>
+          <div class="design-result-card"><div class="drc-label">رسوم التصميم</div><div class="drc-value" id="arch-design-fee">—</div><div class="drc-sub">ج.م رسوم التصميم</div></div>
           <div class="design-result-card highlight"><div class="drc-label">الإجمالي المتوقع</div><div class="drc-value" id="arch-grand-total">—</div><div class="drc-sub">ج.م كامل</div></div>
         </div>
         <!-- Bulk discount bar -->
@@ -824,7 +815,7 @@ function updateDesCalc() {
 }
 
 const archTypeData = {
-  villa_arch:     { ratePerM2: 60, supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
+  villa_arch:     { ratePerM2: 60,  supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
   apt_building:   { ratePerM2: 135, supPct: 0.20, label: 'عمارة سكنية',         minFee: 15000 },
   commercial_bld: { ratePerM2: 150, supPct: 0.22, label: 'مبنى تجاري',          minFee: 15000 },
   hotel_arch:     { ratePerM2: 240, supPct: 0.28, label: 'فندق / منتجع',        minFee: 30000 },
@@ -884,11 +875,11 @@ function updateArchCalc() {
     }
   }
 
-  const supFee = (archSelLevel === 'premium' || archSelLevel === 'full') ? rawDesign * d.supPct : 0;
+  const supFee = 0; // الإشراف محذوف من الحاسبة
   const grandTotal = rawDesign + supFee;
   document.getElementById('arch-total-area').textContent   = fmt(totalArea) + ' م²';
   document.getElementById('arch-design-fee').textContent   = fmt(rawDesign) + ' ج.م';
-  // arch-sup-fee removed
+  // arch-sup-fee محذوف
   document.getElementById('arch-grand-total').textContent  = fmt(grandTotal) + ' ج.م';
   document.getElementById('arch-result-summary').textContent = d.label + ' · ' + fmt(grandTotal) + ' ج.م إجمالي';
   // Dynamic WhatsApp link
@@ -900,7 +891,7 @@ function updateArchCalc() {
     (discountPct > 0 ? '🎉 خصم مشاريع كبيرة: ' + discountPct + '% (وفّرت ' + fmt(discountAmt) + ' ج.م)\n' : '') +
     '✨ مستوى التصميم: ' + (archLevelLabel[archSelLevel] || archSelLevel) + '\n' +
     '💰 رسوم التصميم: ' + fmt(rawDesign) + ' ج.م' +
-    (supFee > 0 ? '\n🔍 رسوم الإشراف: ' + fmt(supFee) + ' ج.م' : '') + '\n' +
+    '\n' +
     '💎 الإجمالي المتوقع: ' + fmt(grandTotal) + ' ج.م\n\n' +
     'أرجو التواصل لمعرفة تفاصيل العرض.';
   const btn = document.getElementById('arch-wa-btn');
