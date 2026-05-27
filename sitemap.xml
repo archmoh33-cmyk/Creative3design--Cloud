@@ -251,11 +251,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- ===== Blog Hub Page (Added 2026-05-27) ===== -->
+  <!-- ===== Blog Hub Page (Added 2026-05-28) ===== -->
   <url>
     <loc>https://creativedesignegypt.com/blog/daleel-tasmeem-dakheli</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -263,6 +262,14 @@
   <!-- ===== Day 35 SEO Article (Added 2026-05-28) ===== -->
   <url>
     <loc>https://creativedesignegypt.com/blog/tasmeem-salon-moderan-2026</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ===== Day 40 SEO Article (Added 2026-05-28) ===== -->
+  <url>
+    <loc>https://creativedesignegypt.com/blog/tashtib-shaqqa-100-metr-2026</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
