@@ -535,7 +535,7 @@ function initMobileHeader() {
   bar.className = 'hero-mobile-header';
 
   // Inline styles مضمونة — لا تعتمد على تحميل mobile.css
-  // الترتيب: ☰ هامبرغر (أقصى اليسار) | Creative3Design (المنتصف) | EN (يمين الهامبرغر)
+  // الترتيب: ☰ هامبرغر (أقصى اليسار) | EN (يمينه مباشرة) | Creative3Design (المنتصف)
   bar.style.cssText = [
     'position:fixed',
     'top:0',
