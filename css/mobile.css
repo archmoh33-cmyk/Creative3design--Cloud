@@ -690,13 +690,50 @@
   }
 
   /* ════════════════════════════════════════════════
-     مقالات المدونة — محتوى المقال
+     مقالات المدونة — صفحات المقالات الفردية
   ════════════════════════════════════════════════ */
-  .blog-article-content { padding: 0 !important; }
-  .blog-article-content h2 { font-size: 1.1rem !important; }
-  .blog-article-content h3 { font-size: 1rem !important; }
-  .blog-article-content p  { font-size: .88rem !important; line-height: 1.7 !important; }
+  .blog-layout {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    display: block !important;
+  }
+  .article-body {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+  .article-body h2 { font-size: 1.15rem !important; margin: 1.6rem 0 .6rem !important; }
+  .article-body h3 { font-size: 1rem !important; margin: 1.2rem 0 .5rem !important; }
+  .article-body p {
+    font-size: .9rem !important;
+    line-height: 1.85 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  .article-body ul,
+  .article-body ol { padding-right: 1.2rem !important; padding-left: 0 !important; }
+  .article-body ul li,
+  .article-body ol li { font-size: .9rem !important; line-height: 1.8 !important; }
+  .article-body table,
+  .price-tbl { font-size: .78rem !important; width: 100% !important; }
+  .article-body div[style*="overflow-x"] { max-width: 100% !important; overflow-x: auto !important; }
+  .price-tbl th, .price-tbl td { padding: .55rem .6rem !important; }
+  .tip-card, .formula-card, .cta-block, .faq-block, .related-list {
+    padding: 1rem !important;
+    margin: 1.2rem 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  .faq-block details { padding: .8rem 1rem !important; }
+  .faq-block summary { font-size: .9rem !important; }
+  .blog-layout aside,
+  .blog-layout > div:last-child:not(.article-body) { display: none !important; }
   .article-hero { min-height: 40vw !important; padding: 4rem 0 2rem !important; }
+  .breadcrumb { font-size: .78rem !important; gap: .3rem !important; }
+  .article-body [style*="border-right"] { padding-right: .8rem !important; font-size: .9rem !important; }
 
   /* ════════════════════════════════════════════════
      Footer — عمود واحد في كل الصفحات
