@@ -533,17 +533,40 @@ function initMobileHeader() {
   const bar = document.createElement('div');
   bar.id = 'heroMobileHeader';
   bar.className = 'hero-mobile-header';
+
+  // Inline styles مضمونة — لا تعتمد على تحميل mobile.css
+  // الترتيب: ☰ هامبرغر (أقصى اليسار) | Creative3Design (المنتصف) | EN (يمين الهامبرغر)
+  bar.style.cssText = [
+    'position:fixed',
+    'top:0',
+    'left:0',
+    'right:0',
+    'z-index:940',
+    'height:56px',
+    'display:flex',
+    'align-items:center',
+    'justify-content:center',
+    'pointer-events:auto',
+    'background:linear-gradient(to bottom,rgba(10,8,6,.88) 0%,rgba(10,8,6,.45) 65%,transparent 100%)'
+  ].join(';');
+
   bar.innerHTML = `
-    <button class="hero-hamburger" id="heroHamburger" aria-label="القائمة" onclick="toggleNav()">
-      <span></span><span></span><span></span>
+    <button class="hero-hamburger" id="heroHamburger" aria-label="القائمة" onclick="toggleNav()"
+      style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:38px;padding:.45rem;background:rgba(255,255,255,.07);border:1px solid rgba(184,151,106,.35);border-radius:7px;cursor:pointer;z-index:2;">
+      <span style="display:block;width:18px;height:2px;background:#e8e8e8;border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:18px;height:2px;background:#e8e8e8;border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:18px;height:2px;background:#e8e8e8;border-radius:2px;transition:all .3s;"></span>
     </button>
-    <a href="${base}index.html" class="hero-mobile-logo">
-      Creative<span>3</span>Design
-    </a>
-    <button class="hero-lang-btn" id="heroLangToggle" onclick="toggleLang()">
+    <button class="hero-lang-btn" id="heroLangToggle" onclick="toggleLang()"
+      style="position:absolute;left:calc(1rem + 48px);top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;min-width:46px;height:36px;padding:0 .6rem;border:1.5px solid rgba(184,151,106,.55);border-radius:7px;background:rgba(184,151,106,.13);color:#b8976a;font-size:.82rem;font-weight:800;font-family:'Cairo',sans-serif;cursor:pointer;z-index:2;">
       ${currentLang === 'ar' ? 'EN' : 'عربي'}
     </button>
+    <a href="${base}index.html" class="hero-mobile-logo"
+      style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Cairo',sans-serif;font-size:.88rem;font-weight:900;color:#f5f5f5;letter-spacing:.03em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:1;">
+      Creative<span style="color:#b8976a;">3</span>Design
+    </a>
   `;
+
   document.body.insertBefore(bar, document.body.firstChild);
 }
 
