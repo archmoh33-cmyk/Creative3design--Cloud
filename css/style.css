@@ -206,6 +206,8 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 .nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:899; }
 .nav-overlay.open { display:block; }
+/* ── MOBILE HERO HEADER — مخفي على الديسكتوب ── */
+.hero-mobile-header { display:none; }
 /* ── DESKTOP NAVBAR LANG BUTTON (hero pages only) ── */
 .navbar-lang-btn {
   margin-right: auto; /* pushes to left end in RTL layout */
