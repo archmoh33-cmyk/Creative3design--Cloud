@@ -565,7 +565,7 @@ function initMobileHeader() {
       Creative<span style="color:#b8976a;">3</span>Design
     </a>
     <a href="${base}index.html"
-      style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:900;letter-spacing:.08em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:2;line-height:1;display:flex;align-items:baseline;gap:0;">
+      style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:900;letter-spacing:.08em;text-decoration:none;white-space:nowrap;pointer-events:auto;z-index:2;line-height:1;display:flex;flex-direction:row;align-items:baseline;gap:0;direction:ltr;unicode-bidi:bidi-override;">
       <span style="color:#b8976a;">C3</span><span style="color:#f0f0f0;">D</span>
     </a>
   `;
