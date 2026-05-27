@@ -26,7 +26,7 @@
     z-index: 940 !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-end !important;
+    justify-content: center !important; /* الشعار مركزي */
     padding: 0 1rem !important;
     height: 56px !important;
     background: linear-gradient(
@@ -38,8 +38,12 @@
     pointer-events: auto !important;
   }
 
-  /* ── زر الهامبرغر — الجهة اليسار (order عالي في RTL = يسار) ── */
+  /* ── زر الهامبرغر — أقصى اليسار (absolute بغض النظر عن RTL) ── */
   .hero-hamburger {
+    position: absolute !important;
+    left: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -53,7 +57,7 @@
     border-radius: 7px !important;
     cursor: pointer !important;
     flex-shrink: 0 !important;
-    order: 3 !important; /* في RTL: أعلى order = أقصى اليسار */
+    order: unset !important;
   }
   .hero-hamburger span {
     display: block !important;
@@ -77,7 +81,8 @@
   .hero-mobile-logo {
     position: absolute !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
     font-family: var(--font-heading, 'Cairo', sans-serif) !important;
     font-size: .88rem !important;
     font-weight: 900 !important;
@@ -87,12 +92,15 @@
     white-space: nowrap !important;
     pointer-events: auto !important;
     z-index: 1 !important;
-    order: 2 !important; /* مجرد fallback إن لم يكن absolute */
   }
   .hero-mobile-logo span { color: #b8976a !important; }
 
-  /* ── زر اللغة — الجهة اليمين (order منخفض في RTL = يمين) ── */
+  /* ── زر اللغة — يمين الهامبرغر مباشرةً (absolute بغض النظر عن RTL) ── */
   .hero-lang-btn {
+    position: absolute !important;
+    left: calc(1rem + 48px) !important; /* بعد الهامبرغر (40px) + gap (8px) */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -108,7 +116,7 @@
     font-family: var(--font-heading, 'Cairo', sans-serif) !important;
     cursor: pointer !important;
     flex-shrink: 0 !important;
-    order: 2 !important; /* في RTL: order 2 = يمين الهامبرغر مباشرةً، كلاهما في اليسار */
+    order: unset !important;
     transition: background .2s !important;
   }
   .hero-lang-btn:hover { background: rgba(184,151,106,.25) !important; }
