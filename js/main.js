@@ -427,6 +427,7 @@ function openYT(videoId) {
   frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  history.pushState({ c3dVideoLb: true }, '');
 }
 
 function closeLightbox(e) {
@@ -438,7 +439,19 @@ function closeLightbox(e) {
   if (frame) { frame.src = ''; }
   document.body.style.overflow = '';
   window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+  if (history.state && history.state.c3dVideoLb) history.back();
 }
+
+window.addEventListener('popstate', function(e) {
+  const lb = document.getElementById('videoLightbox');
+  if (lb && lb.classList.contains('open')) {
+    lb.classList.remove('open');
+    const frame = document.getElementById('ytFrame');
+    if (frame) frame.src = '';
+    document.body.style.overflow = '';
+    window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+  }
+});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
