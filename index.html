@@ -1661,12 +1661,13 @@ body.loading { overflow: hidden; }
     var half=t.scrollWidth/2;
     if(half<50){setTimeout(startTicker,300);return;}
     t.style.animation='none';
-    var pos=0,last=null,speed=half/22;
-    function tick(ts){
-      if(last!==null){pos+=speed*(ts-last)/1000;if(pos>=half)pos-=half;t.style.transform='translateX(-'+pos+'px)';}
-      last=ts;requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+    var pos=0,last=Date.now(),speed=half/22;
+    setInterval(function(){
+      var now=Date.now(),dt=now-last;last=now;
+      pos+=speed*dt/1000;
+      if(pos>=half)pos-=half;
+      t.style.transform='translateX(-'+pos+'px)';
+    },16);
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',startTicker);}
   else{startTicker();}
