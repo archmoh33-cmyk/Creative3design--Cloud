@@ -91,7 +91,7 @@ function goToSlide(idx) {
   slides[heroIndex].classList.remove('active');
   if (dots[heroIndex]) dots[heroIndex].classList.remove('active');
   heroIndex = (idx + slides.length) % slides.length;
-  /* Lazy load: حمّل صورة الخلفية أول مرة يُعرض فيها السلايد */
+  /* Lazy load: حمՑٔ صورة الخلفية أول مرة يُعرض فيها السلايد */
   const target = slides[heroIndex];
   if (target.dataset.bg) {
     target.style.backgroundImage = "url('" + target.dataset.bg + "')";
@@ -418,6 +418,7 @@ window.c3dReloadHomepageFilter = function() {
 
 /* ── VIDEO LIGHTBOX ── */
 let savedScrollY = 0;
+let _videoLbHistoryPushed = false;
 
 function openYT(videoId) {
   savedScrollY = window.scrollY;
@@ -427,6 +428,13 @@ function openYT(videoId) {
   frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  /* push history state حتى يغلق Back الفيديو بدلاً من الخروج من الموقع */
+  if (!_videoLbHistoryPushed) {
+    try {
+      history.pushState({ c3dVideoLb: true }, '', location.pathname + location.search + '#video');
+      _videoLbHistoryPushed = true;
+    } catch (err) {}
+  }
 }
 
 function closeLightbox(e) {
@@ -438,7 +446,25 @@ function closeLightbox(e) {
   if (frame) { frame.src = ''; }
   document.body.style.overflow = '';
   window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+  /* اذا كان history state مدفوعاً، ارجع خطوة لمزامنة التاريخ */
+  if (_videoLbHistoryPushed) {
+    _videoLbHistoryPushed = false;
+    try { history.back(); } catch (err) {}
+  }
 }
+
+/* عند الضغط على Back في المتصفح — أغلق الفيديو بدلاً من الخروج من الموقع */
+window.addEventListener('popstate', function(e) {
+  const lb = document.getElementById('videoLightbox');
+  if (lb && lb.classList.contains('open')) {
+    const frame = document.getElementById('ytFrame');
+    lb.classList.remove('open');
+    if (frame) { frame.src = ''; }
+    document.body.style.overflow = '';
+    window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+    _videoLbHistoryPushed = false;
+  }
+});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
@@ -639,41 +665,4 @@ function initMobileDrawer() {
 
 function updateDrawerLang() {
   const lbl = document.getElementById('drawerLangLabel');
-  const topBtn = document.getElementById('langToggle');
-  if (lbl && topBtn) lbl.textContent = topBtn.textContent.trim() === 'EN' ? 'English' : 'العربية';
-}
-
-/* ── INIT ── */
-document.addEventListener('DOMContentLoaded', () => {
-  setLang(currentLang);
-  initNavbar();
-  initHeroSlider();
-  initCounters();
-  initLazyReveal();
-  initLazyImages();
-  initBeforeAfter();
-  initBackToTop();
-  initCalculator();
-  initCompoundsMarquee();
-  initMobileHeader();
-  initMobileDrawer();
-  initPortfolioFilter();
-  videoSlideUpdate();
-  testiUpdate();
-  /* Lazy load Google Maps — تحميل الخريطة عند الاقتراب منها فقط */
-  (function() {
-    var mapFrame = document.getElementById('mapFrame');
-    if (!mapFrame || !mapFrame.dataset.src) return;
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) {
-          mapFrame.src = mapFrame.dataset.src;
-          obs.unobserve(mapFrame);
-        }
-      }, { rootMargin: '300px' });
-      obs.observe(mapFrame);
-    } else {
-      mapFrame.src = mapFrame.dataset.src;
-    }
-  })();
-});
+  const topBtn = document.getElementById('la
