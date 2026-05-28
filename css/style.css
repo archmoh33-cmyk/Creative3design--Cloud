@@ -728,11 +728,11 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 /* ── TICKER ── */
 .ticker-wrap { overflow:hidden; background:var(--gold); padding:.5rem 0; }
 .ticker-track {
-  display:inline-flex; gap:3rem; align-items:center;
+  display:inline-flex; gap:0; align-items:center;
   animation:marquee-infinite 22s linear infinite;
   white-space:nowrap;
 }
-.ticker-track span { font-size:.82rem; font-weight:700; color:#fff; letter-spacing:.06em; }
+.ticker-track span { font-size:.82rem; font-weight:700; color:#fff; letter-spacing:.06em; margin-right:3rem; }
 
 /* ── FOOTER ── */
 .footer { background:var(--black-charcoal); border-top:1px solid var(--gray-border); padding:4rem 0 0; }
