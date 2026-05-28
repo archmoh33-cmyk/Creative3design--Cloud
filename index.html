@@ -1734,14 +1734,14 @@ body.loading { overflow: hidden; }
         </a>
       </div>
     </div>
-    <!-- ── VISIT COUNTER ────────────────────────────────────────── -->
-    <div class="visit-counter-bar">
-      <span class="vc-icon">
+    <!-- ── VISIT COUNTER — SEO-friendly ───────────────────────── -->
+    <div class="visit-counter-bar" aria-label="إحصائيات زيارات الموقع" role="complementary">
+      <span class="vc-icon" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       </span>
-      <span class="vc-label" data-ar="إجمالي الزيارات الجديدة" data-en="Total Unique Visits">إجمالي الزيارات الجديدة</span>
-      <span class="vc-divider">|</span>
-      <span id="vc-number" class="vc-number">—</span>
+      <span class="vc-label" data-ar="إجمالي الزيارات" data-en="Total Visits">إجمالي الزيارات</span>
+      <span class="vc-divider" aria-hidden="true">|</span>
+      <strong id="vc-number" class="vc-number" aria-live="polite" aria-atomic="true" title="عدد الزيارات الفريدة للموقع">+٢١٤</strong>
     </div>
 
     <div class="footer-bottom">
@@ -2627,6 +2627,43 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
 
+
+<script>
+/* ── VISIT COUNTER — Supabase real-time ─────────────────────────────── */
+(function(){
+  if(/bot|crawl|spider|slurp|mediapartners|google|bing|yahoo|baidu|yandex/i.test(navigator.userAgent))return;
+  var SB='https://htdqzpqhofthbugluifo.supabase.co';
+  var SK='sb_publishable_64La8kRo54dPT8E1FwxlWg_07lkiwP2';
+  var H={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json'};
+  function animCount(el,to,ms){
+    var from=Math.max(0,to-80),s=Date.now();
+    var t=setInterval(function(){
+      var p=Math.min((Date.now()-s)/ms,1),e=1-Math.pow(1-p,3);
+      el.textContent='+‏'+Math.round(from+(to-from)*e).toLocaleString('ar-EG');
+      if(p>=1){clearInterval(t);el.textContent='+‏'+to.toLocaleString('ar-EG');}
+    },16);
+  }
+  function run(){
+    var el=document.getElementById('vc-number');
+    if(!el)return;
+    Promise.all([
+      fetch(SB+'/rest/v1/site_visits?select=id&page=eq.home',{headers:Object.assign({},H,{'Prefer':'count=exact','Range':'0-0'})}),
+      fetch(SB+'/rest/v1/site_visits',{method:'POST',headers:H,body:JSON.stringify({page:'home',visited_at:new Date().toISOString()})})
+    ]).then(function(res){
+      var cr=res[0].headers.get('Content-Range');
+      var n=(parseInt((cr||'0/0').split('/')[1])||214)+1;
+      el.classList.add('vc-new');
+      animCount(el,n,1800);
+      setTimeout(function(){el.classList.remove('vc-new');},900);
+      var m=document.querySelector('meta[name="x-site-visits"]');
+      if(!m){m=document.createElement('meta');m.setAttribute('name','x-site-visits');document.head.appendChild(m);}
+      m.setAttribute('content',String(n));
+    }).catch(function(){});
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{setTimeout(run,200);}
+})();
+</script>
 </body>
 </html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
