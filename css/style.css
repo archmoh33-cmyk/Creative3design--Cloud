@@ -726,7 +726,7 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 .location-map iframe { display:block; }
 
 /* ── TICKER ── */
-.ticker-wrap { overflow:hidden; background:var(--gold); padding:.5rem 0; }
+.ticker-wrap { overflow:hidden; background:var(--gold); padding:.5rem 0; direction:ltr; }
 .ticker-track {
   display:inline-flex; gap:0; align-items:center; direction:ltr;
   animation:marquee-infinite 22s linear infinite;
