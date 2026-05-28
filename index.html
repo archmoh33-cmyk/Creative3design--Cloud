@@ -2683,39 +2683,36 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 
-<!-- Price Ticker JS Animation -->
+
+<!-- Price Ticker JS Animation v2 -->
 <script>
 (function initPriceTicker() {
+  var SPEED = 55;
+  var started = false;
   function start() {
+    if (started) return;
     var bar = document.querySelector('.price-ref-bar');
-    var wrapper = document.querySelector('.price-ref-wrapper');
-    if (!bar || !wrapper) return;
+    if (!bar) return;
+    var oneSet = Math.round(bar.scrollWidth / 4);
+    if (oneSet < 50) { setTimeout(start, 300); return; }
+    started = true;
     bar.style.animation = 'none';
     bar.style.willChange = 'transform';
-    var oneSet = bar.scrollWidth / 4;
-    var pos = 0;
-    var speed = 55;
-    var last = null;
-    var paused = false;
+    var pos = 0, paused = false, lastTime = Date.now();
     bar.addEventListener('mouseenter', function() { paused = true; });
     bar.addEventListener('mouseleave', function() { paused = false; });
-    function tick(ts) {
-      if (last !== null && !paused) {
-        var dt = Math.min(ts - last, 50);
-        pos -= speed * (dt / 1000);
-        if (pos <= -oneSet) pos += oneSet;
-        bar.style.transform = 'translateX(' + pos + 'px)';
-      }
-      last = ts;
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+    setInterval(function() {
+      if (paused) return;
+      var now = Date.now(), dt = Math.min(now - lastTime, 100);
+      lastTime = now;
+      pos -= SPEED * (dt / 1000);
+      if (pos <= -oneSet) pos += oneSet;
+      bar.style.transform = 'translateX(' + pos.toFixed(2) + 'px)';
+    }, 16);
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
-  }
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(start, 400); });
+  } else { setTimeout(start, 400); }
 })();
 </script>
 </body>
