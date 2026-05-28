@@ -1638,7 +1638,7 @@ body.loading { overflow: hidden; }
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker-track">
+  <div class="ticker-track" id="tickerTrack">
     <span>✦ تصميم داخلي فاخر</span>
     <span>✦ تشطيب شقق احترافي</span>
     <span>✦ مكتب استشاري معتمد</span>
@@ -1653,6 +1653,25 @@ body.loading { overflow: hidden; }
     <span>✦ استشارة مجانية</span>
   </div>
 </div>
+<script>
+(function(){
+  function startTicker(){
+    var t=document.getElementById('tickerTrack');
+    if(!t)return;
+    var half=t.scrollWidth/2;
+    if(half<50){setTimeout(startTicker,300);return;}
+    t.style.animation='none';
+    var pos=0,last=null,speed=half/22;
+    function tick(ts){
+      if(last!==null){pos+=speed*(ts-last)/1000;if(pos>=half)pos-=half;t.style.transform='translateX(-'+pos+'px)';}
+      last=ts;requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',startTicker);}
+  else{startTicker();}
+})();
+</script>
 
 <!-- FOOTER -->
 <footer class="footer" id="footer">
