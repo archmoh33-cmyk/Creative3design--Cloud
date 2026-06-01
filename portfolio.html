@@ -585,7 +585,7 @@ window.C3D_PORTFOLIO_PAGE = true;
       var styEn  = window.c3dStyleLabel    ? c3dStyleLabel(p.style,'en')       : (p.style||'');
       var metaAr = catAr + (styAr?' · '+styAr:'') + (locAr?' · '+locAr:'');
       var metaEn = catEn + (styEn?' · '+styEn:'') + (locEn?' · '+locEn:'');
-      var altAr  = p.image_alt_ar || (nameAr + ' — Creative3Design');
+      var altAr  = p.image_alt_ar || (nameAr + (catAr?' — '+catAr:'') + (locAr?' '+locAr:'') + ' | تصميم داخلي ومعماري Creative3Design');
       var q = function(s){ return (s||'').replace(/"/g,'&quot;'); };
       return '<div class="port-item lazy-reveal" data-pid="' + p.id + '" style="animation-delay:' + (i%12)*0.04 + 's"' +
              ' onclick="lbOpen(\'' + p.id + '\')" role="button" tabindex="0">' +
@@ -597,6 +597,33 @@ window.C3D_PORTFOLIO_PAGE = true;
              '<p class="port-meta" data-ar="' + q(metaAr) + '" data-en="' + q(metaEn) + '">' + metaAr + '</p>' +
              '</div></div></div></div>';
     }).join('');
+
+    /* SEO: حقن Schema ImageObject لصور المشاريع المعروضة */
+    try {
+      var imgSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "معرض أعمال Creative3Design",
+        "itemListElement": slice.slice(0, 24).map(function(p, idx){
+          var nm = p.name_ar || p.name_en || 'مشروع Creative3Design';
+          var ct = window.c3dCategoryLabel ? c3dCategoryLabel(p.category,'ar') : (p.category||'');
+          return { "@type": "ListItem", "position": idx+1, "item": {
+            "@type": "ImageObject",
+            "contentUrl": p.image_url || '',
+            "name": nm,
+            "description": (p.image_alt_ar || (nm + (ct?' — '+ct:'') + ' | تصميم Creative3Design')),
+            "creator": { "@type": "Organization", "name": "Creative3Design", "url": "https://creativedesignegypt.com" }
+          }};
+        })
+      };
+      var oldSc = document.getElementById('c3d-portfolio-imageschema');
+      if (oldSc) oldSc.remove();
+      var sc = document.createElement('script');
+      sc.type = 'application/ld+json';
+      sc.id = 'c3d-portfolio-imageschema';
+      sc.textContent = JSON.stringify(imgSchema);
+      document.head.appendChild(sc);
+    } catch(e){}
 
     grid.querySelectorAll('.lazy-reveal').forEach(function(el){ el.classList.add('revealed'); });
     /* ── تطبيق اللغة الحالية على الكروت الجديدة ── */
