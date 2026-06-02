@@ -362,7 +362,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="/" data-ar="الرئيسية" data-en="Home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
       <li><a href="about" data-ar="عن المكتب" data-en="About">عن المكتب</a></li>
-      <li><a href="services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+      <li><a href="services" data-ar="الخدمات" data-en="Services">الخدمات</a></li><li><a href="engineering-office" data-ar="مكتب هندسي" data-en="Engineering Office">مكتب هندسي</a></li>
       <li><a href="packages" aria-current="page" data-ar="الباقات" data-en="Packages">الباقات</a></li>
       <li><a href="portfolio" data-ar="الأعمال" data-en="Portfolio">الأعمال</a></li>
       <li><a href="blog" data-ar="المدونة" data-en="Blog">المدونة</a></li>
@@ -823,18 +823,18 @@ function updateDesCalc() {
 }
 
 const archTypeData = {
-  villa_arch:     { ratePerM2: 60,  supPct: 0.25, label: 'فيلا سكنية',          minFee: 12000 },
-  apt_building:   { ratePerM2: 135, supPct: 0.20, label: 'عمارة سكنية',         minFee: 15000 },
-  commercial_bld: { ratePerM2: 150, supPct: 0.22, label: 'مبنى تجاري',          minFee: 15000 },
-  hotel_arch:     { ratePerM2: 240, supPct: 0.28, label: 'فندق / منتجع',        minFee: 30000 },
-  mall:           { ratePerM2: 185, supPct: 0.25, label: 'مول / كمبوند',        minFee: 40000 },
-  factory:        { ratePerM2: 100, supPct: 0.18, label: 'مصنع / مستودع',       minFee: 12000 },
-  admin:          { ratePerM2: 160, supPct: 0.22, label: 'مبنى إداري',          minFee: 15000 },
-  school_arch:    { ratePerM2: 135, supPct: 0.20, label: 'مدرسة / جامعة',       minFee: 18000 },
-  hospital:       { ratePerM2: 240, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 35000 },
-  mixed:          { ratePerM2: 180, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 25000 },
+  villa_arch:     { ratePerM2: 60,  supPct: 0.25, label: 'فيلا سكنية',          minFee: 0 },
+  apt_building:   { ratePerM2: 60, supPct: 0.20, label: 'عمارة سكنية',         minFee: 0 },
+  commercial_bld: { ratePerM2: 60, supPct: 0.22, label: 'مبنى تجاري',          minFee: 0 },
+  hotel_arch:     { ratePerM2: 60, supPct: 0.28, label: 'فندق / منتجع',        minFee: 0 },
+  mall:           { ratePerM2: 60, supPct: 0.25, label: 'مول / كمبوند',        minFee: 0 },
+  factory:        { ratePerM2: 60, supPct: 0.18, label: 'مصنع / مستودع',       minFee: 0 },
+  admin:          { ratePerM2: 60, supPct: 0.22, label: 'مبنى إداري',          minFee: 0 },
+  school_arch:    { ratePerM2: 60, supPct: 0.20, label: 'مدرسة / جامعة',       minFee: 0 },
+  hospital:       { ratePerM2: 60, supPct: 0.30, label: 'مستشفى / مركز طبي',  minFee: 0 },
+  mixed:          { ratePerM2: 60, supPct: 0.25, label: 'متعدد الاستخدامات',   minFee: 0 },
 };
-const archLevelMul = { basic: 0.55, standard: 1.00, premium: 1.15, full: 1.50 };
+const archLevelMul = { basic: 1.00, standard: 1.00, premium: 1.00, full: 1.00 };
 let archSelType  = 'villa_arch';
 let archSelLevel = 'standard';
 
