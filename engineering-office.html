@@ -1126,7 +1126,7 @@
           var clickFn = ytId
             ? "openYT('" + ytId + "')"
             : "window.open('" + (v.video_url||'') + "','_blank')";
-          return '<div class="video-card lazy-reveal">'
+          return '<div class="video-card lazy-reveal revealed">'
             + '<button class="video-thumb-btn" onclick="' + clickFn + '" aria-label="تشغيل ' + titleAr + '">'
             + (thumb
                 ? '<img src="' + thumb + '" alt="' + titleAr + ' - Creative3Design" loading="eager" style="width:100%;height:100%;object-fit:cover"/>'
