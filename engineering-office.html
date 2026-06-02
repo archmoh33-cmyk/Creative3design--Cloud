@@ -142,6 +142,29 @@
     }
     .navbar .nav-lang-toggle:hover { background: var(--gold); color: #1a1714; }
   }
+
+  /* ── Video library — clear native swipe carousel on mobile ── */
+  @media (max-width: 768px) {
+    .video-section .video-slider-wrap { overflow: visible !important; }
+    #videoTrack {
+      transform: none !important;
+      display: flex !important;
+      width: 100% !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      gap: .8rem !important;
+      padding-bottom: .5rem;
+    }
+    #videoTrack::-webkit-scrollbar { display: none !important; }
+    .video-section .video-card {
+      min-width: 80% !important;
+      flex: 0 0 80% !important;
+      scroll-snap-align: center !important;
+    }
+    .video-section .video-prev, .video-section .video-next { display: none !important; }
+  }
   </style>
   <script type="application/ld+json">
   {
