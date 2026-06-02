@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ===== C3D_SHARED_I18N — auto-translate shared chrome + page sections (homepage-vetted pairs + per-page) ===== */
+/* ===== C3D_SHARED_I18N — auto-translate chrome + page sections (homepage pairs + per-page) + placeholders + dynamic content ===== */
 (function(){
   var DICT={
     "الرئيسية":"Home",
@@ -811,15 +811,15 @@ document.addEventListener('DOMContentLoaded', () => {
     "الكل":"All",
     "فيلات وعمارات":"Villas & Buildings",
     "فنادق":"Hotels",
-    "تجاري وإداري":"Commercial & Admin",
+    "تجاري وإداري":"Commercial & Administrative",
     "رسيبشن فيلا ماونتن فيو":"Mountain View Villa Reception",
-    "عرض المشروع":"View Project",
+    "عرض المشروع":"View project",
     "فيلا بيفرلي هيلز الترا مودرن":"Beverly Hills Ultra Modern Villa",
     "لوبي فيلا ليك فيو":"Lake View Villa Lobby",
     "غرفة نوم فيلا مدينتي":"Madinaty Villa Bedroom",
     "كافيه بجدة":"Jeddah Cafe",
     "مطعم ال مود بمدينتي":"Al Mood Restaurant Madinaty",
-    "فنادق وضيافة":"Hotels",
+    "فنادق وضيافة":"Hotels & Hospitality",
     "شاهد المزيد من المشاريع":"Show More Projects",
     "عرض جميع المشاريع":"View All Projects",
     "بصمتنا في مصر والدول العربية":"Our Footprint in Egypt & Arab World",
@@ -1032,18 +1032,30 @@ document.addEventListener('DOMContentLoaded', () => {
     "ضمان جودة حتى التسليم":"Quality guarantee until handover",
     "احجز معاينة مجانية":"Book a free site visit",
     "جاهز لبدء مشروعك؟":"Ready to start your project?",
-    "تواصل معنا الآن للحصول على استشارة مجانية مع أحد مهندسينا المتخصصين":"Contact us now for a free consultation with one of our specialized engineers"
+    "تواصل معنا الآن للحصول على استشارة مجانية مع أحد مهندسينا المتخصصين":"Contact us now for a free consultation with one of our specialized engineers",
+    "تواصل مع أفضل مكتب تصميم داخلي وتشطيب في مصر":"Contact the best interior design & finishing office in Egypt",
+    "استشارة مجانية مع مهندسينا المتخصصين — تواصل الآن":"A free consultation with our specialized engineers — get in touch now",
+    "ابدأ محادثة واتساب":"Start a WhatsApp chat",
+    "أرسل لنا رسالة":"Send us a message",
+    "الاسم الكامل *":"Full name *",
+    "رقم الهاتف *":"Phone number *",
+    "نوع الخدمة المطلوبة":"Service required",
+    "اختر الخدمة":"Choose a service",
+    "تشطيب شقق":"Apartment finishing",
+    "استشارة هندسية":"Engineering consultation",
+    "جولة VR ثلاثية الأبعاد":"3D VR tour",
+    "تفاصيل مشروعك":"Your project details",
+    "أحمد محمد":"e.g. Ahmed Mohamed",
+    "اكتب تفاصيل مشروعك هنا (المساحة، الميزانية التقريبية، الموقع...)":"Write your project details here (area, approximate budget, location...)"
   };
   function augment(){
     var els=document.querySelectorAll('a,button,span,li,option,p,h1,h2,h3,h4,th,td,label');
-    for(var i=0;i<els.length;i++){
-      var el=els[i];
-      if(el.children.length!==0) continue;
-      if(el.hasAttribute('data-en')) continue;
-      var txt=(el.textContent||'').replace(/\s+/g,' ').trim();
-      if(DICT[txt]){ el.setAttribute('data-ar', txt); el.setAttribute('data-en', DICT[txt]); }
-    }
+    for(var i=0;i<els.length;i++){ var el=els[i]; if(el.children.length!==0) continue; if(el.hasAttribute("data-en")) continue; var t=(el.textContent||"").replace(/\s+/g," ").trim(); if(DICT[t]){ el.setAttribute("data-ar",t); el.setAttribute("data-en",DICT[t]); } }
+    var ins=document.querySelectorAll("input[placeholder],textarea[placeholder]");
+    for(var j=0;j<ins.length;j++){ var e=ins[j]; if(e.getAttribute("data-en-placeholder")) continue; var p=(e.getAttribute("placeholder")||"").replace(/\s+/g," ").trim(); if(DICT[p]){ e.setAttribute("data-ar-placeholder",p); e.setAttribute("data-en-placeholder",DICT[p]); } }
   }
-  function run(){ try{ augment(); if(typeof setLang==='function' && typeof currentLang!=='undefined'){ setLang(currentLang); } }catch(e){} }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+  var mo=null,tm=null;
+  function apply(){ try{ if(mo) mo.disconnect(); augment(); if(typeof setLang==="function" && typeof currentLang!=="undefined"){ setLang(currentLang); } }catch(e){} finally{ if(mo) mo.observe(document.body,{childList:true,subtree:true}); } }
+  function start(){ apply(); try{ mo=new MutationObserver(function(){ clearTimeout(tm); tm=setTimeout(apply,350); }); mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
