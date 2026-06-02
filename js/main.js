@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ===== C3D_SHARED_I18N — auto-translate chrome + page sections (homepage pairs + per-page) + placeholders + dynamic content ===== */
+/* ===== C3D_SHARED_I18N — chrome + page sections + placeholders + dynamic content + EN number localization ===== */
 (function(){
   var DICT={
     "الرئيسية":"Home",
@@ -1209,14 +1209,16 @@ document.addEventListener('DOMContentLoaded', () => {
     "💬 واتساب مباشر":"💬 Live WhatsApp",
     "📍 القاهرة، مصر":"📍 Cairo, Egypt"
   };
+  var DG={"\u0660":"0","\u0661":"1","\u0662":"2","\u0663":"3","\u0664":"4","\u0665":"5","\u0666":"6","\u0667":"7","\u0668":"8","\u0669":"9","\u066c":",","\u066b":"."};
   function augment(){
     var els=document.querySelectorAll("a,button,span,li,option,p,h1,h2,h3,h4,th,td,label");
     for(var i=0;i<els.length;i++){ var el=els[i]; if(el.children.length!==0) continue; if(el.hasAttribute("data-en")) continue; var t=(el.textContent||"").replace(/\s+/g," ").trim(); if(DICT[t]){ el.setAttribute("data-ar",t); el.setAttribute("data-en",DICT[t]); } }
     var ins=document.querySelectorAll("input[placeholder],textarea[placeholder]");
     for(var j=0;j<ins.length;j++){ var e=ins[j]; if(e.getAttribute("data-en-placeholder")) continue; var p=(e.getAttribute("placeholder")||"").replace(/\s+/g," ").trim(); if(DICT[p]){ e.setAttribute("data-ar-placeholder",p); e.setAttribute("data-en-placeholder",DICT[p]); } }
   }
+  function localizeNum(){ var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n; while(n=w.nextNode()){ var v=n.nodeValue; if(!v) continue; if(/[\u0660-\u0669]/.test(v) || v.indexOf("\u062c.\u0645")>=0){ var nv=v.replace(/[\u0660-\u0669\u066c\u066b]/g,function(c){return DG[c]||c;}).replace(/\u062c\.\u0645/g,"EGP"); if(nv!==v) n.nodeValue=nv; } } }
   var mo=null,tm=null;
-  function apply(){ try{ if(mo) mo.disconnect(); augment(); if(typeof setLang==="function" && typeof currentLang!=="undefined"){ setLang(currentLang); } }catch(e){} finally{ if(mo) mo.observe(document.body,{childList:true,subtree:true}); } }
+  function apply(){ try{ if(mo) mo.disconnect(); augment(); if(typeof setLang==="function" && typeof currentLang!=="undefined"){ setLang(currentLang); if(currentLang==="en") localizeNum(); } }catch(e){} finally{ if(mo) mo.observe(document.body,{childList:true,subtree:true}); } }
   function start(){ apply(); try{ mo=new MutationObserver(function(){ clearTimeout(tm); tm=setTimeout(apply,350); }); mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
