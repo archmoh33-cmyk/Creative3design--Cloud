@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ===== C3D_SHARED_I18N — chrome + pages + placeholders + dynamic + EN numbers + lazy article dict ===== */
+/* ===== C3D_SHARED_I18N — chrome + pages + placeholders + dynamic + EN numbers + lazy article dict + heading textnodes ===== */
 (function(){
   var DICT={
     "الرئيسية":"Home",
@@ -1383,12 +1383,15 @@ document.addEventListener('DOMContentLoaded', () => {
     "الأخطاء الأكثر تكراراً في التصميم الداخلي للمنازل المصرية وحلولها العملية.":"The most recurring mistakes in interior design for Egyptian homes and their practical solutions.",
     "مستعد لتصميم مطبخ أحلامك بأسعار السوق الفعلية؟":"Ready to design your dream kitchen at real market prices?",
     "فريق Creative3Design يُقدم تصميم مطبخ ثلاثي الأبعاد مع عرض سعر تفصيلي — مجاناً وبدون التزام":"The Creative3Design team offers a 3D kitchen design with a detailed quote — free and with no obligation",
-    "احجز استشارة مجانية عبر واتساب":"Book a free consultation via WhatsApp"
+    "احجز استشارة مجانية عبر واتساب":"Book a free consultation via WhatsApp",
+    "تصميم فيلا مودرن في مصر 2026":"Modern Villa Design in Egypt 2026"
   };
   var DG={"\u0660":"0","\u0661":"1","\u0662":"2","\u0663":"3","\u0664":"4","\u0665":"5","\u0666":"6","\u0667":"7","\u0668":"8","\u0669":"9","\u066c":",","\u066b":"."};
   function augment(){
     var els=document.querySelectorAll("a,button,span,li,option,p,h1,h2,h3,h4,h5,th,td,label,strong,em,blockquote,figcaption");
     for(var i=0;i<els.length;i++){ var el=els[i]; if(el.children.length!==0) continue; if(el.hasAttribute("data-en")) continue; var t=(el.textContent||"").replace(/\s+/g," ").trim(); if(DICT[t]){ el.setAttribute("data-ar",t); el.setAttribute("data-en",DICT[t]); } }
+    var hds=document.querySelectorAll("h1,h2,h3,h4,h5,h6");
+    for(var q=0;q<hds.length;q++){ var hd=hds[q]; var ch=hd.firstChild; while(ch){ var nx=ch.nextSibling; if(ch.nodeType===3){ var tv=(ch.nodeValue||"").replace(/\s+/g," ").trim(); if(tv && DICT[tv]){ var sp=document.createElement("span"); sp.setAttribute("data-ar",tv); sp.setAttribute("data-en",DICT[tv]); sp.textContent=tv; hd.replaceChild(sp,ch); } } ch=nx; } }
     var ins=document.querySelectorAll("input[placeholder],textarea[placeholder]");
     for(var j=0;j<ins.length;j++){ var e=ins[j]; if(e.getAttribute("data-en-placeholder")) continue; var p=(e.getAttribute("placeholder")||"").replace(/\s+/g," ").trim(); if(DICT[p]){ e.setAttribute("data-ar-placeholder",p); e.setAttribute("data-en-placeholder",DICT[p]); } }
   }
