@@ -892,29 +892,43 @@
 </section>
 
 <!-- FAQ -->
+<style>
+  .eo-faq-list { display:flex; flex-direction:column; gap:.9rem; }
+  .eo-faq { background:var(--black-charcoal); border:1px solid rgba(212,175,55,.14); border-radius:14px; overflow:hidden; transition:border-color .3s ease, box-shadow .3s ease, background .3s ease; }
+  .eo-faq[open] { border-color:var(--gold); box-shadow:0 10px 32px rgba(0,0,0,.35); background:linear-gradient(180deg, var(--black-charcoal) 0%, rgba(212,175,55,.05) 100%); }
+  .eo-faq summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; font-weight:700; color:var(--diamond-white); font-size:1.06rem; line-height:1.6; }
+  .eo-faq summary::-webkit-details-marker { display:none; }
+  .eo-faq summary:hover { color:var(--gold); }
+  .eo-faq .eo-q-ico { flex-shrink:0; width:34px; height:34px; border-radius:50%; background:rgba(212,175,55,.12); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:1.4rem; line-height:1; transition:transform .35s ease, background .3s ease, color .3s ease; }
+  .eo-faq[open] .eo-q-ico { transform:rotate(45deg); background:var(--gold); color:#1a1714; }
+  .eo-faq .eo-q-txt { flex:1; }
+  .eo-faq .eo-a { padding:0 1.5rem 1.35rem; padding-inline-start:4.3rem; color:var(--text-muted); line-height:1.95; font-size:.95rem; }
+  @media (max-width:600px){ .eo-faq .eo-a { padding-inline-start:1.5rem; } .eo-faq summary { font-size:.98rem; } }
+</style>
 <section class="section-padding" id="faq" style="background:var(--black);">
   <div class="container" style="max-width:820px;">
     <div style="text-align:center;margin-bottom:2.2rem;">
       <p class="section-tag">أسئلة شائعة</p>
       <h2>أسئلة شائعة عن المكتب الهندسي الاستشاري</h2>
+      <p style="color:var(--text-muted);max-width:520px;margin:.7rem auto 0;font-size:.92rem;">اضغط على أي سؤال لعرض الإجابة</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:1rem;">
-      <div class="about-content" style="background:var(--black-charcoal);padding:1.6rem 1.8rem;border-radius:12px;border:1px solid rgba(212,175,55,.1);">
-        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">ما هو أفضل مكتب هندسي في مصر؟</h3>
-        <p style="color:var(--text-muted);">يتميز Creative3Design كأحد أفضل المكاتب الهندسية في مصر بخبرة تتجاوز 22 عاماً منذ 2003 وأكثر من 1100 مشروع منجز، مع استشارات هندسية متكاملة وأسعار شفافة وضمان جودة حتى التسليم.</p>
-      </div>
-      <div class="about-content" style="background:var(--black-charcoal);padding:1.6rem 1.8rem;border-radius:12px;border:1px solid rgba(212,175,55,.1);">
-        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">ما الفرق بين المكتب الهندسي والمكتب الاستشاري؟</h3>
-        <p style="color:var(--text-muted);">المكتب الهندسي يقدّم التصميم والرسومات والتنفيذ، بينما المكتب الاستشاري يضيف الاستشارة الفنية ودراسة الجدوى والإشراف الهندسي. نحن نجمع بينهما كمكتب هندسي استشاري متكامل.</p>
-      </div>
-      <div class="about-content" style="background:var(--black-charcoal);padding:1.6rem 1.8rem;border-radius:12px;border:1px solid rgba(212,175,55,.1);">
-        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">هل تقدمون خدمة مكتب استشارات هندسية للمشاريع التجارية والسكنية؟</h3>
-        <p style="color:var(--text-muted);">نعم، نعمل كمكتب استشارات هندسية للمشاريع السكنية والتجارية، ونقدّم دراسة تصميمية كاملة، رسومات تنفيذية بتقنية BIM، وإشراف هندسي ميداني.</p>
-      </div>
-      <div class="about-content" style="background:var(--black-charcoal);padding:1.6rem 1.8rem;border-radius:12px;border:1px solid rgba(212,175,55,.1);">
-        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">ماذا يقدّم مكتب التصميم المعماري لديكم؟</h3>
-        <p style="color:var(--text-muted);">يقدّم مكتب التصميم المعماري لدينا تصميم الواجهات والمخططات المعمارية والرسومات التنفيذية المعتمدة والنماذج ثلاثية الأبعاد بتقنية BIM وجولات VR قبل التنفيذ.</p>
-      </div>
+    <div class="eo-faq-list">
+      <details class="eo-faq" open>
+        <summary><span class="eo-q-ico">+</span><span class="eo-q-txt">ما هو أفضل مكتب هندسي في مصر؟</span></summary>
+        <div class="eo-a">يتميز Creative3Design كأحد أفضل المكاتب الهندسية في مصر بخبرة تتجاوز 22 عاماً منذ 2003 وأكثر من 1100 مشروع منجز، مع استشارات هندسية متكاملة وأسعار شفافة وضمان جودة حتى التسليم.</div>
+      </details>
+      <details class="eo-faq">
+        <summary><span class="eo-q-ico">+</span><span class="eo-q-txt">ما الفرق بين المكتب الهندسي والمكتب الاستشاري؟</span></summary>
+        <div class="eo-a">المكتب الهندسي يقدّم التصميم والرسومات والتنفيذ، بينما المكتب الاستشاري يضيف الاستشارة الفنية ودراسة الجدوى والإشراف الهندسي. نحن نجمع بينهما كمكتب هندسي استشاري متكامل.</div>
+      </details>
+      <details class="eo-faq">
+        <summary><span class="eo-q-ico">+</span><span class="eo-q-txt">هل تقدمون خدمة مكتب استشارات هندسية للمشاريع التجارية والسكنية؟</span></summary>
+        <div class="eo-a">نعم، نعمل كمكتب استشارات هندسية للمشاريع السكنية والتجارية، ونقدّم دراسة تصميمية كاملة، رسومات تنفيذية بتقنية BIM، وإشراف هندسي ميداني.</div>
+      </details>
+      <details class="eo-faq">
+        <summary><span class="eo-q-ico">+</span><span class="eo-q-txt">ماذا يقدّم مكتب التصميم المعماري لديكم؟</span></summary>
+        <div class="eo-a">يقدّم مكتب التصميم المعماري لدينا تصميم الواجهات والمخططات المعمارية والرسومات التنفيذية المعتمدة والنماذج ثلاثية الأبعاد بتقنية BIM وجولات VR قبل التنفيذ.</div>
+      </details>
     </div>
   </div>
 </section>
