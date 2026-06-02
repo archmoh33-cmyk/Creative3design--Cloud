@@ -641,6 +641,32 @@
       </a>
       <a href="contact" class="btn-secondary">أرسل استفساراً</a>
     </div>
+    <style>
+    .c3d-lead-form{max-width:560px;margin:1.8rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:.7rem;text-align:right;}
+    .c3d-lead-form input,.c3d-lead-form select{width:100%;padding:.85rem 1rem;background:var(--black-card,#1a1714);border:1px solid var(--gray-border,#3a342c);border-radius:10px;color:#fff;font-family:"Cairo",sans-serif;font-size:.92rem;box-sizing:border-box;}
+    .c3d-lead-form select{grid-column:1/-1;appearance:none;-webkit-appearance:none;}
+    .c3d-lead-form input::placeholder{color:#9b9389;}
+    .c3d-lead-form input:focus,.c3d-lead-form select:focus{outline:none;border-color:var(--gold,#c9a96e);}
+    .c3d-lead-form .c3d-lead-submit{grid-column:1/-1;cursor:pointer;border:none;}
+    .c3d-lead-form .c3d-lead-msg{grid-column:1/-1;margin:.2rem 0 0;font-size:.9rem;min-height:1.1em;}
+    .c3d-lead-form .c3d-lead-msg.ok{color:#7fff7f;}
+    .c3d-lead-form .c3d-lead-msg.err{color:#ff8a8a;}
+    @media(max-width:560px){.c3d-lead-form{grid-template-columns:1fr;}}
+    </style>
+    <form class="c3d-lead-form" data-c3d-source="packages">
+      <input type="text" name="الاسم" placeholder="الاسم" required autocomplete="name">
+      <input type="tel" name="رقم الهاتف" placeholder="رقم الهاتف" required autocomplete="tel" inputmode="tel">
+      <select name="نوع المشروع" required aria-label="نوع المشروع">
+        <option value="" disabled selected>نوع المشروع</option>
+        <option>تصميم/تشطيب فيلا</option>
+        <option>تصميم/تشطيب شقة</option>
+        <option>تجاري / إداري</option>
+        <option>مطعم / كافيه</option>
+        <option>أخرى</option>
+      </select>
+      <button type="submit" class="btn-gold c3d-lead-submit">أرسل طلبك — نرد خلال ساعة</button>
+      <p class="c3d-lead-msg" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
