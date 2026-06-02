@@ -748,3 +748,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 })();
+
+
+/* ===== C3D_SHARED_I18N — auto-translate shared chrome (top bar + page switcher + footer) across all pages ===== */
+(function(){
+  var DICT={
+    "واتساب مباشر":"Live WhatsApp",
+    "واتساب":"WhatsApp",
+    "الصفحات ▾":"Pages ▾",
+    "الصفحات":"Pages",
+    "🏠 الرئيسية":"🏠 Home",
+    "🏢 عن المكتب":"🏢 About",
+    "⚙️ الخدمات":"⚙️ Services",
+    "🏛️ مكتب هندسي":"🏛️ Engineering Office",
+    "📦 الباقات":"📦 Packages",
+    "🖼️ الأعمال":"🖼️ Portfolio",
+    "📝 المدونة":"📝 Blog",
+    "📞 تواصل معنا":"📞 Contact",
+    "الرئيسية":"Home",
+    "عن المكتب":"About",
+    "الخدمات":"Services",
+    "مكتب هندسي":"Engineering Office",
+    "الباقات":"Packages",
+    "الأعمال":"Portfolio",
+    "المدونة":"Blog",
+    "تواصل معنا":"Contact"
+  };
+  function augment(){
+    var els=document.querySelectorAll('a,button,span,li,option,p,h3');
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.children.length!==0) continue;
+      if(el.hasAttribute('data-en')) continue;
+      var txt=(el.textContent||'').replace(/\s+/g,' ').trim();
+      if(DICT[txt]){ el.setAttribute('data-ar', txt); el.setAttribute('data-en', DICT[txt]); }
+    }
+  }
+  function run(){ try{ augment(); if(typeof setLang==='function' && typeof currentLang!=='undefined'){ setLang(currentLang); } }catch(e){} }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
