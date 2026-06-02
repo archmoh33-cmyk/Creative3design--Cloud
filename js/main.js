@@ -105,6 +105,16 @@ function goToSlide(idx) {
     const data = target.querySelector('.hsd');
     if (data) {
       shared.innerHTML = data.innerHTML;
+      /* ضمان وجود H1 واحد دائماً: العنوان داخل الهيرو المشترك يبقى <h1> */
+      const hd = shared.querySelector('h1, h2, h3');
+      if (hd && hd.tagName !== 'H1') {
+        const h1el = document.createElement('h1');
+        for (let i = 0; i < hd.attributes.length; i++) {
+          h1el.setAttribute(hd.attributes[i].name, hd.attributes[i].value);
+        }
+        h1el.innerHTML = hd.innerHTML;
+        hd.replaceWith(h1el);
+      }
       /* إعادة تطبيق اللغة الحالية على المحتوى الجديد */
       const lang = document.documentElement.lang;
       shared.querySelectorAll('[data-ar]').forEach(function(el) {
