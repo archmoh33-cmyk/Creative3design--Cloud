@@ -266,6 +266,20 @@
           <p>إشراف ميداني كامل على التنفيذ والتشطيب بأعلى معايير الجودة، من الخرسانة حتى تسليم المفتاح.</p>
         </div>
       </div>
+      <div class="about-content" style="background:var(--black-charcoal);padding:0;border-radius:14px;border:1px solid rgba(212,175,55,.12);overflow:hidden;">
+        <img data-src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="تصميم داخلي تجاري لمكتب وشركة" class="lazy-img" data-service-key="commercial" loading="lazy" style="width:100%;height:180px;object-fit:cover;display:block;" />
+        <div style="padding:1.6rem 1.8rem;">
+          <h3 style="color:var(--gold);">تصميم داخلي تجاري</h3>
+          <p>تصميم المكاتب والمحلات والمطاعم والفنادق — مساحات تجارية تعزّز إنتاجيتك وتجذب عملاءك.</p>
+        </div>
+      </div>
+      <div class="about-content" style="background:var(--black-charcoal);padding:0;border-radius:14px;border:1px solid rgba(212,175,55,.12);overflow:hidden;">
+        <img data-src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="جولات VR ثلاثية الأبعاد قبل التنفيذ" class="lazy-img" data-service-key="vr" loading="lazy" style="width:100%;height:180px;object-fit:cover;display:block;" />
+        <div style="padding:1.6rem 1.8rem;">
+          <h3 style="color:var(--gold);">جولات VR ثلاثية الأبعاد</h3>
+          <p>جولة افتراضية تفاعلية تتيح لك التنقل داخل مشروعك ومعاينته بالأبعاد الحقيقية قبل بدء التنفيذ.</p>
+        </div>
+      </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem;">
       <a href="services" class="btn-gold">عرض كل الخدمات الهندسية</a>
@@ -281,7 +295,7 @@
       <h2>مشاريع من أعمال المكتب الهندسي</h2>
       <p style="color:var(--text-muted);max-width:580px;margin:.8rem auto 0;">نماذج حقيقية من مشاريع التصميم المعماري والداخلي والتشطيب التي نفّذها مكتبنا</p>
     </div>
-    <div class="portfolio-grid">
+    <div class="portfolio-grid" id="engPortfolioGrid">
 
       <!-- 1) فيلات وعمارات -->
       <div class="port-card lazy-reveal" data-cat="villa">
@@ -1005,12 +1019,54 @@
     });
   }
 
+  /* ── تحميل مشاريع قسم الأعمال من Supabase (نفس مصدر الرئيسية) بترتيب هندسي ── */
+  function loadEngPortfolio() {
+    if (!window.c3dClient) return;
+    var BLANK = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+    var LBL = {
+      'villa':        'فيلات وعمارات',
+      'hospitality':  'فنادق وضيافة',
+      'commercial':   'تجاري وإداري',
+      'interior-res': 'تصميم داخلي سكني',
+      'interior-com': 'تصميم داخلي تجاري'
+    };
+    /* الترتيب الهندسي + العدد لكل تصنيف (إجمالي 12) */
+    var plan = [['villa',3],['hospitality',3],['commercial',2],['interior-res',2],['interior-com',2]];
+    var db = window.c3dClient;
+    Promise.all(plan.map(function(p){
+      return db.from('projects').select('*').eq('status','published').eq('category',p[0])
+        .order('featured',{ascending:false}).order('sort_order',{ascending:true}).order('created_at',{ascending:false})
+        .range(0, p[1]-1);
+    })).then(function(results){
+      var rows = [];
+      results.forEach(function(r){ if (r && r.data) rows = rows.concat(r.data); });
+      if (!rows.length) return; /* أبقِ البطاقات الثابتة كاحتياطي */
+      var grid = document.getElementById('engPortfolioGrid');
+      if (!grid) return;
+      grid.innerHTML = rows.map(function(p){
+        var cat = p.category || 'villa';
+        var lbl = LBL[cat] || cat;
+        var nameAr = (p.name_ar || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        var img = p.image_url || BLANK;
+        var alt = (p.image_alt_ar || (nameAr + ' — Creative3Design')).replace(/"/g,'&quot;');
+        return '<div class="port-card lazy-reveal revealed" data-cat="' + cat + '">' +
+          '<img src="' + img + '" alt="' + alt + '" loading="lazy" width="800" height="600" style="width:100%;height:100%;object-fit:cover;" />' +
+          '<div class="port-overlay">' +
+            '<span class="port-cat">' + lbl + '</span>' +
+            '<h4>' + nameAr + '</h4>' +
+            '<a href="portfolio?cat=' + cat + '" class="port-link">عرض المشروع</a>' +
+          '</div></div>';
+      }).join('');
+    }).catch(function(){ /* عند الفشل تبقى البطاقات الثابتة */ });
+  }
+
   /* ── انتظر جاهزية c3dClient ثم حمّل الأقسام ── */
   function waitForClient(attempts) {
     if (window.c3dClient) {
       loadBASection();
       loadVideoLibrary();
       loadServiceCardImages();
+      loadEngPortfolio();
     } else if (attempts > 0) {
       setTimeout(function() { waitForClient(attempts - 1); }, 350);
     }
