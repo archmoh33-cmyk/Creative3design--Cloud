@@ -700,3 +700,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 });
+
+/* ════════════════════════════════════════════════════════════════
+   GA4 Conversion Tracking + Lead Form (added 2026-06-02)
+   - whatsapp_click / phone_click على كل المواضع
+   - form_submit + إرسال AJAX لنماذج .c3d-lead-form (يبقى المستخدم بالصفحة)
+════════════════════════════════════════════════════════════════ */
+(function () {
+  /* تتبّع نقرات واتساب والهاتف في أي مكان بالموقع */
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || typeof gtag !== 'function') return;
+    var href = a.getAttribute('href') || '';
+    if (/wa\.me|api\.whatsapp|whatsapp:/i.test(href)) {
+      gtag('event', 'whatsapp_click', { event_category: 'engagement', link_url: href, page_path: location.pathname });
+    } else if (/^tel:/i.test(href)) {
+      gtag('event', 'phone_click', { event_category: 'engagement', link_url: href, page_path: location.pathname });
+    }
+  }, true);
+
+  /* نموذج التواصل المبسّط — إرسال AJAX عبر FormSubmit + حدث GA4 */
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (!f || !f.classList || !f.classList.contains('c3d-lead-form')) return;
+    e.preventDefault();
+    var msg = f.querySelector('.c3d-lead-msg');
+    var btn = f.querySelector('button[type="submit"]');
+    var src = f.getAttribute('data-c3d-source') || location.pathname;
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_submit', { event_category: 'lead', form_source: src, page_path: location.pathname });
+    }
+    var origLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'جارٍ الإرسال…'; }
+    var fd = new FormData(f);
+    fd.append('_subject', 'طلب جديد من صفحة: ' + src);
+    fd.append('_captcha', 'false');
+    fd.append('_template', 'table');
+    fetch('https://formsubmit.co/ajax/info@creativedesignegypt.com', {
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+    }).then(function (r) { return r.json(); }).then(function () {
+      if (msg) { msg.textContent = 'تم استلام طلبك ✓ سنتواصل معك قريبًا.'; msg.className = 'c3d-lead-msg ok'; }
+      f.reset();
+      if (btn) { btn.disabled = false; btn.textContent = origLabel; }
+    }).catch(function () {
+      if (msg) { msg.textContent = 'تعذّر الإرسال — يرجى التواصل عبر واتساب.'; msg.className = 'c3d-lead-msg err'; }
+      if (btn) { btn.disabled = false; btn.textContent = origLabel; }
+    });
+  });
+})();
