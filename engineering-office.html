@@ -127,6 +127,21 @@
     #calcCardsCarousel .pkg-preview-card--featured { padding-top: 2.6rem !important; }
     #calcCardsCarousel .pkg-recommended-badge { position: static !important; display: inline-block; margin-bottom: .6rem; }
   }
+
+  /* ── Language toggle in navbar (desktop only) ── */
+  .nav-lang-toggle { display: none; }
+  @media (min-width: 769px) {
+    .navbar .nav-lang-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-inline-start: .6rem; padding: .35rem .85rem;
+      background: transparent; color: var(--gold);
+      border: 1px solid var(--gold); border-radius: 6px;
+      font-weight: 700; font-size: .8rem; letter-spacing: .04em;
+      cursor: pointer; font-family: inherit; line-height: 1;
+      transition: background .25s ease, color .25s ease;
+    }
+    .navbar .nav-lang-toggle:hover { background: var(--gold); color: #1a1714; }
+  }
   </style>
   <script type="application/ld+json">
   {
@@ -231,6 +246,7 @@
         <option value="contact.html">📞 تواصل معنا</option>
       </select>
     </div>
+    <button class="lang-toggle nav-lang-toggle" onclick="toggleLang()" aria-label="Switch language" data-ar="EN" data-en="ع">EN</button>
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button></div></nav>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 
