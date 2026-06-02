@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ===== C3D_SHARED_I18N — chrome + page sections + placeholders + dynamic content + EN number localization ===== */
+/* ===== C3D_SHARED_I18N — chrome + pages + placeholders + dynamic + EN numbers + lazy article dict ===== */
 (function(){
   var DICT={
     "الرئيسية":"Home",
@@ -1393,8 +1393,9 @@ document.addEventListener('DOMContentLoaded', () => {
     for(var j=0;j<ins.length;j++){ var e=ins[j]; if(e.getAttribute("data-en-placeholder")) continue; var p=(e.getAttribute("placeholder")||"").replace(/\s+/g," ").trim(); if(DICT[p]){ e.setAttribute("data-ar-placeholder",p); e.setAttribute("data-en-placeholder",DICT[p]); } }
   }
   function localizeNum(){ var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n; while(n=w.nextNode()){ var v=n.nodeValue; if(!v) continue; if(/[\u0660-\u0669]/.test(v) || v.indexOf("\u062c.\u0645")>=0){ var nv=v.replace(/[\u0660-\u0669\u066c\u066b]/g,function(c){return DG[c]||c;}).replace(/\u062c\.\u0645/g,"EGP"); if(nv!==v) n.nodeValue=nv; } } }
+  function loadArticleDict(cb){ try{ var m=location.pathname.replace(/\/+$/,"").match(/\/blog\/([a-z0-9\-]+)$/i); if(!m){ cb(); return; } fetch("/js/blog-i18n/"+m[1]+".json").then(function(r){ return r.ok?r.json():null; }).then(function(d){ if(d){ for(var k in d){ if(!(k in DICT)) DICT[k]=d[k]; } } cb(); }).catch(function(){ cb(); }); }catch(e){ cb(); } }
   var mo=null,tm=null;
   function apply(){ try{ if(mo) mo.disconnect(); augment(); if(typeof setLang==="function" && typeof currentLang!=="undefined"){ setLang(currentLang); if(currentLang==="en") localizeNum(); } }catch(e){} finally{ if(mo) mo.observe(document.body,{childList:true,subtree:true}); } }
-  function start(){ apply(); try{ mo=new MutationObserver(function(){ clearTimeout(tm); tm=setTimeout(apply,350); }); mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
+  function start(){ apply(); loadArticleDict(function(){ apply(); }); try{ mo=new MutationObserver(function(){ clearTimeout(tm); tm=setTimeout(apply,350); }); mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
