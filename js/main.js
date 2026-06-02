@@ -749,8 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-
-/* ===== C3D_SHARED_I18N — auto-translate shared chrome (top bar + page switcher + footer) across all pages ===== */
+/* ===== C3D_SHARED_I18N — auto-translate shared chrome + page sections across all pages ===== */
 (function(){
   var DICT={
     "واتساب مباشر":"Live WhatsApp",
@@ -772,10 +771,39 @@ document.addEventListener('DOMContentLoaded', () => {
     "الباقات":"Packages",
     "الأعمال":"Portfolio",
     "المدونة":"Blog",
-    "تواصل معنا":"Contact"
+    "تواصل معنا":"Contact",
+    "خدماتنا الهندسية المتكاملة":"Our Integrated Engineering Services",
+    "تعرّف على المكتب الهندسي الاستشاري":"Discover our consulting engineering office",
+    "تصميم داخلي سكني":"Residential Interior Design",
+    "نصمم المساحات السكنية بأسلوب يعكس شخصيتك ويناسب أسلوب حياتك — شقق، فيلات، دوبلكس، وبنتهاوس.":"We design residential spaces with a style that reflects your personality and suits your lifestyle — apartments, villas, duplexes, and penthouses.",
+    "تصاميم ثلاثية الأبعاد قبل التنفيذ":"3D designs before execution",
+    "اختيار مواد وألوان احترافي":"Professional material & color selection",
+    "إشراف كامل على التنفيذ":"Full execution supervision",
+    "احصل على استشارة مجانية":"Get a free consultation",
+    "تصميم داخلي تجاري":"Commercial Interior Design",
+    "نصمم بيئات تجارية تعزز إنتاجيتك وتبهر عملاءك — مكاتب، محلات، مطاعم، فنادق، ومراكز صحية.":"We design commercial environments that boost your productivity and impress your clients — offices, shops, restaurants, hotels, and healthcare centers.",
+    "هوية بصرية متسقة مع علامتك التجارية":"Visual identity consistent with your brand",
+    "توزيع مساحات وفق سير العمل":"Space planning aligned with workflow",
+    "حلول ذكية للإضاءة والصوتيات":"Smart lighting & acoustics solutions",
+    "ابدأ مشروعك التجاري":"Start your commercial project",
+    "كـ مكتب تصميم معماري متخصص، نقدّم رسومات معمارية احترافية بمعايير هندسية معتمدة — واجهات، مخططات، رسومات تنفيذية كاملة بتقنية BIM.":"As a specialized architectural design office, we deliver professional architectural drawings to certified engineering standards — façades, layouts, and complete shop drawings using BIM technology.",
+    "تصميم واجهات خارجية مميزة":"Distinctive exterior façade design",
+    "مخططات تنفيذية معتمدة":"Certified working drawings",
+    "تصاميم BIM ثلاثية الأبعاد":"3D BIM designs",
+    "استشر مهندسنا المعماري":"Consult our architect",
+    "التشطيب والتنفيذ":"Finishing & Execution",
+    "إشراف ميداني كامل على تشطيب الشقق والفيلات — من الخرسانة حتى تسليم المفتاح بأعلى معايير الجودة.":"Full on-site supervision for finishing apartments and villas — from concrete to turnkey handover at the highest quality standards.",
+    "توريد مواد بناء معتمدة":"Supply of certified building materials",
+    "فريق حرفيين متخصصين":"Specialized team of craftsmen",
+    "ضمان جودة حتى التسليم":"Quality guarantee until handover",
+    "عرض الباقات والأسعار":"View packages & pricing",
+    "احجز معاينة مجانية":"Book a free site visit",
+    "جاهز لبدء مشروعك؟":"Ready to start your project?",
+    "تواصل معنا الآن للحصول على استشارة مجانية مع أحد مهندسينا المتخصصين":"Contact us now for a free consultation with one of our specialized engineers",
+    "احجز استشارة مجانية الآن":"Book a free consultation now"
   };
   function augment(){
-    var els=document.querySelectorAll('a,button,span,li,option,p,h3');
+    var els=document.querySelectorAll('a,button,span,li,option,p,h1,h2,h3,h4,th,td,label');
     for(var i=0;i<els.length;i++){
       var el=els[i];
       if(el.children.length!==0) continue;
