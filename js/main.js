@@ -1402,3 +1402,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function start(){ apply(); loadArticleDict(function(){ apply(); }); try{ mo=new MutationObserver(function(){ clearTimeout(tm); tm=setTimeout(apply,350); }); mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
+
+/* ===== C3D_LAZY_IMAGES — enable lazy-loading on images lacking it (above-the-fold stays eager to protect LCP) ===== */
+(function(){
+  function apply(){
+    var imgs=document.querySelectorAll("img:not([loading])");
+    for(var i=0;i<imgs.length;i++){ var im=imgs[i];
+      if(!im.hasAttribute("decoding")) im.setAttribute("decoding","async");
+      var top=9999; try{ top=im.getBoundingClientRect().top; }catch(e){}
+      im.setAttribute("loading", (top>=0 && top < (window.innerHeight||800)) ? "eager" : "lazy");
+    }
+  }
+  function init(){ apply(); try{ new MutationObserver(function(){ apply(); }).observe(document.body,{childList:true,subtree:true}); }catch(e){} }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
