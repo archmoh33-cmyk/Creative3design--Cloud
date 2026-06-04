@@ -487,6 +487,41 @@ img{max-width:100%;display:block}
 <!-- ════════════════════════════════════════════════
      DASHBOARD APP
 ════════════════════════════════════════════════ -->
+<!-- ════════════ MFA CHALLENGE SCREEN ════════════ -->
+<div id="mfaScreen" style="display:none;min-height:100vh;align-items:center;justify-content:center;padding:1rem">
+  <div class="login-card">
+    <div class="login-logo">Creative<span>3</span>Design</div>
+    <p class="login-subtitle">التحقق بخطوتين</p>
+    <div class="form-section" style="gap:.7rem">
+      <div class="field">
+        <label>رمز المصادقة (6 أرقام)</label>
+        <input type="text" id="mfaCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456" style="letter-spacing:.4em;text-align:center;font-size:1.2rem" />
+      </div>
+      <div id="mfaError" class="login-error"></div>
+      <button class="login-btn" id="mfaBtn" onclick="verifyMfaChallenge()">تحقّق ودخول</button>
+      <p style="text-align:center;font-size:.75rem;color:var(--text-dim)">افتح تطبيق المصادقة وأدخل الرمز الحالي · <a href="#" onclick="handleLogout();return false;" style="color:var(--gold)">تسجيل الخروج</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ MFA ENROLL / MANAGE MODAL ════════════ -->
+<div id="mfaModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:99999;align-items:center;justify-content:center;padding:1rem">
+  <div class="login-card" style="max-width:380px;width:100%">
+    <div class="login-logo" style="font-size:1.05rem">المصادقة الثنائية (2FA)</div>
+    <div id="mfaStatusLine" style="text-align:center;font-size:.85rem;color:var(--text-muted);margin:.4rem 0"></div>
+    <div id="mfaActionArea" style="display:flex;flex-direction:column;gap:.5rem"></div>
+    <div id="mfaEnrollArea" style="display:none;margin-top:.6rem">
+      <p style="font-size:.8rem;color:var(--text-muted);text-align:center">امسح رمز QR بتطبيق Google Authenticator أو Authy، ثم أدخل الرمز:</p>
+      <div id="mfaQr" style="display:flex;justify-content:center;margin:.6rem 0;background:#fff;padding:.4rem;border-radius:8px"></div>
+      <p style="font-size:.68rem;color:var(--text-dim);text-align:center;word-break:break-all">أو المفتاح يدوياً: <code id="mfaSecret"></code></p>
+      <div class="field"><label>الرمز من التطبيق</label><input type="text" id="mfaEnrollCode" inputmode="numeric" maxlength="6" placeholder="123456" style="letter-spacing:.4em;text-align:center" /></div>
+      <div id="mfaEnrollError" class="login-error"></div>
+      <button class="login-btn" id="mfaEnrollBtn" onclick="confirmEnroll()">تأكيد التفعيل</button>
+    </div>
+    <p style="text-align:center;margin-top:.7rem"><a href="#" onclick="closeMfaModal();return false;" style="color:var(--text-dim);font-size:.8rem">إغلاق</a></p>
+  </div>
+</div>
+
 <div class="app" id="appShell" style="display:none">
 
   <!-- Header -->
@@ -495,6 +530,7 @@ img{max-width:100%;display:block}
     <div class="header-spacer"></div>
     <a href="sort-projects.html" style="font-size:.78rem;color:var(--gold);border:1px solid rgba(184,151,106,.3);padding:.3rem .8rem;border-radius:6px;text-decoration:none;margin-left:.5rem;" title="ترتيب المشاريع">🔀 ترتيب المشاريع</a>
     <span class="header-user" id="headerUser"></span>
+    <button id="mfaHeaderBtn" class="btn btn-sm btn-outline" onclick="openMfaModal()" style="margin-left:.5rem" title="المصادقة الثنائية">🔒 الأمان</button>
     <button class="header-logout btn btn-sm btn-outline" onclick="handleLogout()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
       خروج
@@ -1753,7 +1789,7 @@ async function initAuth() {
   /* ── الاستماع لتغييرات Auth (يشمل INITIAL_SESSION عند تحميل الصفحة) ── */
   window.c3dClient.auth.onAuthStateChange((event, session) => {
     if ((event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session) {
-      onLogin(session.user);
+      gateAccess(session);
     }
     if (event === 'SIGNED_OUT') onLogout();
   });
@@ -1761,7 +1797,7 @@ async function initAuth() {
   /* ── فحص احتياطي للجلسة في حالة عدم إطلاق INITIAL_SESSION ── */
   const { data: { session } } = await window.c3dClient.auth.getSession();
   if (session) {
-    onLogin(session.user);
+    gateAccess(session);
   }
 }
 
@@ -1799,7 +1835,7 @@ async function handleLogin() {
     btn.textContent = 'دخول';
   } else if (data?.session) {
     /* ── fallback مباشر في حالة عدم إطلاق onAuthStateChange ── */
-    onLogin(data.session.user);
+    gateAccess(data.session);
   } else {
     showLoginError('تعذّر الحصول على الجلسة — أعد المحاولة');
     btn.disabled = false;
@@ -1823,7 +1859,114 @@ function onLogin(user) {
 function onLogout() {
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('appShell').style.display    = 'none';
+  var _m=document.getElementById('mfaScreen'); if(_m) _m.style.display='none';
+  var _mm=document.getElementById('mfaModal'); if(_mm) _mm.style.display='none';
 }
+
+/* ══════════ 2FA (Supabase MFA / TOTP) ══════════ */
+async function gateAccess(session){
+  try{
+    const { data: aal, error } = await window.c3dClient.auth.mfa.getAuthenticatorAssuranceLevel();
+    if(!error && aal && aal.nextLevel === 'aal2' && aal.currentLevel !== 'aal2'){
+      showMfaScreen(); return;
+    }
+  }catch(e){ /* fall through to normal login if MFA check unavailable */ }
+  onLogin(session.user);
+}
+function showMfaScreen(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appShell').style.display='none';
+  var m=document.getElementById('mfaScreen'); if(m) m.style.display='flex';
+  setTimeout(function(){ var c=document.getElementById('mfaCode'); if(c) c.focus(); },120);
+}
+function _mfaErr(el,msg){ el.textContent=msg; el.classList.add('show'); }
+async function verifyMfaChallenge(){
+  var codeEl=document.getElementById('mfaCode');
+  var code=(codeEl.value||'').replace(/\D/g,'');
+  var btn=document.getElementById('mfaBtn');
+  var err=document.getElementById('mfaError'); err.classList.remove('show');
+  if(code.length!==6){ _mfaErr(err,'أدخل رمزاً مكوّناً من 6 أرقام'); return; }
+  btn.disabled=true; btn.textContent='جارٍ التحقق...';
+  try{
+    const { data: factors } = await window.c3dClient.auth.mfa.listFactors();
+    const totp=((factors&&factors.totp)||[]).find(function(f){return f.status==='verified';});
+    if(!totp){ _mfaErr(err,'لا يوجد عامل مصادقة مفعّل'); btn.disabled=false; btn.textContent='تحقّق ودخول'; return; }
+    const { data: ch, error: chErr } = await window.c3dClient.auth.mfa.challenge({ factorId: totp.id });
+    if(chErr) throw chErr;
+    const { error: vErr } = await window.c3dClient.auth.mfa.verify({ factorId: totp.id, challengeId: ch.id, code: code });
+    if(vErr){ _mfaErr(err,'رمز غير صحيح — حاول مرة أخرى'); btn.disabled=false; btn.textContent='تحقّق ودخول'; codeEl.value=''; codeEl.focus(); return; }
+    const { data:{ session } } = await window.c3dClient.auth.getSession();
+    document.getElementById('mfaScreen').style.display='none';
+    onLogin(session.user);
+  }catch(e){ _mfaErr(err,'تعذّر التحقق — أعد المحاولة'); btn.disabled=false; btn.textContent='تحقّق ودخول'; }
+}
+async function openMfaModal(){
+  var modal=document.getElementById('mfaModal'); modal.style.display='flex';
+  document.getElementById('mfaEnrollArea').style.display='none';
+  await refreshMfaStatus();
+}
+function closeMfaModal(){ document.getElementById('mfaModal').style.display='none'; }
+async function refreshMfaStatus(){
+  var statusLine=document.getElementById('mfaStatusLine');
+  var actions=document.getElementById('mfaActionArea'); actions.innerHTML=''; statusLine.textContent='جارٍ التحميل...';
+  var factors;
+  try{ const r=await window.c3dClient.auth.mfa.listFactors(); factors=r.data; }
+  catch(e){ statusLine.textContent='تعذّر قراءة الحالة'; return; }
+  var verified=((factors&&factors.totp)||[]).filter(function(f){return f.status==='verified';});
+  if(verified.length){
+    statusLine.innerHTML='✅ المصادقة الثنائية <b style="color:#3fb950">مُفعّلة</b>';
+    var b=document.createElement('button'); b.className='login-btn'; b.style.background='#7a2230'; b.textContent='تعطيل المصادقة الثنائية';
+    b.onclick=function(){ disableMfa(verified[0].id); }; actions.appendChild(b);
+  }else{
+    statusLine.innerHTML='⚠️ المصادقة الثنائية <b style="color:#d29922">غير مُفعّلة</b>';
+    var b2=document.createElement('button'); b2.className='login-btn'; b2.textContent='تفعيل الآن'; b2.onclick=startEnroll; actions.appendChild(b2);
+  }
+}
+async function startEnroll(){
+  var actions=document.getElementById('mfaActionArea'); actions.innerHTML='جارٍ الإعداد...';
+  try{
+    const { data: f } = await window.c3dClient.auth.mfa.listFactors();
+    var all=(f&&f.all)||[];
+    for(var i=0;i<all.length;i++){ if(all[i].status!=='verified'){ try{ await window.c3dClient.auth.mfa.unenroll({ factorId: all[i].id }); }catch(_){} } }
+  }catch(_){}
+  const { data, error } = await window.c3dClient.auth.mfa.enroll({ factorType:'totp', friendlyName:'C3D-'+Date.now() });
+  if(error){ actions.innerHTML=''; document.getElementById('mfaStatusLine').textContent='تعذّر بدء التفعيل: '+error.message; return; }
+  window.__mfaFactorId=data.id;
+  var qr=data.totp.qr_code||'';
+  document.getElementById('mfaQr').innerHTML = qr.trim().indexOf('<svg')===0 ? qr : '<img alt="QR" style="width:180px;height:180px" src="'+qr+'">';
+  document.getElementById('mfaSecret').textContent=data.totp.secret;
+  document.getElementById('mfaEnrollArea').style.display='block';
+  actions.innerHTML='';
+}
+async function confirmEnroll(){
+  var code=(document.getElementById('mfaEnrollCode').value||'').replace(/\D/g,'');
+  var err=document.getElementById('mfaEnrollError'); err.classList.remove('show');
+  var btn=document.getElementById('mfaEnrollBtn');
+  if(code.length!==6){ _mfaErr(err,'أدخل 6 أرقام'); return; }
+  btn.disabled=true; btn.textContent='جارٍ التأكيد...';
+  try{
+    var fid=window.__mfaFactorId;
+    const { data: ch, error: chErr } = await window.c3dClient.auth.mfa.challenge({ factorId: fid });
+    if(chErr) throw chErr;
+    const { error: vErr } = await window.c3dClient.auth.mfa.verify({ factorId: fid, challengeId: ch.id, code: code });
+    if(vErr){ _mfaErr(err,'رمز غير صحيح'); btn.disabled=false; btn.textContent='تأكيد التفعيل'; return; }
+    document.getElementById('mfaEnrollArea').style.display='none';
+    document.getElementById('mfaEnrollCode').value='';
+    await refreshMfaStatus();
+    alert('✅ تم تفعيل المصادقة الثنائية بنجاح. ستُطلب عند الدخول القادم.');
+  }catch(e){ _mfaErr(err,'تعذّر التأكيد — أعد المحاولة'); btn.disabled=false; btn.textContent='تأكيد التفعيل'; }
+}
+async function disableMfa(factorId){
+  if(!confirm('هل تريد تعطيل المصادقة الثنائية؟ سيقلّ أمان لوحة التحكم.')) return;
+  try{ await window.c3dClient.auth.mfa.unenroll({ factorId: factorId }); await refreshMfaStatus(); alert('تم تعطيل المصادقة الثنائية.'); }
+  catch(e){ alert('تعذّر التعطيل: '+e.message); }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter') return;
+  var a=document.activeElement; if(!a) return;
+  if(a.id==='mfaCode'){ verifyMfaChallenge(); }
+  else if(a.id==='mfaEnrollCode'){ confirmEnroll(); }
+});
 
 function showLoginError(msg) {
   const el = document.getElementById('loginError');
