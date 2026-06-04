@@ -401,17 +401,6 @@ function initPortfolioFilter() {
   // تطبيق الفلتر الأولي بالكروت الموجودة حالياً في الـ grid
   applyStatic('all', 10);
 
-  // إعادة تطبيق الحد بعد تحميل كروت Supabase غير المتزامن (يُظهر 12 ويُخفي الباقي)
-  var __homeGrid = document.getElementById('portfolioGrid');
-  if (__homeGrid && window.MutationObserver) {
-    var __capTimer = null;
-    var __homeObs = new MutationObserver(function () {
-      clearTimeout(__capTimer);
-      __capTimer = setTimeout(function () { applyStatic(staticCat, 12); }, 150);
-    });
-    __homeObs.observe(__homeGrid, { childList: true });
-  }
-
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
@@ -424,22 +413,7 @@ function initPortfolioFilter() {
   const showMoreBtn = document.getElementById('portfolioShowMore');
   if (showMoreBtn) {
     showMoreBtn.addEventListener('click', () => {
-      var __sel = staticCat === 'all'
-        ? '#portfolioGrid .port-card.hidden'
-        : '#portfolioGrid .port-card.hidden[data-cat="' + staticCat + '"]';
-      var __n = 0;
-      document.querySelectorAll(__sel).forEach(function (card) {
-        if (__n < 6) {
-          card.classList.remove('hidden');
-          if (!card.classList.contains('revealed')) {
-            card.classList.add('lazy-reveal');
-            setTimeout(function () { card.classList.add('revealed'); }, 50);
-          }
-          __n++;
-        }
-      });
-      var __w = document.getElementById('showMoreWrap');
-      if (__w) __w.style.display = document.querySelectorAll(__sel).length > 0 ? 'block' : 'none';
+      applyStatic(staticCat, 18);
     });
   }
 }
