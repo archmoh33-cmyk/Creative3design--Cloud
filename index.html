@@ -2009,7 +2009,7 @@ function switchBA(idx) {
     window.__homeList = window.__homeList || [];
     window.__homePtr  = window.__homePtr  || { 'interior-res': 0, 'interior-com': 0, 'villa': 0, 'hospitality': 0, 'commercial': 0 };
     window.__homePools = window.__homePools || null;
-    function loadHomePools() {
+    window.loadHomePools = function () {
       if (window.__homePools) return Promise.resolve(window.__homePools);
       var cats = ['interior-res', 'interior-com', 'villa', 'hospitality', 'commercial'];
       return Promise.all(cats.map(function (c) {
@@ -2021,8 +2021,8 @@ function switchBA(idx) {
         return pools;
       });
     }
-    function appendHomeBatch() {
-      return loadHomePools().then(function (pools) {
+    window.appendHomeBatch = function () {
+      return window.loadHomePools().then(function (pools) {
         Object.keys(__homeQuota).forEach(function (cat) {
           var q = __homeQuota[cat], arr = pools[cat] || [];
           for (var k = 0; k < q && window.__homePtr[cat] < arr.length; k++) {
@@ -2044,7 +2044,7 @@ function switchBA(idx) {
       var btnSpan = showMoreBtn.querySelector('span');
       showMoreBtn.disabled = true;
       if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
-      appendHomeBatch().then(function () {
+      window.appendHomeBatch().then(function () {
         showMoreBtn.disabled = false;
         if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
       }).catch(function () {
@@ -2060,7 +2060,7 @@ function switchBA(idx) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      appendHomeBatch();
+      window.appendHomeBatch();
     }
 
     tryFetch(0);
