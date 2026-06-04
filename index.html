@@ -2004,29 +2004,53 @@ function switchBA(idx) {
     /* ── ربط زر "شاهد المزيد" — يجلب 4+2+2+4 مشروع إضافي بنفس التوزيع ── */
     var showMoreBtn = document.getElementById('portfolioShowMore');
     if (showMoreBtn) {
-      showMoreBtn.addEventListener('click', function() {
-        if (!window.c3dClient) return;
-        var btnSpan = showMoreBtn.querySelector('span');
-        showMoreBtn.disabled = true;
-        if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
-        if (window.__homeShown == null) {
-          window.__homeShown = document.getElementById('portfolioGrid').querySelectorAll('.port-card').length || 12;
-        }
-        window.__homeShown += 6;
-        window.c3dFetchProjects({ limit: window.__homeShown }).then(function(res) {
-          var data = (res && res.data) || [];
-          renderProjects(data, false);
-          showMoreBtn.disabled = false;
-          if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
-          if (data.length < window.__homeShown) {
-            var w = document.getElementById('showMoreWrap');
-            if (w) w.style.display = 'none';
-          }
-        }).catch(function() {
-          showMoreBtn.disabled = false;
-          if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
-        });
+      /* ── نظام عرض مشاريع الرئيسية: 4 سكني + 2 تجاري داخلي + 2 فيلات + 2 فنادق + 2 تجاري لكل دفعة ── */
+    var __homeQuota = { 'interior-res': 4, 'interior-com': 2, 'villa': 2, 'hospitality': 2, 'commercial': 2 };
+    window.__homeList = window.__homeList || [];
+    window.__homePtr  = window.__homePtr  || { 'interior-res': 0, 'interior-com': 0, 'villa': 0, 'hospitality': 0, 'commercial': 0 };
+    window.__homePools = window.__homePools || null;
+    function loadHomePools() {
+      if (window.__homePools) return Promise.resolve(window.__homePools);
+      var cats = ['interior-res', 'interior-com', 'villa', 'hospitality', 'commercial'];
+      return Promise.all(cats.map(function (c) {
+        return window.c3dFetchProjects({ category: c, limit: 500 }).then(function (r) { return { c: c, data: (r && r.data) || [] }; });
+      })).then(function (results) {
+        var pools = {};
+        results.forEach(function (x) { pools[x.c] = x.data; });
+        window.__homePools = pools;
+        return pools;
       });
+    }
+    function appendHomeBatch() {
+      return loadHomePools().then(function (pools) {
+        Object.keys(__homeQuota).forEach(function (cat) {
+          var q = __homeQuota[cat], arr = pools[cat] || [];
+          for (var k = 0; k < q && window.__homePtr[cat] < arr.length; k++) {
+            window.__homeList.push(arr[window.__homePtr[cat]]);
+            window.__homePtr[cat]++;
+          }
+        });
+        defaultData = window.__homeList;
+        renderProjects(window.__homeList, false);
+        var more = Object.keys(__homeQuota).some(function (cat) { return window.__homePtr[cat] < ((pools[cat] || []).length); });
+        var w = document.getElementById('showMoreWrap');
+        if (w) w.style.display = more ? 'block' : 'none';
+        return window.__homeList.length;
+      });
+    }
+    showMoreBtn.addEventListener('click', function () {
+      if (!window.c3dClient) return;
+      var btnSpan = showMoreBtn.querySelector('span');
+      showMoreBtn.disabled = true;
+      if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
+      appendHomeBatch().then(function () {
+        showMoreBtn.disabled = false;
+        if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
+      }).catch(function () {
+        showMoreBtn.disabled = false;
+        if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
+      });
+    });
     }
 
     /* 2. انتظر Supabase client ثم جلب الدفعة الأولى */
@@ -2035,13 +2059,7 @@ function switchBA(idx) {
         if (attempt < 20) setTimeout(function(){ tryFetch(attempt + 1); }, 300);
         return;
       }
-      fetchBatch().then(function(data) {
-        if (!data.length) return;
-        /* حفظ snapshot الـ offsets بعد الدفعة الأولى */
-        _defaultOffs = { res: _offs.res, com: _offs.com, vil: _offs.vil, oth: _offs.oth };
-        defaultData = data;
-        renderProjects(data);
-      }).catch(function(){});
+      appendHomeBatch();
     }
 
     tryFetch(0);
