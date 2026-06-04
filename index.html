@@ -2006,23 +2006,21 @@ function switchBA(idx) {
     if (showMoreBtn) {
       showMoreBtn.addEventListener('click', function() {
         if (!window.c3dClient) return;
-        var btnSpan = showMoreBtn.querySelector('span[data-ar]');
+        var btnSpan = showMoreBtn.querySelector('span');
         showMoreBtn.disabled = true;
         if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
-        var prevCount = (document.getElementById('portfolioGrid').querySelectorAll('.port-card') || []).length;
-        fetchBatch(1, 0, 0, 1).then(function(data) {
+        if (window.__homeShown == null) {
+          window.__homeShown = document.getElementById('portfolioGrid').querySelectorAll('.port-card').length || 12;
+        }
+        window.__homeShown += 6;
+        window.c3dFetchProjects({ limit: window.__homeShown }).then(function(res) {
+          var data = (res && res.data) || [];
+          renderProjects(data, false);
           showMoreBtn.disabled = false;
           if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
-          if (data.length) {
-            appendProjects(data);
-            var g = document.getElementById('portfolioGrid');
-            if (g) {
-              var cards = g.querySelectorAll('.port-card');
-              if (cards[prevCount]) cards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          } else {
-            var wrap = document.getElementById('showMoreWrap');
-            if (wrap) wrap.style.display = 'none';
+          if (data.length < window.__homeShown) {
+            var w = document.getElementById('showMoreWrap');
+            if (w) w.style.display = 'none';
           }
         }).catch(function() {
           showMoreBtn.disabled = false;
