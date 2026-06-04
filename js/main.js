@@ -401,6 +401,17 @@ function initPortfolioFilter() {
   // تطبيق الفلتر الأولي بالكروت الموجودة حالياً في الـ grid
   applyStatic('all', 10);
 
+  // إعادة تطبيق الحد بعد تحميل كروت Supabase غير المتزامن (يُظهر 12 ويُخفي الباقي)
+  var __homeGrid = document.getElementById('portfolioGrid');
+  if (__homeGrid && window.MutationObserver) {
+    var __capTimer = null;
+    var __homeObs = new MutationObserver(function () {
+      clearTimeout(__capTimer);
+      __capTimer = setTimeout(function () { applyStatic(staticCat, 12); }, 150);
+    });
+    __homeObs.observe(__homeGrid, { childList: true });
+  }
+
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
