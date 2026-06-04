@@ -495,14 +495,18 @@ body.loading { overflow: hidden; }
     padding-top: .2rem;
   }
   .ccd-dot {
-    width:8px; height:8px; border-radius:50%;
-    background:rgba(255,255,255,.22); border:none; padding:0;
-    cursor:pointer; transition: all .3s ease;
+    width:24px; height:24px; border:none; padding:0; background:transparent;
+    position:relative; cursor:pointer;
   }
-  .ccd-dot:hover { background:rgba(184,151,106,.5); }
-  .ccd-dot.active {
+  .ccd-dot::before {
+    content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:8px; height:8px; border-radius:50%;
+    background:rgba(255,255,255,.22); transition: all .3s ease;
+  }
+  .ccd-dot:hover::before { background:rgba(184,151,106,.5); }
+  .ccd-dot.active::before {
     background:var(--gold);
-    width:24px; border-radius:4px;
+    width:24px; height:8px; border-radius:4px;
   }
 }
 
@@ -1564,7 +1568,7 @@ body.loading { overflow: hidden; }
           <span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>
           <h3><a href="blog/akhtaa-tasmeem-dakheli-2026">أكثر 7 أخطاء في التصميم الداخلي 2026 وكيف تتجنبها</a></h3>
           <p>اكتشف الأخطاء التي يقع فيها أصحاب المنازل وكيف يتجنبها متخصصو Creative3Design.</p>
-          <a href="blog/akhtaa-tasmeem-dakheli-2026" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+          <a href="blog/akhtaa-tasmeem-dakheli-2026" class="blog-read-more" aria-label="اقرأ المزيد عن: أكثر 7 أخطاء في التصميم الداخلي 2026 وكيف تتجنبها" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
         </div>
       </article>
       <article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold);">
@@ -1573,7 +1577,7 @@ body.loading { overflow: hidden; }
           <span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>
           <h3><a href="blog/ikhtiyar-sharikat-tashtib-2026">كيف تختار شركة تشطيب موثوقة في مصر 2026 — 9 معايير</a></h3>
           <p>المعايير الـ9 التي تضمن لك شركة تشطيب موثوقة وتجنّبك الأخطاء المكلفة.</p>
-          <a href="blog/ikhtiyar-sharikat-tashtib-2026" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+          <a href="blog/ikhtiyar-sharikat-tashtib-2026" class="blog-read-more" aria-label="اقرأ المزيد عن: كيف تختار شركة تشطيب موثوقة في مصر 2026 — 9 معايير" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
         </div>
       </article>
       <article class="blog-card lazy-reveal revealed" style="border-top:2px solid var(--gold);">
@@ -1582,7 +1586,7 @@ body.loading { overflow: hidden; }
           <span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>
           <h3><a href="blog/tasmeem-memari-villa-2026">التصميم المعماري للفيلات في مصر 2026 — المراحل والتكاليف</a></h3>
           <p>دليل شامل يكشف مراحل التصميم المعماري للفيلات والتكاليف الفعلية في مصر 2026.</p>
-          <a href="blog/tasmeem-memari-villa-2026" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+          <a href="blog/tasmeem-memari-villa-2026" class="blog-read-more" aria-label="اقرأ المزيد عن: التصميم المعماري للفيلات في مصر 2026 — المراحل والتكاليف" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
         </div>
       </article>
     </div>
@@ -2374,7 +2378,7 @@ window.addEventListener('load', function () {
             + '<span class="blog-tag" style="background:var(--gold);color:#000;">جديد 2026</span>'
             + '<h3><a href="' + href + '">' + title + '</a></h3>'
             + '<p>' + excerpt + '</p>'
-            + '<a href="' + href + '" class="blog-read-more" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>'
+            + '<a href="' + href + '" class="blog-read-more" aria-label="اقرأ المزيد عن: ' + title.replace(/"/g, '') + '" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>'
             + '</div></article>';
         }).join('');
       })

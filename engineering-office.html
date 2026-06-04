@@ -59,11 +59,15 @@
     }
     .calc-cards-dots { display:flex; justify-content:center; gap:.45rem; margin:0 0 1.5rem; padding-top:.2rem; }
     .ccd-dot {
-      width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.22);
-      border:none; padding:0; cursor:pointer; transition: all .3s ease;
+      width:24px; height:24px; border:none; padding:0; background:transparent;
+      position:relative; cursor:pointer;
     }
-    .ccd-dot:hover { background:rgba(184,151,106,.5); }
-    .ccd-dot.active { background:var(--gold); width:24px; border-radius:4px; }
+    .ccd-dot::before {
+      content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.22); transition: all .3s ease;
+    }
+    .ccd-dot:hover::before { background:rgba(184,151,106,.5); }
+    .ccd-dot.active::before { background:var(--gold); width:24px; height:8px; border-radius:4px; }
   }
 
   /* ── Calculator cards — mobile clarity & selectability (eng-office page) ── */
