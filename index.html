@@ -2016,7 +2016,7 @@ function switchBA(idx) {
         return window.c3dFetchProjects({ category: c, limit: 500 }).then(function (r) { return { c: c, data: (r && r.data) || [] }; });
       })).then(function (results) {
         var pools = {};
-        results.forEach(function (x) { pools[x.c] = x.data; });
+        results.forEach(function (x) { pools[x.c] = (x.data || []).slice().sort(function (a, b) { return (b.featured === true ? 1 : 0) - (a.featured === true ? 1 : 0); }); });
         window.__homePools = pools;
         return pools;
       });
