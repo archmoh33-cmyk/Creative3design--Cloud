@@ -1416,3 +1416,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function init(){ apply(); try{ new MutationObserver(function(){ apply(); }).observe(document.body,{childList:true,subtree:true}); }catch(e){} }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+
+/* ===== Mojeeb Chat Widget — injects the AI chat assistant (WhatsApp-linked) on every page ===== */
+(function(){
+  function load(){
+    if (document.getElementById('mojeeb-chat-widget')) return;
+    var s = document.createElement('script');
+    s.id = 'mojeeb-chat-widget';
+    s.src = 'https://mojeebcdn.z7.web.core.windows.net/mojeeb-widget.js';
+    s.setAttribute('data-widget-id', 'd70c206e-246c-4555-85d6-72999a2d00bc');
+    s.setAttribute('data-mode', 'default');
+    s.setAttribute('data-config', '{}');
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();
+})();
