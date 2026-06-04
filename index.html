@@ -2032,6 +2032,7 @@ function switchBA(idx) {
         });
         defaultData = window.__homeList;
         renderProjects(window.__homeList, false);
+        document.querySelectorAll('#portfolioGrid img[data-src]').forEach(function (im) { im.src = im.getAttribute('data-src'); im.removeAttribute('data-src'); });
         var more = Object.keys(__homeQuota).some(function (cat) { return window.__homePtr[cat] < ((pools[cat] || []).length); });
         var w = document.getElementById('showMoreWrap');
         if (w) w.style.display = more ? 'block' : 'none';
