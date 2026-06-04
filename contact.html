@@ -193,9 +193,9 @@
       </div>
       <div class="contact-form-wrap lazy-reveal">
         <h2 style="margin-bottom:1.5rem;">أرسل لنا رسالة</h2>
-        <form action="https://formsubmit.co/info@creativedesignegypt.com" method="POST">
+        <form id="c3dContactForm" novalidate>
           <input type="hidden" name="_subject" value="رسالة جديدة من موقع Creative3Design">
-          <input type="hidden" name="_next" value="https://creativedesignegypt.com/contact">
+          <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <div class="form-row-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
             <div class="form-group">
@@ -228,7 +228,28 @@
             <textarea id="message" name="message" placeholder="اكتب تفاصيل مشروعك هنا (المساحة، الميزانية التقريبية، الموقع...)"></textarea>
           </div>
           <button type="submit" class="btn-gold" style="width:100%;justify-content:center;" data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</button>
+          <p id="c3dContactMsg" style="margin-top:1rem;font-weight:600;min-height:1.2em;text-align:center;" aria-live="polite"></p>
         </form>
+        <script>
+        (function(){
+          var f=document.getElementById('c3dContactForm'); if(!f) return;
+          var m=document.getElementById('c3dContactMsg');
+          var b=f.querySelector('button[type="submit"]');
+          f.addEventListener('submit', function(e){
+            e.preventDefault();
+            var n=(f.elements['name'].value||'').trim();
+            var p=(f.elements['phone'].value||'').trim();
+            if(!n||!p){ m.style.color='#ff8a8a'; m.textContent='⚠️ من فضلك أدخل الاسم ورقم الهاتف.'; return; }
+            b.disabled=true; var ot=b.textContent; b.textContent='جاري الإرسال...'; m.style.color=''; m.textContent='';
+            var d={}; new FormData(f).forEach(function(v,k){ d[k]=v; });
+            fetch('https://formsubmit.co/ajax/info@creativedesignegypt.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
+              .then(function(r){ return r.json(); })
+              .then(function(j){ if(j&&(j.success==='true'||j.success===true)){ m.style.color='#7fff7f'; m.textContent='✅ تم إرسال رسالتك بنجاح! سنتواصل معك خلال ساعة.'; f.reset(); if(typeof gtag==='function'){ gtag('event','form_submit',{event_category:'lead',form_name:'contact'}); } } else { throw new Error('x'); } })
+              .catch(function(){ m.style.color='#ff8a8a'; m.textContent='❌ تعذّر الإرسال، حاول مجدداً أو راسلنا على واتساب.'; })
+              .finally(function(){ b.disabled=false; b.textContent=ot; });
+          });
+        })();
+        </script>
       </div>
     </div>
   </div>
