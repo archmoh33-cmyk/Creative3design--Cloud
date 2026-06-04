@@ -1964,7 +1964,7 @@ function switchBA(idx) {
       } else {
         /* جلب حتى 12 مشروع من هذا التصنيف وإخفاء زر المزيد */
         if (window.c3dFetchProjects) {
-          window.c3dFetchProjects({ category: cat, limit: 12 }).then(function(result) {
+          window.c3dFetchProjects({ category: cat, limit: 48 }).then(function(result) {
             var data = (result && result.data) || [];
             if (data.length) {
               renderProjects(data, true);
