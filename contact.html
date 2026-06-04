@@ -244,7 +244,7 @@
             var d={}; new FormData(f).forEach(function(v,k){ d[k]=v; });
             fetch('https://formsubmit.co/ajax/info@creativedesignegypt.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
               .then(function(r){ return r.json(); })
-              .then(function(j){ if(j&&(j.success==='true'||j.success===true)){ m.style.color='#7fff7f'; m.textContent='✅ تم إرسال رسالتك بنجاح! سنتواصل معك خلال ساعة.'; f.reset(); if(typeof gtag==='function'){ gtag('event','form_submit',{event_category:'lead',form_name:'contact'}); } } else { throw new Error('x'); } })
+              .then(function(j){ if(j&&(j.success==='true'||j.success===true)){ m.style.color='#7fff7f'; m.textContent='✅ تم إرسال رسالتك بنجاح! سنتواصل معك خلال ساعة.'; f.reset(); if(typeof gtag==='function'){ gtag('event','form_submit',{event_category:'lead',form_name:'contact'}); gtag('event','conversion',{send_to:'AW-10829372232/mPXcCO3D894YEMi27Kso'}); } } else { throw new Error('x'); } })
               .catch(function(){ m.style.color='#ff8a8a'; m.textContent='❌ تعذّر الإرسال، حاول مجدداً أو راسلنا على واتساب.'; })
               .finally(function(){ b.disabled=false; b.textContent=ot; });
           });
