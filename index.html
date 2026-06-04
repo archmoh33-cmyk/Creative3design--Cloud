@@ -1907,26 +1907,27 @@ function switchBA(idx) {
   }
 
   /* ── جلب دفعة واحدة بتوزيع 4+2+2+4 من Supabase مباشرة ── */
-  function fetchBatch() {
+  function fetchBatch(rN, cN, vN, oN) {
+    if (rN == null) { rN = 3; cN = 1; vN = 1; oN = 3; }
     var db = window.c3dClient;
     return Promise.all([
       /* 4 داخلي سكني — ممثل القسم (featured=true) يأتي أولاً ثم sort_order */
       db.from('projects').select('*').eq('status','published').eq('category','interior-res')
         .order('featured',{ascending:false}).order('sort_order',{ascending:true}).order('created_at',{ascending:false})
-        .range(_offs.res, _offs.res + 3),
+        .range(_offs.res, _offs.res + rN),
       /* 2 داخلي تجاري — ممثل القسم (featured=true) يأتي أولاً ثم sort_order */
       db.from('projects').select('*').eq('status','published').eq('category','interior-com')
         .order('featured',{ascending:false}).order('sort_order',{ascending:true}).order('created_at',{ascending:false})
-        .range(_offs.com, _offs.com + 1),
+        .range(_offs.com, _offs.com + cN),
       /* 2 فيلات وعمارات — ممثل القسم (featured=true) يأتي أولاً ثم sort_order */
       db.from('projects').select('*').eq('status','published').eq('category','villa')
         .order('featured',{ascending:false}).order('sort_order',{ascending:true}).order('created_at',{ascending:false})
-        .range(_offs.vil, _offs.vil + 1),
+        .range(_offs.vil, _offs.vil + vN),
       /* 4 تصنيفات أخرى (featured غير الثلاثة الرئيسية) */
       db.from('projects').select('*').eq('status','published').eq('featured',true)
         .not('category','eq','interior-res').not('category','eq','interior-com').not('category','eq','villa')
         .order('sort_order',{ascending:true}).order('created_at',{ascending:false})
-        .range(_offs.oth, _offs.oth + 3)
+        .range(_offs.oth, _offs.oth + oN)
     ]).then(function(results) {
       var res = (results[0] && results[0].data) || [];
       var com = (results[1] && results[1].data) || [];
@@ -1964,7 +1965,7 @@ function switchBA(idx) {
       } else {
         /* جلب حتى 12 مشروع من هذا التصنيف وإخفاء زر المزيد */
         if (window.c3dFetchProjects) {
-          window.c3dFetchProjects({ category: cat, limit: 48 }).then(function(result) {
+          window.c3dFetchProjects({ category: cat, limit: 12 }).then(function(result) {
             var data = (result && result.data) || [];
             if (data.length) {
               renderProjects(data, true);
@@ -2009,7 +2010,7 @@ function switchBA(idx) {
         showMoreBtn.disabled = true;
         if (btnSpan) btnSpan.textContent = 'جاري التحميل...';
         var prevCount = (document.getElementById('portfolioGrid').querySelectorAll('.port-card') || []).length;
-        fetchBatch().then(function(data) {
+        fetchBatch(1, 0, 0, 1).then(function(data) {
           showMoreBtn.disabled = false;
           if (btnSpan) btnSpan.textContent = 'شاهد المزيد من المشاريع';
           if (data.length) {
