@@ -413,7 +413,22 @@ function initPortfolioFilter() {
   const showMoreBtn = document.getElementById('portfolioShowMore');
   if (showMoreBtn) {
     showMoreBtn.addEventListener('click', () => {
-      applyStatic(staticCat, 18);
+      var __sel = staticCat === 'all'
+        ? '#portfolioGrid .port-card.hidden'
+        : '#portfolioGrid .port-card.hidden[data-cat="' + staticCat + '"]';
+      var __n = 0;
+      document.querySelectorAll(__sel).forEach(function (card) {
+        if (__n < 6) {
+          card.classList.remove('hidden');
+          if (!card.classList.contains('revealed')) {
+            card.classList.add('lazy-reveal');
+            setTimeout(function () { card.classList.add('revealed'); }, 50);
+          }
+          __n++;
+        }
+      });
+      var __w = document.getElementById('showMoreWrap');
+      if (__w) __w.style.display = document.querySelectorAll(__sel).length > 0 ? 'block' : 'none';
     });
   }
 }
