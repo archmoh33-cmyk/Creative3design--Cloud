@@ -536,7 +536,7 @@ window.C3D_PORTFOLIO_PAGE = true;
   var activeCat      = 'all';
   var activeStyle    = 'all';
   var searchQuery    = '';
-  var PAGE_SIZE      = 9;
+  var PAGE_SIZE      = 12;
   var displayedCount = PAGE_SIZE;
   var searchTimer    = null;
 
@@ -914,7 +914,7 @@ window.C3D_PORTFOLIO_PAGE = true;
       return;
     }
     var skels = '';
-    for (var k = 0; k < 9; k++) skels += '<div class="port-skeleton"></div>';
+    for (var k = 0; k < 12; k++) skels += '<div class="port-skeleton"></div>';
     grid.innerHTML = skels;
     var res = await window.c3dFetchProjects({ limit: 500 });
     allProjects = (res.error || !res.data || !res.data.length) ? STATIC_PROJECTS : res.data;
