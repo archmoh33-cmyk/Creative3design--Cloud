@@ -292,8 +292,10 @@ h3 { font-size:clamp(1.1rem,2vw,1.4rem); }
 .hero-sub { color:var(--platinum); font-size:1.1rem; max-width:520px; margin-bottom:2rem; }
 .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
 .hero-dots { position:absolute; bottom:7rem; right:50%; transform:translateX(50%); z-index:3; display:flex; gap:.6rem; }
-.hero-dot { width:10px; height:10px; border-radius:50%; border:2px solid var(--platinum); background:transparent; transition:all var(--transition); }
-.hero-dot.active { background:var(--gold); border-color:var(--gold); transform:scale(1.2); }
+.hero-dot { width:24px; height:24px; padding:0; border:none; background:transparent; position:relative; cursor:pointer; }
+.hero-dot::before { content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:10px; height:10px; border-radius:50%; border:2px solid var(--platinum); background:transparent; transition:all var(--transition); }
+.hero-dot.active { background:transparent; transform:none; }
+.hero-dot.active::before { background:var(--gold); border-color:var(--gold); transform:translate(-50%,-50%) scale(1.2); }
 
 /* Stats Bar */
 .hero-stats {
