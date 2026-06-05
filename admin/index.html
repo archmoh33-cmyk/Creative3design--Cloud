@@ -1314,6 +1314,7 @@ img{max-width:100%;display:block}
      SCRIPTS
 ════════════════════════════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <script src="../js/config.js"></script>
 <script src="../js/supabase-client.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
@@ -1932,8 +1933,21 @@ async function startEnroll(){
   const { data, error } = await window.c3dClient.auth.mfa.enroll({ factorType:'totp', friendlyName:'C3D-'+Date.now() });
   if(error){ actions.innerHTML=''; document.getElementById('mfaStatusLine').textContent='تعذّر بدء التفعيل: '+error.message; return; }
   window.__mfaFactorId=data.id;
-  var qr=data.totp.qr_code||'';
-  document.getElementById('mfaQr').innerHTML = qr.trim().indexOf('<svg')===0 ? qr : '<img alt="QR" style="width:180px;height:180px" src="'+qr+'">';
+  var uri=data.totp.uri||'';
+  var qrEl=document.getElementById('mfaQr'); qrEl.innerHTML='';
+  try{
+    if(typeof qrcode==='function' && uri){
+      var qg=qrcode(0,'M'); qg.addData(uri); qg.make();
+      qrEl.innerHTML=qg.createImgTag(5,8);
+    } else {
+      var raw=data.totp.qr_code||'';
+      qrEl.innerHTML = raw.trim().indexOf('<svg')===0 ? raw : '<img alt="QR" src="'+raw+'">';
+    }
+  }catch(e){
+    var raw2=data.totp.qr_code||'';
+    qrEl.innerHTML = raw2.trim().indexOf('<svg')===0 ? raw2 : '<img alt="QR" src="'+raw2+'">';
+  }
+  Array.prototype.forEach.call(qrEl.querySelectorAll('img'),function(im){im.style.width='200px';im.style.height='200px';im.style.imageRendering='pixelated';});
   document.getElementById('mfaSecret').textContent=data.totp.secret;
   document.getElementById('mfaEnrollArea').style.display='block';
   actions.innerHTML='';
