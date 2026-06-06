@@ -714,8 +714,12 @@ document.addEventListener('DOMContentLoaded', () => {
     var href = a.getAttribute('href') || '';
     if (/wa\.me|api\.whatsapp|whatsapp:/i.test(href)) {
       gtag('event', 'whatsapp_click', { event_category: 'engagement', link_url: href, page_path: location.pathname });
+      /* Google Ads conversion — WhatsApp click (ID 7615327679) */
+      gtag('event', 'conversion', { send_to: 'AW-10829372232/AAAAAcXorb8', value: 1.0, currency: 'EGP' });
     } else if (/^tel:/i.test(href)) {
       gtag('event', 'phone_click', { event_category: 'engagement', link_url: href, page_path: location.pathname });
+      /* Google Ads conversion — Phone call click (ID 7615336550) */
+      gtag('event', 'conversion', { send_to: 'AW-10829372232/AAAAAcXo0GY', value: 1.0, currency: 'EGP' });
     }
   }, true);
 
