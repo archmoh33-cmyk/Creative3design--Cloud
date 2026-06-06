@@ -11,13 +11,27 @@
   <meta name="facebook-domain-verification" content="d58j6xq5laf9tx5yot3wbsiek43lgu" />
   <meta name="robots" content="index, follow" />
   <!-- Google tag (gtag.js) — GA4 + Google Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYF05KS3PN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-BYF05KS3PN');
     gtag('config', 'AW-10829372232');
+    /* Deferred gtag.js load: keeps tracking (events queue into dataLayer) off the critical path */
+    (function(){
+      var loaded = false;
+      var evts = ['scroll','mousemove','touchstart','keydown','click'];
+      function loadGtag(){
+        if (loaded) return; loaded = true;
+        evts.forEach(function(e){ window.removeEventListener(e, loadGtag); });
+        var sc = document.createElement('script');
+        sc.async = true;
+        sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-BYF05KS3PN';
+        document.head.appendChild(sc);
+      }
+      evts.forEach(function(e){ window.addEventListener(e, loadGtag, { passive: true }); });
+      setTimeout(loadGtag, 4000);
+    })();
   </script>
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://creativedesignegypt.com/" />
@@ -38,9 +52,8 @@
   <meta name="geo.placename" content="Cairo" />
   <meta name="geo.position" content="30.0094132;31.4303277" />
   <meta name="ICBM" content="30.0094132, 31.4303277" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://htdqzpqhofthbugluifo.supabase.co" />
+  <link rel="preconnect" href="https://htdqzpqhofthbugluifo.supabase.co" crossorigin />
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -1013,7 +1026,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039468/creative3design/portfolio/utp0z9lb4nohzu3domh0.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن فيلا بكمبوند ماونتن فيو — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="رسيبشن فيلا ماونتن فيو" data-en="Mountain View Villa Reception">رسيبشن فيلا ماونتن فيو</h4>
+          <h3 data-ar="رسيبشن فيلا ماونتن فيو" data-en="Mountain View Villa Reception">رسيبشن فيلا ماونتن فيو</h3>
           <a href="portfolio?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1022,7 +1035,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039530/creative3design/portfolio/sc7csy5tnpntuqwv9phl.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="رسيبشن الترا مودرن بفيلا بفرلي هيلز — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="فيلا بيفرلي هيلز الترا مودرن" data-en="Beverly Hills Ultra Modern Villa">فيلا بيفرلي هيلز الترا مودرن</h4>
+          <h3 data-ar="فيلا بيفرلي هيلز الترا مودرن" data-en="Beverly Hills Ultra Modern Villa">فيلا بيفرلي هيلز الترا مودرن</h3>
           <a href="portfolio?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1031,7 +1044,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/v1779039369/creative3design/portfolio/wcc9kjzoi0juxin99p7t.webp" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="لوبي فيلا ليك فيو — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="لوبي فيلا ليك فيو" data-en="Lake View Villa Lobby">لوبي فيلا ليك فيو</h4>
+          <h3 data-ar="لوبي فيلا ليك فيو" data-en="Lake View Villa Lobby">لوبي فيلا ليك فيو</h3>
           <a href="portfolio?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1040,7 +1053,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779039431/creative3design/portfolio/uaiiheytrohx3wabdvrs.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="غرفة نوم بفيلا مدينتي — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي سكني" data-en="Residential Interior">تصميم داخلي سكني</span>
-          <h4 data-ar="غرفة نوم فيلا مدينتي" data-en="Madinaty Villa Bedroom">غرفة نوم فيلا مدينتي</h4>
+          <h3 data-ar="غرفة نوم فيلا مدينتي" data-en="Madinaty Villa Bedroom">غرفة نوم فيلا مدينتي</h3>
           <a href="portfolio?cat=interior-res" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1050,7 +1063,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798894/creative3design/commercial/03_maadi_shopping_mall/qy5yd4u8zvv0gcedlhle.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Maadi Shopping Mall — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="Maadi Shopping Mall" data-en="Maadi Shopping Mall">Maadi Shopping Mall</h4>
+          <h3 data-ar="Maadi Shopping Mall" data-en="Maadi Shopping Mall">Maadi Shopping Mall</h3>
           <a href="portfolio?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1059,7 +1072,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fasntazy Mall — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تجاري وإداري" data-en="Commercial & Admin">تجاري وإداري</span>
-          <h4 data-ar="Fasntazy Mall" data-en="Fasntazy Mall">Fasntazy Mall</h4>
+          <h3 data-ar="Fasntazy Mall" data-en="Fasntazy Mall">Fasntazy Mall</h3>
           <a href="portfolio?cat=commercial" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1070,7 +1083,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110928/creative3design/interior-com/%D9%83%D8%A7%D9%81%D9%8A%D9%87_%D8%A8%D8%AC%D8%AF%D8%A9/nyi90aaryswvoxka0gxl.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="كافيه بجدة — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="كافيه بجدة" data-en="Jeddah Cafe">كافيه بجدة</h4>
+          <h3 data-ar="كافيه بجدة" data-en="Jeddah Cafe">كافيه بجدة</h3>
           <a href="portfolio?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1079,7 +1092,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1779110950/creative3design/interior-com/%D9%85%D8%B7%D8%B9%D9%85_%D8%A7%D9%84_%D9%85%D9%88%D8%AF_%D8%A8%D9%85%D8%AF%D9%8A%D9%86%D8%AA%D9%8A/ruru1rukxehsshwkvmsf.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="مطعم ال مود بمدينتي — تصميم داخلي تجاري — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior">تصميم داخلي تجاري</span>
-          <h4 data-ar="مطعم ال مود بمدينتي" data-en="Al Mood Restaurant Madinaty">مطعم ال مود بمدينتي</h4>
+          <h3 data-ar="مطعم ال مود بمدينتي" data-en="Al Mood Restaurant Madinaty">مطعم ال مود بمدينتي</h3>
           <a href="portfolio?cat=interior-com" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1090,7 +1103,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778541005/creative3design/portfolio/vbryadjbdnbuxxl5dlsu.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fatemy Villas — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="Fatemy Villas" data-en="Fatemy Villas">Fatemy Villas</h4>
+          <h3 data-ar="Fatemy Villas" data-en="Fatemy Villas">Fatemy Villas</h3>
           <a href="portfolio?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1099,7 +1112,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778543563/creative3design/portfolio/hg2ajnikwr7lxkruolsy.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Classic Villa — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فيلات وعمارات" data-en="Villas & Buildings">فيلات وعمارات</span>
-          <h4 data-ar="Classic Villa" data-en="Classic Villa">Classic Villa</h4>
+          <h3 data-ar="Classic Villa" data-en="Classic Villa">Classic Villa</h3>
           <a href="portfolio?cat=villa" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1110,7 +1123,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797546/creative3design/hotels/01_the_platinum_hotel/woruyqrkq5fpi96nfr4v.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="The Platinum Hotel — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فنادق وضيافة" data-en="Hotels">فنادق وضيافة</span>
-          <h4 data-ar="The Platinum Hotel" data-en="The Platinum Hotel">The Platinum Hotel</h4>
+          <h3 data-ar="The Platinum Hotel" data-en="The Platinum Hotel">The Platinum Hotel</h3>
           <a href="portfolio?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1119,7 +1132,7 @@ body.loading { overflow: hidden; }
         <img data-src="https://res.cloudinary.com/dwh2y3lvz/image/upload/f_auto,q_auto:75/v1778797649/creative3design/hotels/05_riyadh_hotel/nit7azprrzkxyt2yg8ym.jpg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Riyadh Hotel — Creative3Design" class="lazy-img" loading="lazy" width="800" height="600" />
         <div class="port-overlay">
           <span class="port-cat" data-ar="فنادق وضيافة" data-en="Hotels">فنادق وضيافة</span>
-          <h4 data-ar="Riyadh Hotel" data-en="Riyadh Hotel">Riyadh Hotel</h4>
+          <h3 data-ar="Riyadh Hotel" data-en="Riyadh Hotel">Riyadh Hotel</h3>
           <a href="portfolio?cat=hospitality" class="port-link" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</a>
         </div>
       </div>
@@ -1259,9 +1272,9 @@ body.loading { overflow: hidden; }
 
     <!-- Mobile-only dots indicator below the carousel -->
     <div class="calc-cards-dots" role="tablist" aria-label="مؤشر الحاسبة الحالية">
-      <button class="ccd-dot active" data-calc-go="0" aria-label="حاسبة التشطيب"></button>
-      <button class="ccd-dot" data-calc-go="1" aria-label="حاسبة التصميم الداخلي"></button>
-      <button class="ccd-dot" data-calc-go="2" aria-label="حاسبة التصميم المعماري"></button>
+      <button class="ccd-dot active" type="button" role="tab" aria-selected="true" data-calc-go="0" aria-label="حاسبة التشطيب"></button>
+      <button class="ccd-dot" type="button" role="tab" aria-selected="false" data-calc-go="1" aria-label="حاسبة التصميم الداخلي"></button>
+      <button class="ccd-dot" type="button" role="tab" aria-selected="false" data-calc-go="2" aria-label="حاسبة التصميم المعماري"></button>
     </div>
 
     <!-- Mini price reference — compact pill bar -->
@@ -1445,7 +1458,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="جولة فيلا المعادي الفاخرة" data-en="Maadi Luxury Villa Tour">جولة فيلا المعادي الفاخرة</h4>
+          <h3 data-ar="جولة فيلا المعادي الفاخرة" data-en="Maadi Luxury Villa Tour">جولة فيلا المعادي الفاخرة</h3>
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('ScMzIvxBSi4')" aria-label="تشغيل فيديو شقة التجمع">
@@ -1454,7 +1467,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="شقة التجمع الخامس المودرن" data-en="Fifth Settlement Modern Apartment">شقة التجمع الخامس المودرن</h4>
+          <h3 data-ar="شقة التجمع الخامس المودرن" data-en="Fifth Settlement Modern Apartment">شقة التجمع الخامس المودرن</h3>
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('YQHsXMglC9A')" aria-label="تشغيل فيديو مكتب تجاري">
@@ -1463,7 +1476,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="مقر شركة بمدينة نصر" data-en="Nasr City Corporate Office">مقر شركة بمدينة نصر</h4>
+          <h3 data-ar="مقر شركة بمدينة نصر" data-en="Nasr City Corporate Office">مقر شركة بمدينة نصر</h3>
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('kJQP7kiw5Fk')" aria-label="تشغيل فيديو تصميم مطبخ">
@@ -1472,7 +1485,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="مطبخ فاخر بالزمالك" data-en="Luxury Zamalek Kitchen">مطبخ فاخر بالزمالك</h4>
+          <h3 data-ar="مطبخ فاخر بالزمالك" data-en="Luxury Zamalek Kitchen">مطبخ فاخر بالزمالك</h3>
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('fJ9rUzIMcZQ')" aria-label="تشغيل فيديو تشطيب شقة">
@@ -1481,7 +1494,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="تشطيب شقة المهندسين" data-en="Mohandessin Apartment Finishing">تشطيب شقة المهندسين</h4>
+          <h3 data-ar="تشطيب شقة المهندسين" data-en="Mohandessin Apartment Finishing">تشطيب شقة المهندسين</h3>
         </div>
         <div class="video-card lazy-reveal">
           <button class="video-thumb-btn" onclick="openYT('RgKAFK5djSk')" aria-label="تشغيل فيديو تصميم مطعم">
@@ -1490,7 +1503,7 @@ body.loading { overflow: hidden; }
               <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg>
             </div>
           </button>
-          <h4 data-ar="مطعم راقٍ بالقاهرة" data-en="Upscale Cairo Restaurant">مطعم راقٍ بالقاهرة</h4>
+          <h3 data-ar="مطعم راقٍ بالقاهرة" data-en="Upscale Cairo Restaurant">مطعم راقٍ بالقاهرة</h3>
         </div>
       </div>
       <button class="video-prev" onclick="videoPrev()" aria-label="السابق">&#8250;</button>
@@ -1711,7 +1724,7 @@ body.loading { overflow: hidden; }
         </div>
       </div>
       <div class="footer-links">
-        <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+        <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
         <ul>
           <li><a href="/" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
           <li><a href="about" data-ar="عن المكتب" data-en="About">عن المكتب</a></li>
@@ -1724,7 +1737,7 @@ body.loading { overflow: hidden; }
         </ul>
       </div>
       <div class="footer-links">
-        <h4 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h4>
+        <h3 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h3>
         <ul>
           <li><a href="services#interior-residential" data-ar="تصميم داخلي سكني" data-en="Residential Interior Design">تصميم داخلي سكني</a></li>
           <li><a href="services#interior-commercial" data-ar="تصميم داخلي تجاري" data-en="Commercial Interior Design">تصميم داخلي تجاري</a></li>
@@ -1735,7 +1748,7 @@ body.loading { overflow: hidden; }
         </ul>
       </div>
       <div class="footer-contact">
-        <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+        <h3 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h3>
         <a href="tel:00201019053288" class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +20 101 905 3288
@@ -1878,7 +1891,7 @@ function switchBA(idx) {
       '<img data-src="' + img + '" src="' + BLANK_GIF + '" alt="' + alt + '" class="lazy-img" loading="lazy" width="800" height="600" />' +
       '<div class="port-overlay">' +
         '<span class="port-cat" data-ar="' + lbl.ar + '" data-en="' + lbl.en + '">' + lbl.ar + '</span>' +
-        '<h4 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h4>' +
+        '<h3 data-ar="' + nameAr + '" data-en="' + nameEn + '">' + nameAr + '</h3>' +
         '<button class="port-link" data-pid="' + pid + '" data-img="' + img + '" data-name="' + safeName + '" data-ar="عرض المشروع" data-en="View Project">عرض المشروع</button>' +
       '</div></div>';
   }
@@ -2308,7 +2321,7 @@ function switchBA(idx) {
                 : '<div style="width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>')
             + '<div class="play-btn-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg></div>'
             + '</button>'
-            + '<h4>' + titleAr + '</h4>'
+            + '<h3>' + titleAr + '</h3>'
             + '</div>';
         });
 
@@ -2547,7 +2560,7 @@ window.addEventListener('load', function () {
     var activeIdx = Math.round(scrollLeft / cardWidth);
     if (activeIdx < 0) activeIdx = 0;
     if (activeIdx >= dots.length) activeIdx = dots.length - 1;
-    dots.forEach(function(d, i) { d.classList.toggle('active', i === activeIdx); });
+    dots.forEach(function(d, i) { var on = (i === activeIdx); d.classList.toggle('active', on); d.setAttribute('aria-selected', on ? 'true' : 'false'); });
   }
 
   /* Click on a dot → scroll to that card */
