@@ -1338,3 +1338,148 @@ html[dir="ltr"] .stat-item { text-align: center; }
 
 /* Hide Vercel Live feedback widget */
 vercel-live-feedback { display: none !important; }
+
+/* ============================================================
+   UI-2026 VISUAL UPGRADE PACK — Creative3Design (2026-06-11)
+   CSS-only · transform/opacity فقط · rollback: احذف هذه الكتلة
+   ============================================================ */
+
+/* 1) Expressive Typography — عناوين أضخم وأثقل */
+h1 { font-size:clamp(2rem,5vw,4.1rem); line-height:1.12; }
+h2 { font-size:clamp(1.65rem,3.4vw,2.7rem); font-weight:800; }
+
+/* 2) Hero H1 — champagne shimmer (تدرج ذهبي-كريمي متحرك) */
+@supports ((-webkit-background-clip:text) or (background-clip:text)) {
+  .hero-content h1 {
+    background:linear-gradient(100deg,#F5F5F0 25%,#d9bd92 45%,#F5F5F0 65%);
+    background-size:220% 100%;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:c3dShimmer 8s ease-in-out infinite;
+  }
+}
+@keyframes c3dShimmer {
+  0%,100% { background-position:110% 0; }
+  50%     { background-position:-10% 0; }
+}
+
+/* 3) Hero Ken Burns — zoom سينمائي بطيء (GPU فقط) */
+.hero-slide.active { animation:c3dKenburns 26s ease-out forwards; }
+@keyframes c3dKenburns {
+  from { transform:scale(1); }
+  to   { transform:scale(1.07); }
+}
+
+/* 4) فواصل معمارية — رقم شبحي + hairline ذهبي */
+body { counter-reset:c3dsec; }
+.section-header { position:relative; counter-increment:c3dsec; }
+.section-header::before {
+  content:counter(c3dsec,decimal-leading-zero);
+  position:absolute; top:-1.6em; left:50%; transform:translateX(-50%);
+  font-family:var(--font-heading); font-weight:900; line-height:1;
+  font-size:clamp(4rem,9vw,6.5rem);
+  color:rgba(245,245,240,.04);
+  pointer-events:none; user-select:none; z-index:0;
+}
+.section-header::after {
+  content:''; display:block; width:64px; height:2px;
+  margin:1.2rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+/* 5) عمق البطاقات — رفع + توهج ذهبي موحّد */
+.why-card, .blog-card, .testi-card {
+  transition:opacity .7s ease, transform .45s cubic-bezier(.22,.61,.36,1),
+             border-color var(--transition), box-shadow .45s ease;
+}
+.why-card:hover, .blog-card:hover, .testi-card:hover {
+  border-color:var(--gold);
+  transform:translateY(-5px);
+  box-shadow:0 18px 40px rgba(0,0,0,.45), 0 0 24px var(--gold-glow);
+}
+.service-card:hover {
+  box-shadow:0 18px 44px rgba(184,151,106,.2), 0 0 24px var(--gold-glow);
+}
+
+/* 6) Portfolio — علامات قص معمارية ذهبية عند الـ hover */
+.port-card::before, .port-card::after {
+  content:''; position:absolute; width:22px; height:22px;
+  opacity:0; transition:opacity .35s ease, transform .35s ease;
+  z-index:2; pointer-events:none;
+}
+.port-card::before {
+  top:12px; inset-inline-end:12px;
+  border-top:2px solid var(--gold); border-inline-end:2px solid var(--gold);
+  transform:translate(0,6px);
+}
+.port-card::after {
+  bottom:12px; inset-inline-start:12px;
+  border-bottom:2px solid var(--gold); border-inline-start:2px solid var(--gold);
+  transform:translate(0,-6px);
+}
+.port-card:hover::before, .port-card:hover::after { opacity:1; transform:translate(0,0); }
+
+/* 7) أزرار — لمعة sheen تنزلق عند الـ hover */
+.btn-gold { position:relative; overflow:hidden; }
+.btn-gold::after {
+  content:''; position:absolute; top:0; height:100%; width:55%;
+  left:-80%; transform:skewX(-18deg);
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.28),transparent);
+  transition:left .55s ease; pointer-events:none;
+}
+.btn-gold:hover::after { left:125%; }
+
+/* 8) شريط الكمبوندات — ذوبان الأطراف */
+.ticker-track {
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+
+/* 9) Staggered reveal — ظهور متدرّج لبطاقات الشبكات */
+.services-grid .lazy-reveal.revealed,
+.whyus-grid  .lazy-reveal.revealed,
+.blog-grid   .lazy-reveal.revealed {
+  animation:c3dRise .6s cubic-bezier(.22,.61,.36,1) backwards;
+}
+.services-grid .lazy-reveal.revealed:nth-child(2),
+.whyus-grid  .lazy-reveal.revealed:nth-child(2),
+.blog-grid   .lazy-reveal.revealed:nth-child(2) { animation-delay:.1s; }
+.services-grid .lazy-reveal.revealed:nth-child(3),
+.whyus-grid  .lazy-reveal.revealed:nth-child(3),
+.blog-grid   .lazy-reveal.revealed:nth-child(3) { animation-delay:.2s; }
+.services-grid .lazy-reveal.revealed:nth-child(4),
+.whyus-grid  .lazy-reveal.revealed:nth-child(4) { animation-delay:.3s; }
+.services-grid .lazy-reveal.revealed:nth-child(5),
+.whyus-grid  .lazy-reveal.revealed:nth-child(5) { animation-delay:.4s; }
+.services-grid .lazy-reveal.revealed:nth-child(6),
+.whyus-grid  .lazy-reveal.revealed:nth-child(6) { animation-delay:.5s; }
+@keyframes c3dRise {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* 10) شريط تقدم القراءة — CSS Scroll-Driven (معيار 2026، تدهور آمن) */
+@supports (animation-timeline: scroll()) {
+  body::before {
+    content:''; position:fixed; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));
+    transform-origin:0 50%; transform:scaleX(0);
+    animation:c3dProgress linear both;
+    animation-timeline:scroll(root);
+    z-index:1200; pointer-events:none;
+  }
+  @keyframes c3dProgress { to { transform:scaleX(1); } }
+}
+
+/* 11) خلفية أغمق للقسم المحوري (الحاسبات) */
+#packages-preview { background:#0f0d0b !important; }
+
+/* 12) احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide.active, .hero-content h1, body::before,
+  .services-grid .lazy-reveal.revealed,
+  .whyus-grid .lazy-reveal.revealed,
+  .blog-grid .lazy-reveal.revealed { animation:none !important; }
+  .btn-gold::after { display:none; }
+}
+/* ====================== END UI-2026 PACK ====================== */
