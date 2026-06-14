@@ -43,7 +43,9 @@ Disallow: /admin/
 Crawl-delay: 2
 
 # Sitemap location
+Sitemap: https://creativedesignegypt.com/sitemap-index.xml
 Sitemap: https://creativedesignegypt.com/sitemap.xml
+Sitemap: https://creativedesignegypt.com/sitemap-sa.xml
 
 # Host preference
 Host: https://creativedesignegypt.com
