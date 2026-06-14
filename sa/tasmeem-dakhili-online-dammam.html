@@ -38,6 +38,23 @@
     .price-table th { background:var(--gold); color:#000; font-weight:700; }
     .price-table tr:nth-child(even){ background:rgba(255,255,255,.02); }
   </style>
+  <style id="sa-enhance">
+  .sa-works-head{text-align:center;max-width:720px;margin:0 auto 2.4rem}
+  .sa-works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .sa-work{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--gray-border);background:var(--black-card);text-decoration:none;display:block;aspect-ratio:4/3}
+  .sa-work img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease}
+  .sa-work:hover img{transform:scale(1.07)}
+  .sa-work-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.93) 0%,rgba(10,9,8,.28) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem}
+  .sa-work .cat{align-self:flex-start;background:var(--gold);color:#000;font-size:.68rem;font-weight:700;padding:.22rem .6rem;border-radius:3px;margin-bottom:.5rem}
+  .sa-work .ttl{color:#fff;font-weight:700;font-size:1rem}
+  .sa-work .loc{color:var(--text-muted);font-size:.8rem;margin-top:.15rem}
+  .sa-works-cta{text-align:center;margin-top:2.3rem}
+  .sa-btn{padding:.85rem 1.9rem;text-decoration:none;font-weight:700;border-radius:4px;display:inline-flex;align-items:center;gap:.5rem;transition:transform .2s,box-shadow .2s}
+  .sa-btn-ghost{border:1px solid var(--gold);color:var(--gold)}
+  .sa-btn-ghost:hover{background:rgba(201,162,77,.12)}
+  @media(max-width:900px){.sa-works-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.sa-works-grid{gap:.8rem}.sa-work .ttl{font-size:.85rem}.sa-work-ov{padding:.8rem}}
+  </style>
 </head>
 <body>
 <div class="top-bar">
@@ -72,6 +89,45 @@
     <p style="color:var(--text-muted);">الدمام · الخبر · الظهران — تصميم بالريال وإشراف رقمي</p>
   </div>
 </section>
+<section class="section-padding sa-works" id="sa-works" style="background:var(--black-charcoal);">
+  <div class="container">
+    <div class="sa-works-head">
+      <p class="section-tag">أعمالنا</p>
+      <h2>نماذج من مشاريعنا — فلل وتصميم داخلي</h2>
+      <p style="color:var(--text-muted);">نماذج من مشاريعنا المنفّذة — ننفّذها لعملاء الدمام والمنطقة الشرقية عن بُعد بنفس الجودة.</p>
+    </div>
+    <div class="sa-works-grid">
+      <a class="sa-work" href="/project-detail?id=dbb2b31e-c764-4ef5-bf52-736fbe40493e" aria-label="فيلا عبد اللطيف">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/cadprkxouaeo25isrtd4" alt="تصميم داخلي لفيلا فاخرة لعميل في السعودية — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">فيلا · السعودية</span><span class="ttl">فيلا عبد اللطيف</span><span class="loc">تصميم داخلي مودرن · المملكة العربية السعودية</span></div>
+      </a>
+      <a class="sa-work" href="/project-detail?id=fa69b032-d601-4e24-a87c-be6428ad0093" aria-label="Fatemy Villas">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/vbryadjbdnbuxxl5dlsu" alt="تصميم فيلات مودرن Fatemy Villas — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">فيلات · مودرن</span><span class="ttl">Fatemy Villas</span><span class="loc">تصميم معماري وداخلي · القاهرة</span></div>
+      </a>
+      <a class="sa-work" href="/project-detail?id=dbc67210-18f3-47ac-8e63-8aaacf091c44" aria-label="Villa Abo O3day">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/baqu5l4tbsehbscebjfj" alt="تصميم فيلا مودرن Villa Abo O3day — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">فيلا · مودرن</span><span class="ttl">Villa Abo O3day</span><span class="loc">تصميم فيلا متكامل · القاهرة</span></div>
+      </a>
+      <a class="sa-work" href="/project-detail?id=eaeae4ae-b045-4985-9dd4-e7326b873a4d" aria-label="شقة عمرو">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/c8hbbrcqofcmtv62lcrs" alt="تصميم داخلي سكني مودرن شقة عمرو مدينتي — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">تصميم داخلي · مودرن</span><span class="ttl">شقة عمرو</span><span class="loc">تصميم داخلي سكني · مدينتي</span></div>
+      </a>
+      <a class="sa-work" href="/project-detail?id=1a9a6eef-d713-4089-a14f-7560b2e0a488" aria-label="شقة مروة">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/rntej5y0spiuomnjgypm" alt="تصميم داخلي نيوكلاسيك شقة مروة التجمع — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">تصميم داخلي · نيوكلاسيك</span><span class="ttl">شقة مروة</span><span class="loc">تصميم داخلي فاخر · التجمع الخامس</span></div>
+      </a>
+      <a class="sa-work" href="/project-detail?id=30fb65d0-b19d-4d67-a7ea-367d4880e47d" aria-label="رسيبشن مصر الجديدة">
+        <img src="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_600,h_450,q_auto,f_auto/creative3design/portfolio/k0hvquvk1fikgpegndds" alt="تصميم رسيبشن شقة مصر الجديدة — Creative3Design" decoding="async" width="600" height="450">
+        <div class="sa-work-ov"><span class="cat">تصميم داخلي · سكني</span><span class="ttl">رسيبشن مصر الجديدة</span><span class="loc">تصميم وحدة استقبال · القاهرة</span></div>
+      </a>
+    </div>
+    <div class="sa-works-cta">
+      <a class="sa-btn sa-btn-ghost" href="/portfolio">شاهد كل الأعمال — +1100 مشروع</a>
+    </div>
+  </div>
+</section>
+
 <section class="section-padding" style="background:var(--black-charcoal);">
   <div class="container">
     <div class="blog-layout" style="display:grid;grid-template-columns:1fr 300px;gap:3rem;align-items:start;">
