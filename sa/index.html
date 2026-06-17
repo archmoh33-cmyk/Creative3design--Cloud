@@ -424,6 +424,25 @@
   </div>
 </section>
 
+<!-- ===== VIDEOS ===== -->
+<section class="video-section section-padding" id="videos" style="display:none;background:var(--black);">
+  <div class="container">
+    <div class="section-header lazy-reveal">
+      <p class="section-tag">مكتبة الفيديو</p>
+      <h2>شاهد مشاريعنا حية</h2>
+      <p class="section-desc">جولات وفيديوهات لمشاريع نفّذناها — تصوّر النتيجة قبل أن تبدأ</p>
+    </div>
+    <div class="video-slider-wrap">
+      <div class="video-slider-track" id="videoTrack"></div>
+      <button class="video-prev" onclick="videoPrev()" aria-label="السابق">&#8250;</button>
+      <button class="video-next" onclick="videoNext()" aria-label="التالي">&#8249;</button>
+    </div>
+    <div class="section-cta lazy-reveal" style="margin-top:2rem;">
+      <a class="sa-btn sa-btn-primary" href="#sa-quote">احجز جولة VR لمشروعك</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== TESTIMONIALS ===== -->
 <section class="testimonials-section section-padding" id="testimonials" style="background:var(--black-charcoal);">
   <div class="container">
@@ -520,6 +539,15 @@
   </div>
 </section>
 
+<div id="videoLightbox" class="video-lightbox" onclick="closeLightbox(event)" role="dialog" aria-modal="true" aria-label="مشغّل الفيديو">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="إغلاق الفيديو">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="lightbox-inner">
+    <iframe id="ytFrame" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="فيديو Creative3Design"></iframe>
+  </div>
+</div>
+
 <script src="../js/main.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script defer src="../js/config.js"></script>
@@ -561,6 +589,30 @@ function saSubmitQuote(e){
     }).catch(function(){});
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(loadSaServices,400);}); else setTimeout(loadSaServices,400);
+})();
+/* Video library from Supabase (auto-hides if none) */
+(function(){
+  function extractYTId(u){ if(!u) return null; var m=u.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/); return m?m[1]:null; }
+  function loadSaVideos(){
+    if(!window.c3dClient){ return setTimeout(loadSaVideos,300); }
+    window.c3dClient.from('video_library').select('*').eq('active',true).order('sort_order',{ascending:true}).order('created_at',{ascending:false}).then(function(res){
+      if(res.error||!res.data||!res.data.length) return;
+      var track=document.getElementById('videoTrack'); if(!track) return;
+      track.innerHTML=res.data.map(function(v){
+        var id=extractYTId(v.video_url||'');
+        var thumb=id?'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg':'';
+        var t=(v.title_ar||'فيديو').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        var click=id?("openYT('"+id+"')"):("window.open('"+(v.video_url||'')+"','_blank')");
+        return '<div class="video-card lazy-reveal"><button class="video-thumb-btn" onclick="'+click+'" aria-label="تشغيل '+t+'">'
+          +(thumb?'<img src="'+thumb+'" alt="'+t+' - Creative3Design" loading="lazy" width="480" height="270" style="width:100%;height:100%;object-fit:cover"/>':'<div style="width:100%;height:100%;background:#111;"></div>')
+          +'<div class="play-btn-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg></div>'
+          +'</button><h3>'+t+'</h3></div>';
+      }).join('');
+      var sec=document.getElementById('videos'); if(sec) sec.style.display='';
+      if(typeof videoSlideUpdate==='function'){ window.videoIdx=0; videoSlideUpdate(); }
+    }).catch(function(){});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(loadSaVideos,400);}); else setTimeout(loadSaVideos,400);
 })();
 /* Real before/after from Supabase (auto-hides if none) */
 (function(){
