@@ -110,3 +110,6 @@ vercel --prod
 - الـ `anonKey` في Supabase آمن للاستخدام في الواجهة الأمامية (RLS تحميه)
 - لوحة التحكم تتطلب تسجيل دخول بالبريد وكلمة المرور عبر Supabase Auth
 - الموقع يعمل **بدون Supabase** بالبيانات الثابتة المدمجة (fallback تلقائي)
+
+
+<!-- redeploy trigger: Day24 Maadi geo page (2026-06-23) -->
