@@ -563,5 +563,40 @@ html{scroll-behavior:smooth;}
 </div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 <script src="../js/main.js"></script>
+<script id="c3d-guide-script">
+(function(){
+  if(window.__c3dGuide)return; window.__c3dGuide=1;
+  var art=document.querySelector(".article-body"); if(!art)return;
+  var hs=[].slice.call(art.querySelectorAll("h2"));
+  var toc=null;
+  if(hs.length>=3){
+    hs.forEach(function(h,i){if(!h.id)h.id="gsec-"+(i+1);});
+    var aside=document.createElement("aside"); aside.className="c3d-toc"; aside.setAttribute("aria-label","فهرس الدليل");
+    var html='<div class="c3d-tt">محتويات الدليل</div><ul>';
+    hs.forEach(function(h){var t=(h.textContent||"").trim().replace(/^[◆•\s]+/,"");if(t.length>46)t=t.slice(0,44)+"…";html+='<li><a href="#'+h.id+'">'+t+'</a></li>';});
+    aside.innerHTML=html+"</ul>";
+    var layout=document.createElement("div"); layout.className="c3d-layout";
+    art.parentNode.insertBefore(layout,art); layout.appendChild(aside); layout.appendChild(art); toc=aside;
+  }
+  var h1=document.querySelector("h1");
+  if(h1&&!document.querySelector(".c3d-kicker")){var k=document.createElement("span");k.className="c3d-kicker";k.textContent="دليل Creative3Design الشامل · 2026";h1.parentNode.insertBefore(k,h1);}
+  var blocks=[].slice.call(art.querySelectorAll(":scope > h2,:scope > h3,:scope > p,:scope > ul,:scope > ol,:scope > table,:scope > div,:scope > section,:scope > blockquote"));
+  blocks.forEach(function(b){b.classList.add("c3d-rv");});
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if("IntersectionObserver"in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("c3d-in");io.unobserve(e.target);}});},{threshold:0.06,rootMargin:"0px 0px -30px 0px"});
+    blocks.forEach(function(b){io.observe(b);});
+  }
+  function runC(el){var t=parseFloat(el.getAttribute("data-count"))||0,sf=el.getAttribute("data-suffix")||"",t0=null;function s(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1100,1);el.textContent=Math.floor(t*(1-Math.pow(1-p,3)))+sf;if(p<1)requestAnimationFrame(s);else el.textContent=t+sf;}requestAnimationFrame(s);}
+  [].slice.call(document.querySelectorAll(".num[data-count]")).forEach(runC);
+  [].slice.call(document.querySelectorAll(".faq-q")).forEach(function(q){q.style.cursor="pointer";q.addEventListener("click",function(){(q.closest(".faq-item")||q.parentElement).classList.toggle("open");});});
+  var btt=document.querySelector(".back-to-top,.c3d-btt");
+  if(!btt){btt=document.createElement("button");btt.className="c3d-btt";btt.setAttribute("aria-label","العودة للأعلى");btt.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="3"><path d="M18 15l-6-6-6 6"/></svg>';btt.onclick=function(){window.scrollTo({top:0,behavior:"smooth"});};document.body.appendChild(btt);}
+  window.addEventListener("scroll",function(){if(btt&&btt.classList)btt.classList.toggle("show",window.scrollY>500);});
+  if(toc){var links=[].slice.call(toc.querySelectorAll("a"));var secs=links.map(function(a){return document.getElementById(a.getAttribute("href").slice(1));}).filter(Boolean);
+    if("IntersectionObserver"in window){var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id);});}});},{rootMargin:"-20% 0px -70% 0px"});secs.forEach(function(s){spy.observe(s);});}
+  }
+})();
+</script>
 </body>
 </html>
