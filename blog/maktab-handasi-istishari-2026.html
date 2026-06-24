@@ -127,7 +127,7 @@
       "addressCountry": "EG"
     },
     "description": "مكتب هندسي استشاري متخصص في التصميم الداخلي والتشطيبات الفاخرة منذ 2009",
-    "foundingDate": "2019",
+    "foundingDate": "2009",
     "priceRange": "$$"
   }
   </script>
@@ -139,273 +139,190 @@
   <link rel="stylesheet" href="../css/mobile.css">
 
   <style>
-    .blog-hero {
-      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0f3460 100%);
-      padding: 80px 20px 60px;
-      text-align: center;
-      border-bottom: 2px solid rgba(201,169,110,0.3);
-      position: relative;
+    /* ============================================================
+       Creative3Design — مكتب هندسي استشاري (الدليل الشامل)
+       Premium dark + gold upgrade — 2026
+       ============================================================ */
+    :root{
+      --gold:#c9a96e; --gold2:#e8c97e; --c3-line:rgba(201,169,110,.16);
+      --c3-panel:rgba(255,255,255,.035); --c3-ink:#e9e6df; --c3-muted:#9b958a;
     }
-    .blog-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(201,169,110,0.06) 0%, transparent 70%);
+    /* ---------- HERO ---------- */
+    .blog-hero{
+      background:
+        radial-gradient(60vw 60vh at 80% -10%, rgba(201,169,110,.12), transparent 60%),
+        radial-gradient(55vw 50vh at 5% 0%, rgba(64,86,140,.16), transparent 60%),
+        linear-gradient(135deg, #0b0b14 0%, #14142a 55%, #0f3460 130%);
+      padding:78px 20px 0; text-align:center;
+      border-bottom:1px solid var(--c3-line); position:relative; overflow:hidden;
     }
-    .breadcrumb {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      position: relative;
+    .blog-hero::before{
+      content:''; position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(201,169,110,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,169,110,.05) 1px, transparent 1px);
+      background-size:54px 54px; mask-image:radial-gradient(ellipse at 50% 0%, #000, transparent 72%);
+      -webkit-mask-image:radial-gradient(ellipse at 50% 0%, #000, transparent 72%);
     }
-    .breadcrumb a { color: #c9a96e; text-decoration: none; }
-    .blog-hero h1 {
-      font-size: clamp(24px, 4vw, 42px);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.4;
-      max-width: 800px;
-      margin: 0 auto 16px;
-      position: relative;
+    .blog-hero > *{position:relative;}
+    .hero-kicker{
+      display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:1.2px;
+      color:var(--gold); border:1px solid var(--c3-line); background:rgba(201,169,110,.06);
+      padding:6px 16px; border-radius:40px; margin-bottom:18px;
     }
-    .blog-hero h1 span { color: #c9a96e; }
-    .blog-meta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      font-size: 13px;
-      color: #888;
-      position: relative;
+    .breadcrumb{display:flex; gap:8px; align-items:center; justify-content:center; font-size:13px; color:#9a958a; margin-bottom:22px; flex-wrap:wrap;}
+    .breadcrumb a{color:var(--gold); text-decoration:none;}
+    .blog-hero h1{
+      font-size:clamp(26px,4.4vw,46px); font-weight:900; line-height:1.35; max-width:840px; margin:0 auto 14px;
+      color:#fff;
     }
-    .blog-meta span { display: flex; align-items: center; gap: 5px; }
-    .article-body {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 50px 24px 80px;
+    .blog-hero h1 span{
+      background:linear-gradient(120deg,var(--gold2),var(--gold));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .article-body h2 {
-      font-size: 26px;
-      font-weight: 800;
-      color: #fff;
-      margin: 48px 0 20px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba(201,169,110,0.25);
-    }
-    .article-body h2::before { content: '◆ '; color: #c9a96e; font-size: 14px; }
-    .article-body h3 { font-size: 19px; font-weight: 700; color: #e8c97e; margin: 32px 0 14px; }
-    .article-body p { color: #ccc; line-height: 1.9; margin-bottom: 18px; font-size: 16px; }
-    .article-body strong { color: #fff; }
-    .article-body a { color: #c9a96e; text-decoration: none; }
-    .article-body a:hover { text-decoration: underline; }
+    .blog-meta{display:flex; gap:20px; justify-content:center; flex-wrap:wrap; font-size:13px; color:#9a958a;}
+    .blog-meta span{display:flex; align-items:center; gap:5px;}
 
-    .highlight-box {
-      background: rgba(201,169,110,0.08);
-      border: 1px solid rgba(201,169,110,0.25);
-      border-right: 4px solid #c9a96e;
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 28px 0;
+    /* ---------- HERO STATS BAR ---------- */
+    .mh-stats{
+      display:flex; justify-content:center; flex-wrap:wrap; gap:14px;
+      max-width:900px; margin:34px auto 0; transform:translateY(34px);
     }
-    .highlight-box p { margin: 0; color: #ddd; }
+    .mh-stat{
+      flex:1 1 160px; max-width:210px; background:rgba(10,10,18,.72);
+      border:1px solid var(--c3-line); border-radius:16px; padding:20px 16px; text-align:center;
+      backdrop-filter:blur(6px); transition:transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .mh-stat:hover{transform:translateY(-4px); border-color:rgba(201,169,110,.42); box-shadow:0 14px 34px rgba(0,0,0,.45);}
+    .mh-stat .num{
+      font-size:2rem; font-weight:900; line-height:1;
+      background:linear-gradient(135deg,var(--gold2),var(--gold));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .mh-stat .label{font-size:.82rem; color:var(--c3-muted); margin-top:7px;}
 
-    .warning-box {
-      background: rgba(239,68,68,0.06);
-      border: 1px solid rgba(239,68,68,0.2);
-      border-right: 4px solid #ef4444;
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 28px 0;
+    /* ---------- LAYOUT (TOC + body) ---------- */
+    .mh-layout{
+      max-width:1180px; margin:0 auto; padding:62px 24px 80px;
+      display:grid; grid-template-columns:240px 1fr; gap:42px; align-items:start;
     }
-    .warning-box p { margin: 0; color: #ddd; }
+    .mh-toc{position:sticky; top:84px;}
+    .mh-toc .toc-title{font-size:.76rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--c3-muted); margin-bottom:14px;}
+    .mh-toc ul{list-style:none; margin:0; padding:0; border-right:1px solid var(--c3-line);}
+    .mh-toc li a{display:block; padding:9px 16px; margin-right:-1px; font-size:.9rem; color:#b9b4a9; border-right:2px solid transparent; transition:.2s;}
+    .mh-toc li a:hover{color:var(--gold2);}
+    .mh-toc li a.active{color:var(--gold); border-right-color:var(--gold); font-weight:700; background:linear-gradient(270deg, rgba(201,169,110,.10), transparent);}
 
-    .info-box {
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-right: 4px solid #3b82f6;
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 28px 0;
+    /* ---------- ARTICLE BODY ---------- */
+    .article-body{max-width:none; margin:0; padding:0;}
+    .article-body h2{
+      font-size:26px; font-weight:800; color:#fff; margin:48px 0 20px; padding-bottom:12px;
+      border-bottom:1px solid var(--c3-line); scroll-margin-top:84px;
     }
-    .info-box p { margin: 0; color: #ddd; }
+    .article-body h2::before{content:'◆ '; color:var(--gold); font-size:14px;}
+    .article-body h3{font-size:19px; font-weight:700; color:var(--gold2); margin:32px 0 14px;}
+    .article-body p{color:#cbc6bb; line-height:1.95; margin-bottom:18px; font-size:16px;}
+    .article-body strong{color:#fff;}
+    .article-body a{color:var(--gold); text-decoration:none;} .article-body a:hover{text-decoration:underline;}
 
-    .criteria-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin: 24px 0;
-    }
-    .criteria-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,169,110,0.12);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .criteria-card .num {
-      font-size: 32px;
-      font-weight: 900;
-      color: rgba(201,169,110,0.3);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .criteria-card h4 { color: #c9a96e; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-    .criteria-card p { color: #aaa; font-size: 13px; line-height: 1.6; margin: 0; }
+    .highlight-box{background:rgba(201,169,110,.08); border:1px solid var(--c3-line); border-right:4px solid var(--gold); border-radius:12px; padding:20px 24px; margin:28px 0;}
+    .highlight-box p{margin:0; color:#ddd;}
+    .warning-box{background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.22); border-right:4px solid #ef4444; border-radius:12px; padding:20px 24px; margin:18px 0;}
+    .warning-box p{margin:0; color:#ddd;}
+    .info-box{background:rgba(59,130,246,.06); border:1px solid rgba(59,130,246,.22); border-right:4px solid #3b82f6; border-radius:12px; padding:20px 24px; margin:28px 0;}
+    .info-box p{margin:0; color:#ddd;}
 
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-      font-size: 15px;
+    /* ---------- CRITERIA CARDS ---------- */
+    .criteria-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:24px 0;}
+    .criteria-card{
+      background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:14px; padding:22px 20px;
+      position:relative; overflow:hidden; transition:transform .26s, border-color .26s, box-shadow .26s;
     }
-    .compare-table th {
-      background: rgba(201,169,110,0.12);
-      color: #c9a96e;
-      padding: 14px 16px;
-      text-align: right;
-      font-weight: 700;
-      border-bottom: 2px solid rgba(201,169,110,0.2);
+    .criteria-card:hover{transform:translateY(-5px); border-color:rgba(201,169,110,.4); box-shadow:0 16px 36px rgba(0,0,0,.4);}
+    .criteria-card .num{
+      font-size:38px; font-weight:900; line-height:1; margin-bottom:8px;
+      background:linear-gradient(135deg, rgba(201,169,110,.55), rgba(201,169,110,.18));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .compare-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      color: #bbb;
-    }
-    .compare-table tr:last-child td { border: none; }
-    .compare-table .col-office { color: #22c55e; font-weight: 600; }
-    .compare-table .col-contractor { color: #f59e0b; }
+    .criteria-card h4{color:var(--gold); font-size:15px; font-weight:700; margin-bottom:8px;}
+    .criteria-card p{color:#a8a39a; font-size:13px; line-height:1.65; margin:0;}
 
-    .questions-list {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0;
-    }
-    .questions-list li {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 16px;
-      align-items: flex-start;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(201,169,110,0.1);
-      border-radius: 10px;
-      padding: 14px 16px;
-    }
-    .q-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .q-content h4 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 5px; }
-    .q-content p { color: #aaa; font-size: 13px; line-height: 1.6; margin: 0; }
+    /* ---------- COMPARE TABLE ---------- */
+    .compare-table{width:100%; border-collapse:separate; border-spacing:0; margin:24px 0; font-size:15px; border:1px solid var(--c3-line); border-radius:14px; overflow:hidden;}
+    .compare-table th{background:linear-gradient(135deg, rgba(201,169,110,.18), rgba(201,169,110,.08)); color:var(--gold2); padding:15px 16px; text-align:right; font-weight:700;}
+    .compare-table td{padding:13px 16px; border-top:1px solid rgba(255,255,255,.06); color:#bbb;}
+    .compare-table tbody tr:hover td{background:rgba(255,255,255,.025);}
+    .compare-table .col-office{color:#34d27f; font-weight:600;}
+    .compare-table .col-contractor{color:#f5a623;}
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin: 24px 0;
-    }
-    .service-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,169,110,0.1);
-      border-radius: 10px;
-      padding: 16px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .service-icon { font-size: 22px; flex-shrink: 0; }
-    .service-item h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .service-item p { color: #888; font-size: 12px; line-height: 1.5; margin: 0; }
+    /* ---------- QUESTIONS LIST ---------- */
+    .questions-list{list-style:none; padding:0; margin:24px 0;}
+    .questions-list li{display:flex; gap:14px; margin-bottom:14px; align-items:flex-start; background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:12px; padding:16px 18px; transition:transform .2s, border-color .2s;}
+    .questions-list li:hover{transform:translateX(-4px); border-color:rgba(201,169,110,.34);}
+    .q-icon{font-size:20px; flex-shrink:0; margin-top:2px;}
+    .q-content h4{color:#fff; font-size:15px; font-weight:700; margin-bottom:5px;}
+    .q-content p{color:#a8a39a; font-size:13px; line-height:1.65; margin:0;}
 
-    .article-cta {
-      background: linear-gradient(135deg, #1a1a2e, #0f3460);
-      border: 1px solid rgba(201,169,110,0.25);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-      margin: 50px 0;
-    }
-    .article-cta h3 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
-    .article-cta p { color: #aaa; font-size: 15px; margin-bottom: 24px; }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #c9a96e, #e8c97e);
-      color: #0d0d0d;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 14px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,169,110,0.3); text-decoration: none; }
+    /* ---------- SERVICES ---------- */
+    .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:24px 0;}
+    .service-item{background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:12px; padding:18px; display:flex; gap:12px; align-items:flex-start; transition:transform .22s, border-color .22s;}
+    .service-item:hover{transform:translateY(-4px); border-color:rgba(201,169,110,.34);}
+    .service-icon{font-size:24px; flex-shrink:0;}
+    .service-item h4{color:#fff; font-size:14px; font-weight:700; margin-bottom:4px;}
+    .service-item p{color:#8f8a81; font-size:12px; line-height:1.55; margin:0;}
 
-    .faq-section { margin: 48px 0; }
-    .faq-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,169,110,0.12);
-      border-radius: 12px;
-      margin-bottom: 12px;
+    /* ---------- CTA ---------- */
+    .article-cta{
+      background:linear-gradient(135deg,#13132a,#0f3460); border:1px solid var(--c3-line); border-radius:20px;
+      padding:46px 40px; text-align:center; margin:54px 0; position:relative; overflow:hidden;
     }
-    .faq-q {
-      padding: 18px 20px;
-      font-weight: 700;
-      color: #fff;
-      font-size: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-    .faq-q::after { content: '＋'; color: #c9a96e; font-size: 18px; flex-shrink: 0; }
-    .faq-a { padding: 0 20px 18px; color: #aaa; font-size: 14px; line-height: 1.8; }
+    .article-cta::before{content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, rgba(201,169,110,.16), transparent 60%);}
+    .article-cta > *{position:relative;}
+    .article-cta h3{font-size:24px; font-weight:800; color:#fff; margin-bottom:12px;}
+    .article-cta p{color:#c6c1b6; font-size:15px; margin-bottom:24px;}
+    .cta-btn{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#0d0d0d; font-weight:800; font-size:16px; padding:14px 32px; border-radius:50px; text-decoration:none; transition:transform .2s, box-shadow .2s;}
+    .cta-btn:hover{transform:translateY(-2px); box-shadow:0 8px 25px rgba(201,169,110,.34); text-decoration:none;}
 
-    .related-articles {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,169,110,0.15);
-      border-radius: 14px;
-      padding: 24px;
-      margin: 40px 0;
-    }
-    .related-articles h3 { color: #c9a96e; font-size: 17px; font-weight: 700; margin-bottom: 16px; }
-    .related-articles ul { list-style: none; padding: 0; }
-    .related-articles li { margin-bottom: 10px; }
-    .related-articles a { color: #ccc; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 8px; }
-    .related-articles a::before { content: '←'; color: #c9a96e; }
-    .related-articles a:hover { color: #c9a96e; }
+    /* ---------- FAQ ACCORDION ---------- */
+    .faq-section{margin:24px 0;}
+    .faq-item{background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:12px; margin-bottom:12px; overflow:hidden;}
+    .faq-q{width:100%; text-align:right; background:none; border:0; cursor:pointer; padding:18px 20px; font-weight:700; color:#fff; font-size:15px; font-family:inherit; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+    .faq-q::after{content:'＋'; color:var(--gold); font-size:20px; flex-shrink:0; transition:transform .25s;}
+    .faq-item.open .faq-q::after{transform:rotate(45deg);}
+    .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s ease; padding:0 20px; color:#a8a39a; font-size:14px; line-height:1.85;}
+    .faq-item.open .faq-a{max-height:520px; padding:0 20px 18px;}
 
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      width: 46px;
-      height: 46px;
-      background: #c9a96e;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(201,169,110,0.4);
-      transition: transform 0.2s;
-    }
-    .back-to-top:hover { transform: translateY(-3px); }
-    .float-group { position: fixed; bottom: 90px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
-    .float-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
-    .float-btn:hover { transform: scale(1.1); }
-    .float-btn-wa { background: #25d366; }
-    .float-btn-call { background: #c9a96e; }
+    /* ---------- RELATED ---------- */
+    .related-articles{background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:16px; padding:26px; margin:40px 0;}
+    .related-articles h3{color:var(--gold); font-size:17px; font-weight:700; margin-bottom:16px;}
+    .related-articles ul{list-style:none; padding:0;}
+    .related-articles li{margin-bottom:10px;}
+    .related-articles a{color:#cbc6bb; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:8px; transition:color .2s;}
+    .related-articles a::before{content:'←'; color:var(--gold);}
+    .related-articles a:hover{color:var(--gold2);}
 
-    @media (max-width: 600px) {
-      .article-cta { padding: 28px 20px; }
-      .criteria-grid { grid-template-columns: 1fr; }
+    /* ---------- FLOAT + BACK TO TOP ---------- */
+    .back-to-top{position:fixed; bottom:30px; left:30px; width:46px; height:46px; background:linear-gradient(135deg,var(--gold),var(--gold2)); border:none; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 15px rgba(201,169,110,.42); transition:transform .2s, opacity .3s; z-index:60;}
+    .back-to-top:hover{transform:translateY(-3px);}
+    .float-group{position:fixed; bottom:90px; left:20px; display:flex; flex-direction:column; gap:10px; z-index:60;}
+    .float-btn{width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 15px rgba(0,0,0,.3); transition:transform .2s;}
+    .float-btn:hover{transform:scale(1.1);}
+    .float-btn-wa{background:#25d366;} .float-btn-call{background:var(--gold);}
+
+    /* ---------- REVEAL ---------- */
+    .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+    .reveal.in{opacity:1; transform:none;}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none;}}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:980px){
+      .mh-layout{grid-template-columns:1fr; gap:0; padding-top:54px;}
+      .mh-toc{display:none;}
+    }
+    @media (max-width:600px){
+      .article-cta{padding:30px 22px;}
+      .criteria-grid{grid-template-columns:1fr;}
+      .mh-stat{flex-basis:128px;}
     }
   </style>
 </head>
@@ -445,6 +362,7 @@
     <span>›</span>
     <span style="color:#ccc;">مكتب هندسي استشاري في مصر 2026</span>
   </nav>
+  <span class="hero-kicker">دليل اختيار شامل · استشارات هندسية</span>
   <h1>مكتب هندسي استشاري في مصر 2026<br><span>كيف تختار الأفضل لمشروعك؟</span></h1>
   <div class="blog-meta">
     <span>📅 28 مايو 2026</span>
@@ -452,20 +370,44 @@
     <span>⏱️ وقت القراءة: 9 دقائق</span>
     <span>🏷️ استشارات هندسية</span>
   </div>
+  <div class="mh-stats">
+    <div class="mh-stat"><div class="num" data-count="15" data-suffix="+">0</div><div class="label">سنة خبرة هندسية</div></div>
+    <div class="mh-stat"><div class="num" data-count="7">0</div><div class="label">معايير للاختيار</div></div>
+    <div class="mh-stat"><div class="num" data-count="9">0</div><div class="label">خدمات هندسية</div></div>
+    <div class="mh-stat"><div class="num" data-count="10">0</div><div class="label">أسئلة قبل التعاقد</div></div>
+  </div>
 </header>
 
-<!-- ARTICLE BODY -->
-<main class="article-body">
+<!-- LAYOUT: TOC + ARTICLE -->
+<div class="mh-layout">
+
+  <!-- Sticky TOC -->
+  <aside class="mh-toc" aria-label="فهرس الدليل">
+    <div class="toc-title">محتويات الدليل</div>
+    <ul>
+      <li><a href="#s-intro">نظرة سريعة</a></li>
+      <li><a href="#s-what">ما هو المكتب الهندسي؟</a></li>
+      <li><a href="#s-services">خدمات المكتب</a></li>
+      <li><a href="#s-criteria">7 معايير للاختيار</a></li>
+      <li><a href="#s-questions">10 أسئلة قبل التعاقد</a></li>
+      <li><a href="#s-cost">تكلفة الاستشارة</a></li>
+      <li><a href="#s-mistakes">أخطاء شائعة</a></li>
+      <li><a href="#s-faq">الأسئلة الشائعة</a></li>
+    </ul>
+  </aside>
+
+  <!-- ARTICLE BODY -->
+  <main class="article-body">
 
   <!-- Answer-First / TL;DR — مُحسّن لإجابات البحث بالذكاء الصناعي (AI Overviews) -->
-  <div class="answer-first" style="background:rgba(184,151,106,0.1);border:1px solid var(--gold,#b8976a);border-radius:10px;padding:1.3rem 1.6rem;margin-bottom:1.8rem;">
-    <p style="margin:0;line-height:1.95;">
-      <strong style="color:var(--gold,#b8976a);">الإجابة المباشرة:</strong>
+  <div class="answer-first reveal" id="s-intro" style="background:rgba(201,169,110,.1);border:1px solid var(--gold,#b8976a);border-right:4px solid var(--gold,#c9a96e);border-radius:12px;padding:1.4rem 1.7rem;margin-bottom:1.8rem;">
+    <p style="margin:0;line-height:1.95;color:#d8d3c8;">
+      <strong style="color:var(--gold,#e8c97e);">الإجابة المباشرة:</strong>
       المكتب الهندسي الاستشاري جهة متخصصة تقدّم التصميم المعماري والإنشائي والداخلي والإشراف وإدارة المشاريع. لاختياره راجع <strong>7 معايير</strong>: الترخيص والقيد النقابي، المحفظة الموثّقة، الفريق المتخصص، شفافية الأتعاب، العقد الواضح، الإشراف الميداني، والسمعة. اطرح 10 أسئلة قبل التعاقد، وتذكّر أن تكلفة الاستشارة الهندسية في مصر 2026 عادةً نسبة من قيمة المشروع.
     </p>
   </div>
 
-  <p style="font-size:0.92rem;opacity:0.75;margin:0 0 1.6rem;border-bottom:1px solid rgba(0,0,0,0.08);padding-bottom:0.9rem;">
+  <p style="font-size:0.92rem;opacity:0.72;margin:0 0 1.6rem;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:0.9rem;">
     بقلم: <strong>د. محمد حسن خليل</strong> — مدير مكتب Creative3Design الاستشاري &bull; آخر تحديث: يونيو 2026
   </p>
 
@@ -476,12 +418,12 @@
     لكن السوق المصري مليء بالخيارات — من المكاتب الكبرى المتخصصة إلى المهندسين الأفراد. كيف تُفرّق؟ وما المعايير الصحيحة للاختيار؟ هذا الدليل يجيب عن كل سؤال.
   </p>
 
-  <div class="highlight-box">
+  <div class="highlight-box reveal">
     <p><strong>ملخص سريع:</strong> المكتب الهندسي الاستشاري الجيد يجمع بين <strong>التصميم الإبداعي + الكفاءة الهندسية + إدارة التكاليف</strong>. الأرخص ليس الأفضل، والأغلى لا يعني دائماً الأكفأ. المعايير التي ستتعلمها في هذا الدليل ستوفر عليك وقتاً وأموالاً.</p>
   </div>
 
   <!-- SECTION 1 -->
-  <h2>ما هو المكتب الهندسي الاستشاري؟</h2>
+  <h2 id="s-what">ما هو المكتب الهندسي الاستشاري؟</h2>
 
   <p>
     <strong>المكتب الهندسي الاستشاري</strong> هو منشأة متخصصة تضم مهندسين معماريين ومدنيين وكهربائيين وميكانيكيين وديكوراتيين، تقدم خدماتها الفكرية والإشرافية للعملاء في مشاريع البناء والتصميم. يعمل كـ"الوكيل الأمين" للعميل في مواجهة المقاولين والموردين.
@@ -489,7 +431,7 @@
 
   <p>يختلف جوهرياً عن المقاول الذي يتولى التنفيذ الفعلي:</p>
 
-  <table class="compare-table">
+  <table class="compare-table reveal">
     <thead>
       <tr>
         <th>وجه المقارنة</th>
@@ -532,11 +474,11 @@
   </table>
 
   <!-- SECTION 2 -->
-  <h2>خدمات المكتب الهندسي الاستشاري</h2>
+  <h2 id="s-services">خدمات المكتب الهندسي الاستشاري</h2>
 
   <p>المكتب الهندسي المتكامل يقدم مجموعة شاملة من الخدمات:</p>
 
-  <div class="services-grid">
+  <div class="services-grid reveal">
     <div class="service-item">
       <div class="service-icon">🏗️</div>
       <div>
@@ -603,9 +545,9 @@
   </div>
 
   <!-- SECTION 3 -->
-  <h2>7 معايير أساسية لاختيار المكتب الهندسي الاستشاري</h2>
+  <h2 id="s-criteria">7 معايير أساسية لاختيار المكتب الهندسي الاستشاري</h2>
 
-  <div class="criteria-grid">
+  <div class="criteria-grid reveal">
     <div class="criteria-card">
       <div class="num">01</div>
       <h4>معرض الأعمال السابقة</h4>
@@ -644,11 +586,11 @@
   </div>
 
   <!-- SECTION 4 -->
-  <h2>الأسئلة الـ 10 التي يجب طرحها قبل التعاقد</h2>
+  <h2 id="s-questions">الأسئلة الـ 10 التي يجب طرحها قبل التعاقد</h2>
 
   <p>في الاجتماع الأول، هذه الأسئلة تكشف لك الحقيقة قبل التوقيع:</p>
 
-  <ul class="questions-list">
+  <ul class="questions-list reveal">
     <li>
       <div class="q-icon">❓</div>
       <div class="q-content">
@@ -722,42 +664,42 @@
   </ul>
 
   <!-- SECTION 5 -->
-  <h2>تكلفة الاستشارة الهندسية في مصر 2026</h2>
+  <h2 id="s-cost">تكلفة الاستشارة الهندسية في مصر 2026</h2>
 
   <p>الأسعار تتفاوت حسب حجم المكتب وخبرته وطبيعة المشروع:</p>
 
-  <div class="highlight-box">
+  <div class="highlight-box reveal">
     <p><strong>للتصميم الداخلي فقط:</strong> 150 – 500 ج.م / م² (حسب مستوى التصميم والتفاصيل)<br>
     <strong>للتصميم المعماري:</strong> 200 – 700 ج.م / م² (حسب تعقيد المشروع)<br>
     <strong>للإشراف الكامل:</strong> 3% – 8% من إجمالي قيمة المشروع<br>
     <strong>للاستشارة الساعية:</strong> 500 – 5,000 ج.م / ساعة (حسب خبرة المهندس)</p>
   </div>
 
-  <div class="info-box">
+  <div class="info-box reveal">
     <p><strong>💡 لماذا الإشراف يستحق تكلفته؟</strong> دراسات متعددة تثبت أن وجود مكتب هندسي مشرف يوفر في المتوسط 15-25% من تكلفة التنفيذ عن طريق منع الأخطاء، ضبط أسعار المواد، والتحقق من كميات المقاول. إنها استثمار وليست تكلفة.</p>
   </div>
 
   <!-- SECTION 6 -->
-  <h2>أخطاء شائعة في اختيار المكتب الهندسي</h2>
+  <h2 id="s-mistakes">أخطاء شائعة في اختيار المكتب الهندسي</h2>
 
-  <div class="warning-box">
+  <div class="warning-box reveal">
     <p><strong>⚠️ اختيار الأرخص تلقائياً:</strong> الأرخص غالباً يعني مهندس مبتدئ، أو تصميم متسرع، أو غياب الإشراف الحقيقي. التوفير في الاستشارة الهندسية قد يكلفك عشرات الآلاف في التنفيذ.</p>
   </div>
 
-  <div class="warning-box">
+  <div class="warning-box reveal">
     <p><strong>⚠️ التعامل بدون عقد موثق:</strong> أي اتفاق شفهي لا قيمة قانونية له. العقد يجب أن يُحدد: النطاق الكامل للخدمات، الجدول الزمني، المبالغ، وشروط الإنهاء.</p>
   </div>
 
-  <div class="warning-box">
+  <div class="warning-box reveal">
     <p><strong>⚠️ عدم التحقق من الترخيص:</strong> ممارسة الهندسة بدون ترخيص من النقابة مخالفة للقانون المصري. تأكد من رقم عضوية المهندس المسؤول.</p>
   </div>
 
-  <div class="warning-box">
+  <div class="warning-box reveal">
     <p><strong>⚠️ تجاهل تضارب المصالح:</strong> بعض المكاتب تأخذ عمولة من الموردين والمقاولين الذين يُرشحونهم. اسأل مباشرة: هل تأخذون عمولة من أي طرف ثالث؟</p>
   </div>
 
   <!-- CTA -->
-  <div class="article-cta">
+  <div class="article-cta reveal">
     <h3>Creative3Design — مكتبك الهندسي الاستشاري</h3>
     <p>خبرة 15 سنة في التصميم المعماري والداخلي وإدارة مشاريع التشطيب. نقدم استشارة مجانية وتصميم مرئي 3D قبل أي التزام مالي.</p>
     <a href="https://wa.me/201019053288?text=مرحباً، أريد استشارة مجانية مع مكتبكم الهندسي" class="cta-btn">
@@ -767,33 +709,33 @@
   </div>
 
   <!-- FAQ -->
-  <h2>الأسئلة الشائعة عن المكتب الهندسي الاستشاري</h2>
+  <h2 id="s-faq">الأسئلة الشائعة عن المكتب الهندسي الاستشاري</h2>
 
   <div class="faq-section">
     <div class="faq-item">
-      <div class="faq-q">ما هو المكتب الهندسي الاستشاري وما خدماته؟</div>
+      <button class="faq-q" type="button">ما هو المكتب الهندسي الاستشاري وما خدماته؟</button>
       <div class="faq-a">المكتب الهندسي الاستشاري جهة متخصصة تقدم خدمات التصميم المعماري والداخلي والإنشائي والكهربائي والميكانيكي، إلى جانب إدارة المشاريع والإشراف على التنفيذ. يختلف عن المقاول في أنه يمثل مصلحة العميل ويتخصص في الجانب الفكري والتصميمي والإداري.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">كيف أختار أفضل مكتب هندسي استشاري في مصر؟</div>
+      <button class="faq-q" type="button">كيف أختار أفضل مكتب هندسي استشاري في مصر؟</button>
       <div class="faq-a">للاختيار الصحيح: 1) اطلع على أعمالهم السابقة المماثلة لمشروعك، 2) تحقق من ترخيص النقابة، 3) تعرّف على المهندس المسؤول بالتحديد، 4) ناقش الميزانية والتوقعات بوضوح، 5) اقرأ العقد بعناية وتأكد من وضوح المسؤوليات والحقوق، 6) اطلب أسماء عملاء سابقين وتواصل معهم.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">ما الفرق بين المكتب الهندسي الاستشاري والمقاول؟</div>
+      <button class="faq-q" type="button">ما الفرق بين المكتب الهندسي الاستشاري والمقاول؟</button>
       <div class="faq-a">المكتب الهندسي يتخصص في التصميم والاستشارة والإشراف ويمثل مصلحتك، بينما المقاول يتخصص في التنفيذ المادي والعمالة ويمثل مصلحته التجارية. في المشاريع الجادة، يعمل المكتب الهندسي كـ"مدافع" عنك في مواجهة المقاول ويضمن التزامه بالمواصفات والأسعار المتفق عليها.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">كم تكلفة الاستشارة الهندسية في مصر 2026؟</div>
+      <button class="faq-q" type="button">كم تكلفة الاستشارة الهندسية في مصر 2026؟</button>
       <div class="faq-a">تتراوح تكلفة الاستشارة الهندسية بين 3% و8% من إجمالي قيمة المشروع للإشراف الكامل. للتصميم الداخلي فقط: 150-500 ج.م/م². للتصميم المعماري: 200-700 ج.م/م². الاستشارة الساعية: 500-5,000 ج.م حسب خبرة المهندس.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">ما الأسئلة التي يجب طرحها على المكتب الهندسي قبل التعاقد؟</div>
+      <button class="faq-q" type="button">ما الأسئلة التي يجب طرحها على المكتب الهندسي قبل التعاقد؟</button>
       <div class="faq-a">أهم الأسئلة: 1) من المهندس المسؤول تحديداً؟ 2) كم مشروعاً يديرون الآن؟ 3) كم زيارة إشرافية أسبوعياً؟ 4) كم تعديلاً مسموحاً؟ 5) ما صيغة ملفات التسليم؟ 6) هل تأخذون عمولة من مقاولين أو موردين؟ 7) ما نظام الدفع والمراحل؟ 8) ما الضمانات المقدمة على التصميم؟</div>
     </div>
   </div>
 
   <!-- RELATED ARTICLES -->
-  <div class="related-articles">
+  <div class="related-articles reveal">
     <h3>مقالات ذات صلة</h3>
     <ul>
       <li><a href="/blog/khutuat-tashtib-shaqqa-min-sifr">مراحل تشطيب الشقة من الصفر — خطوة بخطوة</a></li>
@@ -806,7 +748,8 @@
     </ul>
   </div>
 
-</main>
+  </main>
+</div>
 
 <!-- Float Buttons -->
 <div class="float-group">
@@ -818,7 +761,7 @@
   </a>
 </div>
 
-<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button class="back-to-top" id="backToTop" aria-label="العودة للأعلى" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="3"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
@@ -854,5 +797,49 @@
 
 <script src="../js/main.js" defer></script>
 
+<script>
+(function(){
+  /* Animated counters */
+  function runCounter(el){
+    var target=parseFloat(el.getAttribute('data-count'))||0,
+        suffix=el.getAttribute('data-suffix')||'', dur=1100, t0=null;
+    function step(ts){
+      if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+      el.textContent=Math.floor(target*(1-Math.pow(1-p,3)))+suffix;
+      if(p<1)requestAnimationFrame(step); else el.textContent=target+suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver'in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){runCounter(e.target);cio.unobserve(e.target);}});},{threshold:0.5});
+    document.querySelectorAll('.num[data-count]').forEach(function(el){cio.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.num[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count')+(el.getAttribute('data-suffix')||'');});
+  }
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){btn.parentElement.classList.toggle('open');});
+  });
+
+  /* Back to top visibility */
+  var btt=document.getElementById('backToTop');
+  if(btt){btt.style.opacity='0';
+    window.addEventListener('scroll',function(){btt.style.opacity=window.scrollY>500?'1':'0';});
+  }
+
+  /* TOC scrollspy */
+  var links=[].slice.call(document.querySelectorAll('.mh-toc a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  if('IntersectionObserver'in window && sections.length){
+    var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-25% 0px -65% 0px'});
+    sections.forEach(function(s){spy.observe(s);});
+  }
+})();
+</script>
 </body>
 </html>

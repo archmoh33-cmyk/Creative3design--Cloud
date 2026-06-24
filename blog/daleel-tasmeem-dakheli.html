@@ -56,218 +56,313 @@
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/blog.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    .hub-hero {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      padding: 80px 20px 60px;
-      text-align: center;
-      color: #fff;
+    /* ============================================================
+       Creative3Design — دليل التصميم الداخلي الشامل
+       Premium dark + gold redesign (self-contained) — 2026
+       ============================================================ */
+    :root{
+      --c3-bg:#0a0a11; --c3-bg2:#0e0e1b; --c3-panel:rgba(255,255,255,.04);
+      --c3-line:rgba(201,169,110,.16); --c3-gold:#c9a96e; --c3-gold2:#e8c97e;
+      --c3-ink:#ece8e0; --c3-muted:#9b958a; --c3-nav:rgba(10,10,17,.82);
     }
-    .hub-hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: #c9a96e;
+    .c3hub, .c3hub *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+    .c3hub{
+      font-family:'Cairo',system-ui,'Segoe UI',Tahoma,sans-serif;
+      background:var(--c3-bg);
+      color:var(--c3-ink);
+      line-height:1.85;
+      position:relative;
+      overflow-x:hidden;
     }
-    .hub-hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.85);
-      max-width: 650px;
-      margin: 0 auto 30px;
-      line-height: 1.8;
+    .c3hub::before{
+      content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(60vw 50vh at 85% -5%, rgba(201,169,110,.10), transparent 60%),
+        radial-gradient(55vw 45vh at 10% 8%, rgba(64,86,140,.14), transparent 60%);
     }
-    .hub-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-    .hub-stat {
-      text-align: center;
-    }
-    .hub-stat .num {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #c9a96e;
-    }
-    .hub-stat .label {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-    }
-    .hub-breadcrumb {
-      background: #f8f8f8;
-      padding: 12px 20px;
-      font-size: 0.85rem;
-      color: #666;
-      text-align: center;
-    }
-    .hub-breadcrumb a { color: #c9a96e; text-decoration: none; }
-    .hub-breadcrumb a:hover { text-decoration: underline; }
+    .c3hub > *{position:relative; z-index:1;}
+    .c3hub a{color:var(--c3-gold); text-decoration:none;}
 
-    .hub-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px;
+    /* ---------- NAV ---------- */
+    .c3hub .navbar{
+      position:sticky; top:0; z-index:50;
+      background:var(--c3-nav);
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--c3-line);
     }
-    .hub-intro {
-      background: #fff;
-      border-radius: 12px;
-      padding: 36px;
-      margin-bottom: 50px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
-      line-height: 1.9;
-      color: #333;
-      font-size: 1.05rem;
+    .c3hub .nav-container{
+      max-width:1200px; margin:0 auto; padding:14px 22px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
     }
-    .hub-intro h2 {
-      color: #1a1a2e;
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-      border-right: 4px solid #c9a96e;
-      padding-right: 14px;
+    .c3hub .nav-logo{display:flex; align-items:center; gap:10px; font-weight:800;}
+    .c3hub .logo-c3d{
+      background:linear-gradient(135deg,var(--c3-gold),var(--c3-gold2));
+      color:#0a0a11; font-weight:900; padding:6px 9px; border-radius:9px; font-size:14px; letter-spacing:.5px;
     }
+    .c3hub .logo-text{color:var(--c3-ink); font-size:17px;}
+    .c3hub .logo-accent{color:var(--c3-gold);}
+    .c3hub .nav-menu{
+      list-style:none; display:flex; align-items:center; gap:6px; margin:0; padding:0;
+    }
+    .c3hub .nav-menu a{
+      color:#cfcabf; font-size:15px; font-weight:600; padding:8px 12px; border-radius:8px;
+      transition:color .2s, background .2s;
+    }
+    .c3hub .nav-menu a:hover{color:var(--c3-gold2); background:rgba(201,169,110,.08);}
+    .c3hub .nav-menu a.active{color:var(--c3-gold);}
+    .c3hub .nav-menu a.nav-cta{
+      background:linear-gradient(135deg,var(--c3-gold),var(--c3-gold2)); color:#0a0a11; font-weight:800;
+    }
+    .c3hub .nav-menu a.nav-cta:hover{color:#0a0a11; filter:brightness(1.06);}
+    .c3hub .hamburger{
+      display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:6px;
+    }
+    .c3hub .hamburger span{width:24px; height:2px; background:var(--c3-gold); border-radius:2px; transition:.3s;}
 
-    /* Category Section */
-    .hub-category {
-      margin-bottom: 60px;
+    /* ---------- HERO ---------- */
+    .c3hub .hub-hero{
+      text-align:center; padding:72px 20px 56px; position:relative;
+      background:
+        linear-gradient(180deg, rgba(13,13,24,.4), rgba(10,10,17,0)),
+        radial-gradient(ellipse at 50% 0%, rgba(201,169,110,.10), transparent 60%);
     }
-    .hub-category-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      padding-bottom: 16px;
-      border-bottom: 2px solid #e8e8e8;
+    .c3hub .hero-kicker{
+      display:inline-block; font-size:13px; font-weight:700; letter-spacing:1px;
+      color:var(--c3-gold); border:1px solid var(--c3-line);
+      padding:6px 16px; border-radius:40px; margin-bottom:22px;
+      background:rgba(201,169,110,.06);
     }
-    .hub-category-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
+    .c3hub .hub-hero h1{
+      font-size:clamp(2rem,5vw,3.1rem); font-weight:900; line-height:1.3;
+      margin:0 auto 18px; max-width:820px;
+      background:linear-gradient(120deg,#fff 25%,var(--c3-gold2) 60%,var(--c3-gold));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .cat-finishing .hub-category-icon { background: #fff3e0; }
-    .cat-interior .hub-category-icon { background: #e8f5e9; }
-    .cat-rooms .hub-category-icon { background: #e3f2fd; }
-    .cat-villas .hub-category-icon { background: #f3e5f5; }
+    .c3hub .hub-hero > p{
+      font-size:1.12rem; color:#c6c1b6; max-width:680px; margin:0 auto 26px; line-height:1.9;
+    }
+    .c3hub .answer-first{
+      max-width:780px; margin:0 auto;
+      background:rgba(201,169,110,.07); border:1px solid var(--c3-line);
+      border-right:4px solid var(--c3-gold); border-radius:14px;
+      padding:1.3rem 1.6rem; text-align:right;
+    }
+    .c3hub .answer-first p{margin:0; line-height:2; font-size:1.04rem; color:#d8d3c8;}
+    .c3hub .answer-first strong{color:var(--c3-gold2);}
 
-    .hub-category-header h2 {
-      font-size: 1.5rem;
-      color: #1a1a2e;
-      margin: 0;
+    /* ---------- STATS ---------- */
+    .c3hub .hub-stats{
+      display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-top:36px;
     }
-    .hub-category-header .count {
-      font-size: 0.8rem;
-      background: #f0f0f0;
-      padding: 3px 10px;
-      border-radius: 20px;
-      color: #666;
+    .c3hub .hub-stat{
+      min-width:150px; background:var(--c3-panel); border:1px solid var(--c3-line);
+      border-radius:16px; padding:22px 18px; text-align:center;
+      transition:transform .25s, box-shadow .25s, border-color .25s;
     }
+    .c3hub .hub-stat:hover{transform:translateY(-4px); border-color:rgba(201,169,110,.4); box-shadow:0 14px 34px rgba(0,0,0,.4);}
+    .c3hub .hub-stat .num{
+      font-size:2.4rem; font-weight:900; line-height:1;
+      background:linear-gradient(135deg,var(--c3-gold2),var(--c3-gold));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .c3hub .hub-stat .label{font-size:.86rem; color:var(--c3-muted); margin-top:8px;}
 
-    /* Article Cards */
-    .hub-articles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 22px;
+    /* ---------- BREADCRUMB ---------- */
+    .c3hub .hub-breadcrumb{
+      max-width:1180px; margin:0 auto; padding:14px 22px; font-size:.85rem; color:var(--c3-muted);
+      border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05);
     }
-    .hub-article-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      border-right: 4px solid transparent;
-    }
-    .hub-article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-      border-right-color: #c9a96e;
-    }
-    .cat-finishing .hub-article-card:hover { border-right-color: #e67e22; }
-    .cat-interior .hub-article-card:hover  { border-right-color: #27ae60; }
-    .cat-rooms .hub-article-card:hover     { border-right-color: #2980b9; }
-    .cat-villas .hub-article-card:hover    { border-right-color: #8e44ad; }
+    .c3hub .hub-breadcrumb a{color:var(--c3-gold);}
 
-    .card-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      display: inline-block;
+    /* ---------- LAYOUT (content + sticky TOC) ---------- */
+    .c3hub .hub-layout{
+      max-width:1180px; margin:0 auto; padding:50px 22px 30px;
+      display:grid; grid-template-columns:248px 1fr; gap:40px; align-items:start;
     }
-    .cat-finishing .card-tag { background: #fff3e0; color: #e67e22; }
-    .cat-interior .card-tag  { background: #e8f5e9; color: #27ae60; }
-    .cat-rooms .card-tag     { background: #e3f2fd; color: #2980b9; }
-    .cat-villas .card-tag    { background: #f3e5f5; color: #8e44ad; }
-
-    .hub-article-card h3 {
-      font-size: 1rem;
-      color: #1a1a2e;
-      margin: 0 0 10px;
-      line-height: 1.6;
+    .c3hub .hub-toc{position:sticky; top:84px;}
+    .c3hub .hub-toc .toc-title{
+      font-size:.78rem; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--c3-muted); margin-bottom:14px;
     }
-    .hub-article-card p {
-      font-size: 0.88rem;
-      color: #666;
-      margin: 0;
-      line-height: 1.6;
+    .c3hub .hub-toc ul{list-style:none; margin:0; padding:0; border-right:1px solid var(--c3-line);}
+    .c3hub .hub-toc li a{
+      display:block; padding:9px 16px; margin-right:-1px; font-size:.92rem; color:#b9b4a9;
+      border-right:2px solid transparent; transition:.2s;
     }
-    .card-arrow {
-      margin-top: 14px;
-      font-size: 0.85rem;
-      color: #c9a96e;
-      font-weight: 600;
+    .c3hub .hub-toc li a:hover{color:var(--c3-gold2);}
+    .c3hub .hub-toc li a.active{
+      color:var(--c3-gold); border-right-color:var(--c3-gold); font-weight:700;
+      background:linear-gradient(270deg, rgba(201,169,110,.10), transparent);
     }
 
-    /* CTA Section */
-    .hub-cta {
-      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-      border-radius: 16px;
-      padding: 50px 36px;
-      text-align: center;
-      color: #fff;
-      margin-top: 60px;
+    /* ---------- INTRO ---------- */
+    .c3hub .hub-intro{
+      background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:18px;
+      padding:34px; margin-bottom:46px; font-size:1.04rem; color:#cfcabf;
     }
-    .hub-cta h2 { font-size: 1.6rem; margin-bottom: 14px; color: #c9a96e; }
-    .hub-cta p  { color: rgba(255,255,255,0.85); margin-bottom: 28px; font-size: 1.05rem; }
-    .hub-cta .btn {
-      display: inline-block;
-      background: #c9a96e;
-      color: #fff;
-      padding: 14px 36px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: background 0.2s;
-      margin: 6px;
+    .c3hub .hub-intro h2{
+      color:#fff; font-size:1.5rem; font-weight:800; margin:0 0 16px;
+      border-right:4px solid var(--c3-gold); padding-right:14px;
     }
-    .hub-cta .btn:hover { background: #b8954f; }
-    .hub-cta .btn.outline {
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.5);
-    }
-    .hub-cta .btn.outline:hover { background: rgba(255,255,255,0.1); }
+    .c3hub .hub-intro p{margin:0 0 14px;}
+    .c3hub .hub-intro strong{color:var(--c3-gold2);}
 
-    @media (max-width: 600px) {
-      .hub-articles-grid { grid-template-columns: 1fr; }
-      .hub-hero { padding: 60px 16px 40px; }
-      .hub-container { padding: 40px 16px; }
-      .hub-intro { padding: 24px 18px; }
+    /* ---------- CATEGORY ---------- */
+    .c3hub .hub-category{margin-bottom:56px; scroll-margin-top:84px;}
+    .c3hub .hub-category-header{
+      display:flex; align-items:center; gap:16px; margin-bottom:26px;
+      padding-bottom:16px; border-bottom:1px solid var(--c3-line);
+    }
+    .c3hub .hub-category-icon{
+      width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; flex-shrink:0; background:rgba(201,169,110,.10); border:1px solid var(--c3-line);
+    }
+    .c3hub .cat-finishing .hub-category-icon{box-shadow:0 0 0 1px rgba(230,126,34,.25) inset;}
+    .c3hub .cat-interior .hub-category-icon{box-shadow:0 0 0 1px rgba(39,174,96,.25) inset;}
+    .c3hub .cat-rooms .hub-category-icon{box-shadow:0 0 0 1px rgba(41,128,185,.25) inset;}
+    .c3hub .cat-villas .hub-category-icon{box-shadow:0 0 0 1px rgba(142,68,173,.25) inset;}
+    .c3hub .hub-category-header h2{font-size:1.5rem; font-weight:800; color:#fff; margin:0;}
+    .c3hub .hub-category-header .count{
+      font-size:.78rem; background:rgba(201,169,110,.12); color:var(--c3-gold);
+      padding:3px 12px; border-radius:20px; display:inline-block; margin-top:4px;
+    }
+
+    /* ---------- CARDS ---------- */
+    .c3hub .hub-articles-grid{
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px;
+    }
+    .c3hub .hub-article-card{
+      background:var(--c3-panel); border:1px solid var(--c3-line); border-radius:16px;
+      padding:24px; color:inherit; display:block; position:relative; overflow:hidden;
+      border-right:3px solid transparent; transition:transform .28s, box-shadow .28s, border-color .28s, background .28s;
+    }
+    .c3hub .hub-article-card::after{
+      content:''; position:absolute; inset:0; opacity:0; transition:opacity .3s;
+      background:radial-gradient(120% 80% at 100% 0%, rgba(201,169,110,.10), transparent 60%);
+    }
+    .c3hub .hub-article-card:hover{
+      transform:translateY(-6px); background:rgba(255,255,255,.06);
+      box-shadow:0 18px 40px rgba(0,0,0,.45); border-right-color:var(--c3-gold);
+    }
+    .c3hub .hub-article-card:hover::after{opacity:1;}
+    .c3hub .cat-finishing .hub-article-card:hover{border-right-color:#e67e22;}
+    .c3hub .cat-interior .hub-article-card:hover{border-right-color:#27ae60;}
+    .c3hub .cat-rooms .hub-article-card:hover{border-right-color:#2980b9;}
+    .c3hub .cat-villas .hub-article-card:hover{border-right-color:#8e44ad;}
+    .c3hub .card-tag{
+      font-size:.7rem; font-weight:700; letter-spacing:.5px; padding:4px 11px; border-radius:20px;
+      margin-bottom:12px; display:inline-block; background:rgba(201,169,110,.14); color:var(--c3-gold2);
+    }
+    .c3hub .cat-finishing .card-tag{background:rgba(230,126,34,.14); color:#f0a86a;}
+    .c3hub .cat-interior .card-tag{background:rgba(39,174,96,.14); color:#5fd497;}
+    .c3hub .cat-rooms .card-tag{background:rgba(41,128,185,.16); color:#6db6e8;}
+    .c3hub .cat-villas .card-tag{background:rgba(142,68,173,.16); color:#c191e0;}
+    .c3hub .hub-article-card h3{font-size:1.04rem; color:#fff; margin:0 0 10px; line-height:1.6; font-weight:700;}
+    .c3hub .hub-article-card p{font-size:.9rem; color:var(--c3-muted); margin:0; line-height:1.7;}
+    .c3hub .card-arrow{margin-top:16px; font-size:.86rem; color:var(--c3-gold); font-weight:700;}
+    .c3hub .hub-article-card:hover .card-arrow{letter-spacing:.5px;}
+
+    /* ---------- CTA ---------- */
+    .c3hub .hub-cta{
+      max-width:1180px; margin:60px auto 70px; scroll-margin-top:84px;
+      background:linear-gradient(135deg,#13132a 0%,#0d2440 100%);
+      border:1px solid var(--c3-line); border-radius:22px; padding:54px 36px; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .c3hub .hub-cta::before{
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 0%, rgba(201,169,110,.16), transparent 60%);
+    }
+    .c3hub .hub-cta > *{position:relative;}
+    .c3hub .hub-cta h2{font-size:1.7rem; font-weight:800; margin:0 0 14px; color:var(--c3-gold2);}
+    .c3hub .hub-cta p{color:#c6c1b6; margin:0 auto 30px; font-size:1.06rem; max-width:560px;}
+    .c3hub .hub-cta .btn{
+      display:inline-flex; align-items:center; gap:8px; margin:6px;
+      background:linear-gradient(135deg,var(--c3-gold),var(--c3-gold2)); color:#0a0a11;
+      padding:14px 34px; border-radius:50px; font-weight:800; font-size:1rem;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .c3hub .hub-cta .btn:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(201,169,110,.35);}
+    .c3hub .hub-cta .btn.outline{background:transparent; border:1.5px solid rgba(201,169,110,.5); color:var(--c3-gold2);}
+    .c3hub .hub-cta .btn.outline:hover{background:rgba(201,169,110,.1);}
+
+    /* ---------- FOOTER ---------- */
+    .c3hub .footer{background:#08080e; border-top:1px solid var(--c3-line); padding:48px 22px 0; color:#b9b4a9;}
+    .c3hub .footer-container{
+      max-width:1180px; margin:0 auto; display:grid;
+      grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:32px;
+    }
+    .c3hub .footer h4{color:var(--c3-gold2); font-size:1rem; margin:0 0 14px;}
+    .c3hub .footer-logo{font-size:1.3rem; font-weight:900; color:#fff; margin-bottom:12px;}
+    .c3hub .footer-logo span{color:var(--c3-gold);}
+    .c3hub .footer-desc{font-size:.9rem; color:var(--c3-muted); line-height:1.8;}
+    .c3hub .footer ul{list-style:none; padding:0; margin:0;}
+    .c3hub .footer ul li{margin-bottom:9px;}
+    .c3hub .footer ul a{color:#b9b4a9; font-size:.9rem; transition:color .2s;}
+    .c3hub .footer ul a:hover{color:var(--c3-gold2);}
+    .c3hub .footer-contact p{font-size:.9rem; margin:0 0 9px; color:#b9b4a9;}
+    .c3hub .footer-social{display:flex; gap:10px; margin-top:14px;}
+    .c3hub .footer-social a{
+      width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+      background:rgba(201,169,110,.1); color:var(--c3-gold2); border:1px solid var(--c3-line); transition:.2s;
+    }
+    .c3hub .footer-social a:hover{background:var(--c3-gold); color:#0a0a11;}
+    .c3hub .footer-bottom{
+      max-width:1180px; margin:40px auto 0; padding:20px 0; text-align:center;
+      border-top:1px solid rgba(255,255,255,.06); font-size:.84rem; color:var(--c3-muted);
+    }
+
+    /* ---------- FLOAT + BACK TO TOP ---------- */
+    .c3hub .float-group{position:fixed; bottom:90px; left:20px; display:flex; flex-direction:column; gap:10px; z-index:60;}
+    .c3hub .float-btn{
+      width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.4); transition:transform .2s;
+    }
+    .c3hub .float-btn:hover{transform:scale(1.1);}
+    .c3hub .float-btn-wa{background:#25d366;} .c3hub .float-btn-call{background:var(--c3-gold);}
+    .c3hub .back-to-top{
+      position:fixed; bottom:30px; left:20px; width:50px; height:50px; border:0; cursor:pointer; z-index:60;
+      background:linear-gradient(135deg,var(--c3-gold),var(--c3-gold2)); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(201,169,110,.4);
+      opacity:0; visibility:hidden; transition:.3s;
+    }
+    .c3hub .back-to-top.show{opacity:1; visibility:visible;}
+
+    /* ---------- REVEAL ANIMATION ---------- */
+    .c3hub .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+    .c3hub .reveal.in{opacity:1; transform:none;}
+    @media (prefers-reduced-motion:reduce){.c3hub .reveal{opacity:1; transform:none; transition:none;}}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:980px){
+      .c3hub .hub-layout{grid-template-columns:1fr; gap:0;}
+      .c3hub .hub-toc{display:none;}
+      .c3hub .footer-container{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width:760px){
+      .c3hub .hamburger{display:flex;}
+      .c3hub .nav-menu{
+        position:absolute; top:100%; right:0; left:0; flex-direction:column; align-items:stretch;
+        background:var(--c3-bg2); border-bottom:1px solid var(--c3-line); padding:10px 16px;
+        max-height:0; overflow:hidden; transition:max-height .3s ease; gap:2px;
+      }
+      .c3hub .nav-menu.open{max-height:520px; padding:14px 16px;}
+      .c3hub .nav-container{position:relative;}
+      .c3hub .hub-stat{min-width:130px;}
+      .c3hub .footer-container{grid-template-columns:1fr;}
+    }
+    @media (max-width:520px){
+      .c3hub .hub-articles-grid{grid-template-columns:1fr;}
+      .c3hub .hub-hero{padding:54px 16px 40px;}
+      .c3hub .hub-intro{padding:24px 18px;}
     }
   </style>
 </head>
-<body>
+<body class="c3hub">
 
 <!-- Navigation -->
 <nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
@@ -293,26 +388,27 @@
 
 <!-- Hero -->
 <section class="hub-hero">
-  <h1>📚 دليل التصميم الداخلي الشامل 2026</h1>
-  <p>كل ما تحتاج معرفته عن التصميم الداخلي والتشطيب في مصر — أسعار، نصائح خبراء، مراحل تنفيذ, وتصميم الغرف في مكان واحد.</p>
+  <span class="hero-kicker">دليل مرجعي شامل · 2026</span>
+  <h1>دليل التصميم الداخلي الشامل 2026</h1>
+  <p>كل ما تحتاج معرفته عن التصميم الداخلي والتشطيب في مصر — أسعار، نصائح خبراء، مراحل تنفيذ، وتصميم الغرف في مكان واحد.</p>
   <!-- Answer-First / TL;DR — مُحسّن لإجابات البحث بالذكاء الصناعي (AI Overviews) -->
-  <div class="answer-first" style="max-width:760px;margin:1.4rem auto 0;background:rgba(184,151,106,0.12);border:1px solid var(--gold,#b8976a);border-radius:10px;padding:1.2rem 1.5rem;text-align:right;">
-    <p style="margin:0;line-height:1.95;font-size:1.05rem;">
-      <strong style="color:var(--gold,#b8976a);">الإجابة المباشرة:</strong>
+  <div class="answer-first">
+    <p>
+      <strong>الإجابة المباشرة:</strong>
       دليل التصميم الداخلي الشامل من Creative3Design يجمع كل ما تحتاجه في مرجع واحد: أسعار التشطيب والخامات لكل متر، أنماط ومراحل التصميم الداخلي، أدلة تصميم الغرف (نوم، مطبخ، حمام، أطفال، صالة)، والتصميم المعماري للفيلات والمباني — مع إجابات مباشرة لأكثر الأسئلة شيوعاً في السوق المصري 2026.
     </p>
   </div>
   <div class="hub-stats">
     <div class="hub-stat">
-      <div class="num">25</div>
+      <div class="num" data-count="25">0</div>
       <div class="label">مقالة متخصصة</div>
     </div>
     <div class="hub-stat">
-      <div class="num">4</div>
+      <div class="num" data-count="4">0</div>
       <div class="label">أقسام رئيسية</div>
     </div>
     <div class="hub-stat">
-      <div class="num">15+</div>
+      <div class="num" data-count="15" data-suffix="+">0</div>
       <div class="label">سنة خبرة هندسية</div>
     </div>
   </div>
@@ -323,260 +419,277 @@
   <a href="/">الرئيسية</a> &rsaquo; <a href="/blog/">المدونة</a> &rsaquo; دليل التصميم الداخلي الشامل
 </div>
 
-<!-- Main Content -->
-<main class="hub-container">
+<!-- Layout: TOC + Main -->
+<div class="hub-layout">
 
-  <!-- Intro -->
-  <div class="hub-intro">
-    <h2>لماذا هذا الدليل؟</h2>
-    <p>
-      أعددنا هذا الدليل الشامل ليكون مرجعك الأول في كل ما يتعلق بالتصميم الداخلي والتشطيب في مصر. سواء كنت تخطط لتشطيب شقة جديدة، تجديد منزل قديم، أو تصميم مساحة فاخرة — ستجد هنا كل الإجابات من خبراء هندسيين متخصصين بخبرة تتجاوز 15 عامًا.
-    </p>
-    <p>
-      تنقّل بين الأقسام الأربعة أدناه: <strong>التشطيب والأسعار</strong> — <strong>التصميم الداخلي</strong> — <strong>تصميم الغرف</strong> — <strong>الفيلات والمباني</strong>، وابدأ رحلتك نحو مساحة أحلامك.
-    </p>
-  </div>
+  <!-- Sticky TOC -->
+  <aside class="hub-toc" aria-label="فهرس الدليل">
+    <div class="toc-title">محتويات الدليل</div>
+    <ul>
+      <li><a href="#sec-intro">مقدمة الدليل</a></li>
+      <li><a href="#sec-finishing">التشطيب والأسعار</a></li>
+      <li><a href="#sec-interior">التصميم الداخلي</a></li>
+      <li><a href="#sec-rooms">تصميم الغرف</a></li>
+      <li><a href="#sec-villas">الفيلات والمباني</a></li>
+      <li><a href="#sec-cta">استشارة مجانية</a></li>
+    </ul>
+  </aside>
 
-  <!-- ===== CATEGORY 1: التشطيب ===== -->
-  <section class="hub-category cat-finishing" aria-labelledby="cat-finishing-title">
-    <div class="hub-category-header">
-      <div class="hub-category-icon">🏗️</div>
-      <div>
-        <h2 id="cat-finishing-title">التشطيب والأسعار</h2>
-        <span class="count">11 مقالة</span>
+  <!-- Main Content -->
+  <main class="hub-container">
+
+    <!-- Intro -->
+    <div class="hub-intro reveal" id="sec-intro">
+      <h2>لماذا هذا الدليل؟</h2>
+      <p>
+        أعددنا هذا الدليل الشامل ليكون مرجعك الأول في كل ما يتعلق بالتصميم الداخلي والتشطيب في مصر. سواء كنت تخطط لتشطيب شقة جديدة، تجديد منزل قديم، أو تصميم مساحة فاخرة — ستجد هنا كل الإجابات من خبراء هندسيين متخصصين بخبرة تتجاوز 15 عامًا.
+      </p>
+      <p>
+        تنقّل بين الأقسام الأربعة أدناه: <strong>التشطيب والأسعار</strong> — <strong>التصميم الداخلي</strong> — <strong>تصميم الغرف</strong> — <strong>الفيلات والمباني</strong>، وابدأ رحلتك نحو مساحة أحلامك.
+      </p>
+    </div>
+
+    <!-- ===== CATEGORY 1: التشطيب ===== -->
+    <section class="hub-category cat-finishing reveal" id="sec-finishing" aria-labelledby="cat-finishing-title">
+      <div class="hub-category-header">
+        <div class="hub-category-icon">🏗️</div>
+        <div>
+          <h2 id="cat-finishing-title">التشطيب والأسعار</h2>
+          <span class="count">11 مقالة</span>
+        </div>
       </div>
-    </div>
-    <div class="hub-articles-grid">
+      <div class="hub-articles-grid">
 
-      <a href="/blog/tashteeb-shaqq-2025" class="hub-article-card">
-        <span class="card-tag">دليل شامل</span>
-        <h3>دليل تشطيب الشقق في مصر 2026</h3>
-        <p>كل ما تحتاجه لتشطيب شقتك من الألف للياء — مراحل، مواد، وأسعار محدّثة.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/tashteeb-shaqq-2025" class="hub-article-card">
+          <span class="card-tag">دليل شامل</span>
+          <h3>دليل تشطيب الشقق في مصر 2026</h3>
+          <p>كل ما تحتاجه لتشطيب شقتك من الألف للياء — مراحل، مواد، وأسعار محدّثة.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/asaar-tashtib-shaqq-2026" class="hub-article-card">
-        <span class="card-tag">أسعار</span>
-        <h3>أسعار تشطيب الشقق في مصر 2026</h3>
-        <p>جدول أسعار تفصيلي لكل مستويات التشطيب من الإيكونومي حتى السوبر لاكشري.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/asaar-tashtib-shaqq-2026" class="hub-article-card">
+          <span class="card-tag">أسعار</span>
+          <h3>أسعار تشطيب الشقق في مصر 2026</h3>
+          <p>جدول أسعار تفصيلي لكل مستويات التشطيب من الإيكونومي حتى السوبر لاكشري.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/asaar-tashtib-shaqaq-cairo-2026" class="hub-article-card">
-        <span class="card-tag">أسعار القاهرة</span>
-        <h3>أسعار تشطيب الشقق في القاهرة 2026</h3>
-        <p>مقارنة الأسعار في أحياء القاهرة المختلفة — مدينة نصر، التجمع، الشيخ زايد، والمقطم.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/asaar-tashtib-shaqaq-cairo-2026" class="hub-article-card">
+          <span class="card-tag">أسعار القاهرة</span>
+          <h3>أسعار تشطيب الشقق في القاهرة 2026</h3>
+          <p>مقارنة الأسعار في أحياء القاهرة المختلفة — مدينة نصر، التجمع، الشيخ زايد، والمقطم.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/saar-tashtib-villa-2026" class="hub-article-card">
-        <span class="card-tag">فيلات</span>
-        <h3>تكلفة تشطيب فيلا 2026</h3>
-        <p>تفصيل دقيق لتكلفة تشطيب فيلا بالمقارنة مع الشقة — مع جداول أسعار المواد والعمالة.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/saar-tashtib-villa-2026" class="hub-article-card">
+          <span class="card-tag">فيلات</span>
+          <h3>تكلفة تشطيب فيلا 2026</h3>
+          <p>تفصيل دقيق لتكلفة تشطيب فيلا بالمقارنة مع الشقة — مع جداول أسعار المواد والعمالة.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/khutuat-tashtib-shaqqa-min-sifr" class="hub-article-card">
-        <span class="card-tag">مراحل</span>
-        <h3>مراحل تشطيب الشقة من الصفر 2026</h3>
-        <p>خطوة بخطوة: من استلام الوحدة الخام حتى الانتهاء من التشطيب الكامل — 7 مراحل مفصّلة.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/khutuat-tashtib-shaqqa-min-sifr" class="hub-article-card">
+          <span class="card-tag">مراحل</span>
+          <h3>مراحل تشطيب الشقة من الصفر 2026</h3>
+          <p>خطوة بخطوة: من استلام الوحدة الخام حتى الانتهاء من التشطيب الكامل — 7 مراحل مفصّلة.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/aqd-altashtib-binood-2026" class="hub-article-card">
-        <span class="card-tag">قانوني</span>
-        <h3>عقد التشطيب في مصر 2026 — 12 بندًا لا تقبل بدونها</h3>
-        <p>كيف تحمي نفسك قانونيًا قبل بدء أي مشروع تشطيب — 12 بندًا ضرورية في كل عقد.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/aqd-altashtib-binood-2026" class="hub-article-card">
+          <span class="card-tag">قانوني</span>
+          <h3>عقد التشطيب في مصر 2026 — 12 بندًا لا تقبل بدونها</h3>
+          <p>كيف تحمي نفسك قانونيًا قبل بدء أي مشروع تشطيب — 12 بندًا ضرورية في كل عقد.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/mizaniyat-tashtib-misr-2026" class="hub-article-card">
-        <span class="card-tag">ميزانية</span>
-        <h3>كيف تتحكم في ميزانية التشطيب</h3>
-        <p>استراتيجيات عملية لإدارة ميزانية التشطيب وتجنّب الإنفاق الزائد مع الحصول على أفضل النتائج.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/mizaniyat-tashtib-misr-2026" class="hub-article-card">
+          <span class="card-tag">ميزانية</span>
+          <h3>كيف تتحكم في ميزانية التشطيب</h3>
+          <p>استراتيجيات عملية لإدارة ميزانية التشطيب وتجنّب الإنفاق الزائد مع الحصول على أفضل النتائج.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tajdeed-shaqqa-qadeema-2026" class="hub-article-card">
-        <span class="card-tag">تجديد</span>
-        <h3>تجديد شقة قديمة في مصر 2026</h3>
-        <p>دليل تجديد المنازل القديمة — ماذا تغيّر وماذا تحافظ عليه، مع ميزانيات واقعية.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/tajdeed-shaqqa-qadeema-2026" class="hub-article-card">
+          <span class="card-tag">تجديد</span>
+          <h3>تجديد شقة قديمة في مصر 2026</h3>
+          <p>دليل تجديد المنازل القديمة — ماذا تغيّر وماذا تحافظ عليه، مع ميزانيات واقعية.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/fark-tasmeem-standard-luxury" class="hub-article-card">
-        <span class="card-tag">مقارنة</span>
-        <h3>الفرق بين تشطيب ستاندرد ولاكشري</h3>
-        <p>جدول مقارنة بين 4 مستويات تشطيب — إيكونومي، ستاندرد، برميوم، ولاكشري — بالأسعار والمواد.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/fark-tasmeem-standard-luxury" class="hub-article-card">
+          <span class="card-tag">مقارنة</span>
+          <h3>الفرق بين تشطيب ستاندرد ولاكشري</h3>
+          <p>جدول مقارنة بين 4 مستويات تشطيب — إيكونومي، ستاندرد، برميوم، ولاكشري — بالأسعار والمواد.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/asaar-rakhaam-borcelin-2026" class="hub-article-card">
-        <span class="card-tag">مواد</span>
-        <h3>أسعار الرخام والبورسلين في مصر 2026</h3>
-        <p>دليل مقارنة شامل بين الرخام والبورسلين والجرانيت — الأسعار، المتانة، والاختيار الأمثل.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/asaar-rakhaam-borcelin-2026" class="hub-article-card">
+          <span class="card-tag">مواد</span>
+          <h3>أسعار الرخام والبورسلين في مصر 2026</h3>
+          <p>دليل مقارنة شامل بين الرخام والبورسلين والجرانيت — الأسعار، المتانة، والاختيار الأمثل.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/ikhtiyar-sharikat-tashtib-2026" class="hub-article-card">
-        <span class="card-tag">اختيار</span>
-        <h3>كيف تختار شركة تشطيب موثوقة</h3>
-        <p>معايير اختيار شركة التشطيب الصحيحة — الأسئلة الضرورية والعلامات التحذيرية لتجنّب الغش.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/ikhtiyar-sharikat-tashtib-2026" class="hub-article-card">
+          <span class="card-tag">اختيار</span>
+          <h3>كيف تختار شركة تشطيب موثوقة</h3>
+          <p>معايير اختيار شركة التشطيب الصحيحة — الأسئلة الضرورية والعلامات التحذيرية لتجنّب الغش.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-    </div>
-  </section>
-
-  <!-- ===== CATEGORY 2: التصميم الداخلي ===== -->
-  <section class="hub-category cat-interior" aria-labelledby="cat-interior-title">
-    <div class="hub-category-header">
-      <div class="hub-category-icon">🎨</div>
-      <div>
-        <h2 id="cat-interior-title">التصميم الداخلي</h2>
-        <span class="count">5 مقالات</span>
       </div>
-    </div>
-    <div class="hub-articles-grid">
+    </section>
 
-      <a href="/blog/anwaa-tasmeem-dakheli-2026" class="hub-article-card">
-        <span class="card-tag">أنواع</span>
-        <h3>أنواع التصميم الداخلي الـ 10 الأكثر طلبًا في مصر 2026</h3>
-        <p>من الكلاسيك إلى المودرن والمينيمال — تعرّف على أبرز 10 أساليب تصميم داخلي رائجة في مصر.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-      <a href="/blog/akhtaa-tasmeem-dakheli-2026" class="hub-article-card">
-        <span class="card-tag">نصائح</span>
-        <h3>أكثر 7 أخطاء شائعة في التصميم الداخلي 2026</h3>
-        <p>تجنّب أكثر الأخطاء وقوعًا عند تصميم منزلك — ووفّر آلاف الجنيهات من البداية.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-      <a href="/blog/marahil-tasmeem-dakheli-2026" class="hub-article-card">
-        <span class="card-tag">مراحل</span>
-        <h3>مراحل التصميم الداخلي الـ 6</h3>
-        <p>كيف يسير مشروع التصميم الداخلي من الفكرة حتى التسليم — 6 مراحل يعمل بها كل مهندس محترف.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-      <a href="/blog/tasmeem-dakhely-modern" class="hub-article-card">
-        <span class="card-tag">أساليب</span>
-        <h3>أفضل أساليب التصميم الداخلي الحديث 2026</h3>
-        <p>استعراض شامل لأبرز توجهات التصميم الداخلي الحديث وكيفية تطبيقها في منازل مصر.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-      <a href="/blog/laman-tahtag-mhandis" class="hub-article-card">
-        <span class="card-tag">استشارة</span>
-        <h3>متى تحتاج مهندس تصميم داخلي؟</h3>
-        <p>اعرف متى يكون المهندس ضرورة لا رفاهية — والفرق الحقيقي الذي يُحدثه في نتيجة مشروعك.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ===== CATEGORY 3: تصميم الغرف ===== -->
-  <section class="hub-category cat-rooms" aria-labelledby="cat-rooms-title">
-    <div class="hub-category-header">
-      <div class="hub-category-icon">🛋️</div>
-      <div>
-        <h2 id="cat-rooms-title">تصميم الغرف</h2>
-        <span class="count">6 مقالات</span>
+    <!-- ===== CATEGORY 2: التصميم الداخلي ===== -->
+    <section class="hub-category cat-interior reveal" id="sec-interior" aria-labelledby="cat-interior-title">
+      <div class="hub-category-header">
+        <div class="hub-category-icon">🎨</div>
+        <div>
+          <h2 id="cat-interior-title">التصميم الداخلي</h2>
+          <span class="count">5 مقالات</span>
+        </div>
       </div>
-    </div>
-    <div class="hub-articles-grid">
+      <div class="hub-articles-grid">
 
-      <a href="/blog/tasmeem-salon-saghir-2026" class="hub-article-card">
-        <span class="card-tag">صالة</span>
-        <h3>تصميم صالة معيشة صغيرة 2026 — 15 فكرة ذكية</h3>
-        <p>حلول إبداعية لتحويل صالتك الصغيرة إلى مساحة واسعة وأنيقة — دليل الألوان والأثاث.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/anwaa-tasmeem-dakheli-2026" class="hub-article-card">
+          <span class="card-tag">أنواع</span>
+          <h3>أنواع التصميم الداخلي الـ 10 الأكثر طلبًا في مصر 2026</h3>
+          <p>من الكلاسيك إلى المودرن والمينيمال — تعرّف على أبرز 10 أساليب تصميم داخلي رائجة في مصر.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-ghurfa-nawm-saghira-2026" class="hub-article-card">
-        <span class="card-tag">غرفة نوم</span>
-        <h3>تصميم غرفة نوم صغيرة 2026 — 12 فكرة</h3>
-        <p>12 فكرة ذكية لتصميم غرفة نوم صغيرة بمساحة محدودة — مع نصائح الإضاءة والألوان.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/akhtaa-tasmeem-dakheli-2026" class="hub-article-card">
+          <span class="card-tag">نصائح</span>
+          <h3>أكثر 7 أخطاء شائعة في التصميم الداخلي 2026</h3>
+          <p>تجنّب أكثر الأخطاء وقوعًا عند تصميم منزلك — ووفّر آلاف الجنيهات من البداية.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-matbakh-saghir-2026" class="hub-article-card">
-        <span class="card-tag">مطبخ صغير</span>
-        <h3>تصميم مطبخ صغير 2026 — 10 أفكار ذكية</h3>
-        <p>أفضل 10 حلول لتصميم مطبخ صغير عملي وأنيق — مع جدول أسعار 3 مستويات.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/marahil-tasmeem-dakheli-2026" class="hub-article-card">
+          <span class="card-tag">مراحل</span>
+          <h3>مراحل التصميم الداخلي الـ 6</h3>
+          <p>كيف يسير مشروع التصميم الداخلي من الفكرة حتى التسليم — 6 مراحل يعمل بها كل مهندس محترف.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-matbakh-2026" class="hub-article-card">
-        <span class="card-tag">مطبخ</span>
-        <h3>تصميم مطبخ عصري في مصر 2026</h3>
-        <p>دليل تصميم المطابخ العصرية — الألوان، الخامات، الإضاءة، وأهم ما يطلبه سوق مصر.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/tasmeem-dakhely-modern" class="hub-article-card">
+          <span class="card-tag">أساليب</span>
+          <h3>أفضل أساليب التصميم الداخلي الحديث 2026</h3>
+          <p>استعراض شامل لأبرز توجهات التصميم الداخلي الحديث وكيفية تطبيقها في منازل مصر.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-hammam-saghir-2026" class="hub-article-card">
-        <span class="card-tag">حمام</span>
-        <h3>تصميم حمام صغير 2026 — 12 فكرة ذكية</h3>
-        <p>12 حلًا مبتكرًا لتصميم حمام صغير بأفضل استغلال للمساحة والميزانية.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/laman-tahtag-mhandis" class="hub-article-card">
+          <span class="card-tag">استشارة</span>
+          <h3>متى تحتاج مهندس تصميم داخلي؟</h3>
+          <p>اعرف متى يكون المهندس ضرورة لا رفاهية — والفرق الحقيقي الذي يُحدثه في نتيجة مشروعك.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-maktab" class="hub-article-card">
-        <span class="card-tag">مكتب</span>
-        <h3>تصميم مكتب احترافي</h3>
-        <p>كيف تصمم مكتبك الاحترافي — سواء كان مكتبًا منزليًا أو تجاريًا — بأعلى معايير الإنتاجية.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ===== CATEGORY 4: الفيلات والمباني ===== -->
-  <section class="hub-category cat-villas" aria-labelledby="cat-villas-title">
-    <div class="hub-category-header">
-      <div class="hub-category-icon">🏛️</div>
-      <div>
-        <h2 id="cat-villas-title">الفيلات والتصميم المعماري</h2>
-        <span class="count">3 مقالات</span>
       </div>
-    </div>
-    <div class="hub-articles-grid">
+    </section>
 
-      <a href="/blog/tasmeem-filla-luxury" class="hub-article-card">
-        <span class="card-tag">فاخرة</span>
-        <h3>الدليل الهندسي الشامل لتصميم فيلا فاخرة</h3>
-        <p>كل ما يميّز تصميم الفيلا الفاخرة — الخامات، المساحات، الأنظمة الذكية، والتفاصيل الدقيقة.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+    <!-- ===== CATEGORY 3: تصميم الغرف ===== -->
+    <section class="hub-category cat-rooms reveal" id="sec-rooms" aria-labelledby="cat-rooms-title">
+      <div class="hub-category-header">
+        <div class="hub-category-icon">🛋️</div>
+        <div>
+          <h2 id="cat-rooms-title">تصميم الغرف</h2>
+          <span class="count">6 مقالات</span>
+        </div>
+      </div>
+      <div class="hub-articles-grid">
 
-      <a href="/blog/taklifa-tasmeem-villa-2026" class="hub-article-card">
-        <span class="card-tag">تكلفة</span>
-        <h3>تكلفة تصميم فيلا 2026</h3>
-        <p>جدول تكاليف تفصيلي لتصميم فيلا في مصر 2026 — مراحل التصميم، رسوم المهندس، والمواد.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/tasmeem-salon-saghir-2026" class="hub-article-card">
+          <span class="card-tag">صالة</span>
+          <h3>تصميم صالة معيشة صغيرة 2026 — 15 فكرة ذكية</h3>
+          <p>حلول إبداعية لتحويل صالتك الصغيرة إلى مساحة واسعة وأنيقة — دليل الألوان والأثاث.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-      <a href="/blog/tasmeem-memari-villa-2026" class="hub-article-card">
-        <span class="card-tag">معماري</span>
-        <h3>التصميم المعماري للفيلات في مصر 2026</h3>
-        <p>أبرز الأساليب المعمارية للفيلات في مصر — الحديثة، الكلاسيكية، والنيوكلاسيك — مع الأسعار.</p>
-        <div class="card-arrow">اقرأ المقالة ←</div>
-      </a>
+        <a href="/blog/tasmeem-ghurfa-nawm-saghira-2026" class="hub-article-card">
+          <span class="card-tag">غرفة نوم</span>
+          <h3>تصميم غرفة نوم صغيرة 2026 — 12 فكرة</h3>
+          <p>12 فكرة ذكية لتصميم غرفة نوم صغيرة بمساحة محدودة — مع نصائح الإضاءة والألوان.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-    </div>
-  </section>
+        <a href="/blog/tasmeem-matbakh-saghir-2026" class="hub-article-card">
+          <span class="card-tag">مطبخ صغير</span>
+          <h3>تصميم مطبخ صغير 2026 — 10 أفكار ذكية</h3>
+          <p>أفضل 10 حلول لتصميم مطبخ صغير عملي وأنيق — مع جدول أسعار 3 مستويات.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-  <!-- CTA -->
-  <div class="hub-cta">
-    <h2>هل تحتاج استشارة هندسية مجانية؟</h2>
-    <p>فريق Creative3Design متاح لمناقشة مشروعك وتقديم عرض سعر مناسب — خبرة 15+ سنة في التصميم والتشطيب.</p>
-    <a href="/contact" class="btn">احصل على استشارة مجانية</a>
-    <a href="/packages" class="btn outline">تصفح الباقات والأسعار</a>
-  </div>
+        <a href="/blog/tasmeem-matbakh-2026" class="hub-article-card">
+          <span class="card-tag">مطبخ</span>
+          <h3>تصميم مطبخ عصري في مصر 2026</h3>
+          <p>دليل تصميم المطابخ العصرية — الألوان، الخامات، الإضاءة، وأهم ما يطلبه سوق مصر.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
 
-</main>
+        <a href="/blog/tasmeem-hammam-saghir-2026" class="hub-article-card">
+          <span class="card-tag">حمام</span>
+          <h3>تصميم حمام صغير 2026 — 12 فكرة ذكية</h3>
+          <p>12 حلًا مبتكرًا لتصميم حمام صغير بأفضل استغلال للمساحة والميزانية.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
+
+        <a href="/blog/tasmeem-maktab" class="hub-article-card">
+          <span class="card-tag">مكتب</span>
+          <h3>تصميم مكتب احترافي</h3>
+          <p>كيف تصمم مكتبك الاحترافي — سواء كان مكتبًا منزليًا أو تجاريًا — بأعلى معايير الإنتاجية.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== CATEGORY 4: الفيلات والمباني ===== -->
+    <section class="hub-category cat-villas reveal" id="sec-villas" aria-labelledby="cat-villas-title">
+      <div class="hub-category-header">
+        <div class="hub-category-icon">🏛️</div>
+        <div>
+          <h2 id="cat-villas-title">الفيلات والتصميم المعماري</h2>
+          <span class="count">3 مقالات</span>
+        </div>
+      </div>
+      <div class="hub-articles-grid">
+
+        <a href="/blog/tasmeem-filla-luxury" class="hub-article-card">
+          <span class="card-tag">فاخرة</span>
+          <h3>الدليل الهندسي الشامل لتصميم فيلا فاخرة</h3>
+          <p>كل ما يميّز تصميم الفيلا الفاخرة — الخامات، المساحات، الأنظمة الذكية، والتفاصيل الدقيقة.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
+
+        <a href="/blog/taklifa-tasmeem-villa-2026" class="hub-article-card">
+          <span class="card-tag">تكلفة</span>
+          <h3>تكلفة تصميم فيلا 2026</h3>
+          <p>جدول تكاليف تفصيلي لتصميم فيلا في مصر 2026 — مراحل التصميم، رسوم المهندس، والمواد.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
+
+        <a href="/blog/tasmeem-memari-villa-2026" class="hub-article-card">
+          <span class="card-tag">معماري</span>
+          <h3>التصميم المعماري للفيلات في مصر 2026</h3>
+          <p>أبرز الأساليب المعمارية للفيلات في مصر — الحديثة، الكلاسيكية، والنيوكلاسيك — مع الأسعار.</p>
+          <div class="card-arrow">اقرأ المقالة ←</div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- CTA -->
+<div class="hub-cta reveal" id="sec-cta">
+  <h2>هل تحتاج استشارة هندسية مجانية؟</h2>
+  <p>فريق Creative3Design متاح لمناقشة مشروعك وتقديم عرض سعر مناسب — خبرة 15+ سنة في التصميم والتشطيب.</p>
+  <a href="/contact" class="btn">احصل على استشارة مجانية</a>
+  <a href="/packages" class="btn outline">تصفح الباقات والأسعار</a>
+</div>
 
 <!-- Footer -->
 <footer class="footer" role="contentinfo">
@@ -627,6 +740,79 @@
   </div>
 </footer>
 
+<!-- Float Buttons -->
+<div class="float-group">
+  <a href="https://wa.me/201289660552?text=مرحباً، أريد استشارة بخصوص التصميم الداخلي" class="float-btn float-btn-wa" aria-label="واتساب" target="_blank" rel="noopener">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:+201289660552" class="float-btn float-btn-call" aria-label="اتصال">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.15 1.18 2 2 0 012.13 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="العودة للأعلى" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0a11" stroke-width="3"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+(function(){
+  /* Mobile nav toggle (self-contained, avoids dependency on main.css chrome) */
+  var burger=document.getElementById('hamburger'), menu=document.getElementById('nav-menu');
+  if(burger&&menu){burger.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });}
+
+  /* Animated counters */
+  function runCounter(el){
+    var target=parseFloat(el.getAttribute('data-count'))||0,
+        suffix=el.getAttribute('data-suffix')||'', start=0, dur=1100, t0=null;
+    function step(ts){
+      if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+      var val=Math.floor(start+(target-start)*(1-Math.pow(1-p,3)));
+      el.textContent=val+suffix;
+      if(p<1)requestAnimationFrame(step); else el.textContent=target+suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* Reveal on scroll + counters */
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver'in window && !reduce){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    var cio=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){runCounter(e.target);cio.unobserve(e.target);}});
+    },{threshold:0.5});
+    document.querySelectorAll('.num[data-count]').forEach(function(el){cio.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.num[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count')+(el.getAttribute('data-suffix')||'');});
+  }
+
+  /* Back to top visibility */
+  var btt=document.getElementById('backToTop');
+  window.addEventListener('scroll',function(){
+    if(btt){btt.classList.toggle('show',window.scrollY>500);}
+  });
+
+  /* TOC scrollspy */
+  var links=[].slice.call(document.querySelectorAll('.hub-toc a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  if('IntersectionObserver'in window && sections.length){
+    var spy=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-30% 0px -60% 0px'});
+    sections.forEach(function(s){spy.observe(s);});
+  }
+})();
+</script>
 <script src="/js/main.js" defer></script>
 </body>
 </html>
