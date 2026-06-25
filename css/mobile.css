@@ -898,3 +898,16 @@
 html[dir="ltr"] .why-card { text-align: left !important; }
 html[dir="ltr"] .blog-card-body { text-align: left !important; }
 html[dir="ltr"] .service-card-body { text-align: l
+
+/* ===== c3d-m-day2 — Day2 mobile polish (CSS-only, scoped, reversible) ===== */
+@media (max-width: 600px){
+  /* 1) جداول الأسعار: تمرير أفقي بدل الازدحام */
+  .article-body table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  /* 2) أهداف لمس أكبر لروابط الفوتر */
+  footer a{display:inline-block;padding:6px 4px}
+  /* 3) نص ثانوي أوضح */
+  .article-body small{font-size:14px}
+  /* 4) هامش آمن لزر الواتساب العائم (النوتش) */
+  .whatsapp-float,.float-whatsapp,[class*="whatsapp-btn"],[class*="floating"]{margin-bottom:calc(12px + env(safe-area-inset-bottom, 0px))}
+}
+/* ===== /c3d-m-day2 ===== */
