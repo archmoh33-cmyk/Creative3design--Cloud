@@ -2,10 +2,14 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://creativedesignegypt.com/sitemap.xml</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-25</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://creativedesignegypt.com/sitemap-sa.xml</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-25</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://creativedesignegypt.com/sitemap-images.xml</loc>
+    <lastmod>2026-06-25</lastmod>
   </sitemap>
 </sitemapindex>
