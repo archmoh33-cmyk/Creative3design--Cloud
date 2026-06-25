@@ -1422,3 +1422,86 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
+/* ===== C3D: SERP thumbnail signals (auto-injected 2026-06-25) ===== */
+(function(){
+  "use strict";
+  /* 1) primaryImageOfPage / ImageObject schema on every page */
+  try{
+    var og = document.querySelector('meta[property="og:image"]');
+    if(og && og.content){
+      var big = og.content.replace(/\/upload\/[^/]*\//,'/upload/c_fill,w_1200,h_900,q_80,f_jpg/');
+      var title = (document.querySelector('meta[property="og:title"]')||{}).content || document.title || '';
+      var u = location.origin + location.pathname;
+      var ld = {"@context":"https://schema.org","@type":"WebPage","@id":u+"#c3dwebpage",
+        "url":u,"name":title,
+        "primaryImageOfPage":{"@type":"ImageObject","@id":u+"#c3dprimaryimage",
+          "url":big,"contentUrl":big,"width":1200,"height":900,"caption":title}};
+      var s=document.createElement('script'); s.type='application/ld+json';
+      s.setAttribute('data-c3d','primary-image'); s.textContent=JSON.stringify(ld);
+      document.head.appendChild(s);
+    }
+  }catch(e){}
+
+  /* 2) Ensure crawlable, keyword-matched project images on content pages that lack them */
+  var POOL = {"residential":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779829856/creative3design/portfolio/k0hvquvk1fikgpegndds.jpg","alt":"تفاصيل ديكور راقية في مشروع تشطيب شقة"}],"commercial":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779110928/creative3design/interior-com/%D9%83%D8%A7%D9%81%D9%8A%D9%87_%D8%A8%D8%AC%D8%AF%D8%A9/nyi90aaryswvoxka0gxl.jpg","alt":"كافيه بجدة — تصميم داخلي تجاري — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/commercial/02_qanal_shops/d8u0riozdqmnjsdscic6.jpg","alt":"Qanal Shops — تجاري | تصميم داخلي ومعماري Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/commercial/04_zahraa_shopping_mall/ppqlqbzma3la8cdm5rqq.jpg","alt":"Zahraa Shopping Mall — تجاري | تصميم داخلي ومعماري Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/commercial/05_heraa_shopping_mall/frtiexcum9z83ripd52x.jpg","alt":"Heraa Shopping Mall — تجاري | تصميم داخلي ومعماري Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg","alt":"Fasntazy MAll — تجاري | تصميم داخلي ومعماري Creative3Design"}],"villa":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779039530/creative3design/portfolio/sc7csy5tnpntuqwv9phl.png","alt":"رسيبشن الترا مودرن بفيلا بفرلي هيلز — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779039369/creative3design/portfolio/wcc9kjzoi0juxin99p7t.webp","alt":"لوبي فيلا ليك فيو — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1778543563/creative3design/portfolio/hg2ajnikwr7lxkruolsy.png","alt":"Classic Villa — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/baqu5l4tbsehbscebjfj","alt":"تصميم فيلا مودرن Villa Abo O3day — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/wgqr3jympqamcdjol28m.png","alt":"تصميم داخلي سكني نيوكلاسيك - فيلا نايف - السعودية - Creative3Design"}],"kitchen":[],"bedroom":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779039468/creative3design/portfolio/utp0z9lb4nohzu3domh0.png","alt":"تصميم داخلي فاخر لغرفة معيشة بتوقيع Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779039431/creative3design/portfolio/uaiiheytrohx3wabdvrs.png","alt":"غرفة نوم بفيلا مدينتي — Creative3Design"}],"office":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1778798894/creative3design/commercial/03_maadi_shopping_mall/qy5yd4u8zvv0gcedlhle.jpg","alt":"تصميم مكتب تجاري احترافي وعصري بالقاهرة"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779110950/creative3design/interior-com/%D9%85%D8%B7%D8%B9%D9%85_%D8%A7%D9%84_%D9%85%D9%88%D8%AF_%D8%A8%D9%85%D8%AF%D9%8A%D9%86%D8%AA%D9%8A/ruru1rukxehsshwkvmsf.jpg","alt":"مطعم ال مود بمدينتي — تصميم داخلي تجاري — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1778472388/creative3design/villas/12_bander_palace_modern_islamic_style/jlmhienv7dnwktplmzrw.jpg","alt":"أفضل مكتب هندسي في مصر 2026 — مشروع معماري من تنفيذ Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1778472220/creative3design/villas/01_villa_khedewy_in_capital_city/i4n4s88mzk8thxh99oz8.jpg","alt":"فيلا خديوي بالعاصمة الإدارية — تصميم Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/ohupzltxmpdccoupbech.jpg","alt":"تصميم داخلي تجاري مودرن - مكتب اداري درميتال بالسعودية - السعودية - Creative3Design"}],"classic":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/rntej5y0spiuomnjgypm","alt":"تصميم داخلي نيوكلاسيك شقة مروة التجمع — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/tbyw2faqouj122rapybq.jpg","alt":"تصميم داخلي سكني كلاسيك - شقة احمد عبيد - مدينة الرحاب - Creative3Design"}],"modern":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/c8hbbrcqofcmtv62lcrs","alt":"تصميم داخلي سكني مودرن شقة عمرو مدينتي — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/egwkgg0uxmfyzofo32mo.jpg","alt":"تصميم داخلي تجاري مودرن - محل بيع تمور - 6 اكتوبر - Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/pqgdhhtfth8starvxesy.jpg","alt":"تصميم داخلي سكني مودرن - شقة ياسر - التجمع الخامس - Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/wrraluzwdkabzycfjg3s.jpg","alt":"تصميم داخلي تجاري مودرن - جيم رياضي نادي الجمارك - التجمع الخامس - Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/portfolio/mwor0yftyvigs6heixai.jpg","alt":"تصميم ضيافة مودرن - New Capital City Hotel - القاهرة - Creative3Design"}],"general":[{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1778541005/creative3design/portfolio/vbryadjbdnbuxxl5dlsu.png","alt":"تصميم معماري لمبنى فاخر — Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779831448/creative3design/portfolio/cadprkxouaeo25isrtd4.jpg","alt":"تشطيب وتنفيذ ديكور داخلي فاخر — أعمال Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779465807/creative3design/interior-com/%D9%85%D8%B7%D8%B9%D9%85_%D8%A8%D8%AF%D8%A8%D9%8A/olry5olmnthqatvc6mwb.jpg","alt":"استشارة هندسية متخصصة مع مهندسي Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/v1779831566/creative3design/portfolio/qpye2ijb6cd2vxg3628r.jpg","alt":"جولة VR ثلاثية الأبعاد لمعاينة التصميم الداخلي قبل التنفيذ"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/hotels/01_the_platinum_hotel/woruyqrkq5fpi96nfr4v.jpg","alt":"The Platinum Hotel — ضيافة | تصميم داخلي ومعماري Creative3Design"},{"src":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_900,q_80,f_jpg/creative3design/hotels/02_diamond_hotel/ykgjo3rzpabpwbnuytjg.jpg","alt":"Diamond Hotel — ضيافة | تصميم داخلي ومعماري Creative3Design"}]};
+  function bestBucket(t){
+    t=(t||'').toLowerCase();
+    if(/مطبخ|kitchen|matbakh/.test(t)) return POOL.kitchen.length?POOL.kitchen:POOL.modern;
+    if(/نوم|bedroom|غرفة/.test(t)) return POOL.bedroom.length?POOL.bedroom:POOL.residential.concat(POOL.general);
+    if(/مكتب|office|maktab|مطعم|تجاري|commercial/.test(t)) return POOL.office.concat(POOL.commercial);
+    if(/فيلا|villa|filla|قصر|معماري/.test(t)) return POOL.villa;
+    if(/كلاسيك|classic|نيو/.test(t)) return POOL.classic.concat(POOL.general);
+    if(/مودرن|modern|عصري/.test(t)) return POOL.modern;
+    if(/شقة|سكني|residential|معيشة/.test(t)) return POOL.residential.concat(POOL.general);
+    return POOL.general.concat(POOL.modern);
+  }
+  function run(){
+    try{
+      var path = location.pathname.replace(/\/$/,'');
+      var skip = ['','/about','/contact','/packages','/portfolio','/blog','/sa','/index'];
+      if(skip.indexOf(path)>-1) return;
+      var isContent = /^\/blog\//.test(path) || /tashtib|tasmeem|maktab|filla|villa|maadi|tagamoa|zayed|october|sahel|shaqq|geo|dakhili|dakheli|memari/i.test(path);
+      if(!isContent) return;
+      var box = document.querySelector('article, main, .post-content, .blog-content, .article-content, #content, .container');
+      if(!box) return;
+      var hasImg = Array.prototype.some.call(box.querySelectorAll('img'), function(i){return /cloudinary/.test(i.currentSrc||i.getAttribute('src')||'');});
+      if(hasImg) return;
+      if(document.querySelector('.c3d-proj-strip')) return;
+      var title = (document.querySelector('h1')||{}).textContent || document.title || 'مشاريعنا';
+      title = title.replace(/\s+/g,' ').trim().slice(0,70);
+      var og = (document.querySelector('meta[property="og:image"]')||{}).content || '';
+      var ogBig = og ? og.replace(/\/upload\/[^/]*\//,'/upload/c_fill,w_1200,h_900,q_80,f_jpg/') : '';
+      var bucket = bestBucket(title+' '+path);
+      var picks=[], seen={};
+      if(ogBig){ picks.push({src:ogBig, alt:title}); seen[ogBig.split('/').pop()]=1; }
+      for(var i=0;i<bucket.length && picks.length<3;i++){
+        var id=bucket[i].src.split('/').pop(); if(seen[id])continue; seen[id]=1;
+        picks.push({src:bucket[i].src, alt:bucket[i].alt||title});
+      }
+      if(picks.length<2) return;
+      var fig=document.createElement('figure');
+      fig.className='c3d-proj-strip';
+      fig.setAttribute('style','margin:18px 0 26px;padding:0;');
+      var h=document.createElement('figcaption');
+      h.textContent='صور من مشاريعنا — '+title;
+      h.setAttribute('style','font-size:.95rem;font-weight:700;margin-bottom:10px;color:inherit;opacity:.9;');
+      fig.appendChild(h);
+      var grid=document.createElement('div');
+      grid.setAttribute('style','display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;');
+      picks.forEach(function(p){
+        var im=document.createElement('img');
+        im.src=p.src; im.alt=p.alt; im.loading='lazy'; im.decoding='async';
+        im.width=1200; im.height=900;
+        im.setAttribute('style','width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;');
+        grid.appendChild(im);
+      });
+      fig.appendChild(grid);
+      var h1=box.querySelector('h1');
+      if(h1 && h1.parentNode){ h1.parentNode.insertBefore(fig, h1.nextSibling); }
+      else { box.insertBefore(fig, box.firstChild); }
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', function(){setTimeout(run,1400);});
+  else setTimeout(run,1400);
+})();
+/* ===== end C3D thumbnail signals ===== */
