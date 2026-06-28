@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+  <!-- Google tag (gtag.js) — GA4 + Google Ads -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-BYF05KS3PN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BYF05KS3PN');
+    gtag('config', 'AW-10829372232');
+  </script>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Creative3Design">
+  <meta name="geo.region" content="EG-C">
+  <meta name="geo.placename" content="Cairo">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;family=Tajawal:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+  /* Calculator cards: mobile carousel hint + dots — scoped copy from homepage */
+  .calc-cards-mobile-hint, .calc-cards-dots { display:none; }
+  @media (max-width: 768px) {
+    .calc-cards-mobile-hint {
+      display:flex; align-items:center; justify-content:center; gap:.5rem; flex-wrap:wrap;
+      text-align:center; font-size:.78rem; color:var(--text-muted); margin:0 0 1rem;
+      padding:.6rem .8rem; background:rgba(184,151,106,.06);
+      border:1px solid rgba(184,151,106,.2); border-radius:6px;
+    }
+    .calc-cards-mobile-hint .cch-num {
+      color:var(--gold); font-weight:900; font-size:1rem; background:rgba(184,151,106,.15);
+      width:1.7rem; height:1.7rem; line-height:1.7rem; border-radius:50%; display:inline-block; text-align:center;
+    }
+    .calc-cards-mobile-hint .cch-text { color:var(--diamond-white); font-weight:700; font-size:.82rem; }
+    .calc-cards-mobile-hint .cch-swipe {
+      color:var(--gold); font-size:.72rem; width:100%;
+      animation: calc-swipe-bounce 1.8s ease-in-out infinite;
+    }
+    @keyframes calc-swipe-bounce {
+      0%, 100% { transform: translateX(0); opacity: .85; }
+      50%      { transform: translateX(-7px); opacity: 1; }
+    }
+    .calc-cards-dots { display:flex; justify-content:center; gap:.45rem; margin:0 0 1.5rem; padding-top:.2rem; }
+    .ccd-dot {
+      width:24px; height:24px; border:none; padding:0; background:transparent;
+      position:relative; cursor:pointer;
+    }
+    .ccd-dot::before {
+      content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.22); transition: all .3s ease;
+    }
+    .ccd-dot:hover::before { background:rgba(184,151,106,.5); }
+    .ccd-dot.active::before { background:var(--gold); width:24px; height:8px; border-radius:4px; }
+  }
+
+  /* ── Calculator cards — mobile clarity & selectability (eng-office page) ── */
+  @media (max-width: 768px) {
+    #calcCardsCarousel {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      gap: .85rem !important;
+      padding: .2rem .2rem .6rem !important;
+      scroll-padding-inline: 1rem;
+    }
+    #calcCardsCarousel::-webkit-scrollbar { display: none !important; }
+    #calcCardsCarousel .pkg-preview-card {
+      flex: 0 0 82% !important;
+      min-width: 0 !important;
+      max-width: 360px !important;
+      scroll-snap-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 1.5rem 1.25rem !important;
+      border: 1.5px solid rgba(184,151,106,.4) !important;
+      border-radius: 14px !important;
+      background: var(--black-card) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35) !important;
+    }
+    #calcCardsCarousel .pkg-preview-card--featured {
+      border-color: var(--gold) !important;
+      background: linear-gradient(160deg, var(--black-card) 0%, rgba(184,151,106,.10) 100%) !important;
+    }
+    #calcCardsCarousel .pkg-preview-card h3 { font-size: 1.12rem !important; line-height: 1.5; margin-bottom: .5rem; }
+    #calcCardsCarousel .pkg-preview-card p { font-size: .9rem !important; line-height: 1.75; }
+    #calcCardsCarousel .pkg-preview-icon { width: 50px; height: 50px; margin-bottom: 1rem; }
+    /* CTA looks like a clear, tappable button */
+    #calcCardsCarousel .pkg-preview-cta {
+      display: block;
+      margin-top: 1.1rem;
+      background: var(--gold);
+      color: #1a1714 !important;
+      font-weight: 700;
+      text-align: center;
+      padding: .7rem 1rem;
+      border-radius: 8px;
+      font-size: .92rem;
+    }
+    /* keep the two featured badges from overlapping the title */
+    #calcCardsCarousel .pkg-preview-card--featured { padding-top: 2.6rem !important; }
+    #calcCardsCarousel .pkg-recommended-badge { position: static !important; display: inline-block; margin-bottom: .6rem; }
+  }
+
+  /* ── Language toggle in navbar (desktop only) ── */
+  .nav-lang-toggle { display: none; }
+  @media (min-width: 769px) {
+    .navbar .nav-lang-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-inline-start: .6rem; padding: .35rem .85rem;
+      background: transparent; color: var(--gold);
+      border: 1px solid var(--gold); border-radius: 6px;
+      font-weight: 700; font-size: .8rem; letter-spacing: .04em;
+      cursor: pointer; font-family: inherit; line-height: 1;
+      transition: background .25s ease, color .25s ease;
+    }
+    .navbar .nav-lang-toggle:hover { background: var(--gold); color: #1a1714; }
+  }
+
+  /* ── Video library — clear native swipe carousel on mobile ── */
+  @media (max-width: 768px) {
+    .video-section .video-slider-wrap { overflow: visible !important; }
+    #videoTrack {
+      transform: none !important;
+      display: flex !important;
+      width: 100% !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      gap: .8rem !important;
+      padding-bottom: .5rem;
+    }
+    #videoTrack::-webkit-scrollbar { display: none !important; }
+    .video-section .video-card {
+      min-width: 80% !important;
+      flex: 0 0 80% !important;
+      scroll-snap-align: center !important;
+    }
+    .video-section .video-prev, .video-section .video-next { display: none !important; }
+  }
+  </style>
+  
+  
+  
+  
+
+<title>مكتب تصميم مولات تجارية ومحلات في مصر | تصميم ريتيل | Creative3Design</title>
+<meta name="description" content="مكتب تصميم مولات تجارية ومحلات وصالات عرض وفود كورت في مصر — تصميم تجاري يرفع عائد المساحة ومعدّل التحويل. خبرة تجارية وتسليم مفتاح. استشارة مجانية."><meta name="keywords" content="تصميم مولات تجارية, تصميم محلات, تصميم ريتيل, تصميم فود كورت, تصميم صالات عرض, مكتب تصميم تجاري, تصميم واجهات محلات">
+<link rel="canonical" href="https://creativedesignegypt.com/tasmeem-molat-tijaria">
+<meta property="og:type" content="website"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="Creative3Design"><meta property="og:title" content="مكتب تصميم مولات تجارية ومحلات في مصر | تصميم ريتيل | Creative3Design"><meta property="og:description" content="مكتب تصميم مولات تجارية ومحلات وصالات عرض وفود كورت في مصر — تصميم تجاري يرفع عائد المساحة ومعدّل التحويل. خبرة تجارية وتسليم مفتاح. استشارة مجانية."><meta property="og:url" content="https://creativedesignegypt.com/tasmeem-molat-tijaria"><meta property="og:image" content="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_630,q_80,f_jpg/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="مكتب تصميم مولات تجارية ومحلات في مصر | تصميم ريتيل | Creative3Design"><meta name="twitter:description" content="مكتب تصميم مولات تجارية ومحلات وصالات عرض وفود كورت في مصر — تصميم تجاري يرفع عائد المساحة ومعدّل التحويل. خبرة تجارية وتسليم مفتاح. استشارة مجانية."><meta name="twitter:image" content="https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_630,q_80,f_jpg/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"تصميم مولات تجارية ومحلات","name":"مكتب تصميم مولات تجارية ومحلات — Creative3Design","provider":{"@type":"Organization","name":"Creative3Design","url":"https://creativedesignegypt.com/","telephone":"+201019053288","image":"https://res.cloudinary.com/dwh2y3lvz/image/upload/c_fill,w_1200,h_630,q_80,f_jpg/v1778798923/creative3design/commercial/06_fasntazy_mall/qzx9yjljrnwyaeldxlic.jpg"},"areaServed":{"@type":"Country","name":"مصر"},"description":"تصميم وتنفيذ المولات والمحلات وصالات العرض والفود كورت في مصر، تصميم تجاري يرفع عائد المساحة ومعدّل التحويل.","url":"https://creativedesignegypt.com/tasmeem-molat-tijaria"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"كم تكلفة تصميم محل تجاري أو مول؟","acceptedAnswer":{"@type":"Answer","text":"تختلف التكلفة حسب المساحة ونوع النشاط ومستوى التشطيب وعدد المحلات. نقدّم عرضاً مفصّلاً بعد دراسة المشروع، ولديك حاسبة تكلفة فورية."}},{"@type":"Question","name":"هل تصمّمون المحل الصغير والمول الكبير معاً؟","acceptedAnswer":{"@type":"Answer","text":"نعم، نصمّم من المحل المستقل وصالة العرض إلى المول الكبير متعدد الطوابق والفود كورت."}},{"@type":"Question","name":"هل يركّز التصميم على زيادة المبيعات؟","acceptedAnswer":{"@type":"Answer","text":"نعم، نصمّم وفق علم حركة العميل وسلوك الشراء لإطالة زمن البقاء ورفع معدّل التحويل وعائد المتر."}},{"@type":"Question","name":"هل تنفّذون وتشرفون على المشروع؟","acceptedAnswer":{"@type":"Answer","text":"نعم، نقدّم تسليم مفتاح بالتصميم والتنفيذ والإشراف لضمان الجاهزية للافتتاح، أو التصميم منفصلاً."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://creativedesignegypt.com/"},{"@type":"ListItem","position":2,"name":"الخدمات","item":"https://creativedesignegypt.com/services"},{"@type":"ListItem","position":3,"name":"تصميم مولات تجارية","item":"https://creativedesignegypt.com/tasmeem-molat-tijaria"}]}</script>
+<style id="c3d-svc-style">
+.c3d-nav{position:sticky;top:0;z-index:50;background:rgba(13,13,15,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,106,.25);font-family:inherit}
+.c3d-nav-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 22px}
+.c3d-brand{color:#fff;text-decoration:none;font-weight:800;font-size:1.12rem;white-space:nowrap}
+.c3d-brand b{color:#c9a86a}
+.c3d-links{display:flex;gap:4px;flex-wrap:wrap;flex:1;justify-content:center}
+.c3d-links a{color:#d7d1c4;text-decoration:none;padding:8px 11px;border-radius:8px;font-size:.96rem;font-weight:600}
+.c3d-links a:hover{color:#c9a86a;background:rgba(201,168,106,.08)}
+.c3d-nav-cta{background:linear-gradient(135deg,#c9a86a,#b1894a);color:#1a1305;padding:9px 18px;border-radius:10px;text-decoration:none;font-weight:700;white-space:nowrap}
+@media(max-width:860px){.c3d-links{display:none}}
+.c3d-svc{font-family:inherit;color:#e8e3d8;background:#0e0e10}
+.c3d-svc *{box-sizing:border-box}
+.c3d-svc .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.c3d-svc-hero{position:relative;padding:84px 0 64px;background:linear-gradient(135deg,#141214 0%,#1d1a15 60%,#0e0e10 100%);text-align:center;border-bottom:1px solid rgba(201,168,106,.22)}
+.c3d-svc-kicker{display:inline-block;color:#c9a86a;letter-spacing:1px;font-size:.9rem;margin-bottom:14px;border:1px solid rgba(201,168,106,.4);padding:6px 16px;border-radius:30px}
+.c3d-svc-hero h1{font-size:2.4rem;line-height:1.3;margin:0 0 16px;color:#fff;font-weight:800}
+.c3d-svc-hero h1 span{color:#c9a86a}
+.c3d-svc-lead{font-size:1.16rem;max-width:760px;margin:0 auto 26px;color:#cfc8ba;line-height:1.9}
+.c3d-svc-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.c3d-svc-btn{display:inline-block;padding:14px 30px;border-radius:12px;font-weight:700;text-decoration:none;transition:.25s}
+.c3d-svc-btn.gold{background:linear-gradient(135deg,#c9a86a,#b1894a);color:#1a1305}
+.c3d-svc-btn.ghost{border:1px solid rgba(201,168,106,.55);color:#e8dcc2}
+.c3d-svc-btn:hover{transform:translateY(-2px)}
+.c3d-svc section{padding:58px 0}
+.c3d-svc h2{font-size:1.8rem;color:#fff;margin:0 0 12px;font-weight:800}
+.c3d-svc h2 b{color:#c9a86a;font-weight:800}
+.c3d-svc .sub{color:#b7b0a2;margin:0 0 32px;font-size:1.04rem;max-width:720px}
+.c3d-svc p{line-height:1.95;color:#d5cfc2;font-size:1.04rem}
+.c3d-svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.c3d-svc-card{background:#16161a;border:1px solid rgba(201,168,106,.16);border-radius:16px;padding:26px 24px}
+.c3d-svc-card h3{margin:0 0 10px;color:#c9a86a;font-size:1.18rem}
+.c3d-svc-card p{margin:0;color:#c2bcae;font-size:.98rem;line-height:1.8}
+.c3d-svc-steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.c3d-svc-step{background:#141417;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px 22px}
+.c3d-svc-step:before{counter-increment:s;content:"0" counter(s);color:rgba(201,168,106,.55);font-weight:800;font-size:1.5rem;display:block;margin-bottom:8px}
+.c3d-svc-step h3{margin:0 0 6px;color:#fff;font-size:1.06rem}
+.c3d-svc-step p{margin:0;font-size:.94rem;color:#b8b2a4}
+.c3d-svc-styles{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.c3d-svc-chip{background:rgba(201,168,106,.1);border:1px solid rgba(201,168,106,.3);color:#e3d6ba;padding:9px 18px;border-radius:30px;font-weight:600}
+.c3d-svc-faq{max-width:860px}
+.c3d-svc-faq details{background:#141417;border:1px solid rgba(201,168,106,.16);border-radius:12px;padding:6px 20px;margin-bottom:12px}
+.c3d-svc-faq summary{cursor:pointer;font-weight:700;color:#fff;padding:14px 0;list-style:none;font-size:1.05rem}
+.c3d-svc-faq summary::-webkit-details-marker{display:none}
+.c3d-svc-faq summary:before{content:"+";color:#c9a86a;margin-left:10px;font-weight:800}
+.c3d-svc-faq details[open] summary:before{content:"-"}
+.c3d-svc-faq p{padding:0 0 16px;margin:0;color:#c8c2b4}
+.c3d-svc-final{text-align:center;background:linear-gradient(135deg,#1d1a15,#121214)}
+.c3d-svc-final h2{font-size:2rem}
+.c3d-foot{background:#0b0b0d;border-top:1px solid rgba(201,168,106,.2);padding:46px 0 24px;color:#cfc8ba;font-family:inherit}
+.c3d-foot-in{max-width:1160px;margin:0 auto;padding:0 22px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}
+.c3d-foot h4{color:#c9a86a;margin:0 0 14px;font-size:1.05rem}
+.c3d-foot a{color:#cfc8ba;text-decoration:none;display:block;padding:4px 0;font-size:.97rem}
+.c3d-foot a:hover{color:#c9a86a}
+.c3d-foot-bot{text-align:center;border-top:1px solid rgba(255,255,255,.07);margin-top:28px;padding-top:18px;color:#8c887e;font-size:.9rem}
+.c3d-wa{position:fixed;bottom:22px;left:22px;z-index:60;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+@media(max-width:760px){.c3d-foot-in{grid-template-columns:1fr}.c3d-svc-hero h1{font-size:1.8rem}.c3d-svc h2{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<div class="c3d-nav"><div class="c3d-nav-in">
+<a class="c3d-brand" href="/"><b>C3D</b> Creative3Design</a>
+<div class="c3d-links"><a href="/">الرئيسية</a><a href="/about">عن المكتب</a><a href="/services">الخدمات</a><a href="/engineering-office">مكتب هندسي</a><a href="/packages">الباقات</a><a href="/portfolio">الأعمال</a><a href="/blog">المدونة</a><a href="/contact">تواصل</a></div>
+<a class="c3d-nav-cta" href="tel:00201019053288">اتصل بنا</a>
+</div></div>
+<main class="c3d-svc">
+
+<section class="c3d-svc-hero"><div class="wrap">
+<span class="c3d-svc-kicker">تصميم تجاري يبيع نفسه</span>
+<h1>مكتب تصميم <span>مولات تجارية ومحلات</span> في مصر</h1>
+<p class="c3d-svc-lead">التصميم التجاري الناجح يوجّه حركة الزائر نحو الشراء. يصمّم Creative3Design المولات والمحلات وصالات العرض والفود كورت بما يزيد زمن البقاء ومعدّل التحويل — تصميم وتنفيذ متكامل يخدم الإيراد لا الشكل فقط.</p>
+<div class="c3d-svc-cta"><a class="c3d-svc-btn gold" href="https://wa.me/201019053288?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%F0%9F%91%8B%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D9%85%D9%88%D9%84%20%2F%20%D9%85%D8%AD%D9%84%20%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%20%F0%9F%93%8D%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9">اطلب عرض سعر لمشروعك التجاري</a><a class="c3d-svc-btn ghost" href="/portfolio?cat=commercial">شاهد مشاريع تجارية</a></div>
+</div></section>
+<section><div class="wrap">
+<h2>التصميم التجاري <b>علم حركة وسلوك شراء</b></h2>
+<p class="sub">كل مسار ونقطة عرض وإضاءة تؤثر مباشرة في قرار الشراء.</p>
+<p>المول أو المحل المصمَّم باحتراف يطيل بقاء الزائر ويوجّهه بسلاسة نحو نقاط البيع. ندرس مسارات الحركة وتوزيع المحلات والمساحات المؤجّرة (GLA) وواجهات العرض والإضاءة التجارية واللافتات، بما يحقق أعلى عائد لكل متر مربع لك ولمستأجريك. في المحلات نصمّم الواجهة وتجربة الدخول وعرض المنتجات ومنطقة الدفع لتعظيم معدّل التحويل.</p>
+<p>نقدّم العرض ثلاثي الأبعاد وجولة VR لتجربة المسار التجاري قبل التنفيذ، مع إشراف ميداني يضمن جاهزية المشروع للافتتاح في الموعد.</p>
+</div></section>
+<section><div class="wrap">
+<h2>ماذا نصمّم في <b>القطاع التجاري والريتيل</b>؟</h2>
+<div class="c3d-svc-grid">
+<div class="c3d-svc-card"><h3>المولات والمراكز التجارية</h3><p>تخطيط المول وتوزيع المحلات والممرات والساحات والمساحات المؤجّرة لأعلى عائد.</p></div>
+<div class="c3d-svc-card"><h3>المحلات وصالات العرض</h3><p>تصميم المحلات وشو روم بواجهات جذّابة ومسار عرض يرفع معدّل التحويل.</p></div>
+<div class="c3d-svc-card"><h3>الفود كورت والمطاعم</h3><p>مناطق الطعام والفود كورت بأجواء تطيل البقاء وتزيد الإنفاق.</p></div>
+<div class="c3d-svc-card"><h3>واجهات المحلات</h3><p>واجهات ولافتات تجارية تلفت الانتباه وتعكس هوية العلامة.</p></div>
+<div class="c3d-svc-card"><h3>السوبر ماركت والهايبر</h3><p>تخطيط محلات البقالة الكبرى ومسارات التسوّق وعرض الأرفف.</p></div>
+<div class="c3d-svc-card"><h3>الإضاءة والهوية التجارية</h3><p>إضاءة تجارية واحترافية وهوية بصرية موحّدة عبر المشروع.</p></div>
+</div></div></section>
+<section><div class="wrap">
+<h2>أنماط <b>التصميم التجاري</b> التي نتقنها</h2>
+<div class="c3d-svc-styles"><span class="c3d-svc-chip">مول حديث</span><span class="c3d-svc-chip">ريتيل فاخر</span><span class="c3d-svc-chip">ستريت مول</span><span class="c3d-svc-chip">فود كورت</span><span class="c3d-svc-chip">شو روم</span><span class="c3d-svc-chip">بوب-أب / مؤقت</span></div>
+<p style="margin-top:22px">من المول الكبير متعدد الطوابق إلى المحل المستقل والبوب-أب المؤقت — نصمّم تجربة تجارية تخدم نموذج عملك وشريحة عملائك وتزيد عائد المساحة.</p>
+</div></section>
+<section><div class="wrap">
+<h2>لماذا <b>Creative3Design</b> لمشروعك التجاري؟</h2>
+<div class="c3d-svc-grid">
+<div class="c3d-svc-card"><h3>خبرة تجارية منفّذة</h3><p>مشاريع مثل Maadi Shopping Mall و Fasntazy Mall ضمن سجلّنا التجاري.</p></div>
+<div class="c3d-svc-card"><h3>تصميم يخدم الإيراد</h3><p>نركّز على عائد المتر ومعدّل التحويل وزمن البقاء، لا الجمال فقط.</p></div>
+<div class="c3d-svc-card"><h3>تسليم مفتاح</h3><p>تصميم + تنفيذ + توريد، جاهزية كاملة للافتتاح في الموعد.</p></div>
+<div class="c3d-svc-card"><h3>أسعار شفافة</h3><p>عرض مفصّل بلا تكاليف خفية + حاسبة تكلفة فورية.</p></div>
+</div></div></section>
+<section><div class="wrap">
+<h2>مراحل <b>تصميم المشروع التجاري</b></h2>
+<div class="c3d-svc-steps">
+<div class="c3d-svc-step"><h3>دراسة السوق والنشاط</h3><p>تحليل شريحة العملاء ونموذج العمل والمنافسة.</p></div>
+<div class="c3d-svc-step"><h3>تخطيط المسار التجاري</h3><p>توزيع المحلات والممرات ونقاط البيع والحركة.</p></div>
+<div class="c3d-svc-step"><h3>التصميم والهوية</h3><p>الواجهات والإضاءة والخامات واللافتات.</p></div>
+<div class="c3d-svc-step"><h3>عرض 3D وVR</h3><p>تجربة المسار التجاري قبل التنفيذ.</p></div>
+<div class="c3d-svc-step"><h3>التنفيذ والإشراف</h3><p>إشراف ميداني وتوريد وجاهزية الافتتاح.</p></div>
+<div class="c3d-svc-step"><h3>التسليم والافتتاح</h3><p>تسليم جاهز للتشغيل مع ضمان الجودة.</p></div>
+</div></div></section>
+<section><div class="wrap"><div class="c3d-svc-faq">
+<h2>أسئلة شائعة عن <b>تصميم المولات والمحلات</b></h2>
+<details open><summary>كم تكلفة تصميم محل تجاري أو مول؟</summary><p>تختلف التكلفة حسب المساحة ونوع النشاط ومستوى التشطيب وعدد المحلات. نقدّم عرضاً مفصّلاً بعد دراسة المشروع، ولديك حاسبة تكلفة فورية للتقدير المبدئي. تواصل عبر واتساب +20 101 905 3288.</p></details>
+<details><summary>هل تصمّمون المحل الصغير والمول الكبير معاً؟</summary><p>نعم، نصمّم من المحل المستقل الصغير وصالة العرض إلى المول الكبير متعدد الطوابق والفود كورت، بنفس التركيز على عائد المساحة.</p></details>
+<details><summary>هل يركّز التصميم على زيادة المبيعات؟</summary><p>نعم، نصمّم وفق علم حركة العميل وسلوك الشراء لإطالة زمن البقاء ورفع معدّل التحويل وعائد كل متر مربع.</p></details>
+<details><summary>هل تنفّذون وتشرفون على المشروع؟</summary><p>نعم، نقدّم تسليم مفتاح بالتصميم والتنفيذ والإشراف لضمان الجاهزية للافتتاح، أو التصميم منفصلاً حسب رغبتك.</p></details>
+</div></div></section>
+<section class="c3d-svc-final"><div class="wrap">
+<h2>جاهز لإطلاق مشروعك التجاري؟</h2>
+<p class="c3d-svc-lead">احجز استشارة مجانية مع متخصص في التصميم التجاري والريتيل — بلا التزام.</p>
+<div class="c3d-svc-cta"><a class="c3d-svc-btn gold" href="https://wa.me/201019053288?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%F0%9F%91%8B%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D9%85%D9%88%D9%84%20%2F%20%D9%85%D8%AD%D9%84%20%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%20%F0%9F%93%8D%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9">احجز استشارة مجانية</a><a class="c3d-svc-btn ghost" href="tel:00201019053288">اتصل: +20 101 905 3288</a></div>
+</div></section>
+</main>
+<div class="c3d-foot"><div class="c3d-foot-in">
+<div><a href="/" class="c3d-brand"><b>C3D</b> Creative3Design</a><p style="color:#9b958a;margin-top:12px;line-height:1.8">مكتب تصميم معماري وداخلي واستشاري معتمد في القاهرة — خبرة 22+ عاماً و1100+ مشروع. نخدم مصر والخليج.</p></div>
+<div><h4>خدماتنا</h4><a href="/tasmeem-flal">تصميم فلل</a><a href="/tasmeem-makateb-edaria">تصميم مكاتب إدارية</a><a href="/tasmeem-fanadek">تصميم فنادق</a><a href="/tasmeem-molat-tijaria">تصميم مولات تجارية</a><a href="/engineering-office">مكتب هندسي استشاري</a><a href="/services">كل الخدمات</a></div>
+<div><h4>تواصل معنا</h4><a href="tel:00201019053288">+20 101 905 3288</a><a href="https://wa.me/201019053288">واتساب مباشر</a><a href="mailto:info@creativedesignegypt.com">info@creativedesignegypt.com</a><a href="/contact">نموذج التواصل</a><p style="color:#9b958a;margin-top:8px">التجمع الخامس، القاهرة</p></div>
+</div><div class="c3d-foot-bot">© 2026 Creative3Design — جميع الحقوق محفوظة</div></div>
+<a class="c3d-wa" href="https://wa.me/201019053288" aria-label="واتساب">💬</a>
+</body>
+</html>
