@@ -125,6 +125,16 @@
   ],
   "redirects": [
     {
+      "source": "/afdal-maktab-tasmeem-dakhili-misr-2026",
+      "destination": "/blog/afdal-maktab-tasmeem-dakhili-misr-2026",
+      "permanent": true
+    },
+    {
+      "source": "/afdal-maktab-tasmeem-flal-misr-2026",
+      "destination": "/blog/afdal-maktab-tasmeem-flal-misr-2026",
+      "permanent": true
+    },
+    {
       "source": "/en",
       "destination": "/",
       "permanent": true
