@@ -125,89 +125,13 @@
   ],
   "redirects": [
     {
-      "source": "/afdal-maktab-tasmeem-dakhili-misr-2026",
-      "destination": "/blog/afdal-maktab-tasmeem-dakhili-misr-2026",
+      "source": "/blog/afdal-maktab-handasi-misr-2026",
+      "destination": "/engineering-office",
       "permanent": true
     },
     {
-      "source": "/afdal-maktab-tasmeem-flal-misr-2026",
-      "destination": "/blog/afdal-maktab-tasmeem-flal-misr-2026",
-      "permanent": true
-    },
-    {
-      "source": "/ar",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/ar/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "(www\\.)?creative3design\\.xyz"
-        }
-      ],
-      "destination": "https://creativedesignegypt.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/blogs",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/blog-post:id",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/our-designs",
-      "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/our-work",
-      "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/gallery",
-      "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/projects",
-      "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/videos",
-      "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/our-services",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/services-2",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/about-us",
-      "destination": "/about",
-      "permanent": true
-    },
-    {
-      "source": "/contact-us",
-      "destination": "/contact",
+      "source": "/blog/afdal-maktab-handasi-misr-2026.html",
+      "destination": "/engineering-office",
       "permanent": true
     }
   ],
