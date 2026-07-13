@@ -270,7 +270,15 @@
   <!-- ===== Day 40 SEO Article (Added 2026-05-28) ===== -->
   <url>
     <loc>https://creativedesignegypt.com/blog/tashtib-shaqqa-100-metr-2026</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ===== Sprint12 S5 Article (Added 2026-07-13) ===== -->
+  <url>
+    <loc>https://creativedesignegypt.com/blog/tashtib-shaqqa-150-metr-2026</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
