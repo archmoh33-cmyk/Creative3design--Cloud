@@ -707,11 +707,31 @@ document.addEventListener('DOMContentLoaded', () => {
    - form_submit + إرسال AJAX لنماذج .c3d-lead-form (يبقى المستخدم بالصفحة)
 ════════════════════════════════════════════════════════════════ */
 (function () {
+  /* C3D: GA4 hardening (session v4-1, 2026-07-16)
+     1) idempotency guard — prevents double listener registration if script ever loads twice
+     2) per-click dedupe — same anchor within 500ms fires once
+     3) traffic_type=internal flag via ?internal=1 (persisted in localStorage; ?internal=0 clears) */
+  if (window.__c3dGa4TrackInit) return;
+  window.__c3dGa4TrackInit = true;
+  try {
+    var _qs = new URLSearchParams(location.search);
+    if (_qs.get('internal') === '1') localStorage.setItem('c3d_internal', '1');
+    if (_qs.get('internal') === '0') localStorage.removeItem('c3d_internal');
+    if (localStorage.getItem('c3d_internal') === '1' && typeof gtag === 'function') {
+      gtag('set', { 'traffic_type': 'internal' });
+    }
+  } catch (err) { /* storage unavailable — ignore */ }
+  var _c3dLastClick = { href: '', t: 0 };
   /* تتبّع نقرات واتساب والهاتف في أي مكان بالموقع */
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || typeof gtag !== 'function') return;
     var href = a.getAttribute('href') || '';
+    if (/wa\.me|api\.whatsapp|whatsapp:|^tel:/i.test(href)) {
+      var _now = Date.now();
+      if (href === _c3dLastClick.href && (_now - _c3dLastClick.t) < 500) return;
+      _c3dLastClick.href = href; _c3dLastClick.t = _now;
+    }
     if (/wa\.me|api\.whatsapp|whatsapp:/i.test(href)) {
       gtag('event', 'whatsapp_click', { event_category: 'engagement', link_url: href, page_path: location.pathname });
       /* Google Ads conversion — WhatsApp click (ID 7615327679) */
