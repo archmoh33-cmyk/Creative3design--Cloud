@@ -49,4 +49,36 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/contact"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/contact"/>
   </url>
+  <url>
+    <loc>https://creativedesignegypt.com/en/packages</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://creativedesignegypt.com/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/packages"/>
+  </url>
+  <url>
+    <loc>https://creativedesignegypt.com/en/portfolio</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://creativedesignegypt.com/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/portfolio"/>
+  </url>
+  <url>
+    <loc>https://creativedesignegypt.com/packages</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://creativedesignegypt.com/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/packages"/>
+  </url>
+  <url>
+    <loc>https://creativedesignegypt.com/portfolio</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://creativedesignegypt.com/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/portfolio"/>
+  </url>
 </urlset>
