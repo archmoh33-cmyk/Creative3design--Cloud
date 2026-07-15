@@ -133,6 +133,16 @@
       "source": "/blog/afdal-maktab-handasi-misr-2026.html",
       "destination": "/engineering-office",
       "permanent": true
+    },
+    {
+      "source": "/blog/tashteeb-shaqq-2025",
+      "destination": "/blog/asaar-tashtib-shaqq-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/tashteeb-shaqq-2025.html",
+      "destination": "/blog/asaar-tashtib-shaqq-2026",
+      "permanent": true
     }
   ],
   "rewrites": [
