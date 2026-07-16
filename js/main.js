@@ -1525,3 +1525,60 @@ document.addEventListener('DOMContentLoaded', () => {
   else setTimeout(run,1400);
 })();
 /* ===== end C3D thumbnail signals ===== */
+
+/* ================================================================
+   C3D: contextual WhatsApp text= injection (session v4-2, 2026-07-16)
+   Scoped exception to preservation-contract clause 4: ONLY the text=
+   query param is added at runtime, and ONLY to wa.me links that carry
+   no text= already (hand-curated messages are preserved untouched).
+   Number + wa.me structure unchanged; original hrefs stay in the HTML
+   as a no-JS fallback.
+================================================================ */
+(function () {
+  if (window.__c3dWaCtxInit) return;
+  window.__c3dWaCtxInit = true;
+
+  function c3dWaMessage() {
+    var p = location.pathname.toLowerCase().replace(/\/index\.html?$/, '/').replace(/\.html?$/, '');
+    var h1 = document.querySelector('h1');
+    var title = ((h1 && h1.textContent) || document.title || '').trim().replace(/\s+/g, ' ').slice(0, 70);
+    if (p === '/en' || p.indexOf('/en/') === 0)
+      return 'Hello \uD83D\uDC4B I would like a free consultation \u2014 coming from: ' + (title || 'your English site');
+    if (p === '/sa' || p.indexOf('/sa/') === 0)
+      return '\u062D\u064A\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \uD83D\uDC4B \u0623\u0628\u063A\u0649 \u0623\u0633\u062A\u0641\u0633\u0631 \u0639\u0646 \u062E\u062F\u0645\u0629 \u0627\u0644\u062A\u0635\u0645\u064A\u0645 \u0639\u0646 \u0628\u064F\u0639\u062F \u0628\u0627\u0644\u0631\u064A\u0627\u0644 \u2014 \u0642\u0627\u062F\u0645 \u0645\u0646: ' + title;
+    if (p.indexOf('/blog/') === 0 && p.length > 6)
+      return '\u0645\u0631\u062D\u0628\u0627\u064B \uD83D\uDC4B \u0642\u0631\u0623\u062A \u0645\u0642\u0627\u0644 \u00AB' + title + '\u00BB \u0648\u0623\u0631\u064A\u062F \u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0628\u062E\u0635\u0648\u0635 \u0645\u0648\u0636\u0648\u0639\u0647';
+    if (p === '/' || p === '')
+      return '\u0645\u0631\u062D\u0628\u0627\u064B \uD83D\uDC4B \u0623\u0631\u064A\u062F \u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0645\u062C\u0627\u0646\u064A\u0629 \u2014 \u0642\u0627\u062F\u0645 \u0645\u0646 \u0627\u0644\u0635\u0641\u062D\u0629 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629';
+    if (p.indexOf('/packages') === 0)
+      return '\u0645\u0631\u062D\u0628\u0627\u064B \uD83D\uDC4B \u0623\u0631\u064A\u062F \u062A\u0641\u0627\u0635\u064A\u0644 \u0628\u0627\u0642\u0627\u062A \u0627\u0644\u062A\u0634\u0637\u064A\u0628 \u0627\u0644\u0645\u0639\u0644\u0646\u0629 \u0648\u0639\u0631\u0636 \u0633\u0639\u0631 \u2014 \u0635\u0641\u062D\u0629 \u0627\u0644\u0628\u0627\u0642\u0627\u062A';
+    if (/tashtib|tasmeem|zayed|tagamoa|maadi|madinaty|sahel|asema|october|aktober/.test(p))
+      return '\u0645\u0631\u062D\u0628\u0627\u064B \uD83D\uDC4B \u0623\u0647\u062A\u0645 \u0628\u062E\u062F\u0645\u0627\u062A\u0643\u0645 \u0641\u064A \u0645\u0646\u0637\u0642\u062A\u064A \u2014 \u0642\u0627\u062F\u0645 \u0645\u0646 \u0635\u0641\u062D\u0629: ' + title;
+    return '\u0645\u0631\u062D\u0628\u0627\u064B \uD83D\uDC4B \u0623\u0631\u064A\u062F \u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0645\u062C\u0627\u0646\u064A\u0629 \u2014 \u0642\u0627\u062F\u0645 \u0645\u0646 \u0635\u0641\u062D\u0629: ' + title;
+  }
+
+  function c3dWaApply(a) {
+    try {
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('wa.me/201019053288') === -1) return;
+      if (href.indexOf('text=') !== -1) return; /* keep curated messages */
+      var sep = href.indexOf('?') === -1 ? '?' : '&';
+      a.setAttribute('href', href + sep + 'text=' + encodeURIComponent(c3dWaMessage()));
+    } catch (err) { /* never break the page over a CTA nicety */ }
+  }
+
+  function run() {
+    var links = document.querySelectorAll('a[href*="wa.me/201019053288"]');
+    for (var i = 0; i < links.length; i++) c3dWaApply(links[i]);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+
+  /* late-injected anchors (drawer/dynamic content): patch at click time, before navigation */
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me/201019053288"]') : null;
+    if (a) c3dWaApply(a);
+  }, true);
+})();
+/* ===== end C3D contextual WhatsApp ===== */
