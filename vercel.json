@@ -4,151 +4,78 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate" }
+      ]
+    },
+    {
       "source": "/admin/(.*)",
       "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        },
-        {
-          "key": "Surrogate-Control",
-          "value": "no-store"
-        }
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Surrogate-Control", "value": "no-store" }
       ]
     },
     {
       "source": "/js/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
     },
     {
       "source": "/",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        }
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" }
       ]
     },
     {
       "source": "/(.*).html",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        }
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Cross-Origin-Opener-Policy",
-          "value": "same-origin-allow-popups"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://cdn.jsdelivr.net https://*.cloudinary.com https://embed.tawk.to https://*.tawk.to https://vercel.live https://va.vercel-scripts.com https://mojeebcdn.z7.web.core.windows.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to https://vercel.live; font-src 'self' data: https://fonts.gstatic.com https://*.tawk.to; img-src 'self' data: blob: https://res.cloudinary.com https://*.cloudinary.com https://i.ytimg.com https://*.ytimg.com https://*.tawk.to https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.google.com.eg https://www.google.com.sa https://www.google.ae https://www.google.com.kw https://www.google.com.qa https://www.google.com.bh https://www.google.com.om https://www.google.jo https://www.google.com.lb https://*.supabase.co https://*.googleusercontent.com https://vercel.live https://mojeebcdn.z7.web.core.windows.net; connect-src 'self' https://formsubmit.co https://*.cloudinary.com https://*.supabase.co wss://*.supabase.co https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.google.com.eg https://www.google.com.sa https://www.google.ae https://www.google.com.kw https://www.google.com.qa https://www.google.com.bh https://www.google.com.om https://www.google.jo https://www.google.com.lb https://*.tawk.to wss://*.tawk.to https://vercel.live wss://ws-us3.pusher.com https://mojeebcdn.z7.web.core.windows.net https://mojeebapi.azurewebsites.net; frame-src 'self' https://*.cloudinary.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com https://*.tawk.to https://td.doubleclick.net https://bid.g.doubleclick.net https://vercel.live https://mojeebcdn.z7.web.core.windows.net; media-src 'self' https://*.tawk.to; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
-        }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://cdn.jsdelivr.net https://*.cloudinary.com https://embed.tawk.to https://*.tawk.to https://vercel.live https://va.vercel-scripts.com https://mojeebcdn.z7.web.core.windows.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to https://vercel.live; font-src 'self' data: https://fonts.gstatic.com https://*.tawk.to; img-src 'self' data: blob: https://res.cloudinary.com https://*.cloudinary.com https://i.ytimg.com https://*.ytimg.com https://*.tawk.to https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.google.com.eg https://www.google.com.sa https://www.google.ae https://www.google.com.kw https://www.google.com.qa https://www.google.com.bh https://www.google.com.om https://www.google.jo https://www.google.com.lb https://*.supabase.co https://*.googleusercontent.com https://vercel.live https://mojeebcdn.z7.web.core.windows.net; connect-src 'self' https://formsubmit.co https://*.cloudinary.com https://*.supabase.co wss://*.supabase.co https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.google.com.eg https://www.google.com.sa https://www.google.ae https://www.google.com.kw https://www.google.com.qa https://www.google.com.bh https://www.google.com.om https://www.google.jo https://www.google.com.lb https://*.tawk.to wss://*.tawk.to https://vercel.live wss://ws-us3.pusher.com https://mojeebcdn.z7.web.core.windows.net https://mojeebapi.azurewebsites.net; frame-src 'self' https://*.cloudinary.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com https://*.tawk.to https://td.doubleclick.net https://bid.g.doubleclick.net https://vercel.live https://mojeebcdn.z7.web.core.windows.net; media-src 'self' https://*.tawk.to; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests" }
       ]
     }
   ],
   "redirects": [
-    {
-      "source": "/blog/afdal-maktab-handasi-misr-2026",
-      "destination": "/engineering-office",
-      "permanent": true
-    },
-    {
-      "source": "/blog/afdal-maktab-handasi-misr-2026.html",
-      "destination": "/engineering-office",
-      "permanent": true
-    },
-    {
-      "source": "/blog/tashteeb-shaqq-2025",
-      "destination": "/blog/asaar-tashtib-shaqq-2026",
-      "permanent": true
-    },
-    {
-      "source": "/blog/tashteeb-shaqq-2025.html",
-      "destination": "/blog/asaar-tashtib-shaqq-2026",
-      "permanent": true
-    }
+    { "source": "/blog/afdal-maktab-handasi-misr-2026", "destination": "/engineering-office", "permanent": true },
+    { "source": "/blog/afdal-maktab-handasi-misr-2026.html", "destination": "/engineering-office", "permanent": true },
+    { "source": "/blog/tashteeb-shaqq-2025", "destination": "/blog/asaar-tashtib-shaqq-2026", "permanent": true },
+    { "source": "/blog/tashteeb-shaqq-2025.html", "destination": "/blog/asaar-tashtib-shaqq-2026", "permanent": true }
   ],
   "rewrites": [
-    {
-      "source": "/blog",
-      "destination": "/blog/index.html"
-    }
+    { "source": "/blog", "destination": "/blog/index.html" }
   ]
 }
