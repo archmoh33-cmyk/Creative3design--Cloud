@@ -648,7 +648,7 @@ function saSubmitQuote(e){
           +'<div class="play-btn-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--gold)"/></svg></div>'
           +'</button><h3>'+t+'</h3></div>';
       }).join('');
-      var sec=document.getElementById('videos'); if(sec) sec.style.display='';
+      var sec=document.getElementById('videos'); if(sec) sec.style.display=''; try{track.querySelectorAll('.video-card').forEach(function(c){c.classList.add('revealed');});}catch(e){}
       if(typeof videoSlideUpdate==='function'){ window.videoIdx=0; videoSlideUpdate(); }
     }).catch(function(){});
   }
