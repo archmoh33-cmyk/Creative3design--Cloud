@@ -1256,7 +1256,7 @@ body.loading { overflow: hidden; }
 
     <!-- Mini price reference — compact pill bar -->
     <div class="lazy-reveal" style="background:var(--black-card);border:1px solid var(--gray-border);padding:1.2rem 1.5rem;margin-bottom:2rem;">
-      <p style="font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.85rem;text-align:center;letter-spacing:.04em;" data-ar="مرجع سريع للأسعار — مايو 2026" data-en="Quick Price Reference — May 2026">مرجع سريع للأسعار — مايو 2026</p>
+      <p style="font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.85rem;text-align:center;letter-spacing:.04em;" data-ar="مرجع سريع للأسعار — يوليو 2026" data-en="Quick Price Reference — July 2026">مرجع سريع للأسعار — يوليو 2026</p>
       <div class="price-ref-bar">
         <a href="packages#calculator" class="price-ref-pill" data-tier="standard">
           <span class="price-ref-label" data-ar="ستاندرد" data-en="Standard">ستاندرد</span>
@@ -2358,6 +2358,7 @@ function switchBA(idx) {
         });
 
         track.innerHTML = cards.join('');
+        try{track.querySelectorAll('.video-card').forEach(function(c){c.classList.add('revealed');});}catch(e){}
         var _vsec=document.getElementById('videos'); if(_vsec) _vsec.style.display='';
         if (typeof videoSlideUpdate === 'function') {
           window.videoIdx = 0;
