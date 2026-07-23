@@ -1,109 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <url>
-    <loc>https://creativedesignegypt.com/sa</loc>
-    <lastmod>2026-07-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa"/>
-    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://creativedesignegypt.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-riyadh</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-riyadh"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-villa-online-jeddah</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-villa-online-jeddah"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-dammam</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-dammam"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-makkah-madinah</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-makkah-madinah"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-neom-vision</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-neom-vision"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026</loc>
-    <lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-binaa-villa-riyadh-2026</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-binaa-villa-riyadh-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/wagihat-flal-riyadh-2026</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/wagihat-flal-riyadh-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tasmeem-shaqqa-saudi-2026</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-khobar</loc>
-    <lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-khobar"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tashtib-villa-riyadh-2026</loc>
-    <lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-villa-riyadh-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/hasibat-taklefat-tasmeem-saudi</loc>
-    <lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/hasibat-taklefat-tasmeem-saudi"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/tasmeem-online-vs-maktab-mahali-saudi</loc>
-    <lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-online-vs-maktab-mahali-saudi"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-jeddah-2026</loc>
-    <lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-jeddah-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tashtib-villa-jeddah-2026</loc>
-    <lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-villa-jeddah-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/ataab-maktab-handasi-saudi-2026</loc>
-    <lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/ataab-maktab-handasi-saudi-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-dammam-khobar-2026</loc>
-    <lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-dammam-khobar-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/taklefat-binaa-dor-molhaq-2026</loc>
-    <lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-binaa-dor-molhaq-2026"/>
-  </url>
-  <url>
-    <loc>https://creativedesignegypt.com/sa/marahel-binaa-villa-saudi</loc>
-    <lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/marahel-binaa-villa-saudi"/>
-  </url>
+<url>
+<loc>https://creativedesignegypt.com/sa</loc>
+<lastmod>2026-07-24</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa"/>
+<xhtml:link rel="alternate" hreflang="ar-eg" href="https://creativedesignegypt.com/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-riyadh</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-riyadh"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-villa-online-jeddah</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-villa-online-jeddah"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-dammam</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-dammam"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-makkah-madinah</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-makkah-madinah"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-neom-vision</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-neom-vision"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026</loc>
+<lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-binaa-villa-riyadh-2026</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-binaa-villa-riyadh-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/wagihat-flal-riyadh-2026</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/wagihat-flal-riyadh-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tasmeem-shaqqa-saudi-2026</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tasmeem-villa-saudi-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-dakhili-online-khobar</loc>
+<lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-dakhili-online-khobar"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tashtib-villa-riyadh-2026</loc>
+<lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-villa-riyadh-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/hasibat-taklefat-tasmeem-saudi</loc>
+<lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/hasibat-taklefat-tasmeem-saudi"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/tasmeem-online-vs-maktab-mahali-saudi</loc>
+<lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/tasmeem-online-vs-maktab-mahali-saudi"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-jeddah-2026</loc>
+<lastmod>2026-07-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-jeddah-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tashtib-villa-jeddah-2026</loc>
+<lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-villa-jeddah-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/ataab-maktab-handasi-saudi-2026</loc>
+<lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/ataab-maktab-handasi-saudi-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-dammam-khobar-2026</loc>
+<lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-tashtib-shaqqa-dammam-khobar-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/taklefat-binaa-dor-molhaq-2026</loc>
+<lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/taklefat-binaa-dor-molhaq-2026"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/marahel-binaa-villa-saudi</loc>
+<lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/marahel-binaa-villa-saudi"/>
+</url>
+<url>
+<loc>https://creativedesignegypt.com/sa/majlis-diwaniya-tasmeem-saudi-2026</loc>
+<lastmod>2026-07-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="ar-sa" href="https://creativedesignegypt.com/sa/majlis-diwaniya-tasmeem-saudi-2026"/>
+</url>
 </urlset>
