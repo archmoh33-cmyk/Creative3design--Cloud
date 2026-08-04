@@ -1483,3 +1483,10 @@ body { counter-reset:c3dsec; }
   .btn-gold::after { display:none; }
 }
 /* ====================== END UI-2026 PACK ====================== */
+
+/* ===== c3d-touch-targets-20260804 — WCAG 2.5.8: أهداف لمس ≥24px للشريط العلوي والفوتر (append-only · reversible · بند ⑪) ===== */
+.top-bar-link { padding-block:5px; margin-block:-5px; }
+.footer-links a, .footer-bottom a, .article-footer-nav a { display:inline-block; padding-block:4px; margin-block:-4px; }
+.footer-contact-item { padding-block:4px; margin-block:-4px; }
+.footer-social a { display:inline-flex; align-items:center; justify-content:center; min-width:28px; min-height:28px; margin:-5px; }
+/* ===== /c3d-touch-targets-20260804 ===== */
