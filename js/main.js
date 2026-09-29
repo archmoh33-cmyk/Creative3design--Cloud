@@ -1582,3 +1582,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }, true);
 })();
 /* ===== end C3D contextual WhatsApp ===== */
+
+/* ===== C3D Call Gate loader (2026-09-29) — شاشة سؤال قبل الاتصال للأيقونة العائمة ===== */
+(function () {
+  if (window.__c3dCallGate || document.getElementById('c3d-call-gate-js')) return;
+  var s = document.createElement('script');
+  s.id = 'c3d-call-gate-js'; s.src = '/js/call-gate.js'; s.defer = true;
+  (document.head || document.documentElement).appendChild(s);
+})();
