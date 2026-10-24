@@ -96,4 +96,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://creativedesignegypt.com/en/apartment-finishing-cost-150m-egypt-2026</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://creativedesignegypt.com/blog/tashtib-shaqqa-150-metr-2026"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://creativedesignegypt.com/en/apartment-finishing-cost-150m-egypt-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://creativedesignegypt.com/blog/tashtib-shaqqa-150-metr-2026"/>
+  </url>
 </urlset>
