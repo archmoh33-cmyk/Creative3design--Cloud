@@ -1156,46 +1156,75 @@ body.loading { overflow: hidden; }
   </div>
 </section>
 
-<!-- TESTIMONIALS SECTION (moved up — CRO T1 20261118) -->
+<!-- TESTIMONIALS SECTION (moved up — CRO T1 20261118 · redesigned 20261118) -->
 <section class="testimonials-section section-padding" id="testimonials" style="border-top:1px solid rgba(201,168,106,.15)">
+<style>
+.c3d-rev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.c3d-rev-card{position:relative;display:flex;flex-direction:column;gap:18px;margin:0;padding:34px 30px 28px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015) 55%);border:1px solid rgba(201,168,106,.2);box-shadow:0 18px 44px rgba(0,0,0,.35);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.c3d-rev-card::before{content:"\201D";position:absolute;top:-18px;inset-inline-end:22px;font-family:Georgia,'Times New Roman',serif;font-size:150px;line-height:1;color:var(--gold);opacity:.13;pointer-events:none}
+.c3d-rev-card::after{content:"";position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
+.c3d-rev-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.c3d-rev-chip{display:inline-block;padding:6px 14px;border-radius:999px;border:1px solid rgba(201,168,106,.4);background:rgba(184,151,106,.1);color:var(--gold-light);font-size:.8rem;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.c3d-rev-stars{color:var(--gold-light);font-size:.95rem;letter-spacing:3px;direction:ltr}
+.c3d-rev-text{margin:0;flex:1;color:var(--diamond-white);font-size:1.08rem;line-height:2;font-weight:500}
+.c3d-rev-who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.c3d-rev-av{flex:0 0 48px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#141210;font-family:var(--font-heading);font-weight:800;font-size:1.15rem;box-shadow:0 0 0 4px rgba(184,151,106,.16)}
+.c3d-rev-name{display:block;color:var(--diamond-white);font-family:var(--font-heading);font-weight:700;font-size:1rem;line-height:1.5}
+.c3d-rev-meta{display:block;color:var(--platinum);font-size:.86rem;line-height:1.6}
+@media (hover:hover){.c3d-rev-card:hover{transform:translateY(-6px);border-color:rgba(201,168,106,.5);box-shadow:0 26px 56px rgba(0,0,0,.5)}}
+@media (max-width:1023px){.c3d-rev{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.c3d-rev-card:last-child{grid-column:1/-1}}
+@media (max-width:639px){
+.c3d-rev{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-inline:-1.1rem;padding:6px 1.1rem 14px;scroll-padding-inline:1.1rem}
+.c3d-rev::-webkit-scrollbar{display:none}
+.c3d-rev-card{flex:0 0 86%;scroll-snap-align:start;padding:28px 22px 22px;gap:14px;border-radius:18px}
+.c3d-rev-card:last-child{grid-column:auto}
+.c3d-rev-text{font-size:1.02rem;line-height:1.95}
+.c3d-rev-hint{display:block}
+}
+.c3d-rev-hint{display:none;text-align:center;margin:6px 0 0;color:var(--text-muted);font-size:.82rem}
+@media (prefers-reduced-motion:reduce){.c3d-rev-card{transition:none}.c3d-rev-card:hover{transform:none}}
+</style>
   <div class="container">
     <div class="section-header lazy-reveal">
       <p class="section-tag" data-ar="آراء عملائنا" data-en="Client Reviews">آراء عملائنا</p>
       <h2 data-ar="ماذا يقول عملاؤنا؟" data-en="What Our Clients Say">ماذا يقول عملاؤنا؟</h2>
     </div>
-    <div class="testi-wrap">
-      <div class="testi-track" id="testiTrack">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة." data-en="Creative3Design transformed my apartment into a masterpiece. Attention to detail and on-time delivery made the experience exceptional. Highly recommended.">Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">أ</div>
-            <div><strong>أحمد الشريف</strong><span>تجمع خامس — شقة 220 م²</span></div>
-          </div>
+    <div class="c3d-rev" role="list">
+      <figure class="c3d-rev-card" role="listitem">
+        <div class="c3d-rev-top">
+          <span class="c3d-rev-chip" data-ar="التسليم في الموعد" data-en="On-time delivery">التسليم في الموعد</span>
+          <span class="c3d-rev-stars" role="img" aria-label="5 من 5">★★★★★</span>
         </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور." data-en="I worked with them on my villa design and the experience was excellent from start to finish. Professional team, fast communication, results more beautiful than the renderings.">تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ن</div>
-            <div><strong>نادية عمران</strong><span>فيلا — الشيخ زايد</span></div>
-          </div>
+        <blockquote class="c3d-rev-text" data-ar="Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة." data-en="Creative3Design transformed my apartment into a masterpiece. Attention to detail and on-time delivery made the experience exceptional. Highly recommended.">Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة.</blockquote>
+        <figcaption class="c3d-rev-who">
+          <span class="c3d-rev-av" aria-hidden="true">أ</span>
+          <span><strong class="c3d-rev-name">أحمد الشريف</strong><span class="c3d-rev-meta">تجمع خامس — شقة 220 م²</span></span>
+        </figcaption>
+      </figure>
+      <figure class="c3d-rev-card" role="listitem">
+        <div class="c3d-rev-top">
+          <span class="c3d-rev-chip" data-ar="النتيجة أجمل من الصور" data-en="Better than the renderings">النتيجة أجمل من الصور</span>
+          <span class="c3d-rev-stars" role="img" aria-label="5 من 5">★★★★★</span>
         </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة." data-en="Their work speaks for itself. High trust, cost transparency, and unlimited creativity. Our office has become a reference in the area.">أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ك</div>
-            <div><strong>كريم حسام</strong><span>مدير شركة — التجمع الخامس</span></div>
-          </div>
+        <blockquote class="c3d-rev-text" data-ar="تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور." data-en="I worked with them on my villa design and the experience was excellent from start to finish. Professional team, fast communication, results more beautiful than the renderings.">تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور.</blockquote>
+        <figcaption class="c3d-rev-who">
+          <span class="c3d-rev-av" aria-hidden="true">ن</span>
+          <span><strong class="c3d-rev-name">نادية عمران</strong><span class="c3d-rev-meta">فيلا — الشيخ زايد</span></span>
+        </figcaption>
+      </figure>
+      <figure class="c3d-rev-card" role="listitem">
+        <div class="c3d-rev-top">
+          <span class="c3d-rev-chip" data-ar="شفافية التكاليف" data-en="Cost transparency">شفافية التكاليف</span>
+          <span class="c3d-rev-stars" role="img" aria-label="5 من 5">★★★★★</span>
         </div>
-      </div>
-      <div class="testi-controls">
-        <button onclick="testiPrev()" class="testi-btn" aria-label="السابق">&#8250;</button>
-        <div class="testi-dots" id="testiDots"></div>
-        <button onclick="testiNext()" class="testi-btn" aria-label="التالي">&#8249;</button>
-      </div>
+        <blockquote class="c3d-rev-text" data-ar="أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة." data-en="Their work speaks for itself. High trust, cost transparency, and unlimited creativity. Our office has become a reference in the area.">أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</blockquote>
+        <figcaption class="c3d-rev-who">
+          <span class="c3d-rev-av" aria-hidden="true">ك</span>
+          <span><strong class="c3d-rev-name">كريم حسام</strong><span class="c3d-rev-meta">مدير شركة — التجمع الخامس</span></span>
+        </figcaption>
+      </figure>
     </div>
+    <p class="c3d-rev-hint" data-ar="اسحب لقراءة باقي الآراء ←" data-en="Swipe to read more →">اسحب لقراءة باقي الآراء ←</p>
   </div>
 </section>
 
