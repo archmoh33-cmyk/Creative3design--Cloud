@@ -1156,6 +1156,49 @@ body.loading { overflow: hidden; }
   </div>
 </section>
 
+<!-- TESTIMONIALS SECTION (moved up — CRO T1 20261118) -->
+<section class="testimonials-section section-padding" id="testimonials" style="border-top:1px solid rgba(201,168,106,.15)">
+  <div class="container">
+    <div class="section-header lazy-reveal">
+      <p class="section-tag" data-ar="آراء عملائنا" data-en="Client Reviews">آراء عملائنا</p>
+      <h2 data-ar="ماذا يقول عملاؤنا؟" data-en="What Our Clients Say">ماذا يقول عملاؤنا؟</h2>
+    </div>
+    <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p data-ar="Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة." data-en="Creative3Design transformed my apartment into a masterpiece. Attention to detail and on-time delivery made the experience exceptional. Highly recommended.">Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة.</p>
+          <div class="testi-client">
+            <div class="testi-avatar">أ</div>
+            <div><strong>أحمد الشريف</strong><span>تجمع خامس — شقة 220 م²</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p data-ar="تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور." data-en="I worked with them on my villa design and the experience was excellent from start to finish. Professional team, fast communication, results more beautiful than the renderings.">تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور.</p>
+          <div class="testi-client">
+            <div class="testi-avatar">ن</div>
+            <div><strong>نادية عمران</strong><span>فيلا — الشيخ زايد</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p data-ar="أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة." data-en="Their work speaks for itself. High trust, cost transparency, and unlimited creativity. Our office has become a reference in the area.">أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</p>
+          <div class="testi-client">
+            <div class="testi-avatar">ك</div>
+            <div><strong>كريم حسام</strong><span>مدير شركة — التجمع الخامس</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <button onclick="testiPrev()" class="testi-btn" aria-label="السابق">&#8250;</button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button onclick="testiNext()" class="testi-btn" aria-label="التالي">&#8249;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PORTFOLIO SECTION -->
 <section class="portfolio-section section-padding" id="portfolio">
   <div class="container">
@@ -1610,57 +1653,6 @@ body.loading { overflow: hidden; }
       <button class="video-next" onclick="videoNext()" aria-label="التالي">&#8249;</button>
     <div class="section-cta lazy-reveal">
       <a href="https://wa.me/201019053288?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%F0%9F%91%8B%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%AC%D9%88%D9%84%D8%A9%20VR%20%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%8A%20%F0%9F%93%8D%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9%20-%20%D9%82%D8%B3%D9%85%20%D8%A7%D9%84%D9%88%D8%A7%D9%82%D8%B9%20%D8%A7%D9%84%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A"  target="_blank" rel="noopener" class="btn-gold" data-ar="احجز جولة VR لمشروعك" data-en="Book a VR Tour for Your Project">احجز جولة VR لمشروعك</a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS SECTION -->
-<section class="testimonials-section section-padding" id="testimonials">
-  <div class="container">
-    <div class="section-header lazy-reveal">
-      <p class="section-tag" data-ar="آراء عملائنا" data-en="Client Reviews">آراء عملائنا</p>
-      <h2 data-ar="ماذا يقول عملاؤنا؟" data-en="What Our Clients Say">ماذا يقول عملاؤنا؟</h2>
-    </div>
-    <div class="testi-wrap">
-      <div class="testi-track" id="testiTrack">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة." data-en="Creative3Design transformed my apartment into a masterpiece. Attention to detail and on-time delivery made the experience exceptional. Highly recommended.">Creative3Design حوّلت شقتي لتحفة فنية. الاهتمام بالتفاصيل والتسليم في الموعد المحدد جعل التجربة استثنائية. أنصح بهم بشدة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">أ</div>
-            <div><strong>أحمد الشريف</strong><span>تجمع خامس — شقة 220 م²</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="المكتب الأفضل في مصر بلا منازع. صمموا لنا مطعمنا بطريقة جعلت العملاء يعودون فقط بسبب الديكور. النتيجة تفوق كل التوقعات." data-en="The best office in Egypt without question. They designed our restaurant in a way that brings customers back just for the decor. Results exceed all expectations.">المكتب الأفضل في مصر بلا منازع. صمموا لنا مطعمنا بطريقة جعلت العملاء يعودون فقط بسبب الديكور. النتيجة تفوق كل التوقعات.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">م</div>
-            <div><strong>محمد الغندور</strong><span>صاحب مطعم — مدينة نصر</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور." data-en="I worked with them on my villa design and the experience was excellent from start to finish. Professional team, fast communication, results more beautiful than the renderings.">تعاملت معهم في تصميم فيلتي وكانت التجربة ممتازة من البداية للنهاية. الفريق محترف والتواصل سريع والنتيجة أجمل من الصور.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ن</div>
-            <div><strong>نادية عمران</strong><span>فيلا — الشيخ زايد</span></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p data-ar="أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة." data-en="Their work speaks for itself. High trust, cost transparency, and unlimited creativity. Our office has become a reference in the area.">أعمالهم تحكي نفسها. ثقة عالية، شفافية في التكاليف، وإبداع لا حدود له. مكتبنا أصبح مضرب المثل في المنطقة.</p>
-          <div class="testi-client">
-            <div class="testi-avatar">ك</div>
-            <div><strong>كريم حسام</strong><span>مدير شركة — التجمع الخامس</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-controls">
-        <button onclick="testiPrev()" class="testi-btn" aria-label="السابق">&#8250;</button>
-        <div class="testi-dots" id="testiDots"></div>
-        <button onclick="testiNext()" class="testi-btn" aria-label="التالي">&#8249;</button>
-      </div>
     </div>
   </div>
 </section>
